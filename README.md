@@ -1,4 +1,4 @@
-﻿## This is a TabletopTweaks mod and requires [TabletopTweak-Core](https://github.com/Vek17/TabletopTweaks-Core/releases) to be installed.
+﻿## This is a TabletopTweaks mod and requires [TabletopTweak-Core](https://github.com/Vek17/TabletopTweaks-Core/releases).
 
 This module provides non tabletop based tweaks to Owlcat's original mythic content including changes to some mythic classes and some mythic abilities.
 
