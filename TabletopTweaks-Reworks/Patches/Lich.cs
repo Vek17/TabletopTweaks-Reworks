@@ -17,18 +17,17 @@ using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
-using TabletopTweaks.Core;
 using TabletopTweaks.Core.NewActions;
 using TabletopTweaks.Core.Utilities;
 using TabletopTweaks.Core.Wrappers;
-using static TabletopTweaks.MythicReworks.Main;
+using static TabletopTweaks.Reworks.Main;
 
-namespace TabletopTweaks.MythicReworks.Reworks {
+namespace TabletopTweaks.Reworks.Reworks {
     static class Lich {
         [HarmonyPatch(typeof(BlueprintsCache), "Init")]
         static class BlueprintsCache_Init_Patch {
             static bool Initialized;
-            static BlueprintUnitPropertyReference LichDCProperty = Resources.GetModBlueprintReference<BlueprintUnitPropertyReference>(TTTContext, "LichDCProperty");
+            static BlueprintUnitPropertyReference LichDCProperty = BlueprintTools.GetModBlueprintReference<BlueprintUnitPropertyReference>(TTTContext, "LichDCProperty");
 
             static void Postfix() {
                 if (Initialized) return;
@@ -43,10 +42,10 @@ namespace TabletopTweaks.MythicReworks.Reworks {
             static void PatchDeadlyMagic() {
                 if (TTTContext.Homebrew.MythicReworks.Lich.IsDisabled("DeadlyMagic")) { return; }
 
-                var DeadlyMagicFeature = Resources.GetBlueprint<BlueprintFeature>("47a8a7fa7d4198f449db71cdbe4b8d3e");
-                var DeadlyMagicToggleAbility = Resources.GetBlueprint<BlueprintActivatableAbility>("e72727ff8f28cae47a4cd56655ce7b10");
-                var DeadlyMagicBuff = Resources.GetBlueprint<BlueprintBuff>("27ebfae71cce46045814eb3ba4fefa6b");
-                var DeadlyMagicResource = Resources.GetBlueprint<BlueprintAbilityResource>("a3441d150c5fec54bbbc04efdefaf6aa");
+                var DeadlyMagicFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("47a8a7fa7d4198f449db71cdbe4b8d3e");
+                var DeadlyMagicToggleAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("e72727ff8f28cae47a4cd56655ce7b10");
+                var DeadlyMagicBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("27ebfae71cce46045814eb3ba4fefa6b");
+                var DeadlyMagicResource = BlueprintTools.GetBlueprint<BlueprintAbilityResource>("a3441d150c5fec54bbbc04efdefaf6aa");
 
                 DeadlyMagicFeature.SetDescription(TTTContext, "For a number of rounds equal to 3 + half his mythic rank, " +
                     "a Lich can make all spells he casts to ignore spell resistance and spell immunity. " +
@@ -70,8 +69,8 @@ namespace TabletopTweaks.MythicReworks.Reworks {
             static void PatchDecayingTouch() {
                 if (TTTContext.Homebrew.MythicReworks.Lich.IsDisabled("DecayingTouch")) { return; }
 
-                var DecayingTouchFeature = Resources.GetBlueprint<BlueprintFeature>("3eb8922c8a9e25048b6689322c5ae131");
-                var PlantType = Resources.GetBlueprintReference<BlueprintUnitFactReference>("706e61781d692a042b35941f14bc41c5");
+                var DecayingTouchFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("3eb8922c8a9e25048b6689322c5ae131");
+                var PlantType = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("706e61781d692a042b35941f14bc41c5");
 
                 DecayingTouchFeature.SetComponents();
                 DecayingTouchFeature.TemporaryContext(bp => {
@@ -221,12 +220,12 @@ namespace TabletopTweaks.MythicReworks.Reworks {
             static void PatchEclipseChill() {
                 if (TTTContext.Homebrew.MythicReworks.Lich.IsDisabled("EclipseChill")) { return; }
 
-                var EclipseChillFeature = Resources.GetBlueprint<BlueprintFeature>("731bebb09171d5748b6f08cbe88f8af7");
-                var EclipseChillToggleAbility = Resources.GetBlueprint<BlueprintActivatableAbility>("a34b61de2713f604c9971d640ec50b8a");
-                var EclipseChillOnBuff = Resources.GetBlueprint<BlueprintBuff>("1d585582fbe72e14aadc5cd7985c06f4");
-                var EclipseChillEffectBuff = Resources.GetBlueprint<BlueprintBuff>("1e82cabbfc9b30c44bcc1354b3daa6f4");
-                var EclipseChillResource = Resources.GetBlueprint<BlueprintAbilityResource>("b134e2d400adc4a49bd217a7953d6d6a");
-                var PlantType = Resources.GetBlueprintReference<BlueprintUnitFactReference>("706e61781d692a042b35941f14bc41c5");
+                var EclipseChillFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("731bebb09171d5748b6f08cbe88f8af7");
+                var EclipseChillToggleAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("a34b61de2713f604c9971d640ec50b8a");
+                var EclipseChillOnBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("1d585582fbe72e14aadc5cd7985c06f4");
+                var EclipseChillEffectBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("1e82cabbfc9b30c44bcc1354b3daa6f4");
+                var EclipseChillResource = BlueprintTools.GetBlueprint<BlueprintAbilityResource>("b134e2d400adc4a49bd217a7953d6d6a");
+                var PlantType = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("706e61781d692a042b35941f14bc41c5");
 
                 EclipseChillFeature.SetDescription(TTTContext, "For a number of rounds equal to 3 + half his mythic rank, a Lich can imbue all spells he casts with the " +
                     "powers of the Eclipse chill. Creatures affected by such spells must pass a Fortitude saving throw " +
@@ -322,9 +321,9 @@ namespace TabletopTweaks.MythicReworks.Reworks {
             static void PatchTainedSneakAttack() {
                 if (TTTContext.Homebrew.MythicReworks.Lich.IsDisabled("TainedSneakAttack")) { return; }
 
-                var TaintedSneakAttackFeature = Resources.GetBlueprint<BlueprintFeature>("e6ce101a94ac9034b8b55c546e74b9dd");
-                var TaintedSneakAttackBuff = Resources.GetBlueprint<BlueprintBuff>("7860e92789511a24dba5906ac8d65f90");
-                var SneakAttack = Resources.GetBlueprintReference<BlueprintUnitFactReference>("9b9eac6709e1c084cb18c3a366e0ec87");
+                var TaintedSneakAttackFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("e6ce101a94ac9034b8b55c546e74b9dd");
+                var TaintedSneakAttackBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("7860e92789511a24dba5906ac8d65f90");
+                var SneakAttack = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("9b9eac6709e1c084cb18c3a366e0ec87");
 
                 TaintedSneakAttackFeature.TemporaryContext(bp => {
                     bp.SetDescription(TTTContext, "Whenever Lich lands a successful sneak attack, the enemy must pass Fortitude saving throw " +

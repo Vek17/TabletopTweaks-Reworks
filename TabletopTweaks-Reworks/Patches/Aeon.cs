@@ -25,14 +25,13 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using TabletopTweaks.Core;
 using TabletopTweaks.Core.MechanicsChanges;
 using TabletopTweaks.Core.NewComponents.AbilitySpecific;
 using TabletopTweaks.Core.NewComponents.Properties;
 using TabletopTweaks.Core.Utilities;
-using static TabletopTweaks.MythicReworks.Main;
+using static TabletopTweaks.Reworks.Main;
 
-namespace TabletopTweaks.MythicReworks.Reworks {
+namespace TabletopTweaks.Reworks.Reworks {
     static class Aeon {
         [HarmonyPatch(typeof(BlueprintsCache), "Init")]
         static class BlueprintsCache_Init_Patch {
@@ -57,8 +56,8 @@ namespace TabletopTweaks.MythicReworks.Reworks {
             static void PatchAeonBaneIcon() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonBaneIcon")) { return; }
                 var Icon_AeonBane = AssetLoader.LoadInternal(TTTContext, "Abilities", "Icon_AeonBane.png");
-                var AeonBaneFeature = Resources.GetBlueprint<BlueprintFeature>("0b25e8d8b0488c84c9b5714e9ca0a204");
-                var AeonBaneAbility = Resources.GetBlueprint<BlueprintActivatableAbility>("67fb31f553f2bb14bbfae0b1040169f1");
+                var AeonBaneFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("0b25e8d8b0488c84c9b5714e9ca0a204");
+                var AeonBaneAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("67fb31f553f2bb14bbfae0b1040169f1");
                 AeonBaneFeature.m_Icon = Icon_AeonBane;
                 AeonBaneAbility.m_Icon = Icon_AeonBane;
                 TTTContext.Logger.LogPatch("Patched", AeonBaneFeature);
@@ -66,7 +65,7 @@ namespace TabletopTweaks.MythicReworks.Reworks {
             }
             static void PatchAeonBaneSpellResistance() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonBaneSpellResistance")) { return; }
-                var AeonBaneBuff = Resources.GetBlueprint<BlueprintBuff>("345160619fc2ddc44b8ad98c94dde448");
+                var AeonBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("345160619fc2ddc44b8ad98c94dde448");
                 AeonBaneBuff.RemoveComponents<ModifyD20>();
                 AeonBaneBuff.AddComponent<SpellPenetrationBonus>(c => {
                     c.Value = new ContextValue() {
@@ -78,9 +77,9 @@ namespace TabletopTweaks.MythicReworks.Reworks {
             }
             static void PatchAeonBaneUses() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonBaneUses")) { return; }
-                var AeonClass = Resources.GetBlueprint<BlueprintCharacterClass>("15a85e67b7d69554cab9ed5830d0268e");
-                var AeonBaneFeature = Resources.GetBlueprint<BlueprintFeature>("0b25e8d8b0488c84c9b5714e9ca0a204");
-                var AeonBaneIncreaseResourceFeature = Resources.GetModBlueprint<BlueprintFeature>(modContext: TTTContext, "AeonBaneIncreaseResourceFeature");
+                var AeonClass = BlueprintTools.GetBlueprint<BlueprintCharacterClass>("15a85e67b7d69554cab9ed5830d0268e");
+                var AeonBaneFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("0b25e8d8b0488c84c9b5714e9ca0a204");
+                var AeonBaneIncreaseResourceFeature = BlueprintTools.GetModBlueprint<BlueprintFeature>(modContext: TTTContext, "AeonBaneIncreaseResourceFeature");
                 AeonBaneFeature.AddComponent(Helpers.Create<AddFeatureOnApply>(c => {
                     c.m_Feature = AeonBaneIncreaseResourceFeature.ToReference<BlueprintFeatureReference>();
                 }));
@@ -95,7 +94,7 @@ namespace TabletopTweaks.MythicReworks.Reworks {
             static void PatchAeonImprovedBaneDispelLimit() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonImprovedBaneDispelLimit")) { return; }
 
-                var AeonBaneBuff = Resources.GetBlueprint<BlueprintBuff>("345160619fc2ddc44b8ad98c94dde448");
+                var AeonBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("345160619fc2ddc44b8ad98c94dde448");
                 AeonBaneBuff.GetComponent<AddInitiatorAttackWithWeaponTrigger>()
                     .Action
                     .Actions
@@ -145,14 +144,14 @@ namespace TabletopTweaks.MythicReworks.Reworks {
             }
             static void PatchAeonGreaterBaneDamage() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonGreaterBaneDamage")) { return; }
-                var AeonGreaterBaneBuff = Resources.GetBlueprint<BlueprintBuff>("cdcc13884252b2c4d8dac57cb5f46555");
+                var AeonGreaterBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("cdcc13884252b2c4d8dac57cb5f46555");
                 AeonGreaterBaneBuff.RemoveComponents<AddInitiatorAttackWithWeaponTrigger>(c => c.Action.Actions.OfType<ContextActionDealDamage>().Any());
                 TTTContext.Logger.LogPatch("Patched", AeonGreaterBaneBuff);
             }
             static void PatchAeonGreaterBaneDispel() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("PatchAeonGreaterBaneDispel")) { return; }
 
-                var AeonGreaterBaneBuff = Resources.GetBlueprint<BlueprintBuff>("cdcc13884252b2c4d8dac57cb5f46555");
+                var AeonGreaterBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("cdcc13884252b2c4d8dac57cb5f46555");
                 AeonGreaterBaneBuff.GetComponents<AddInitiatorAttackWithWeaponTrigger>()
                     .Where(action => action.Action.Actions.OfType<ContextActionDispelMagic>().Any())
                     .First().OnlyOnFirstHit = true;
@@ -163,8 +162,8 @@ namespace TabletopTweaks.MythicReworks.Reworks {
             }
             static void PatchAeonGazeDC() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonGazeDC")) { return; }
-                var AeonGazeDCProperty = Resources.GetBlueprint<BlueprintUnitProperty>("4358468cba854a6db8f60909dacf8203");
-                var AeonAttackGazeAbility = Resources.GetBlueprint<BlueprintActivatableAbility>("79d287eefba48424b9073a5cabba2a63");
+                var AeonGazeDCProperty = BlueprintTools.GetBlueprint<BlueprintUnitProperty>("4358468cba854a6db8f60909dacf8203");
+                var AeonAttackGazeAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("79d287eefba48424b9073a5cabba2a63");
 
                 AeonGazeDCProperty.RemoveComponents<SimplePropertyGetter>();
                 AeonGazeDCProperty.AddComponent<CompositePropertyGetter>(c => {
@@ -191,7 +190,7 @@ namespace TabletopTweaks.MythicReworks.Reworks {
             }
             static void PatchAeonGazeAction() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonGazeActionSystem")) { return; }
-                var AeonGazeThirdSelection = Resources.GetBlueprint<BlueprintFeatureSelection>("0bec49f67ecb49a5826fcfefb9408a35");
+                var AeonGazeThirdSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("0bec49f67ecb49a5826fcfefb9408a35");
                 AeonGazeThirdSelection.AllFeatures
                     .SelectMany(feature => feature.GetComponent<AddFacts>()?.m_Facts)
                     .Where(gaze => gaze != null)
@@ -212,7 +211,7 @@ namespace TabletopTweaks.MythicReworks.Reworks {
             }
             static void PatchAeonGazeIcons() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonGazeIcons")) { return; }
-                var AeonGazeThirdSelection = Resources.GetBlueprint<BlueprintFeatureSelection>("0bec49f67ecb49a5826fcfefb9408a35");
+                var AeonGazeThirdSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("0bec49f67ecb49a5826fcfefb9408a35");
                 AeonGazeThirdSelection.AllFeatures
                     .SelectMany(feature => feature.GetComponent<AddFacts>()?.m_Facts)
                     .Where(gaze => gaze != null)
@@ -240,7 +239,7 @@ namespace TabletopTweaks.MythicReworks.Reworks {
         }
         [HarmonyPatch(typeof(AbilityData), nameof(AbilityData.RuntimeActionType), MethodType.Getter)]
         static class AbilityData_GetRuntimeActionType_MythicMoveAction_Patch {
-            static readonly BlueprintBuff AeonGreaterBaneBuff = Resources.GetBlueprint<BlueprintBuff>("cdcc13884252b2c4d8dac57cb5f46555");
+            static readonly BlueprintBuff AeonGreaterBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("cdcc13884252b2c4d8dac57cb5f46555");
             static void Postfix(AbilityData __instance, ref UnitCommand.CommandType __result) {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonGreaterBaneActionBoost")) { return; }
                 UnitCommand.CommandType commandType = __instance.ActionType;

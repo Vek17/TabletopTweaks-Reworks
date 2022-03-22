@@ -5,17 +5,16 @@ using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using System.Linq;
-using TabletopTweaks.Core;
 using TabletopTweaks.Core.Utilities;
 using TabletopTweaks.Core.Wrappers;
-using static TabletopTweaks.MythicReworks.Main;
+using static TabletopTweaks.Reworks.Main;
 
-namespace TabletopTweaks.MythicReworks.NewContent.Classes {
+namespace TabletopTweaks.Reworks.NewContent.Classes {
     class Aeon {
         public static void AddAeonFeatures() {
-            var InquistorClass = Resources.GetBlueprint<BlueprintCharacterClass>("f1a70d9e1b0b41e49874e1fa9052a1ce");
-            var InquisitorBaneResource = Resources.GetBlueprint<BlueprintAbilityResource>("a708945b17c56fa4196e8d20f8af1b0d");
-            var AeonBaneFeature = Resources.GetBlueprint<BlueprintFeature>("0b25e8d8b0488c84c9b5714e9ca0a204");
+            var InquistorClass = BlueprintTools.GetBlueprint<BlueprintCharacterClass>("f1a70d9e1b0b41e49874e1fa9052a1ce");
+            var InquisitorBaneResource = BlueprintTools.GetBlueprint<BlueprintAbilityResource>("a708945b17c56fa4196e8d20f8af1b0d");
+            var AeonBaneFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("0b25e8d8b0488c84c9b5714e9ca0a204");
             var AeonBaneIncreaseResourceFeature = Helpers.CreateBlueprint<BlueprintFeature>(TTTContext, "AeonBaneIncreaseResourceFeature", bp => {
                 bp.HideInUI = true;
                 bp.SetName(TTTContext, "Aeon Bane Increase Resource Feature");

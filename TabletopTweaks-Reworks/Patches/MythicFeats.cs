@@ -2,13 +2,12 @@
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.UnitLogic.FactLogic;
-using TabletopTweaks.Core;
 using TabletopTweaks.Core.NewComponents.AbilitySpecific;
 using TabletopTweaks.Core.Utilities;
 using TabletopTweaks.Core.Wrappers;
-using static TabletopTweaks.MythicReworks.Main;
+using static TabletopTweaks.Reworks.Main;
 
-namespace TabletopTweaks.MythicReworks.Reworks {
+namespace TabletopTweaks.Reworks.Reworks {
     class MythicFeats {
         [HarmonyPatch(typeof(BlueprintsCache), "Init")]
         static class BlueprintsCache_Init_Patch {
@@ -23,7 +22,7 @@ namespace TabletopTweaks.MythicReworks.Reworks {
             static void PatchMythicSneakAttack() {
                 if (TTTContext.Homebrew.MythicFeats.IsDisabled("MythicSneakAttack")) { return; }
 
-                var SneakAttackerMythicFeat = Resources.GetBlueprint<BlueprintFeature>("d0a53bf03b978634890e5ebab4a90ecb");
+                var SneakAttackerMythicFeat = BlueprintTools.GetBlueprint<BlueprintFeature>("d0a53bf03b978634890e5ebab4a90ecb");
 
                 SneakAttackerMythicFeat.RemoveComponents<AddStatBonus>();
                 SneakAttackerMythicFeat.AddComponent<MythicSneakAttack>();

@@ -13,13 +13,12 @@ using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Properties;
 using Kingmaker.Utility;
-using TabletopTweaks.Core;
 using TabletopTweaks.Core.NewActions;
 using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
 using TabletopTweaks.Core.Utilities;
-using static TabletopTweaks.MythicReworks.Main;
+using static TabletopTweaks.Reworks.Main;
 
-namespace TabletopTweaks.MythicReworks.Reworks {
+namespace TabletopTweaks.Reworks.Reworks {
     class MythicAbilities {
         [HarmonyPatch(typeof(BlueprintsCache), "Init")]
         static class BlueprintsCache_Init_Patch {
@@ -34,11 +33,11 @@ namespace TabletopTweaks.MythicReworks.Reworks {
             }
             static void PatchElementalBarrage() {
                 if (TTTContext.Homebrew.MythicAbilities.IsDisabled("ElementalBarrage")) { return; }
-                var ElementalBarrage = Resources.GetBlueprint<BlueprintFeature>("da56a1b21032a374783fdf46e1a92adb");
-                var ElementalBarrageAcidBuff = Resources.GetBlueprint<BlueprintBuff>("823d33bdb23e7c64d9cc1cce9b78fdea");
-                var ElementalBarrageColdBuff = Resources.GetBlueprint<BlueprintBuff>("c5e9031099d3e8d4788d3e51f7ffb8a0");
-                var ElementalBarrageElectricityBuff = Resources.GetBlueprint<BlueprintBuff>("0b8ed343b989bbb4c8d059366a7c2d01");
-                var ElementalBarrageFireBuff = Resources.GetBlueprint<BlueprintBuff>("7db8ad7b035c2f244951cbef3c9909df");
+                var ElementalBarrage = BlueprintTools.GetBlueprint<BlueprintFeature>("da56a1b21032a374783fdf46e1a92adb");
+                var ElementalBarrageAcidBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("823d33bdb23e7c64d9cc1cce9b78fdea");
+                var ElementalBarrageColdBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("c5e9031099d3e8d4788d3e51f7ffb8a0");
+                var ElementalBarrageElectricityBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("0b8ed343b989bbb4c8d059366a7c2d01");
+                var ElementalBarrageFireBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("7db8ad7b035c2f244951cbef3c9909df");
 
                 ElementalBarrage.SetDescription(TTTContext, "You've mastered the art of raining elemental spells on your foes, " +
                     "and found a way to empower them by combining different elements.\n" +
@@ -130,8 +129,8 @@ namespace TabletopTweaks.MythicReworks.Reworks {
             }
             static void PatchDimensionalRetribution() {
                 if (Main.TTTContext.Homebrew.MythicAbilities.IsDisabled("DimensionalRetribution")) { return; }
-                var DimensionalRetribution = Resources.GetBlueprint<BlueprintFeature>("939f49ad995ee8d4fad03ad0c7f655d1");
-                var DimensionalRetributionTTTToggleAbility = Resources.GetModBlueprintReference<BlueprintUnitFactReference>(modContext: TTTContext, "DimensionalRetributionTTTToggleAbility");
+                var DimensionalRetribution = BlueprintTools.GetBlueprint<BlueprintFeature>("939f49ad995ee8d4fad03ad0c7f655d1");
+                var DimensionalRetributionTTTToggleAbility = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(modContext: TTTContext, "DimensionalRetributionTTTToggleAbility");
 
                 DimensionalRetribution.SetDescription(TTTContext, "You leave a mystical link with enemy spellcasters that lets you instantly move to them." +
                     "Benefit: Every time you are targeted by an enemy spell, you may teleport to the " +

@@ -1,9 +1,9 @@
 ﻿using HarmonyLib;
 using TabletopTweaks.Core.Utilities;
-using TabletopTweaks.MythicReworks.ModLogic;
+using TabletopTweaks.Reworks.ModLogic;
 using UnityModManagerNet;
 
-namespace TabletopTweaks.MythicReworks {
+namespace TabletopTweaks.Reworks {
     static class Main {
         public static bool Enabled;
         public static ModContextTTTMythicReworks TTTContext;

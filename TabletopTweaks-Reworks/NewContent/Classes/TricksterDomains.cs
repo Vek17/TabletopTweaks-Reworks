@@ -7,13 +7,12 @@ using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.Utility;
 using System.Collections.Generic;
 using System.Linq;
-using TabletopTweaks.Core;
 using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
 using TabletopTweaks.Core.Utilities;
-using static TabletopTweaks.MythicReworks.Main;
+using static TabletopTweaks.Reworks.Main;
 
-namespace TabletopTweaks.MythicReworks.NewContent.Classes {
+namespace TabletopTweaks.Reworks.NewContent.Classes {
     static class Trickster {
         private static BlueprintGuid TricksterDomainMasterID = TTTContext.Blueprints.GetDerivedMaster("TricksterDomainMasterID");
         private static BlueprintGuid[] TricksterSpellResource = new BlueprintGuid[9] {
@@ -28,7 +27,7 @@ namespace TabletopTweaks.MythicReworks.NewContent.Classes {
             TTTContext.Blueprints.GetDerivedMaster("TricksterSpellResource9")
         };
         public static void AddTricksterDomains() {
-            var DomainsSelection = Resources.GetBlueprint<BlueprintFeatureSelection>("48525e5da45c9c243a343fc6545dbdb9");
+            var DomainsSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("48525e5da45c9c243a343fc6545dbdb9");
             DomainsSelection.AllFeatures
                 .OfType<BlueprintProgression>()
                 .ForEach(domain => GenerateTricksterDomain(TricksterDomainMasterID, domain));
@@ -69,7 +68,7 @@ namespace TabletopTweaks.MythicReworks.NewContent.Classes {
         }
         private static BlueprintAbilityResourceReference CreateTricksterSpellResource(int spellLevel, BlueprintSpellList spellList) {
             return Helpers.CreateDerivedBlueprint<BlueprintAbilityResource>(
-                modContext: TTTContext, 
+                modContext: TTTContext,
                 $"TricksterTTT{spellList.name}Resource{spellLevel}",
                 TricksterSpellResource[spellLevel - 1],
                 new SimpleBlueprint[] { spellList },

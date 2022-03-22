@@ -1,9 +1,9 @@
 ﻿using ModKit;
+using TabletopTweaks.Core;
 using TabletopTweaks.Core.Config;
 using UnityModManagerNet;
-using TabletopTweaks.Core;
 
-namespace TabletopTweaks.MythicReworks {
+namespace TabletopTweaks.Reworks {
     internal static class UMMSettingsUI {
         private static int selectedTab;
         public static void OnGUI(UnityModManager.ModEntry modEntry) {

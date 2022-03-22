@@ -1,8 +1,8 @@
 ﻿using HarmonyLib;
 using Kingmaker.Blueprints.JsonSystem;
-using static TabletopTweaks.MythicReworks.Main;
+using static TabletopTweaks.Reworks.Main;
 
-namespace TabletopTweaks.MythicReworks.NewContent {
+namespace TabletopTweaks.Reworks.NewContent {
     class ContentAdder {
         [HarmonyPatch(typeof(BlueprintsCache), "Init")]
         static class BlueprintsCache_Init_Patch {

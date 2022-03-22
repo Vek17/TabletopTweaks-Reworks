@@ -1,8 +1,8 @@
 ﻿{
-  "AssemblyName": "TabletopTweaks-MythicReworks.dll",
+  "AssemblyName": "TabletopTweaks-Reworks.dll",
   "Author": "Sean Petrie",
-  "DisplayName": "Tabletop Tweaks Mythic Reworks",
-  "EntryMethod": "TabletopTweaks.MythicReworks.Main.Load",
+  "DisplayName": "Tabletop Tweaks Reworks",
+  "EntryMethod": "TabletopTweaks.Reworks.Main.Load",
   "GameVersion": "1.2.0",
   "HomePage": "https://github.com/Vek17/WrathMods-TabletopTweaks/releases",
   "Id": "TabletopTweaks-MythicReworks",
@@ -10,5 +10,5 @@
   "Repository": "https://raw.githubusercontent.com/Vek17/WrathMods-TabletopTweaks/master/Repository.json",
   "Requirements": [ "TabletopTweaks-Core" ],
   "LoadAfter": [ "TabletopTweaks-Core" ],
-  "Version": "1.11.2"
+  "Version": "1.0.0"
 }
