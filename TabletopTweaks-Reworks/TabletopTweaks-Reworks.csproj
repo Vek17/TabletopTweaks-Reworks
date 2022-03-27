@@ -157,7 +157,7 @@
   <ItemGroup>
     <Compile Include="Config\Homebrew.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="ModLogic\ModContextTTTMythicReworks.cs" />
+    <Compile Include="ModLogic\ModContextTTTReworks.cs" />
     <Compile Include="NewContent\Classes\Aeon.cs" />
     <Compile Include="NewContent\Classes\TricksterDomains.cs" />
     <Compile Include="NewContent\ContentAdder.cs" />

@@ -6,10 +6,10 @@ using UnityModManagerNet;
 namespace TabletopTweaks.Reworks {
     static class Main {
         public static bool Enabled;
-        public static ModContextTTTMythicReworks TTTContext;
+        public static ModContextTTTReworks TTTContext;
         static bool Load(UnityModManager.ModEntry modEntry) {
             var harmony = new Harmony(modEntry.Info.Id);
-            TTTContext = new ModContextTTTMythicReworks(modEntry);
+            TTTContext = new ModContextTTTReworks(modEntry);
             TTTContext.LoadAllSettings();
             TTTContext.ModEntry.OnSaveGUI = OnSaveGUI;
             TTTContext.ModEntry.OnGUI = UMMSettingsUI.OnGUI;

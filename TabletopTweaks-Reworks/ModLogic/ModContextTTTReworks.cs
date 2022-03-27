@@ -3,16 +3,26 @@ using TabletopTweaks.MythicReoworks.Config;
 using static UnityModManagerNet.UnityModManager;
 
 namespace TabletopTweaks.Reworks.ModLogic {
-    internal class ModContextTTTMythicReworks : ModContextBase {
+    internal class ModContextTTTReworks : ModContextBase {
         public Homebrew Homebrew;
 
-        public ModContextTTTMythicReworks(ModEntry ModEntry) : base(ModEntry) {
+        public ModContextTTTReworks(ModEntry ModEntry) : base(ModEntry) {
             LoadAllSettings();
+#if DEBUG
+            Debug = true;
+#endif
         }
         public override void LoadAllSettings() {
             LoadSettings("Homebrew.json", "TabletopTweaks.Reworks.Config", ref Homebrew);
             LoadBlueprints("TabletopTweaks.Reworks.Config", Main.TTTContext);
             LoadLocalization("TabletopTweaks.Reworks.Localization");
+        }
+        public override void AfterBlueprintCachePatches() {
+            base.AfterBlueprintCachePatches();
+            //Blueprints.RemoveUnused();
+            //SaveSettings(BlueprintsFile, Blueprints);
+            //ModLocalizationPack.RemoveUnused();
+            //SaveLocalization(ModLocalizationPack);
         }
     }
 }
