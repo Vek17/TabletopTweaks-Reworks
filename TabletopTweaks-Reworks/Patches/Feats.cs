@@ -4,7 +4,6 @@ using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.UnitLogic.Abilities;
 using TabletopTweaks.Core.MechanicsChanges;
 using TabletopTweaks.Core.Utilities;
-using TabletopTweaks.Core.Wrappers;
 using static TabletopTweaks.Reworks.Main;
 
 namespace TabletopTweaks.Reworks.Patches {

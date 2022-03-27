@@ -6,7 +6,6 @@ using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
-using TabletopTweaks.Core.Wrappers;
 using static TabletopTweaks.Reworks.Main;
 
 namespace TabletopTweaks.Reworks.NewContent.Classes {

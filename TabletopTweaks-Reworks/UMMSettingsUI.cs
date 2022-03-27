@@ -1,5 +1,4 @@
-﻿using TabletopTweaks.Core;
-using TabletopTweaks.Core.UMMTools;
+﻿using TabletopTweaks.Core.UMMTools;
 using UnityModManagerNet;
 
 namespace TabletopTweaks.Reworks {

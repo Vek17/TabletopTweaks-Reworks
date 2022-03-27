@@ -19,7 +19,6 @@ using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
 using TabletopTweaks.Core.NewActions;
 using TabletopTweaks.Core.Utilities;
-using TabletopTweaks.Core.Wrappers;
 using static TabletopTweaks.Reworks.Main;
 
 namespace TabletopTweaks.Reworks.Reworks {
