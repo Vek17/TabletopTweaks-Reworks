@@ -4,10 +4,10 @@
   "DisplayName": "Tabletop Tweaks Reworks",
   "EntryMethod": "TabletopTweaks.Reworks.Main.Load",
   "GameVersion": "1.2.0",
-  "HomePage": "https://github.com/Vek17/WrathMods-TabletopTweaks/releases",
-  "Id": "TabletopTweaks-MythicReworks",
+  "HomePage": "https://github.com/Vek17/TabletopTweaks-Reworks/releases",
+  "Id": "TabletopTweaks-Reworks",
   "ManagerVersion": "0.23.0",
-  "Repository": "https://raw.githubusercontent.com/Vek17/WrathMods-TabletopTweaks/master/Repository.json",
+  "Repository": "https://raw.githubusercontent.com/Vek17/TabletopTweaks-Reworks/master/Repository.json",
   "Requirements": [ "TabletopTweaks-Core" ],
   "LoadAfter": [ "TabletopTweaks-Core" ],
   "Version": "1.0.0"

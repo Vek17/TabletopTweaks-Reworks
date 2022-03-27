@@ -1,6 +1,5 @@
-﻿using ModKit;
-using TabletopTweaks.Core;
-using TabletopTweaks.Core.Config;
+﻿using TabletopTweaks.Core;
+using TabletopTweaks.Core.UMMTools;
 using UnityModManagerNet;
 
 namespace TabletopTweaks.Reworks {
