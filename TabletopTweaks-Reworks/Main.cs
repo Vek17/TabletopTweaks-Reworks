@@ -19,8 +19,7 @@ namespace TabletopTweaks.Reworks {
         }
 
         static void OnSaveGUI(UnityModManager.ModEntry modEntry) {
-            TTTContext.Blueprints.RemoveUnused();
-            TTTContext.SaveSettings(TTTContext.BlueprintsFile, TTTContext.Blueprints);
+            TTTContext.SaveAllSettings();
         }
     }
 }

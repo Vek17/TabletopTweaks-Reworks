@@ -24,5 +24,9 @@ namespace TabletopTweaks.Reworks.ModLogic {
             //ModLocalizationPack.RemoveUnused();
             //SaveLocalization(ModLocalizationPack);
         }
+        public override void SaveAllSettings() {
+            base.SaveAllSettings();
+            SaveSettings("Homebrew.json", Homebrew);
+        }
     }
 }
