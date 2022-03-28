@@ -166,7 +166,23 @@
     },
     "Trickster": {
       "DisableAll": false,
-      "Settings": {},
+      "Settings": {
+        "TricksterStealth1": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "This invisibility can no longer be seen through by divination magic such as True Seeing, See Invisability, or Thoughtsense."
+        },
+        "TricksterStealth2": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "This invisibility can no longer be seen through by divination magic such as True Seeing, See Invisability, or Thoughtsense."
+        },
+        "TricksterStealthAbilityName": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "This invisibility can no longer be seen through by divination magic such as True Seeing, See Invisability, or Thoughtsense."
+        }
+      },
       "IsExpanded": true
     },
     "Devil": {
