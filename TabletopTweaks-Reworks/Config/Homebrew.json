@@ -167,6 +167,16 @@
     "Trickster": {
       "DisableAll": false,
       "Settings": {
+        "TricksterKnowledgeArcana2": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Updates the enchantment list available to be added. This should be a power increase."
+        },
+        "TricksterKnowledgeArcana3": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Updates the enchantment list available to be added. This should be a power increase."
+        },
         "TricksterStealth1": {
           "Enabled": true,
           "Homebrew": true,
