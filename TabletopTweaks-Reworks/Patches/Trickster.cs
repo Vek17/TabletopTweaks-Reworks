@@ -7,6 +7,8 @@ using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
+using Kingmaker.Utility;
+using System.Linq;
 using TabletopTweaks.Core.Utilities;
 using static TabletopTweaks.Reworks.Main;
 
@@ -21,11 +23,43 @@ namespace TabletopTweaks.Reworks.Patches {
                 Initialized = true;
                 TTTContext.Logger.LogHeader("Trickster Rework");
 
+                PatchTricksterProgression();
                 PatchTricksterKnowledgeArcana2();
                 PatchTricksterKnowledgeArcana3();
+                PatchTricksterPersuasion2();
+                PatchTricksterPersuasion3();
                 PatchTricksterStealthAbilityName();
                 PatchTricksterStealth1();
                 PatchTricksterStealth2();
+            }
+            static void PatchTricksterProgression() {
+                if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("Progression")) { return; }
+                var TricksterProgression = BlueprintTools.GetBlueprint<BlueprintProgression>("cc64789b0cc5df14b90da1ffee7bbeea");
+                var TricksterRank1Selection = BlueprintTools.GetBlueprintReference<BlueprintFeatureBaseReference>("4fbc563529717de4d92052048143e0f1");
+                var TricksterRank2Selection = BlueprintTools.GetBlueprintReference<BlueprintFeatureBaseReference>("5cd96c3460844fc458dc3e1656dafa42");
+                var TricksterRank3Selection = BlueprintTools.GetBlueprintReference<BlueprintFeatureBaseReference>("446f4a8b32019f5478a8dfeddac74710");
+
+                TricksterProgression.LevelEntries.TemporaryContext(entries => {
+                    entries
+                        .Where(e => e.Level == 3)
+                        .ForEach(e => {
+                            e.m_Features.Add(TricksterRank2Selection);
+                        });
+                    entries
+                        .Where(e => e.Level == 7)
+                        .ForEach(e => {
+                            e.m_Features.Remove(f => f.Guid == TricksterRank2Selection.Guid);
+                            e.m_Features.Add(TricksterRank3Selection);
+                        });
+                    entries
+                        .Where(e => e.Level == 8)
+                        .ForEach(e => {
+                            e.m_Features.Remove(f => f.Guid == TricksterRank3Selection.Guid);
+                            e.m_Features.Add(TricksterRank2Selection);
+                        });
+                });
+
+                TTTContext.Logger.LogPatch("Patched", TricksterProgression);
             }
             static void PatchTricksterKnowledgeArcana2() {
                 if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("TricksterKnowledgeArcana2")) { return; }
@@ -107,6 +141,12 @@ namespace TabletopTweaks.Reworks.Patches {
 
                 TTTContext.Logger.LogPatch("Patched", TricksterKnowledgeArcanaTier3Feature);
             }
+            static void PatchTricksterPersuasion2() { 
+            
+            }
+            static void PatchTricksterPersuasion3() {
+
+            }
             static void PatchTricksterStealthAbilityName() {
                 if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("TricksterStealthAbilityName")) { return; }
                 var TricksterStealthTier1AbilityTarget = BlueprintTools.GetBlueprint<BlueprintAbility>("f131bc5d82f8b0a4b9bb28b2a176b8a8");
@@ -152,6 +192,15 @@ namespace TabletopTweaks.Reworks.Patches {
                 });
                 TTTContext.Logger.LogPatch("Patched", TricksterStealthTier2Feature);
                 TTTContext.Logger.LogPatch("Patched", TricksterStealthTier2Buff);
+            }
+            static void PatchTricksterTrickery1() {
+
+            }
+            static void PatchTricksterTrickery2() {
+
+            }
+            static void PatchTricksterTrickery3() {
+
             }
         }
     }

@@ -167,6 +167,11 @@
     "Trickster": {
       "DisableAll": false,
       "Settings": {
+        "Progression": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Updates Trickster Progression to re order when tricks are gained."
+        },
         "TricksterKnowledgeArcana2": {
           "Enabled": true,
           "Homebrew": true,
