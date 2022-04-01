@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.Mechanics.Facts;
@@ -9,7 +10,9 @@ using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.Utility;
 using System.Linq;
+using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.Utilities;
+using static TabletopTweaks.Core.NewUnitParts.UnitPartCustomMechanicsFeatures;
 using static TabletopTweaks.Reworks.Main;
 
 namespace TabletopTweaks.Reworks.Patches {
@@ -26,6 +29,9 @@ namespace TabletopTweaks.Reworks.Patches {
                 PatchTricksterProgression();
                 PatchTricksterKnowledgeArcana2();
                 PatchTricksterKnowledgeArcana3();
+                PatchTricksterPerception1();
+                PatchTricksterPerception2();
+                PatchTricksterPerception3();
                 PatchTricksterPersuasion2();
                 PatchTricksterPersuasion3();
                 PatchTricksterStealthAbilityName();
@@ -139,7 +145,67 @@ namespace TabletopTweaks.Reworks.Patches {
                         Vorpal
                     };
 
+             
                 TTTContext.Logger.LogPatch("Patched", TricksterKnowledgeArcanaTier3Feature);
+            }
+            static void PatchTricksterPerception1() {
+                if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("TricksterPerception1")) { return; }
+                var TricksterPerceptionTier1Feature = BlueprintTools.GetBlueprint<BlueprintFeature>("8bc2f9b88a0cf704ea72d86c2a3e2aef");
+
+                TricksterPerceptionTier1Feature.TemporaryContext(bp => {
+                    bp.SetDescription(TTTContext, "You see more than other people.\n" +
+                        "You are under a constant effect of the see invisibility spell, auto detect stealthing creatures, and reroll all concealment rolls.");
+                    bp.AddComponent<AutoDetectStealth>();
+                    bp.AddComponent<RerollConcealment>();
+                });
+                TTTContext.Logger.LogPatch("Patched", TricksterPerceptionTier1Feature);
+
+            }
+            static void PatchTricksterPerception2() {
+                if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("TricksterPerception2")) { return; }
+                var TricksterPerceptionTier2Feature = BlueprintTools.GetBlueprint<BlueprintFeature>("e9298851786c5334dba1398e9635a83d");
+
+                TricksterPerceptionTier2Feature.TemporaryContext(bp => {
+                    bp.SetDescription(TTTContext, "You can see the best ways to injure even the most resilient opponents.\n" +
+                        "You ignore critical and sneak attack immunity, reroll all fortification checks and " +
+                        "your critical hit range is increased by 2 with all weapons.");
+                    bp.RemoveComponents<AutoDetectStealth>();
+                    bp.AddComponent<IgnoreCritImmunity>();
+                    bp.AddComponent<RerollFortification>();
+                    bp.AddComponent<IncreaseCriticalRange>(c => {
+                        c.CriticalRangeIncrease = 2;
+                    });
+                    bp.AddComponent<AddCustomMechanicsFeature>(c => {
+                        c.Feature = CustomMechanicsFeature.BypassSneakAttackImmunity;
+                    });
+                });
+                FeatTools.Selections.AllSelections
+                    .Distinct()
+                    .ForEach(selection => selection.RemoveFeatures(feature => {
+                        var prerequisite = feature.GetComponent<PrerequisitePlayerHasFeature>();
+                        if (prerequisite == null) { return false; }
+                        return prerequisite.Feature == TricksterPerceptionTier2Feature;
+                    }));
+
+            TTTContext.Logger.LogPatch("Patched", TricksterPerceptionTier2Feature);
+            }
+            static void PatchTricksterPerception3() {
+                if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("TricksterPerception3")) { return; }
+                var TricksterPerceptionTier2Feature = BlueprintTools.GetBlueprint<BlueprintFeature>("e9298851786c5334dba1398e9635a83d");
+                var TricksterPerceptionTier3Feature = BlueprintTools.GetBlueprint<BlueprintFeature>("c785d2718021449f895a960c7840b4d0");
+                var TricksterPerception3Buff = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(TTTContext, "TricksterPerception3Buff");
+
+                TricksterPerceptionTier3Feature.TemporaryContext(bp => {
+                    bp.SetDescription(TTTContext, "You sight has become so impecable that you can now see how to improve the actions of your allies.\n" +
+                        "All allies within 60 feet of you gain the benifits of your perception tricks.");
+                    bp.SetComponents();
+                    bp.AddPrerequisiteFeature(TricksterPerceptionTier2Feature);
+                    bp.AddComponent<AddFacts>(c => {
+                        c.m_Facts = new BlueprintUnitFactReference[] { TricksterPerception3Buff };
+                    });
+                });
+
+                TTTContext.Logger.LogPatch("Patched", TricksterPerceptionTier3Feature);
             }
             static void PatchTricksterPersuasion2() { 
             
@@ -155,7 +221,7 @@ namespace TabletopTweaks.Reworks.Patches {
                 TricksterStealthTier1AbilityTarget.SetDescription(TTTContext, "You can enter stealth during combat as a move action. " +
                     "This stealth is not broken by a single enemy detecting you — instead it acts similar to the invisibility spell, " +
                     "giving you total concealment against all creatures that did not succeed on a Perception check against you.\n" +
-                    "This \"invisibility\" cannot be seen through by divination magic such as True Seeing, See Invisability, or Thoughtsense.");
+                    "This \"invisibility\" cannot be seen through by divination magic such as true seeing, see invisability, or thoughtsense.");
 
                 TTTContext.Logger.LogPatch("Patched", TricksterStealthTier1AbilityTarget);
             }
@@ -186,7 +252,7 @@ namespace TabletopTweaks.Reworks.Patches {
 
                 TricksterStealthTier2Feature.SetDescription(TTTContext, "You exceed at stealth, fading from sight with your every move. " +
                     "Your stealth in combat now works more akin to greater invisibility spell effect.\n" +
-                    "This \"invisibility\" cannot be seen through by divination magic such as True Seeing, See Invisability, or Thoughtsense.");
+                    "This \"invisibility\" cannot be seen through by divination magic such as true seeing, see invisability, or thoughtsense.");
                 TricksterStealthTier2Buff.AddComponent<AddFacts>(c => {
                     c.m_Facts = new BlueprintUnitFactReference[] { DivinationImmunityFeature };
                 });

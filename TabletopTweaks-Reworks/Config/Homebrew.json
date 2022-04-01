@@ -182,6 +182,21 @@
           "Homebrew": true,
           "Description": "Updates the enchantment list available to be added. This should be a power increase."
         },
+        "TricksterPerception1": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Now grants rerolls on concealment and stealth detection."
+        },
+        "TricksterPerception2": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "No longer grants feat access. Now grants fortification rerolls, bypass crit and sneak immunity, and +2 crit range."
+        },
+        "TricksterPerception3": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Now grants all perception tricks to allies within 60 feet."
+        },
         "TricksterStealth1": {
           "Enabled": true,
           "Homebrew": true,

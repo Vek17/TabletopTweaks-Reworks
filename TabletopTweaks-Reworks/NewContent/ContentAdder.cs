@@ -18,6 +18,7 @@ namespace TabletopTweaks.Reworks.NewContent {
                 Classes.Lich.AddLichFeatures();
                 Classes.Aeon.AddAeonFeatures();
                 Classes.Trickster.AddTricksterDomains();
+                Classes.Trickster.AddTricksterTricks();
             }
         }
     }
