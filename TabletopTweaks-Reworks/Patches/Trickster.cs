@@ -207,7 +207,7 @@ namespace TabletopTweaks.Reworks.Patches {
 
                 TTTContext.Logger.LogPatch("Patched", TricksterPerceptionTier3Feature);
             }
-            static void PatchTricksterPersuasion2() { 
+            static void PatchTricksterPersuasion2() {
             
             }
             static void PatchTricksterPersuasion3() {

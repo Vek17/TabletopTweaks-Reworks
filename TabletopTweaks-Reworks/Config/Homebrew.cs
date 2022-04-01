@@ -15,6 +15,7 @@ namespace TabletopTweaks.MythicReoworks.Config {
 
         public void OverrideSettings(IUpdatableSettings userSettings) {
             var loadedSettings = userSettings as Homebrew;
+            NewSettingsOffByDefault = loadedSettings.NewSettingsOffByDefault;
             MythicReworks.LoadMythicReworkGroup(loadedSettings.MythicReworks, NewSettingsOffByDefault);
             MythicAbilities.LoadSettingGroup(loadedSettings.MythicAbilities, NewSettingsOffByDefault);
             MythicFeats.LoadSettingGroup(loadedSettings.MythicFeats, NewSettingsOffByDefault);
