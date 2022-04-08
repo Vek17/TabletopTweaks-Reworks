@@ -211,6 +211,11 @@
           "Enabled": true,
           "Homebrew": true,
           "Description": "This invisibility can no longer be seen through by divination magic such as True Seeing, See Invisability, or Thoughtsense."
+        },
+        "UpdateIcons": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Updates icons to use new unique ones."
         }
       },
       "IsExpanded": true
