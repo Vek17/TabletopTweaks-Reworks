@@ -87,13 +87,13 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterAthleticsTier3Feature.m_Icon = Icon_TricksterAthletics;
                 }
                 void PatchTricksterAthletics1() {
-
+                    TricksterAthleticsTier1Feature.SetName(TTTContext, "Athletics 1 rank");
                 }
                 void PatchTricksterAthletics2() {
-
+                    TricksterAthleticsTier2Feature.SetName(TTTContext, "Athletics 2 rank");
                 }
                 void PatchTricksterAthletics3() {
-
+                    TricksterAthleticsTier3Feature.SetName(TTTContext, "Athletics 3 rank");
                 }
             }
             static void PatchTricksterKnowledgeArcana() {
@@ -302,13 +302,13 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterMobilityTier3Feature.m_Icon = Icon_TricksterMobility;
                 }
                 void PatchTricksterMobility1() {
-
+                    TricksterMobilityTier1Feature.SetName(TTTContext, "Mobility 1 rank");
                 }
                 void PatchTricksterMobility2() {
-
+                    TricksterMobilityTier2Feature.SetName(TTTContext, "Mobility 2 rank");
                 }
                 void PatchTricksterMobility3() {
-
+                    TricksterMobilityTier3Feature.SetName(TTTContext, "Mobility 3 rank");
                 }
             }
             static void PatchTricksterPerception() {
@@ -533,13 +533,13 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterUseMagicDeviceTier3Feature.m_Icon = Icon_TricksterUseMagicDevice;
                 }
                 void PatchTricksterUseMagicDevice1() {
-                    TricksterUseMagicDeviceTier1Feature.SetName(TTTContext, "Use Magic Device 1 Rank");
+                    TricksterUseMagicDeviceTier1Feature.SetName(TTTContext, "Use Magic Device 1 rank");
                 }
                 void PatchTricksterUseMagicDevice2() {
-                    TricksterUseMagicDeviceTier2Feature.SetName(TTTContext, "Use Magic Device 2 Rank");
+                    TricksterUseMagicDeviceTier2Feature.SetName(TTTContext, "Use Magic Device 2 rank");
                 }
                 void PatchTricksterUseMagicDevice3() {
-                    TricksterUseMagicDeviceTier3Feature.SetName(TTTContext, "Use Magic Device 3 Rank");
+                    TricksterUseMagicDeviceTier3Feature.SetName(TTTContext, "Use Magic Device 3 rank");
                 }
             }
         }
