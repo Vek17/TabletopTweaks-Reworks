@@ -11,6 +11,7 @@ using Kingmaker.EntitySystem.Stats;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules;
 using Kingmaker.UnitLogic;
+using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
@@ -51,7 +52,7 @@ namespace TabletopTweaks.Reworks.Patches {
                 PatchTricksterPerception();
                 PatchTricksterPersuasion();
                 PatchTricksterStealth();
-                PatchTricksterTrickery(); //ToDo
+                PatchTricksterTrickery();
                 PatchTricksterUseMagicDevice();
             }
             static void PatchTricksterProgression() {
@@ -531,6 +532,11 @@ namespace TabletopTweaks.Reworks.Patches {
                 var TricksterTrickeryTier1Feature = BlueprintTools.GetBlueprint<BlueprintFeature>("90bc71f1d8482184a9ede0bda4773d94");
                 var TricksterTrickeryTier2Feature = BlueprintTools.GetBlueprint<BlueprintFeature>("1b8271896e4a3e14389729f3df6a847e");
                 var TricksterTrickeryTier3Feature = BlueprintTools.GetBlueprint<BlueprintFeature>("64131f0ac1e2497a806856461bdcfe4e");
+                var TricksterTrickeryTier1AbilityPoint = BlueprintTools.GetBlueprint<BlueprintAbility>("10e79ecd4d110e146b674121e860c6c5");
+                var TricksterTrickeryTier1AbilityTarget = BlueprintTools.GetBlueprint<BlueprintAbility>("9550d593013bdaa4d982f3739e352f39");
+                var TricksterTrickeryTier2AbilityPoint = BlueprintTools.GetBlueprint<BlueprintAbility>("9eef1740fffe6db4ca22e3e2dca3158e");
+                var TricksterTrickeryTier2AbilityTarget = BlueprintTools.GetBlueprint<BlueprintAbility>("7a7bb136b533a744d8df0862faa3a1bd");
+                var TricksterTrickeryTier3Ability = BlueprintTools.GetBlueprint<BlueprintAbility>("142482756c964ae081d349a670807d23");
 
                 var Icon_TricksterTrickery = AssetLoader.LoadInternal(TTTContext, "TricksterTricks", "Icon_TricksterTrickery.png");
 
@@ -545,15 +551,35 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterTrickeryTier1Feature.m_Icon = Icon_TricksterTrickery;
                     TricksterTrickeryTier2Feature.m_Icon = Icon_TricksterTrickery;
                     TricksterTrickeryTier3Feature.m_Icon = Icon_TricksterTrickery;
+
+                    TricksterTrickeryTier1AbilityPoint.m_Icon = Icon_TricksterTrickery;
+                    TricksterTrickeryTier1AbilityTarget.m_Icon = Icon_TricksterTrickery;
+                    TricksterTrickeryTier2AbilityPoint.m_Icon = Icon_TricksterTrickery;
+                    TricksterTrickeryTier2AbilityTarget.m_Icon = Icon_TricksterTrickery;
+                    TricksterTrickeryTier3Ability.m_Icon = Icon_TricksterTrickery;
                 }
                 void PatchTricksterTrickery1() {
-
                 }
                 void PatchTricksterTrickery2() {
-
                 }
                 void PatchTricksterTrickery3() {
+                    if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("TricksterTrickery3")) { return; }
 
+                    TricksterTrickeryTier3Feature.SetDescription(TTTContext, "Living creatures are also just complex devices and can also be easily disabled. " +
+                        "You can try to disable them, forcing them to make a Fortitude saving throw (DC 15 + your ranks in Trickery). If the target fails it, it dies. " +
+                        "Addtionally your previous Trickery abilities can now be used as a swift action and at close range instead of touch range.");
+                    TricksterTrickeryTier3Feature.AddComponent<AutoMetamagic>(c => {
+                        c.m_AllowedAbilities = AutoMetamagic.AllowedType.Any;
+                        c.Metamagic = Metamagic.Quicken | Metamagic.Reach;
+                        c.Abilities = new List<BlueprintAbilityReference>() {
+                            TricksterTrickeryTier1AbilityPoint.ToReference<BlueprintAbilityReference>(),
+                            TricksterTrickeryTier1AbilityTarget.ToReference<BlueprintAbilityReference>(),
+                            TricksterTrickeryTier2AbilityPoint.ToReference<BlueprintAbilityReference>(),
+                            TricksterTrickeryTier2AbilityTarget.ToReference<BlueprintAbilityReference>(),
+                        };
+                    });
+
+                    TTTContext.Logger.LogPatch("Patched", TricksterTrickeryTier3Feature);
                 }
             }
             static void PatchTricksterUseMagicDevice() {

@@ -232,6 +232,11 @@
           "Homebrew": true,
           "Description": "This invisibility can no longer be seen through by divination magic such as True Seeing, See Invisability, or Thoughtsense."
         },
+        "TricksterTrickery3": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "This now grants rank 1 and 2 tricks quicken and reach."
+        },
         "UpdateIcons": {
           "Enabled": true,
           "Homebrew": true,
