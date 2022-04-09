@@ -13,10 +13,12 @@ using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Properties;
 using Kingmaker.Utility;
+using Kingmaker.Designers.Mechanics.Facts;
 using TabletopTweaks.Core.NewActions;
 using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
 using TabletopTweaks.Core.Utilities;
 using static TabletopTweaks.Reworks.Main;
+using Kingmaker.Controllers;
 
 namespace TabletopTweaks.Reworks.Reworks {
     class MythicAbilities {
@@ -30,6 +32,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 TTTContext.Logger.LogHeader("Reworking Mythic Abilities");
                 PatchElementalBarrage();
                 PatchDimensionalRetribution();
+                PatchGreaterEnduringSpells();
             }
             static void PatchElementalBarrage() {
                 if (TTTContext.Homebrew.MythicAbilities.IsDisabled("ElementalBarrage")) { return; }
@@ -133,7 +136,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 var DimensionalRetributionTTTToggleAbility = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(modContext: TTTContext, "DimensionalRetributionTTTToggleAbility");
 
                 DimensionalRetribution.SetDescription(TTTContext, "You leave a mystical link with enemy spellcasters that lets you instantly move to them." +
-                    "Benefit: Every time you are targeted by an enemy spell, you may teleport to the " +
+                    "Benefit: Every time you are hit by an enemy spell, you may teleport to the " +
                     "spellcaster as an immediate action and make an attack of opportunity.");
                 DimensionalRetribution.SetComponents();
                 DimensionalRetribution.AddComponent<AddFacts>(c => {
@@ -141,6 +144,26 @@ namespace TabletopTweaks.Reworks.Reworks {
                         DimensionalRetributionTTTToggleAbility
                     };
                 });
+                TTTContext.Logger.LogPatch("Patched", DimensionalRetribution);
+            }
+            static void PatchGreaterEnduringSpells() {
+                if (Main.TTTContext.Homebrew.MythicAbilities.IsDisabled("GreaterEnduringSpells")) { return; }
+                var EnduringSpells = BlueprintTools.GetBlueprint<BlueprintFeature>("2f206e6d292bdfb4d981e99dcf08153f");
+                var EnduringSpellsGreater = BlueprintTools.GetBlueprint<BlueprintFeature>("13f9269b3b48ae94c896f0371ce5e23c");
+
+                EnduringSpells.RemoveComponents<EnduringSpells>();
+                EnduringSpells.AddComponent<EnduringSpellsTTT>(c => {
+                c.m_Greater = EnduringSpellsGreater.ToReference<BlueprintUnitFactReference>();
+                    c.EnduringTime = 60.Minutes();
+                    c.GreaterTime = 10.Minutes();
+                });
+
+                EnduringSpellsGreater.SetDescription(TTTContext, "You've mastered a way to prolong your beneficial spells.\n" +
+                    "Benefit: Effects of your spells on your allies that should last longer than 10 minutes " +
+                    "but shorter than 24 hours now last 24 hours.");
+
+                TTTContext.Logger.LogPatch("Patched", EnduringSpells);
+                TTTContext.Logger.LogPatch("Patched", EnduringSpellsGreater);
             }
         }
     }

@@ -5,13 +5,17 @@ using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.ElementsSystem;
+using Kingmaker.EntitySystem.Stats;
+using Kingmaker.Enums;
 using Kingmaker.ResourceLinks;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components.AreaEffects;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Components;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
+using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Utility;
 using System.Collections.Generic;
@@ -97,11 +101,14 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
         }   
 
         public static void AddTricksterTricks() {
+            var Icon_TricksterPersausion = AssetLoader.LoadInternal(TTTContext, "TricksterTricks", "Icon_TricksterPersausion.png");
+
+            var SongOfDiscordBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("2e1646c2449c88a4188e58043455a43a");
             var TricksterPerceptionTier1Feature = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("8bc2f9b88a0cf704ea72d86c2a3e2aef");
             var TricksterPerceptionTier2Feature = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("e9298851786c5334dba1398e9635a83d");
 
             var TricksterPerception3EffectBuff = Helpers.CreateBuff(TTTContext, "TricksterPerception3EffectBuff", bp => {
-                bp.m_Flags = Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi;
+                bp.m_Flags = BlueprintBuff.Flags.HiddenInUi;
                 bp.SetName(TTTContext, "Aeon Bane Increase Resource Feature");
                 bp.SetDescription(TTTContext, "");
                 bp.IsClassFeature = true;
@@ -164,12 +171,85 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 });
             });
             var TricksterPerception3Buff = Helpers.CreateBuff(TTTContext, "TricksterPerception3Buff", bp => {
-                bp.m_Flags = Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff.Flags.HiddenInUi;
+                bp.m_Flags = BlueprintBuff.Flags.HiddenInUi;
                 bp.SetName(TTTContext, "Aeon Bane Increase Resource Feature");
                 bp.SetDescription(TTTContext, "");
                 bp.IsClassFeature = true;
                 bp.AddComponent<AddAreaEffect>(c => {
                     c.m_AreaEffect = TricksterPerception3Area.ToReference<BlueprintAbilityAreaEffectReference>();
+                });
+            });
+            var TricksterPersuasion2Buff = Helpers.CreateBuff(TTTContext, "TricksterPersuasion2Buff", bp => {
+                bp.SetName(TTTContext, "Trickster Persuasion 2");
+                bp.SetDescription(TTTContext, "Creature suffers penalties to its attack and damage rolls equal to " +
+                    "1 + half your mythic rank.");
+                bp.m_Icon = Icon_TricksterPersausion;
+                bp.Stacking = StackingType.Prolong;
+                bp.IsClassFeature = true;
+                bp.AddComponent<AddContextStatBonus>(c => {
+                    c.Stat = StatType.AdditionalAttackBonus;
+                    c.Value = new ContextValue() {
+                        ValueType = ContextValueType.Rank
+                    };
+                    c.Descriptor = ModifierDescriptor.UntypedStackable;
+                    c.Multiplier = -1;
+                });
+                bp.AddComponent<AddContextStatBonus>(c => {
+                    c.Stat = StatType.AdditionalDamage;
+                    c.Value = new ContextValue() {
+                        ValueType = ContextValueType.Rank
+                    };
+                    c.Descriptor = ModifierDescriptor.UntypedStackable;
+                    c.Multiplier = -1;
+                });
+                bp.AddContextRankConfig(c => {
+                    c.m_BaseValueType = ContextRankBaseValueType.MythicLevel;
+                    c.m_Progression = ContextRankProgression.OnePlusDiv2;
+                });
+            });
+            var TricksterPersuasion3Buff = SongOfDiscordBuff.CreateCopy(TTTContext, "TricksterPersuasion3Buff", bp => {
+                bp.SetName(TTTContext, "Trickster Persuasion 3");
+                bp.SetDescription(TTTContext, "Creature has a 50% chance to attack the nearest target each turn " +
+                    "and suffers pentalities to its AC and Saves equal to 1 + half your mythic rank.");
+                bp.m_Icon = Icon_TricksterPersausion;
+                bp.Stacking = StackingType.Prolong;
+                bp.IsClassFeature = true;
+                bp.RemoveComponents<SpellDescriptorComponent>();
+                bp.AddComponent<AddContextStatBonus>(c => {
+                    c.Stat = StatType.AC;
+                    c.Value = new ContextValue() {
+                        ValueType = ContextValueType.Rank
+                    };
+                    c.Descriptor = ModifierDescriptor.UntypedStackable;
+                    c.Multiplier = -1;
+                });
+                bp.AddComponent<AddContextStatBonus>(c => {
+                    c.Stat = StatType.SaveFortitude;
+                    c.Value = new ContextValue() {
+                        ValueType = ContextValueType.Rank
+                    };
+                    c.Descriptor = ModifierDescriptor.UntypedStackable;
+                    c.Multiplier = -1;
+                });
+                bp.AddComponent<AddContextStatBonus>(c => {
+                    c.Stat = StatType.SaveReflex;
+                    c.Value = new ContextValue() {
+                        ValueType = ContextValueType.Rank
+                    };
+                    c.Descriptor = ModifierDescriptor.UntypedStackable;
+                    c.Multiplier = -1;
+                });
+                bp.AddComponent<AddContextStatBonus>(c => {
+                    c.Stat = StatType.SaveWill;
+                    c.Value = new ContextValue() {
+                        ValueType = ContextValueType.Rank
+                    };
+                    c.Descriptor = ModifierDescriptor.UntypedStackable;
+                    c.Multiplier = -1;
+                });
+                bp.AddContextRankConfig(c => {
+                    c.m_BaseValueType = ContextRankBaseValueType.MythicLevel;
+                    c.m_Progression = ContextRankProgression.OnePlusDiv2;
                 });
             });
         }

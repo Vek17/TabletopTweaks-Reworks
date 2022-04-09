@@ -23,6 +23,11 @@
         "Enabled": true,
         "Homebrew": true,
         "Description": "Rework of Elemental barrage to turn it into a caster mythic instead of a weird martial mythic."
+      },
+      "GreaterEnduringSpells": {
+        "Enabled": true,
+        "Homebrew": true,
+        "Description": "Now extends spells that last 10+ minutes instead of 5+ minutes."
       }
     },
     "IsExpanded": true
@@ -182,6 +187,11 @@
           "Homebrew": true,
           "Description": "Updates the enchantment list available to be added. This should be a power increase."
         },
+        "TricksterMobility3": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Now works on all attack rolls including spell attack rolls."
+        },
         "TricksterPerception1": {
           "Enabled": true,
           "Homebrew": true,
@@ -196,6 +206,16 @@
           "Enabled": true,
           "Homebrew": true,
           "Description": "Now grants all perception tricks to allies within 60 feet."
+        },
+        "TricksterPersuasion2": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Now causes a DC 15 + Persuasion ranks save or be staggered for 1 round. Additionally demoralize now reduces a targets attack and damage by 1 + half your mythic rank."
+        },
+        "TricksterPersuasion3": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Demonralize now causes enemies to attack the nearest target instead of acting normally 50% of the time. Additionally demoralize now reduces a targets AC and Saves by 1 + half your mythic rank."
         },
         "TricksterStealth1": {
           "Enabled": true,

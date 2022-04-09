@@ -20,10 +20,11 @@ All changes are configurable and can be disabled via the unity mod manager menu.
     * Mythic Sneak Attack
         * Your sneak attack dice are one size larger than normal. For example if you would normally roll d6s for sneak attacks you would roll d8s instead.
 
- * Mythic Feats
+ * Mythic Abilities
     * Elemental Barrage
         * Every time you deal elemental damage to a creature with a spell, you apply an elemental mark to it. If during the next three rounds the marked target takes elemental damage from any source with a different element, the target is dealt additional Divine damage. The damage is 1d6 per mythic rank of your character.
-
+    * Dimensional Retribution
+        * Every time you are hit by an enemy spell, you may teleport to the spellcaster as an immediate action and make an attack of opportunity.
 * Aeon
     * Aeon Bane
         * Updates Aeon Bane's Icon.

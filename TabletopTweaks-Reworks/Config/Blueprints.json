@@ -8,7 +8,9 @@
     "LichDCProperty": "6d6551ff-9188-4ac0-8f8c-f31f877f8b96",
     "TricksterPerception3Area": "7ab43cac-b718-48a9-96fd-0d68a7e3fcea",
     "TricksterPerception3Buff": "935d1c3d-1f1f-44ad-9202-60f595c17da7",
-    "TricksterPerception3EffectBuff": "f77c4267-bfc1-4ef4-9b70-2734a276517d"
+    "TricksterPerception3EffectBuff": "f77c4267-bfc1-4ef4-9b70-2734a276517d",
+    "TricksterPersuasion2Buff": "29cd0c3d-7686-46ab-ae00-3560fc28a8e6",
+    "TricksterPersuasion3Buff": "581ad6b1-fac8-411b-ac0c-c8f1044698c0"
   },
   "DerivedBlueprintMasters": {
     "TricksterDomainMasterID": "a41d5743-6061-4cc5-a69a-bd57df412c69",

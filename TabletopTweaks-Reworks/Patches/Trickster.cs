@@ -1,15 +1,31 @@
 ﻿using HarmonyLib;
+using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.Mechanics.Facts;
+using Kingmaker.ElementsSystem;
+using Kingmaker.EntitySystem.Entities;
+using Kingmaker.EntitySystem.Stats;
+using Kingmaker.RuleSystem;
+using Kingmaker.RuleSystem.Rules;
+using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
+using Kingmaker.UnitLogic.Mechanics;
+using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.Utility;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
 using TabletopTweaks.Core.NewComponents;
+using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
+using TabletopTweaks.Core.NewRules;
+using TabletopTweaks.Core.NewUnitParts;
 using TabletopTweaks.Core.Utilities;
 using static TabletopTweaks.Core.NewUnitParts.UnitPartCustomMechanicsFeatures;
 using static TabletopTweaks.Reworks.Main;
@@ -33,7 +49,7 @@ namespace TabletopTweaks.Reworks.Patches {
                 PatchTricksterLoreReligion(); //ToDo
                 PatchTricksterMobility();
                 PatchTricksterPerception();
-                PatchTricksterPersuasion(); //ToDo
+                PatchTricksterPersuasion();
                 PatchTricksterStealth();
                 PatchTricksterTrickery(); //ToDo
                 PatchTricksterUseMagicDevice();
@@ -309,6 +325,12 @@ namespace TabletopTweaks.Reworks.Patches {
                 }
                 void PatchTricksterMobility3() {
                     TricksterMobilityTier3Feature.SetName(TTTContext, "Mobility 3 rank");
+                    if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("TricksterMobility3")) { return; }
+
+                    TricksterMobilityTier3Feature.RemoveComponents<TricksterParry>();
+                    TricksterMobilityTier3Feature.AddComponent<TricksterParryTTT>();
+
+                    TTTContext.Logger.LogPatch(TricksterMobilityTier3Feature);
                 }
             }
             static void PatchTricksterPerception() {
@@ -406,13 +428,34 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterPersuasionTier3Feature.m_Icon = Icon_TricksterPersausion;
                 }
                 void PatchTricksterPersuasion1() {
-
                 }
                 void PatchTricksterPersuasion2() {
+                    if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("TricksterPersuasion2")) { return; }
 
+                    TricksterPersuasionTier2Feature.SetDescription(TTTContext, "You are so good at demoralizing your enemies that thier will to hurt you wavers.\n" +
+                        "Enemies affected by your demoralize ability must succeed at a Will saving throw with a DC of 15 + your ranks in Persuasion, " +
+                        "or become staggered for one round. Additionally, when you successfully demoralize an enemy they take an additional penalty " +
+                        "to thier attack and damage rolls equal to 1 + half your mythic rank.");
+                    TricksterPersuasionTier2Feature.RemoveComponents<AddMechanicsFeature>();
+                    TricksterPersuasionTier2Feature.AddComponent<AddCustomMechanicsFeature>(c => {
+                        c.Feature = CustomMechanicsFeature.TricksterReworkPersuasion2;
+                    });
+
+                    TTTContext.Logger.LogPatch(TricksterPersuasionTier2Feature);
                 }
                 void PatchTricksterPersuasion3() {
+                    if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("TricksterPersuasion3")) { return; }
 
+                    TricksterPersuasionTier3Feature.SetDescription(TTTContext, "You are so good at demoralizing your enemies that they panic and fail to defend themselves.\n" +
+                        "Enemies affected by your demoralize have a 50% chance to attack the nearest target instead of acting normally. " +
+                        "Additionally, when you successfully demoralize an enemy they take an additional penalty " +
+                        "to thier AC and saving equal to 1 + half your mythic rank.");
+                    TricksterPersuasionTier3Feature.RemoveComponents<AddMechanicsFeature>();
+                    TricksterPersuasionTier3Feature.AddComponent<AddCustomMechanicsFeature>(c => {
+                        c.Feature = CustomMechanicsFeature.TricksterReworkPersuasion3;
+                    });
+
+                    TTTContext.Logger.LogPatch(TricksterPersuasionTier3Feature);
                 }
             }    
             static void PatchTricksterStealth() {
@@ -540,6 +583,67 @@ namespace TabletopTweaks.Reworks.Patches {
                 }
                 void PatchTricksterUseMagicDevice3() {
                     TricksterUseMagicDeviceTier3Feature.SetName(TTTContext, "Use Magic Device 3 rank");
+                }
+            }
+        }
+        [HarmonyPatch(typeof(Demoralize), nameof(Demoralize.RunAction))]
+        private static class Demoralize_Trickster_Rework {
+            static readonly MethodInfo getter_RuleStatCheck_Success = AccessTools.PropertyGetter(typeof(RuleStatCheck), "Success");
+            static readonly MethodInfo method_RunTricksterLogic = AccessTools.Method(typeof(Demoralize_Trickster_Rework), "RunTricksterLogic");
+
+            static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions) {
+                var codes = new List<CodeInstruction>(instructions);
+                var target = FindInsertionTarget(codes);
+                //Main.TTTContext.Logger.Log($"Target({target.Index}, {target.Start}, {target.End})");
+                //Utilities.ILUtils.LogIL(Main.TTTContext, codes);
+                var labels = codes[target].labels.ToList();
+                codes[target].labels.Clear();
+                codes.InsertRange(target, new CodeInstruction[] {
+                    new CodeInstruction(OpCodes.Ldarg_0),
+                    codes[target+1].Clone(),
+                    new CodeInstruction(OpCodes.Call, method_RunTricksterLogic),
+                });
+                codes[target].labels = labels;
+                //Utilities.ILUtils.LogIL(Main.TTTContext, codes);
+                return codes.AsEnumerable();
+            }
+            private static int FindInsertionTarget(List<CodeInstruction> codes) {
+                var targetIndex = -1;
+                for (int i = 0; i < codes.Count; i++) {
+                    if (codes[i].Calls(getter_RuleStatCheck_Success)) {
+                        targetIndex = i+3;
+                    }
+                }
+                if (targetIndex < 0) {
+                    Main.TTTContext.Logger.Log("Demoralize_Trickster_Rework: COULD NOT FIND TARGET");
+                }
+                return targetIndex;
+            }
+
+            private static void RunTricksterLogic(Demoralize instance, RuleSkillCheck check) {
+                var TricksterPersuasion2Buff = BlueprintTools.GetModBlueprint<BlueprintBuff>(TTTContext, "TricksterPersuasion2Buff");
+                var TricksterPersuasion3Buff = BlueprintTools.GetModBlueprint<BlueprintBuff>(TTTContext, "TricksterPersuasion3Buff");
+                var Staggered = BlueprintTools.GetBlueprint<BlueprintBuff>("df3950af5a783bd4d91ab73eb8fa0fd3");
+                var Stunned = BlueprintTools.GetBlueprint<BlueprintBuff>("09d39b38bb7c6014394b6daced9bacd3");
+
+                var data = ContextData<MechanicsContext.Data>.Current;
+                var mechanicsContext = data?.Context;
+                var caster = mechanicsContext?.MaybeCaster;
+                int debuffDuration = 1 + (check.RollResult - check.DC) / 5 + (caster.Descriptor.State.Features.FrighteningThug ? 1 : 0);
+                int saveDC = 15 + caster.Stats.SkillPersuasion.BaseValue;
+
+                var TricksterPersuasion2 = caster.CustomMechanicsFeature(CustomMechanicsFeature.TricksterReworkPersuasion2).Value;
+                var TricksterPersuasion3 = caster.CustomMechanicsFeature(CustomMechanicsFeature.TricksterReworkPersuasion3).Value;
+                if (TricksterPersuasion2) {
+                    if (!Game.Instance.Rulebook.TriggerEvent<RuleSavingThrow>(new RuleSavingThrow(instance.Target.Unit, SavingThrowType.Will, saveDC)).IsPassed) {
+                        instance.Target.Unit.Descriptor.AddBuff(Staggered, mechanicsContext, new TimeSpan?(1.Rounds().Seconds));
+                    }
+                }
+                if (TricksterPersuasion2) {
+                    instance.Target.Unit.Descriptor.AddBuff(TricksterPersuasion2Buff, mechanicsContext, new TimeSpan?(debuffDuration.Rounds().Seconds));//.Context.Params.DC = num4;
+                }
+                if (TricksterPersuasion3) {
+                    instance.Target.Unit.Descriptor.AddBuff(TricksterPersuasion3Buff, mechanicsContext, new TimeSpan?(debuffDuration.Rounds().Seconds));//.Context.Params.DC = num4;
                 }
             }
         }
