@@ -586,6 +586,7 @@ namespace TabletopTweaks.Reworks.Patches {
                 var TricksterUseMagicDeviceTier1Feature = BlueprintTools.GetBlueprint<BlueprintFeature>("647c848dd47b93d42bd3000bce93dff6");
                 var TricksterUseMagicDeviceTier2Feature = BlueprintTools.GetBlueprint<BlueprintFeature>("1383f21534d8b6a45bdbdc8ddce7a187");
                 var TricksterUseMagicDeviceTier3Feature = BlueprintTools.GetBlueprint<BlueprintFeature>("9d1446e4947544429a64e5fa20906ebf");
+                var CompletelyNormalSpellFeat = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("094b6278f7b570f42aeaa98379f07cf2");
 
                 var Icon_TricksterUseMagicDevice = AssetLoader.LoadInternal(TTTContext, "TricksterTricks", "Icon_TricksterUseMagicDevice.png");
 
@@ -605,7 +606,18 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterUseMagicDeviceTier1Feature.SetName(TTTContext, "Use Magic Device 1 rank");
                 }
                 void PatchTricksterUseMagicDevice2() {
+                    if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("TricksterUseMagicDevice2")) { return; }
+
                     TricksterUseMagicDeviceTier2Feature.SetName(TTTContext, "Use Magic Device 2 rank");
+                    TricksterUseMagicDeviceTier2Feature.SetDescription(TTTContext, "Your mastery of magic items has reached new heights.\n" +
+                        "Wands you use no longer lose charges for use and you can equip any magical items possible, regardless of requirements. " +
+                        "Addtionally you realize that spells may be a bit less magical than you previously thought " +
+                        "and gain the metamagic Completely Normal Spell");
+                    TricksterUseMagicDeviceTier2Feature.AddComponent<AddFacts>(c => {
+                        c.m_Facts = new BlueprintUnitFactReference[] {
+                            CompletelyNormalSpellFeat
+                        };
+                    });
                 }
                 void PatchTricksterUseMagicDevice3() {
                     TricksterUseMagicDeviceTier3Feature.SetName(TTTContext, "Use Magic Device 3 rank");

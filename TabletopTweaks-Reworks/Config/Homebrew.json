@@ -237,6 +237,11 @@
           "Homebrew": true,
           "Description": "This now grants rank 1 and 2 tricks quicken and reach."
         },
+        "TricksterUseMagicDevice2": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Now grants completly normal magic in addition to endless wands."
+        },
         "UpdateIcons": {
           "Enabled": true,
           "Homebrew": true,
