@@ -3,6 +3,7 @@ using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
+using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.ElementsSystem;
@@ -274,8 +275,9 @@ namespace TabletopTweaks.Reworks.Patches {
                 var TricksterLoreReligionTier1Feature = BlueprintTools.GetBlueprint<BlueprintFeature>("04177c4ddec20ae4ca04388f9cf23518");
                 var TricksterLoreReligionTier2Progression = BlueprintTools.GetBlueprint<BlueprintFeature>("fd158d5f035346288776f18e76f6721e");
                 var TricksterLoreReligionTier3Progression = BlueprintTools.GetBlueprint<BlueprintFeature>("eb196db561554341a571acb3216fc1dc");
+                
 
-                var Icon_TricksterLoreReligion = AssetLoader.LoadInternal(TTTContext, "TricksterTricks", "Icon_TricksterLoreReligion.png");
+            var Icon_TricksterLoreReligion = AssetLoader.LoadInternal(TTTContext, "TricksterTricks", "Icon_TricksterLoreReligion.png");
 
                 PatchIcons();
                 PatchTricksterLoreReligion1();
@@ -290,7 +292,17 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterLoreReligionTier3Progression.m_Icon = Icon_TricksterLoreReligion;
                 }
                 void PatchTricksterLoreReligion1() {
+                    var DomainMastery = BlueprintTools.GetBlueprint<BlueprintFeature>("2de64f6a1f2baee4f9b7e52e3f046ec5");
+                    var TricksterLoreReligionTier2Selection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("ae4e619162a44996b77973f3abd7781a");
+                    
+                    TricksterLoreReligionTier2Selection.m_AllFeatures = new BlueprintFeatureReference[0];
+                    TricksterLoreReligionTier2Selection.m_Features = new BlueprintFeatureReference[0];
+                    TricksterLoreReligionTier2Selection.AddFeatures(NewContent.Classes.Trickster.TricksterDomains.ToArray());
 
+                    DomainMastery.AddPrerequisiteFeature(TricksterLoreReligionTier2Progression, Prerequisite.GroupType.Any);
+
+                    TTTContext.Logger.LogPatch(TricksterLoreReligionTier2Selection);
+                    TTTContext.Logger.LogPatch(DomainMastery);
                 }
                 void PatchTricksterLoreReligion2() {
 

@@ -6,7 +6,7 @@ using static TabletopTweaks.Reworks.Main;
 namespace TabletopTweaks.Reworks.NewContent.Classes {
     static class Lich {
         public static void AddLichFeatures() {
-            var LichDCProperty = Helpers.CreateBlueprint<BlueprintUnitProperty>(modContext: TTTContext, "LichDCProperty", bp => {
+            var LichDCProperty = Helpers.CreateBlueprint<BlueprintUnitProperty>(TTTContext, "LichDCProperty", bp => {
                 bp.AddComponent<CompositePropertyGetter>(c => {
                     c.CalculationMode = CompositePropertyGetter.Mode.Sum;
                     c.Properties = new CompositePropertyGetter.ComplexProperty[] {
