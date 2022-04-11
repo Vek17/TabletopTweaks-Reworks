@@ -32,6 +32,7 @@ namespace TabletopTweaks.Reworks.NewContent.MythicAbilities {
                 bp.CanTargetEnemies = true;
                 bp.CanTargetFriends = true;
                 bp.CanTargetSelf = true;
+                bp.Hidden = true;
                 bp.Animation = UnitAnimationActionCastSpell.CastAnimationStyle.Immediate;
                 bp.ActionType = UnitCommand.CommandType.Swift;
                 bp.ResourceAssetIds = DweomercatDweomerleap.ResourceAssetIds;

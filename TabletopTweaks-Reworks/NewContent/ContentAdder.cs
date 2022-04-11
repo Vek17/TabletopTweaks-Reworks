@@ -8,7 +8,7 @@ namespace TabletopTweaks.Reworks.NewContent {
         static class BlueprintsCache_Init_Patch {
             static bool Initialized;
 
-            [HarmonyPriority(Priority.First)]
+            [HarmonyPriority(799)]
             static void Postfix() {
                 if (Initialized) return;
                 Initialized = true;

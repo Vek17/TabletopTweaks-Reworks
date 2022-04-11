@@ -292,9 +292,12 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterLoreReligionTier3Progression.m_Icon = Icon_TricksterLoreReligion;
                 }
                 void PatchTricksterLoreReligion1() {
+                    
+                }
+                void PatchTricksterLoreReligion2() {
                     var DomainMastery = BlueprintTools.GetBlueprint<BlueprintFeature>("2de64f6a1f2baee4f9b7e52e3f046ec5");
                     var TricksterLoreReligionTier2Selection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("ae4e619162a44996b77973f3abd7781a");
-                    
+
                     TricksterLoreReligionTier2Selection.m_AllFeatures = new BlueprintFeatureReference[0];
                     TricksterLoreReligionTier2Selection.m_Features = new BlueprintFeatureReference[0];
                     TricksterLoreReligionTier2Selection.AddFeatures(NewContent.Classes.Trickster.TricksterDomains.ToArray());
@@ -304,11 +307,18 @@ namespace TabletopTweaks.Reworks.Patches {
                     TTTContext.Logger.LogPatch(TricksterLoreReligionTier2Selection);
                     TTTContext.Logger.LogPatch(DomainMastery);
                 }
-                void PatchTricksterLoreReligion2() {
-
-                }
                 void PatchTricksterLoreReligion3() {
+                    var DomainMastery = BlueprintTools.GetBlueprint<BlueprintFeature>("2de64f6a1f2baee4f9b7e52e3f046ec5");
+                    var TricksterLoreReligionTier3Selection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("70a7b101edc24349ab67ac63b6bd0616");
 
+                    TricksterLoreReligionTier3Selection.m_AllFeatures = new BlueprintFeatureReference[0];
+                    TricksterLoreReligionTier3Selection.m_Features = new BlueprintFeatureReference[0];
+                    TricksterLoreReligionTier3Selection.AddFeatures(NewContent.Classes.Trickster.TricksterDomains.ToArray());
+
+                    DomainMastery.AddPrerequisiteFeature(TricksterLoreReligionTier2Progression, Prerequisite.GroupType.Any);
+
+                    TTTContext.Logger.LogPatch(TricksterLoreReligionTier3Selection);
+                    TTTContext.Logger.LogPatch(DomainMastery);
                 }
             }
             static void PatchTricksterMobility() {

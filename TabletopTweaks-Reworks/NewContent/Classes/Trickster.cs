@@ -25,7 +25,6 @@ using Kingmaker.Utility;
 using System.Collections.Generic;
 using System.Linq;
 using TabletopTweaks.Core.NewComponents;
-using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
 using TabletopTweaks.Core.Utilities;
 using static TabletopTweaks.Reworks.Main;
 
@@ -43,8 +42,11 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             TTTContext.Blueprints.GetDerivedMaster("TricksterSpellResource8"),
             TTTContext.Blueprints.GetDerivedMaster("TricksterSpellResource9")
         };
+        private static BlueprintCharacterClassReference TricksterMythicClass => BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("8df873a8c6e48294abdb78c45834aa0a");
+        private static BlueprintSpellsTableReference TricksterDomainSpellsKnown = null;
+        private static BlueprintSpellsTableReference TricksterDomainSpellsPerDay = null;
         public static List<BlueprintProgression> TricksterDomains = new List<BlueprintProgression>();
-        public static BlueprintUnitProperty TricksterDomainRankProperty = Helpers.CreateBlueprint<BlueprintUnitProperty>(TTTContext, "TricksterDomainRankProperty", bp => {
+        public static BlueprintUnitProperty TricksterDomainRankProperty = Helpers.CreateBlueprint<BlueprintUnitProperty>(TTTContext, "TricksterTTTDomainRankProperty", bp => {
             bp.AddComponent<SimplePropertyGetter>(c => {
                 c.Property = UnitProperty.MythicLevel;
                 c.Settings = new PropertySettings() {
@@ -53,6 +55,16 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 };
             });
             bp.BaseValue = 0;
+        });
+        public static BlueprintUnitProperty TricksterDomainDCProperty = Helpers.CreateBlueprint<BlueprintUnitProperty>(TTTContext, "TricksterTTTDomainDCProperty", bp => {
+            bp.AddComponent<SimplePropertyGetter>(c => {
+                c.Property = UnitProperty.MythicLevel;
+                c.Settings = new PropertySettings() {
+                    m_Progression = PropertySettings.Progression.MultiplyByModifier,
+                    m_StepLevel = 2
+                };
+            });
+            bp.BaseValue = 10;
         });
         private static BlueprintFeature DomainMastery => BlueprintTools.GetBlueprint<BlueprintFeature>("2de64f6a1f2baee4f9b7e52e3f046ec5");
 
@@ -91,6 +103,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             var WaterDomainProgression = BlueprintTools.GetBlueprint<BlueprintProgression>("e63d9133cebf2cf4788e61432a939084");
             var WeatherDomainProgression = BlueprintTools.GetBlueprint<BlueprintProgression>("c18a821ee662db0439fb873165da25be");
 
+            CreateDomainSpellsPerDay();
             CreateAirDomain();
             CreateAnimalDomain();
             CreateArtificeDomain();
@@ -125,6 +138,58 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             CreateWaterDomain();
             CreateWeatherDomain();
 
+            void CreateDomainSpellsPerDay() {
+                TricksterDomainSpellsKnown = Helpers.CreateBlueprint<BlueprintSpellsTable>(TTTContext, "TricksterTTTDomainSpellsKnown", bp => {
+                    bp.Levels = new SpellsLevelEntry[] {
+                        SpellTools.CreateSpellLevelEntry(0,1),
+                        SpellTools.CreateSpellLevelEntry(0,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1,1)
+                    };
+                }).ToReference<BlueprintSpellsTableReference>();
+                TricksterDomainSpellsPerDay = Helpers.CreateBlueprint<BlueprintSpellsTable>(TTTContext, "TricksterTTTDomainSpellsPerDay", bp => {
+                    bp.Levels = new SpellsLevelEntry[] {
+                        SpellTools.CreateSpellLevelEntry(1),
+                        SpellTools.CreateSpellLevelEntry(1),
+                        SpellTools.CreateSpellLevelEntry(1,1),
+                        SpellTools.CreateSpellLevelEntry(1,1),
+                        SpellTools.CreateSpellLevelEntry(1,1,1),
+                        SpellTools.CreateSpellLevelEntry(1,1,1),
+                        SpellTools.CreateSpellLevelEntry(1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1,1,1,1)
+                    };
+                }).ToReference<BlueprintSpellsTableReference>();
+            }
             void CreateAirDomain() {
                 var AirDomainBaseFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("39b0c7db785560041b436b558c9df2bb");
                 var tricksterDomain = CreateTricksterDomain(AirDomainProgression);
@@ -633,8 +698,8 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         };
                     });
                 BlueprintTools.GetModBlueprint<BlueprintAbilityResource>(TTTContext, "TricksterTTTTravelDomainGreaterResource").m_MaxAmount = new BlueprintAbilityResource.Amount() {
-                    m_Class = new BlueprintCharacterClassReference[0],
-                    m_ClassDiv = ResourcesLibrary.GetRoot().Progression.m_CharacterMythics,
+                    m_Class = ResourcesLibrary.GetRoot().Progression.m_CharacterMythics,
+                    m_ClassDiv = new BlueprintCharacterClassReference[0],
                     m_Archetypes = new BlueprintArchetypeReference[0],
                     m_ArchetypesDiv = new BlueprintArchetypeReference[0],
                     BaseValue = 0,
@@ -691,8 +756,8 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         };
                     });
                 BlueprintTools.GetModBlueprint<BlueprintAbilityResource>(TTTContext, "TricksterTTTWeatherDomainGreaterResource").m_MaxAmount = new BlueprintAbilityResource.Amount() {
-                    m_Class = new BlueprintCharacterClassReference[0],
-                    m_ClassDiv = ResourcesLibrary.GetRoot().Progression.m_CharacterMythics,
+                    m_Class = ResourcesLibrary.GetRoot().Progression.m_CharacterMythics,
+                    m_ClassDiv = new BlueprintCharacterClassReference[0],
                     m_Archetypes = new BlueprintArchetypeReference[0],
                     m_ArchetypesDiv = new BlueprintArchetypeReference[0],
                     BaseValue = 0,
@@ -719,21 +784,38 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                             entry.Level /= 2;
                         }
                     });
+                    var domainSpellTable = BlueprintTools.GetModBlueprintReference<BlueprintSpellsTableReference>(TTTContext, "TricksterTTTDomainSpellsPerDay");
+
+                    var domainSpellbook = Helpers.CreateDerivedBlueprint<BlueprintSpellbook>(TTTContext, 
+                        $"TricksterTTT{domain.name}Spellbook",
+                        TricksterDomainMasterID,
+                        new SimpleBlueprint[] { domain, SpellList },
+                        bp => {
+                            bp.Name = domain.m_DisplayName;
+                            bp.CastingAttribute = StatType.Charisma;
+                            bp.AllSpellsKnown = true;
+                            bp.CantripsType = CantripsType.Orisions;
+                            bp.HasSpecialSpellList = false;
+                            bp.SpecialSpellListName = new Kingmaker.Localization.LocalizedString();
+                            bp.m_SpellsPerDay = TricksterDomainSpellsPerDay;
+                            bp.m_SpellsKnown = TricksterDomainSpellsKnown;
+                            bp.m_SpellSlots = new BlueprintSpellsTableReference();
+                            bp.m_SpellList = SpellList;
+                            bp.m_MythicSpellList = SpellList;
+                            bp.m_CharacterClass = TricksterMythicClass;
+                            bp.IsArcane = false;
+                            bp.IsMythic = true;
+                            bp.Spontaneous = true;
+                        }
+                    );
                     bp.RemoveComponents<LearnSpellList>();
                     bp.RemoveComponents<Prerequisite>();
-                    bp.AddComponent<AddSpellListAsAbilitiesTTT>(c => {
-                        c.m_SpellList = SpellList;
-                        c.m_ResourcePerSpellLevel = new BlueprintAbilityResourceReference[] {
-                        CreateTricksterSpellResource(1, SpellList),
-                        CreateTricksterSpellResource(2, SpellList),
-                        CreateTricksterSpellResource(3, SpellList),
-                        CreateTricksterSpellResource(4, SpellList),
-                        CreateTricksterSpellResource(5, SpellList),
-                        CreateTricksterSpellResource(6, SpellList),
-                        CreateTricksterSpellResource(7, SpellList),
-                        CreateTricksterSpellResource(8, SpellList),
-                        CreateTricksterSpellResource(9, SpellList),
-                    };
+                    bp.AddComponent<AddMythicSpellbook>(c => {
+                        c.m_Spellbook = domainSpellbook.ToReference<BlueprintSpellbookReference>();
+                        c.m_CasterLevel = new ContextValue() { 
+                            ValueType = ContextValueType.CasterCustomProperty,
+                            m_CustomProperty = TricksterDomainRankProperty.ToReference<BlueprintUnitPropertyReference>()
+                        };
                     });
                     bp.AddComponent<RecalculateOnLevelUp>();
                     bp.AddPrerequisite<PrerequisiteNoFeature>(c => {
@@ -747,26 +829,12 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     domain.AddPrerequisite<PrerequisiteNoFeature>(c => {
                         c.m_Feature = bp.ToReference<BlueprintFeatureReference>();
                     });
+                    NoFeature.ForEach(feature => {
+                        feature.Get().AddPrerequisite<PrerequisiteNoFeature>(c => {
+                            c.m_Feature = bp.ToReference<BlueprintFeatureReference>();
+                        });
+                    });
                 });
-            }
-            static BlueprintAbilityResourceReference CreateTricksterSpellResource(int spellLevel, BlueprintSpellList spellList) {
-                return Helpers.CreateDerivedBlueprint<BlueprintAbilityResource>(
-                    modContext: TTTContext,
-                    $"TricksterTTT{spellList.name}Resource{spellLevel}",
-                    TricksterSpellResource[spellLevel - 1],
-                    new SimpleBlueprint[] { spellList },
-                    bp => {
-                        bp.m_MaxAmount = new BlueprintAbilityResource.Amount() {
-                            m_Class = new BlueprintCharacterClassReference[0],
-                            m_ClassDiv = new BlueprintCharacterClassReference[0],
-                            m_Archetypes = new BlueprintArchetypeReference[0],
-                            m_ArchetypesDiv = new BlueprintArchetypeReference[0],
-                            BaseValue = 1,
-                            IncreasedByLevel = false,
-                            IncreasedByStat = false
-                        };
-                    }
-                ).ToReference<BlueprintAbilityResourceReference>();
             }
             static BlueprintFeatureBaseReference CreateTricksterDomainAbilityFeature(BlueprintFeature feature, bool updateBuffs = false) {
                 return feature.CreateCopy(TTTContext, $"TricksterTTT{feature.name}", TricksterDomainMasterID, bp => {
@@ -818,6 +886,21 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.GetComponent<AbilityResourceLogic>().m_RequiredResource = resource;
                     ConvertContextRankConfigs(bp);
                     AddToDomainZealot(bp);
+                    bp.AddComponent<ContextSetAbilityParams>(c => {
+                        c.DC = new ContextValue() {
+                            ValueType = ContextValueType.CasterCustomProperty,
+                            m_CustomProperty = TricksterDomainDCProperty.ToReference<BlueprintUnitPropertyReference>()
+                        };
+                        c.CasterLevel = new ContextValue() {
+                            ValueType = ContextValueType.CasterCustomProperty,
+                            m_CustomProperty = TricksterDomainRankProperty.ToReference<BlueprintUnitPropertyReference>()
+                        };
+                        c.Concentration = new ContextValue() {
+                            ValueType = ContextValueType.CasterCustomProperty,
+                            m_CustomProperty = TricksterDomainRankProperty.ToReference<BlueprintUnitPropertyReference>()
+                        };
+                        c.SpellLevel = -1;
+                    });
                     if (updateBuffs) {
                         var applyBuffs = bp.FlattenAllActions().OfType<ContextActionApplyBuff>().ToArray();
                         foreach (var action in applyBuffs) {
