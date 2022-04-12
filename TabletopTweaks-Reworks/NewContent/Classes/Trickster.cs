@@ -112,18 +112,18 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             CreateCommunityDomain();
             CreateDarknessDomain();
             CreateDeathDomain();
-            //CreateDestructionDomain();
+            CreateDestructionDomain();
             CreateEarthDomain();
             CreateEvilDomain();
             CreateFireDomain();
-            //CreateGloryDomain();
+            CreateGloryDomain();
             CreateGoodDomain();
             CreateHealingDomain();
-            //CreateKnowledgeDomain();
+            CreateKnowledgeDomain();
             CreateLawDomain();
-            //CreateLiberationDomain();
+            CreateLiberationDomain();
             CreateLuckDomain();
-            //CreateMadnessDomain();
+            CreateMadnessDomain();
             CreateMagicDomain();
             CreateNobilityDomain();
             //CreatePlantDomain();
@@ -141,6 +141,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             void CreateDomainSpellsPerDay() {
                 TricksterDomainSpellsKnown = Helpers.CreateBlueprint<BlueprintSpellsTable>(TTTContext, "TricksterTTTDomainSpellsKnown", bp => {
                     bp.Levels = new SpellsLevelEntry[] {
+                        SpellTools.CreateSpellLevelEntry(),
                         SpellTools.CreateSpellLevelEntry(0,1),
                         SpellTools.CreateSpellLevelEntry(0,1),
                         SpellTools.CreateSpellLevelEntry(0,1,1),
@@ -157,7 +158,6 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1),
                         SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1),
                         SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1),
-                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1,1),
                         SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1,1),
                         SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1,1),
                         SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1,1),
@@ -166,27 +166,27 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 }).ToReference<BlueprintSpellsTableReference>();
                 TricksterDomainSpellsPerDay = Helpers.CreateBlueprint<BlueprintSpellsTable>(TTTContext, "TricksterTTTDomainSpellsPerDay", bp => {
                     bp.Levels = new SpellsLevelEntry[] {
-                        SpellTools.CreateSpellLevelEntry(1),
-                        SpellTools.CreateSpellLevelEntry(1),
-                        SpellTools.CreateSpellLevelEntry(1,1),
-                        SpellTools.CreateSpellLevelEntry(1,1),
-                        SpellTools.CreateSpellLevelEntry(1,1,1),
-                        SpellTools.CreateSpellLevelEntry(1,1,1),
-                        SpellTools.CreateSpellLevelEntry(1,1,1,1),
-                        SpellTools.CreateSpellLevelEntry(1,1,1,1),
-                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1),
-                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1),
-                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1),
-                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1),
-                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1,1),
-                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1,1),
-                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1,1,1),
-                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1,1,1),
-                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1,1,1,1),
-                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1,1,1,1),
-                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1,1,1,1),
-                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1,1,1,1),
-                        SpellTools.CreateSpellLevelEntry(1,1,1,1,1,1,1,1,1)
+                        SpellTools.CreateSpellLevelEntry(),
+                        SpellTools.CreateSpellLevelEntry(0,1),
+                        SpellTools.CreateSpellLevelEntry(0,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1,1),
+                        SpellTools.CreateSpellLevelEntry(0,1,1,1,1,1,1,1,1,1)
                     };
                 }).ToReference<BlueprintSpellsTableReference>();
             }
@@ -444,7 +444,112 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     });
                 TricksterDomains.Add(tricksterDomain);
             }
-            void CreateDestructionDomain(){ }
+            void CreateDestructionDomain() {
+                var DestructionDomainBaseFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("2d3b9491bc05a114ab10e5b1b30dc86a");
+                var DestructionDomainBaseActivateableAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("e69898f762453514780eb5e467694bdb");
+                var DestructionDomainBaseResource = BlueprintTools.GetBlueprint<BlueprintAbilityResource>("9acceeadcc1538544ac5176eb168b4a1");
+                var DestructionDomainBaseBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("0dfe08afb3cf3594987bab12d014e74b");
+
+                var DestructionDomainGreaterFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("b047e72c88cbdfe409ea0aaea3dfddf6");
+                var DestructionDomainGreaterToggleAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("8e78df631fccb0f42850d24d117d088c");
+                var DestructionDomainGreaterResource = BlueprintTools.GetBlueprint<BlueprintAbilityResource>("98f07eabe9cb4f34cb1127de625f4bee");
+                var DestructionDomainGreaterBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("532eea2709f3fd8498102726dfca6ec7");
+                var DestructionDomainGreaterAura = BlueprintTools.GetBlueprint<BlueprintAbilityAreaEffect>("5a6c8bb6faf11fc4bb1022c3683d12d3");
+                var DestructionDomainGreaterEffect = BlueprintTools.GetBlueprint<BlueprintBuff>("f9de414e53a9c23419fa3cfc0daabde7");
+
+                var tricksterBaseResource = DestructionDomainBaseResource.CreateCopy(TTTContext, $"TricksterTTT{DestructionDomainBaseResource.name}", TricksterDomainMasterID, bp => {
+                    bp.m_MaxAmount = new BlueprintAbilityResource.Amount() {
+                        m_Class = ResourcesLibrary.GetRoot().Progression.m_CharacterMythics,
+                        m_ClassDiv = new BlueprintCharacterClassReference[0],
+                        m_Archetypes = new BlueprintArchetypeReference[0],
+                        m_ArchetypesDiv = new BlueprintArchetypeReference[0],
+                        BaseValue = DestructionDomainBaseResource.m_MaxAmount.BaseValue,
+                        LevelIncrease = 2,
+                        IncreasedByLevel = true,
+                        IncreasedByStat = false
+                    };
+                    bp.m_Max = 20;
+                    bp.m_UseMax = true;
+                });
+                var tricksterBaseFeature = DestructionDomainBaseFeature.CreateCopy(TTTContext, $"TricksterTTT{DestructionDomainBaseFeature.name}", TricksterDomainMasterID, bp => {
+                    bp.GetComponent<AddAbilityResources>().m_Resource = tricksterBaseResource.ToReference<BlueprintAbilityResourceReference>();
+                    bp.GetComponent<AddFacts>().m_Facts = new BlueprintUnitFactReference[] {
+                        DestructionDomainBaseActivateableAbility.CreateCopy(TTTContext, $"TricksterTTT{DestructionDomainBaseActivateableAbility.name}", TricksterDomainMasterID, toggleBP => {
+                            AddTricksterAbilityParams(toggleBP);
+                            toggleBP.GetComponent<ActivatableAbilityResourceLogic>().m_RequiredResource =  tricksterBaseResource.ToReference<BlueprintAbilityResourceReference>();
+                            toggleBP.m_Buff = DestructionDomainBaseBuff.CreateCopy(TTTContext, $"TricksterTTT{DestructionDomainBaseBuff.name}", TricksterDomainMasterID, baseBuffBP => {
+                                ConvertContextRankConfigs(baseBuffBP);
+                            }).ToReference<BlueprintBuffReference>();
+                        }).ToReference<BlueprintUnitFactReference>()
+                    };
+                });
+
+                var tricksterGreaterResource = DestructionDomainGreaterResource.CreateCopy(TTTContext, $"TricksterTTT{DestructionDomainGreaterResource.name}", TricksterDomainMasterID, bp => {
+                    bp.m_MaxAmount = new BlueprintAbilityResource.Amount() {
+                        m_Class = ResourcesLibrary.GetRoot().Progression.m_CharacterMythics,
+                        m_ClassDiv = new BlueprintCharacterClassReference[0],
+                        m_Archetypes = new BlueprintArchetypeReference[0],
+                        m_ArchetypesDiv = new BlueprintArchetypeReference[0],
+                        BaseValue = DestructionDomainGreaterResource.m_MaxAmount.BaseValue,
+                        LevelIncrease = 2,
+                        IncreasedByLevel = true,
+                        IncreasedByStat = false
+                    };
+                    bp.m_Max = 20;
+                    bp.m_UseMax = true;
+                });
+                var tricksterGreaterBuff = DestructionDomainGreaterEffect.CreateCopy(TTTContext, $"TricksterTTT{DestructionDomainGreaterEffect.name}", TricksterDomainMasterID, bp => {
+                    ConvertContextRankConfigs(bp);
+                });
+                var tricksterGreaterFeature = DestructionDomainGreaterFeature.CreateCopy(TTTContext, $"TricksterTTT{DestructionDomainGreaterFeature.name}", TricksterDomainMasterID, bp => {
+                    bp.GetComponent<AddAbilityResources>().m_Resource = tricksterGreaterResource.ToReference<BlueprintAbilityResourceReference>();
+                    bp.GetComponent<AddFacts>().m_Facts = new BlueprintUnitFactReference[] {
+                        DestructionDomainGreaterToggleAbility.CreateCopy(TTTContext, $"TricksterTTT{DestructionDomainGreaterToggleAbility.name}", TricksterDomainMasterID, toggleBP => {
+                            AddTricksterAbilityParams(toggleBP);
+                            toggleBP.GetComponent<ActivatableAbilityResourceLogic>().m_RequiredResource =  tricksterGreaterResource.ToReference<BlueprintAbilityResourceReference>();
+                            toggleBP.m_Buff = DestructionDomainGreaterBuff.CreateCopy(TTTContext, $"TricksterTTT{DestructionDomainGreaterBuff.name}", TricksterDomainMasterID, baseBuffBP => {
+                                baseBuffBP.GetComponent<AddAreaEffect>().m_AreaEffect = DestructionDomainGreaterAura.CreateCopy(TTTContext, $"TricksterTTT{DestructionDomainGreaterAura.name}", TricksterDomainMasterID, areaBP => {
+                                    areaBP.FlattenAllActions().OfType<ContextActionApplyBuff>()
+                                        .Where(c => c.Buff == DestructionDomainGreaterEffect)
+                                        .ForEach(c => {
+                                            c.m_Buff = tricksterGreaterBuff.ToReference<BlueprintBuffReference>();
+                                        });
+                                    areaBP.FlattenAllActions().OfType<ContextActionRemoveBuff>()
+                                        .Where(c => c.Buff == DestructionDomainGreaterEffect)
+                                        .ForEach(c => {
+                                            c.m_Buff = tricksterGreaterBuff.ToReference<BlueprintBuffReference>();
+                                        });
+                                    areaBP.FlattenAllActions().OfType<ContextConditionHasFact>()
+                                        .Where(c => c.Fact == DestructionDomainGreaterEffect)
+                                        .ForEach(c => {
+                                            c.m_Fact = tricksterGreaterBuff.ToReference<BlueprintUnitFactReference>();
+                                        });
+                                }).ToReference<BlueprintAbilityAreaEffectReference>();
+                            }).ToReference<BlueprintBuffReference>();
+
+                            
+                        }).ToReference<BlueprintUnitFactReference>()
+                    };
+                });    
+                    
+                var tricksterDomain = CreateTricksterDomain(DestructionDomainProgression);
+
+                tricksterDomain.LevelEntries
+                    .Where(entry => entry.Level == 1)
+                    .ForEach(entry => {
+                        entry.m_Features = new List<BlueprintFeatureBaseReference>() {
+                            tricksterBaseFeature.ToReference<BlueprintFeatureBaseReference>()
+                        };
+                    });
+                tricksterDomain.LevelEntries
+                    .Where(entry => entry.Level == 4)
+                    .ForEach(entry => {
+                        entry.m_Features = new List<BlueprintFeatureBaseReference>() {
+                            tricksterGreaterFeature.ToReference<BlueprintFeatureBaseReference>()
+                        };
+                    });
+                TricksterDomains.Add(tricksterDomain);
+            }
             void CreateEarthDomain() {
                 var EarthDomainBaseFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("828d82a0e8c5a944bbdb6b12f802ff02");
                 var tricksterDomain = CreateTricksterDomain(EarthDomainProgression);
@@ -492,7 +597,34 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     });
                 TricksterDomains.Add(tricksterDomain);
             }
-            void CreateGloryDomain(){ }
+            void CreateGloryDomain(){
+                var GloryDomainBaseFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("17e891b3964492f43aae44f994b5d454");
+                var GloryDomainGreaterFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("bf41d1d2cf72e8545b51857f20fa58e7");
+                var tricksterDomain = CreateTricksterDomain(GloryDomainProgression);
+
+                tricksterDomain.LevelEntries
+                    .Where(entry => entry.Level == 1)
+                    .ForEach(entry => {
+                        entry.m_Features = new List<BlueprintFeatureBaseReference>() {
+                            CreateTricksterDomainAbilityFeature(GloryDomainBaseFeature)
+                        };
+                    });
+                tricksterDomain.LevelEntries
+                    .Where(entry => entry.Level == 4)
+                    .ForEach(entry => {
+                        entry.m_Features = new List<BlueprintFeatureBaseReference>() {
+                            CreateTricksterDomainAbilityFeature(GloryDomainGreaterFeature)
+                        };
+                    });
+                BlueprintTools.GetModBlueprint<BlueprintAbilityResource>(TTTContext, "TricksterTTTGloryDomainGreaterResource").m_MaxAmount = new BlueprintAbilityResource.Amount() {
+                    m_Class = new BlueprintCharacterClassReference[0],
+                    m_ClassDiv = new BlueprintCharacterClassReference[0],
+                    m_Archetypes = new BlueprintArchetypeReference[0],
+                    m_ArchetypesDiv = new BlueprintArchetypeReference[0],
+                    BaseValue = 1
+                };
+                TricksterDomains.Add(tricksterDomain);
+            }
             void CreateGoodDomain() {
                 var GoodDomainBaseFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("f27684b3b72c2f546abf3ef2fb611a05");
                 var GoodDomainGreaterFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("c90f8979927db4b4fbf6159297e01af8");
@@ -527,7 +659,40 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     });
                 TricksterDomains.Add(tricksterDomain);
             }
-            void CreateKnowledgeDomain() { }
+            void CreateKnowledgeDomain() {
+                var KnowledgeDomainBaseFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("5335f015063776d429a0b5eab97eb060");
+                var KnowledgeDomainGreaterFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("74ac5dbc420501c4cae29a9db24e4e3a");
+
+                
+
+                var tricksterDomain = CreateTricksterDomain(KnowledgeDomainProgression);
+
+                tricksterDomain.LevelEntries
+                    .Where(entry => entry.Level == 1)
+                    .ForEach(entry => {
+                        entry.m_Features = new List<BlueprintFeatureBaseReference>() {
+                            CreateTricksterDomainAbilityFeature(KnowledgeDomainBaseFeature, true)
+                        };
+                    });
+                BlueprintTools.GetModBlueprint<BlueprintAbilityResource>(TTTContext, "TricksterTTTKnowledgeDomainBaseResource").m_MaxAmount = new BlueprintAbilityResource.Amount() {
+                    m_Class = ResourcesLibrary.GetRoot().Progression.m_CharacterMythics,
+                    m_ClassDiv = new BlueprintCharacterClassReference[0],
+                    m_Archetypes = new BlueprintArchetypeReference[0],
+                    m_ArchetypesDiv = new BlueprintArchetypeReference[0],
+                    BaseValue = 0,
+                    LevelIncrease = 2,
+                    IncreasedByLevel = true,
+                    IncreasedByStat = false
+                };
+                tricksterDomain.LevelEntries
+                    .Where(entry => entry.Level == 4)
+                    .ForEach(entry => {
+                        entry.m_Features = new List<BlueprintFeatureBaseReference>() {
+                            CreateTricksterDomainGreaterAbilityFeature(KnowledgeDomainGreaterFeature)
+                        };
+                    });
+                TricksterDomains.Add(tricksterDomain);
+            }
             void CreateLawDomain() {
                 var LawDomainBaseFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("9bd2d216e56a0db44be0df48ffc515af");
                 var LawDomainGreaterFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("3dc5e2b315ff07f438582a2468beb1fb");
@@ -549,7 +714,108 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     });
                 TricksterDomains.Add(tricksterDomain);
             }
-            void CreateLiberationDomain(){ }
+            void CreateLiberationDomain() {
+                var LiberationDomainBaseFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("7cc934aa505172a40b4a10c14c7681c4");
+                var LiberationDomainBaseActivateableAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("edaac27ed85814b438ea7908b5226684");
+                var LiberationDomainBaseResource = BlueprintTools.GetBlueprint<BlueprintAbilityResource>("8ddc7f532cf2b3b4c877497856cc5b97");
+
+                var LiberationDomainGreaterFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("25636a46d4e7a484d903946ef4a6f6db");
+                var LiberationDomainGreaterToggleAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("627cfc87590b0e14f863fdb9bc40787b");
+                var LiberationDomainGreaterResource = BlueprintTools.GetBlueprint<BlueprintAbilityResource>("d19e900012a69954c93f3b7533bc3911");
+                var LiberationDomainGreaterBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("aa561f70d2260524e82c794d6140677c");
+                var LiberationDomainGreaterAura = BlueprintTools.GetBlueprint<BlueprintAbilityAreaEffect>("cd23b709497500142b59802d7bc85edc");
+                var LiberationDomainGreaterEffect = BlueprintTools.GetBlueprint<BlueprintBuff>("649d53bad4b29ee42abc06ad28d297c8");
+
+                var tricksterBaseResource = LiberationDomainBaseResource.CreateCopy(TTTContext, $"TricksterTTT{LiberationDomainBaseResource.name}", TricksterDomainMasterID, bp => {
+                    bp.m_MaxAmount = new BlueprintAbilityResource.Amount() {
+                        m_Class = ResourcesLibrary.GetRoot().Progression.m_CharacterMythics,
+                        m_ClassDiv = new BlueprintCharacterClassReference[0],
+                        m_Archetypes = new BlueprintArchetypeReference[0],
+                        m_ArchetypesDiv = new BlueprintArchetypeReference[0],
+                        BaseValue = LiberationDomainBaseResource.m_MaxAmount.BaseValue,
+                        LevelIncrease = 2,
+                        IncreasedByLevel = true,
+                        IncreasedByStat = false
+                    };
+                    bp.m_Max = 20;
+                    bp.m_UseMax = true;
+                });
+                var tricksterBaseFeature = LiberationDomainBaseFeature.CreateCopy(TTTContext, $"TricksterTTT{LiberationDomainBaseFeature.name}", TricksterDomainMasterID, bp => {
+                    bp.GetComponent<AddAbilityResources>().m_Resource = tricksterBaseResource.ToReference<BlueprintAbilityResourceReference>();
+                    bp.GetComponent<AddFacts>().m_Facts = new BlueprintUnitFactReference[] {
+                        LiberationDomainBaseActivateableAbility.CreateCopy(TTTContext, $"TricksterTTT{LiberationDomainBaseActivateableAbility.name}", TricksterDomainMasterID, toggleBP => {
+                            AddTricksterAbilityParams(toggleBP);
+                            toggleBP.GetComponent<ActivatableAbilityResourceLogic>().m_RequiredResource =  tricksterBaseResource.ToReference<BlueprintAbilityResourceReference>();
+                        }).ToReference<BlueprintUnitFactReference>()
+                    };
+                });
+
+                var tricksterGreaterResource = LiberationDomainGreaterResource.CreateCopy(TTTContext, $"TricksterTTT{LiberationDomainGreaterResource.name}", TricksterDomainMasterID, bp => {
+                    bp.m_MaxAmount = new BlueprintAbilityResource.Amount() {
+                        m_Class = ResourcesLibrary.GetRoot().Progression.m_CharacterMythics,
+                        m_ClassDiv = new BlueprintCharacterClassReference[0],
+                        m_Archetypes = new BlueprintArchetypeReference[0],
+                        m_ArchetypesDiv = new BlueprintArchetypeReference[0],
+                        BaseValue = LiberationDomainGreaterResource.m_MaxAmount.BaseValue,
+                        LevelIncrease = 2,
+                        IncreasedByLevel = true,
+                        IncreasedByStat = false
+                    };
+                    bp.m_Max = 20;
+                    bp.m_UseMax = true;
+                });
+                var tricksterGreaterBuff = LiberationDomainGreaterEffect.CreateCopy(TTTContext, $"TricksterTTT{LiberationDomainGreaterEffect.name}", TricksterDomainMasterID, bp => {
+                    ConvertContextRankConfigs(bp);
+                });
+                var tricksterGreaterFeature = LiberationDomainGreaterFeature.CreateCopy(TTTContext, $"TricksterTTT{LiberationDomainGreaterFeature.name}", TricksterDomainMasterID, bp => {
+                    bp.GetComponent<AddAbilityResources>().m_Resource = tricksterGreaterResource.ToReference<BlueprintAbilityResourceReference>();
+                    bp.GetComponent<AddFacts>().m_Facts = new BlueprintUnitFactReference[] {
+                        LiberationDomainGreaterToggleAbility.CreateCopy(TTTContext, $"TricksterTTT{LiberationDomainGreaterToggleAbility.name}", TricksterDomainMasterID, toggleBP => {
+                            AddTricksterAbilityParams(toggleBP);
+                            toggleBP.GetComponent<ActivatableAbilityResourceLogic>().m_RequiredResource =  tricksterGreaterResource.ToReference<BlueprintAbilityResourceReference>();
+                            toggleBP.m_Buff = LiberationDomainGreaterBuff.CreateCopy(TTTContext, $"TricksterTTT{LiberationDomainGreaterBuff.name}", TricksterDomainMasterID, baseBuffBP => {
+                                baseBuffBP.GetComponent<AddAreaEffect>().m_AreaEffect = LiberationDomainGreaterAura.CreateCopy(TTTContext, $"TricksterTTT{LiberationDomainGreaterAura.name}", TricksterDomainMasterID, areaBP => {
+                                    areaBP.FlattenAllActions().OfType<ContextActionApplyBuff>()
+                                        .Where(c => c.Buff == LiberationDomainGreaterEffect)
+                                        .ForEach(c => {
+                                            c.m_Buff = tricksterGreaterBuff.ToReference<BlueprintBuffReference>();
+                                        });
+                                    areaBP.FlattenAllActions().OfType<ContextActionRemoveBuff>()
+                                        .Where(c => c.Buff == LiberationDomainGreaterEffect)
+                                        .ForEach(c => {
+                                            c.m_Buff = tricksterGreaterBuff.ToReference<BlueprintBuffReference>();
+                                        });
+                                    areaBP.FlattenAllActions().OfType<ContextConditionHasFact>()
+                                        .Where(c => c.Fact == LiberationDomainGreaterEffect)
+                                        .ForEach(c => {
+                                            c.m_Fact = tricksterGreaterBuff.ToReference<BlueprintUnitFactReference>();
+                                        });
+                                }).ToReference<BlueprintAbilityAreaEffectReference>();
+                            }).ToReference<BlueprintBuffReference>();
+
+
+                        }).ToReference<BlueprintUnitFactReference>()
+                    };
+                });
+
+                var tricksterDomain = CreateTricksterDomain(LiberationDomainProgression);
+
+                tricksterDomain.LevelEntries
+                    .Where(entry => entry.Level == 1)
+                    .ForEach(entry => {
+                        entry.m_Features = new List<BlueprintFeatureBaseReference>() {
+                            tricksterBaseFeature.ToReference<BlueprintFeatureBaseReference>()
+                        };
+                    });
+                tricksterDomain.LevelEntries
+                    .Where(entry => entry.Level == 4)
+                    .ForEach(entry => {
+                        entry.m_Features = new List<BlueprintFeatureBaseReference>() {
+                            tricksterGreaterFeature.ToReference<BlueprintFeatureBaseReference>()
+                        };
+                    });
+                TricksterDomains.Add(tricksterDomain);
+            }
             void CreateLuckDomain() {
                 var LuckDomainBaseFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("2b3818bf4656c1a41b93467755662c78");
                 var LuckDomainGreaterFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("dd58b458af054e642bf845c3f01307e5");
@@ -587,6 +853,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             void CreateMadnessDomain() {
                 var MadnessDomainBaseFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("84bf46e8086dbdc438bac875ab0e5c2f");
                 var MadnessDomainGreaterFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("9acc8ab2f313d0e49bb01e030c868e3f");
+
                 var tricksterDomain = CreateTricksterDomain(MadnessDomainProgression);
 
                 tricksterDomain.LevelEntries
@@ -596,15 +863,20 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                             CreateTricksterDomainAbilityFeature(MadnessDomainBaseFeature, true)
                         };
                     });
-                /*
                 tricksterDomain.LevelEntries
                     .Where(entry => entry.Level == 4)
                     .ForEach(entry => {
                         entry.m_Features = new List<BlueprintFeatureBaseReference>() {
-                            CreateTricksterDomainGreaterAbilityFeature(LuckDomainGreaterFeature)
+                            CreateTricksterDomainGreaterAbilityFeature(MadnessDomainGreaterFeature)
                         };
                     });
-                */
+                BlueprintTools.GetModBlueprint<BlueprintAbilityResource>(TTTContext, "TricksterTTTMadnessDomainGreaterResource").m_MaxAmount = new BlueprintAbilityResource.Amount() {
+                    m_Class = new BlueprintCharacterClassReference[0],
+                    m_ClassDiv = new BlueprintCharacterClassReference[0],
+                    m_Archetypes = new BlueprintArchetypeReference[0],
+                    m_ArchetypesDiv = new BlueprintArchetypeReference[0],
+                    BaseValue = 1
+                };
                 TricksterDomains.Add(tricksterDomain);
             }
             void CreateMagicDomain() {
@@ -718,7 +990,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     .Where(entry => entry.Level == 1)
                     .ForEach(entry => {
                         entry.m_Features = new List<BlueprintFeatureBaseReference>() {
-                            CreateTricksterDomainAbilityFeature(WarDomainBaseFeature)
+                            CreateTricksterDomainAbilityFeature(WarDomainBaseFeature, true)
                         };
                     });
                 TricksterDomains.Add(tricksterDomain);
@@ -886,21 +1158,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.GetComponent<AbilityResourceLogic>().m_RequiredResource = resource;
                     ConvertContextRankConfigs(bp);
                     AddToDomainZealot(bp);
-                    bp.AddComponent<ContextSetAbilityParams>(c => {
-                        c.DC = new ContextValue() {
-                            ValueType = ContextValueType.CasterCustomProperty,
-                            m_CustomProperty = TricksterDomainDCProperty.ToReference<BlueprintUnitPropertyReference>()
-                        };
-                        c.CasterLevel = new ContextValue() {
-                            ValueType = ContextValueType.CasterCustomProperty,
-                            m_CustomProperty = TricksterDomainRankProperty.ToReference<BlueprintUnitPropertyReference>()
-                        };
-                        c.Concentration = new ContextValue() {
-                            ValueType = ContextValueType.CasterCustomProperty,
-                            m_CustomProperty = TricksterDomainRankProperty.ToReference<BlueprintUnitPropertyReference>()
-                        };
-                        c.SpellLevel = -1;
-                    });
+                    AddTricksterAbilityParams(bp);
                     if (updateBuffs) {
                         var applyBuffs = bp.FlattenAllActions().OfType<ContextActionApplyBuff>().ToArray();
                         foreach (var action in applyBuffs) {
@@ -958,6 +1216,23 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         c.m_CustomProperty = TricksterDomainRankProperty.ToReference<BlueprintUnitPropertyReference>();
                         c.m_FeatureList = new BlueprintFeatureReference[0];
                     });
+            }
+            static void AddTricksterAbilityParams(BlueprintScriptableObject blueprint) {
+                blueprint.AddComponent<ContextSetAbilityParams>(c => {
+                    c.DC = new ContextValue() {
+                        ValueType = ContextValueType.CasterCustomProperty,
+                        m_CustomProperty = TricksterDomainDCProperty.ToReference<BlueprintUnitPropertyReference>()
+                    };
+                    c.CasterLevel = new ContextValue() {
+                        ValueType = ContextValueType.CasterCustomProperty,
+                        m_CustomProperty = TricksterDomainRankProperty.ToReference<BlueprintUnitPropertyReference>()
+                    };
+                    c.Concentration = new ContextValue() {
+                        ValueType = ContextValueType.CasterCustomProperty,
+                        m_CustomProperty = TricksterDomainRankProperty.ToReference<BlueprintUnitPropertyReference>()
+                    };
+                    c.SpellLevel = -1;
+                });
             }
             static void AddToDomainZealot(BlueprintAbility ability) {
                 var AutoMetamagic = DomainMastery.GetComponent<AutoMetamagic>();
