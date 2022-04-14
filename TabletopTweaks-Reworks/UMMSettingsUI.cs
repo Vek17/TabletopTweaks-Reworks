@@ -27,7 +27,9 @@ namespace TabletopTweaks.Reworks {
                 SetttingUI.SettingGroup("Mythic Feats", TabLevel, Homebrew.MythicFeats);
                 SetttingUI.NestedSettingGroup("Mythic Reworks", TabLevel, Homebrew.MythicReworks,
                     ("Aeon", Homebrew.MythicReworks.Aeon),
-                    ("Azata", Homebrew.MythicReworks.Azata)
+                    ("Azata", Homebrew.MythicReworks.Azata),
+                    ("Lich", Homebrew.MythicReworks.Lich),
+                    ("Trickster", Homebrew.MythicReworks.Trickster)
                 );
             }
         }

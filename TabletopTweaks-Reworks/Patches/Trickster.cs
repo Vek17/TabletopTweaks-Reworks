@@ -300,6 +300,7 @@ namespace TabletopTweaks.Reworks.Patches {
 
                     TricksterLoreReligionTier2Selection.m_AllFeatures = new BlueprintFeatureReference[0];
                     TricksterLoreReligionTier2Selection.m_Features = new BlueprintFeatureReference[0];
+                    TricksterLoreReligionTier2Selection.IgnorePrerequisites = false;
                     TricksterLoreReligionTier2Selection.AddFeatures(NewContent.Classes.Trickster.TricksterDomains.ToArray());
 
                     DomainMastery.AddPrerequisiteFeature(TricksterLoreReligionTier2Progression, Prerequisite.GroupType.Any);
@@ -313,6 +314,7 @@ namespace TabletopTweaks.Reworks.Patches {
 
                     TricksterLoreReligionTier3Selection.m_AllFeatures = new BlueprintFeatureReference[0];
                     TricksterLoreReligionTier3Selection.m_Features = new BlueprintFeatureReference[0];
+                    TricksterLoreReligionTier3Selection.IgnorePrerequisites = false;
                     TricksterLoreReligionTier3Selection.AddFeatures(NewContent.Classes.Trickster.TricksterDomains.ToArray());
 
                     DomainMastery.AddPrerequisiteFeature(TricksterLoreReligionTier2Progression, Prerequisite.GroupType.Any);
