@@ -43,17 +43,6 @@ using static TabletopTweaks.Reworks.Main;
 namespace TabletopTweaks.Reworks.NewContent.Classes {
     static class Trickster {
         private static BlueprintGuid TricksterDomainMasterID = TTTContext.Blueprints.GetDerivedMaster("TricksterDomainMasterID");
-        private static BlueprintGuid[] TricksterSpellResource = new BlueprintGuid[9] {
-            TTTContext.Blueprints.GetDerivedMaster("TricksterSpellResource1"),
-            TTTContext.Blueprints.GetDerivedMaster("TricksterSpellResource2"),
-            TTTContext.Blueprints.GetDerivedMaster("TricksterSpellResource3"),
-            TTTContext.Blueprints.GetDerivedMaster("TricksterSpellResource4"),
-            TTTContext.Blueprints.GetDerivedMaster("TricksterSpellResource5"),
-            TTTContext.Blueprints.GetDerivedMaster("TricksterSpellResource6"),
-            TTTContext.Blueprints.GetDerivedMaster("TricksterSpellResource7"),
-            TTTContext.Blueprints.GetDerivedMaster("TricksterSpellResource8"),
-            TTTContext.Blueprints.GetDerivedMaster("TricksterSpellResource9")
-        };
         private static BlueprintCharacterClassReference TricksterMythicClass => BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("8df873a8c6e48294abdb78c45834aa0a");
         private static BlueprintSpellsTableReference TricksterDomainSpellsKnown = null;
         private static BlueprintSpellsTableReference TricksterDomainSpellsPerDay = null;
@@ -3877,7 +3866,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 var RuneDomainBaseAbilityElectricity = BlueprintTools.GetBlueprint<BlueprintAbility>("b67978e3d5a6c9247a393237bc660339");
                 var RuneDomainBaseAbilityFire = BlueprintTools.GetBlueprint<BlueprintAbility>("eddfe26a8a3892b47add3cb08db7069d");
 
-                var TricksterTTTRuneDomainBaseResource = Helpers.CreateBlueprint<BlueprintAbilityResource>(TTTContext, "TTTRuneDomainBaseResourceBaseResource", bp => {
+                var TricksterTTTRuneDomainBaseResource = Helpers.CreateBlueprint<BlueprintAbilityResource>(TTTContext, "TricksterTTTRuneDomainBaseResource", bp => {
                     bp.m_MaxAmount = new BlueprintAbilityResource.Amount() {
                         m_Class = ResourcesLibrary.GetRoot().Progression.m_CharacterMythics,
                         m_ClassDiv = new BlueprintCharacterClassReference[0],
@@ -5311,18 +5300,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.m_Classes = new BlueprintProgression.ClassWithLevel[0];
                     bp.m_Archetypes = new BlueprintProgression.ArchetypeWithLevel[0];
                     bp.m_FeaturesRankIncrease = new List<BlueprintFeatureReference>();
-                    /*
-                    ResourcesLibrary.GetRoot()
-                        .Progression
-                        .CharacterMythics
-                        .ForEach(mythic => bp.AddClass(mythic));
-                    
-                    bp.LevelEntries.ForEach(entry => {
-                        if (entry.Level > 1) {
-                            entry.Level /= 2;
-                        }
-                    });
-                    */
+
                     var domainSpellTable = BlueprintTools.GetModBlueprintReference<BlueprintSpellsTableReference>(TTTContext, "TricksterTTTDomainSpellsPerDay");
 
                     var domainSpellbook = Helpers.CreateDerivedBlueprint<BlueprintSpellbook>(TTTContext, 
@@ -5375,106 +5353,6 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     });
                 });
             }
-            static BlueprintFeatureBaseReference CreateTricksterDomainAbilityFeature(BlueprintFeature feature, bool updateBuffs = false) {
-                return feature.CreateCopy(TTTContext, $"TricksterTTT{feature.name}", TricksterDomainMasterID, bp => {
-                    var baseAbilities = bp.GetComponent<AddFacts>()?.Facts.OfType<BlueprintAbility>().ToArray() 
-                        ?? bp.GetComponent<FactSinglify>()?.NewFacts.OfType<BlueprintAbility>().ToArray();
-                    var baseResource = bp.GetComponent<AddAbilityResources>()?.Resource;
-                    var tricksterResource = CreateTricksterDomainAbilityResource(baseResource);
-                    var tricksterAbilities = baseAbilities.Select(ability => CreateTricksterDomainAbility(ability, tricksterResource, updateBuffs)).ToArray();
-
-                    bp.RemoveComponents<ReplaceAbilitiesStat>();
-                    if (baseResource != null) {
-                        bp.GetComponent<AddAbilityResources>().m_Resource = tricksterResource;
-                    } else { TTTContext.Logger.Log($"Trickster Domain Feature has no resource: {feature.name}"); }
-                    if (baseAbilities != null || !baseAbilities.Any()) {
-                        bp.RemoveComponents<AddFacts>(c => c.Facts.Any(ability => baseAbilities.Contains(ability)));
-                        bp.RemoveComponents<FactSinglify>(c => c.NewFacts.Any(ability => baseAbilities.Contains(ability)));
-                        bp.AddComponent<AddFacts>(c => {
-                            c.m_Facts = tricksterAbilities;
-                        });
-                    } else { TTTContext.Logger.Log($"Trickster Domain Feature has no ability: {feature.name}"); }
-
-                }).ToReference<BlueprintFeatureBaseReference>();
-            }
-            static BlueprintFeatureBaseReference CreateTricksterDomainGreaterAbilityFeature(BlueprintFeature feature, bool updateBuffs = false) {
-                return feature.CreateCopy(TTTContext, $"TricksterTTT{feature.name}", TricksterDomainMasterID, bp => {
-                    var baseAbilities = bp.GetComponent<AddFacts>()?.Facts.OfType<BlueprintAbility>().ToArray()
-                        ?? bp.GetComponent<FactSinglify>()?.NewFacts.OfType<BlueprintAbility>().ToArray();
-                    var baseResource = bp.GetComponent<AddAbilityResources>()?.Resource;
-                    var tricksterResource = CreateTricksterDomainGreaterAbilityResource(baseResource);
-                    var tricksterAbilities = baseAbilities.Select(ability => CreateTricksterDomainAbility(ability, tricksterResource, updateBuffs)).ToArray();
-
-                    bp.RemoveComponents<ReplaceAbilitiesStat>();
-                    if (baseResource != null) {
-                        bp.GetComponent<AddAbilityResources>().m_Resource = tricksterResource;
-                    } else { TTTContext.Logger.Log($"Trickster Domain Feature has no resource: {feature.name}"); }
-                    if (baseAbilities != null || !baseAbilities.Any()) {
-                        bp.RemoveComponents<AddFacts>(c => c.Facts.Any(ability => baseAbilities.Contains(ability)));
-                        bp.RemoveComponents<FactSinglify>(c => c.NewFacts.Any(ability => baseAbilities.Contains(ability)));
-                        bp.AddComponent<AddFacts>(c => {
-                            c.m_Facts = tricksterAbilities;
-                        });
-                    } else { TTTContext.Logger.Log($"Trickster Domain Feature has no ability: {feature.name}"); }
-
-                }).ToReference<BlueprintFeatureBaseReference>();
-            }
-            static BlueprintUnitFactReference CreateTricksterDomainAbility(BlueprintAbility ability, BlueprintAbilityResourceReference resource, bool updateBuffs) {
-                if (ability == null) { return null; }
-                return ability.CreateCopy(TTTContext, $"TricksterTTT{ability.name}", TricksterDomainMasterID, bp => {
-                    bp.GetComponent<AbilityResourceLogic>().m_RequiredResource = resource;
-                    ConvertContextRankConfigs(bp);
-                    AddToDomainZealot(bp);
-                    AddTricksterAbilityParams(bp);
-                    if (updateBuffs) {
-                        var applyBuffs = bp.FlattenAllActions().OfType<ContextActionApplyBuff>().ToArray();
-                        foreach (var action in applyBuffs) {
-                            var buff = action.Buff;
-                            var tricksterBuff = buff.CreateCopy(TTTContext, $"TricksterTTT{buff.name}", TricksterDomainMasterID, tb => {
-                                ConvertContextRankConfigs(tb);
-                            });
-                            action.m_Buff = tricksterBuff.ToReference<BlueprintBuffReference>();
-                        }
-                    }
-                }).ToReference<BlueprintUnitFactReference>();
-            }
-            static BlueprintAbilityResourceReference CreateTricksterDomainAbilityResource(BlueprintAbilityResource resource) {
-                if (resource == null) { return null; }
-                return resource.CreateCopy(TTTContext, $"TricksterTTT{resource.name}", TricksterDomainMasterID, bp => {
-                    if (resource.m_MaxAmount.IncreasedByStat && resource.m_MaxAmount.ResourceBonusStat == StatType.Wisdom) {
-                        bp.m_MaxAmount = new BlueprintAbilityResource.Amount() {
-                            m_Class = ResourcesLibrary.GetRoot().Progression.m_CharacterMythics,
-                            m_ClassDiv = new BlueprintCharacterClassReference[0],
-                            m_Archetypes = new BlueprintArchetypeReference[0],
-                            m_ArchetypesDiv = new BlueprintArchetypeReference[0],
-                            BaseValue = resource.m_MaxAmount.BaseValue,
-                            LevelIncrease = 1,
-                            IncreasedByLevel = true,
-                            IncreasedByStat = false
-                        };
-                        bp.m_Max = 13;
-                        bp.m_UseMax = true;
-                    }      
-                }).ToReference<BlueprintAbilityResourceReference>();
-            }
-            static BlueprintAbilityResourceReference CreateTricksterDomainGreaterAbilityResource(BlueprintAbilityResource resource) {
-                if (resource == null) { return null; }
-                return resource.CreateCopy(TTTContext, $"TricksterTTT{resource.name}", TricksterDomainMasterID, bp => {
-                    bp.m_MaxAmount = new BlueprintAbilityResource.Amount() {
-                        m_Class = new BlueprintCharacterClassReference[0],
-                        m_ClassDiv = ResourcesLibrary.GetRoot().Progression.m_CharacterMythics,
-                        m_Archetypes = new BlueprintArchetypeReference[0],
-                        m_ArchetypesDiv = new BlueprintArchetypeReference[0],
-                        BaseValue = resource.m_MaxAmount.BaseValue,
-                        StartingLevel = 4,
-                        StartingIncrease = 1,
-                        LevelStep = 2,
-                        PerStepIncrease = 1,
-                        IncreasedByLevelStartPlusDivStep = true,
-                        IncreasedByStat = false
-                    };
-                }).ToReference<BlueprintAbilityResourceReference>();
-            }   
         }
         private static void ApplyVisualsAndBasicSettings(this BlueprintFeature blueprint, BlueprintFeature copyFrom) {
             blueprint.TemporaryContext(bp => {
