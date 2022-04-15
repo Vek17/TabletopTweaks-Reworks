@@ -317,7 +317,7 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterLoreReligionTier3Selection.IgnorePrerequisites = false;
                     TricksterLoreReligionTier3Selection.AddFeatures(NewContent.Classes.Trickster.TricksterDomains.ToArray());
 
-                    DomainMastery.AddPrerequisiteFeature(TricksterLoreReligionTier2Progression, Prerequisite.GroupType.Any);
+                    DomainMastery.AddPrerequisiteFeature(TricksterLoreReligionTier3Progression, Prerequisite.GroupType.Any);
 
                     TTTContext.Logger.LogPatch(TricksterLoreReligionTier3Selection);
                     TTTContext.Logger.LogPatch(DomainMastery);

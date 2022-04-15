@@ -9,7 +9,11 @@
 		* Arcana 3
 			* Enchantment list updated. This should be a buff.
 	* Lore Nature Tricks
+		* Upadted look table. This should be a buff.
 	* Lore Religion Tricks
+		* Now work with domain zealot and qualify for domain zealot.
+		* Effective Cleric level is now equal to character level and effective wisdom is now equal to mythic rank.
+		* Now grants a domain spellbook with 1 slot per level for domain spells instead of spell like abilies. These now interact in all ways like spells.
 	* Mobility Tricks
 		* Mobility 3
 			* Now works on all types of attacks including spell attacks.
