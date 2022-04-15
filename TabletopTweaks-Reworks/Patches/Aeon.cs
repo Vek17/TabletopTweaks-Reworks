@@ -95,7 +95,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonImprovedBaneDispelLimit")) { return; }
 
                 var AeonBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("345160619fc2ddc44b8ad98c94dde448");
-                AeonBaneBuff.GetComponent<AddInitiatorAttackWithWeaponTrigger>()
+                AeonBaneBuff.GetComponent<AddInitiatorAttackRollTrigger>()
                     .Action
                     .Actions
                     .OfType<Conditional>()
@@ -103,13 +103,21 @@ namespace TabletopTweaks.Reworks.Reworks {
                         conditional.IfTrue.Actions
                             .OfType<ContextActionDispelMagic>()
                             .ForEach(a => {
-                                a.m_StopAfterCountRemoved = true;
-                                a.m_CountToRemove = new ContextValue() {
-                                    ValueType = ContextValueType.Shared,
-                                    ValueShared = AbilitySharedValue.StatBonus
-                                };
+                                a.OneRollForAll = true;
                             });
                     });
+                AeonBaneBuff.GetComponent<AddInitiatorAttackRollTrigger>()
+                    .Action
+                    .Actions
+                    .OfType<Conditional>()
+                    .ForEach(conditional => {
+                        conditional.IfFalse.Actions
+                            .OfType<ContextActionDispelMagic>()
+                            .ForEach(a => {
+                                a.OneRollForAll = true;
+                            });
+                    });
+                /*
                 AeonBaneBuff.GetComponent<AddAbilityUseTrigger>()
                     .Action
                     .Actions
@@ -125,6 +133,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                                 };
                             });
                     });
+                */
                 AeonBaneBuff.AddComponent<ContextCalculateSharedValue>(c => {
                     c.ValueType = AbilitySharedValue.StatBonus;
                     c.Value = new ContextDiceValue() {
@@ -139,7 +148,6 @@ namespace TabletopTweaks.Reworks.Reworks {
                     };
                     c.Modifier = 0.25;
                 });
-
                 TTTContext.Logger.LogPatch("Patched", AeonBaneBuff);
             }
             static void PatchAeonGreaterBaneDamage() {
