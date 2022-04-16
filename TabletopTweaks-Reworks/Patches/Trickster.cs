@@ -304,6 +304,7 @@ namespace TabletopTweaks.Reworks.Patches {
                         c.TableRolls = 3;
                         c.AddBest = 1;
                     });
+                    TTTContext.Logger.LogPatch(TricksterLoreNature3Feature);
                 }
             }
             static void PatchTricksterLoreReligion() {
