@@ -4,13 +4,10 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Blueprints.Classes.Selection;
-using Kingmaker.Blueprints.Items.Equipment;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.ElementsSystem;
-using Kingmaker.EntitySystem.Entities;
 using Kingmaker.EntitySystem.Stats;
-using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Abilities;
@@ -311,9 +308,9 @@ namespace TabletopTweaks.Reworks.Patches {
                 var TricksterLoreReligionTier1Feature = BlueprintTools.GetBlueprint<BlueprintFeature>("04177c4ddec20ae4ca04388f9cf23518");
                 var TricksterLoreReligionTier2Progression = BlueprintTools.GetBlueprint<BlueprintFeature>("fd158d5f035346288776f18e76f6721e");
                 var TricksterLoreReligionTier3Progression = BlueprintTools.GetBlueprint<BlueprintFeature>("eb196db561554341a571acb3216fc1dc");
-                
 
-            var Icon_TricksterLoreReligion = AssetLoader.LoadInternal(TTTContext, "TricksterTricks", "Icon_TricksterLoreReligion.png");
+
+                var Icon_TricksterLoreReligion = AssetLoader.LoadInternal(TTTContext, "TricksterTricks", "Icon_TricksterLoreReligion.png");
 
                 PatchIcons();
                 PatchTricksterLoreReligion1();
@@ -328,11 +325,11 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterLoreReligionTier3Progression.m_Icon = Icon_TricksterLoreReligion;
                 }
                 void PatchTricksterLoreReligion1() {
-                    
+
                 }
                 void PatchTricksterLoreReligion2() {
                     if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("TricksterLoreReligion2/3")) { return; }
-                    
+
                     var DomainMastery = BlueprintTools.GetBlueprint<BlueprintFeature>("2de64f6a1f2baee4f9b7e52e3f046ec5");
                     var TricksterLoreReligionTier2Selection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("ae4e619162a44996b77973f3abd7781a");
 
@@ -438,16 +435,18 @@ namespace TabletopTweaks.Reworks.Patches {
                 }
                 void PatchTricksterPerception2() {
                     if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("TricksterPerception2")) { return; }
-                    
+
                     TricksterPerceptionTier2Feature.TemporaryContext(bp => {
                         bp.SetDescription(TTTContext, "You can see the best ways to injure even the most resilient opponents.\n" +
                             "You ignore critical and sneak attack immunity, reroll all fortification checks and " +
-                            "your critical hit range is increased by 2 with all weapons.");
+                            "your critical hit range is increased by 2 with all weapons. " +
+                            "This critical range increase is not multiplied by improved critical or similar effects.");
                         bp.RemoveComponents<AutoDetectStealth>();
                         bp.AddComponent<IgnoreCritImmunity>();
                         bp.AddComponent<RerollFortification>();
-                        bp.AddComponent<IncreaseCriticalRange>(c => {
+                        bp.AddComponent<AddFlatCriticalRangeIncrease>(c => {
                             c.CriticalRangeIncrease = 2;
+                            c.AllWeapons = true;
                         });
                         bp.AddComponent<AddCustomMechanicsFeature>(c => {
                             c.Feature = CustomMechanicsFeature.BypassSneakAttackImmunity;
@@ -529,7 +528,7 @@ namespace TabletopTweaks.Reworks.Patches {
 
                     TTTContext.Logger.LogPatch(TricksterPersuasionTier3Feature);
                 }
-            }    
+            }
             static void PatchTricksterStealth() {
                 var TricksterStealthTier1AbilityTarget = BlueprintTools.GetBlueprint<BlueprintAbility>("f131bc5d82f8b0a4b9bb28b2a176b8a8");
                 var TricksterStealthTier1Feature = BlueprintTools.GetBlueprint<BlueprintFeature>("4e1948fed4201cf46b88836457c3bad8");
@@ -720,7 +719,7 @@ namespace TabletopTweaks.Reworks.Patches {
                 var targetIndex = -1;
                 for (int i = 0; i < codes.Count; i++) {
                     if (codes[i].Calls(getter_RuleStatCheck_Success)) {
-                        targetIndex = i+3;
+                        targetIndex = i + 3;
                     }
                 }
                 if (targetIndex < 0) {

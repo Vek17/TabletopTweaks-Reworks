@@ -375,7 +375,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 var ArtificeDomainBaseBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("af772f43b1e59e043968796b6b534057");
                 var ArtificeDomainBaseAura = BlueprintTools.GetBlueprint<BlueprintAbilityAreaEffect>("f042f2d62e6785d4e8612a027de1f298");
                 var ArtificeDomainBaseEffect = BlueprintTools.GetBlueprint<BlueprintBuff>("f0a5b502227438749a1ad4b638224339");
-                
+
                 var TricksterTTTArtificeDomainBaseResource = Helpers.CreateBlueprint<BlueprintAbilityResource>(TTTContext, "TricksterTTTArtificeDomainBaseResource", bp => {
                     bp.m_MaxAmount = new BlueprintAbilityResource.Amount() {
                         m_Class = ResourcesLibrary.GetRoot().Progression.m_CharacterClasses,
@@ -629,9 +629,9 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         );
                     });
                     bp.AddComponent<ContextCalculateSharedValue>(c => {
-                        c.Value = new ContextDiceValue() { 
+                        c.Value = new ContextDiceValue() {
                             DiceCountValue = 0,
-                            BonusValue = new ContextValue() { 
+                            BonusValue = new ContextValue() {
                                 ValueType = ContextValueType.Rank
                             }
                         };
@@ -872,7 +872,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         c.Actions = Helpers.CreateActionList(
                             new ContextActionSpawnAreaEffect() {
                                 m_AreaEffect = TricksterTTTCommunityDomainGreaterAura.ToReference<BlueprintAbilityAreaEffectReference>(),
-                                DurationValue = new ContextDurationValue() { 
+                                DurationValue = new ContextDurationValue() {
                                     Rate = DurationRate.Hours,
                                     DiceCountValue = 0,
                                     BonusValue = 1
@@ -937,7 +937,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                                 DurationValue = new ContextDurationValue() {
                                     Rate = DurationRate.Rounds,
                                     DiceCountValue = 0,
-                                    BonusValue = new ContextValue() { 
+                                    BonusValue = new ContextValue() {
                                         ValueType = ContextValueType.Rank
                                     }
                                 }
@@ -1088,7 +1088,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                                 DurationValue = new ContextDurationValue() {
                                     Rate = DurationRate.Rounds,
                                     DiceCountValue = 0,
-                                    BonusValue = new ContextValue() { 
+                                    BonusValue = new ContextValue() {
                                         ValueType = ContextValueType.Rank
                                     }
                                 }
@@ -1218,7 +1218,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.AddComponent<AbilityAreaEffectBuff>(c => {
                         c.m_Buff = TricksterTTTDestructionDomainGreaterEffect.ToReference<BlueprintBuffReference>();
                         c.Condition = new ConditionsChecker() {
-                            Conditions = new Condition[] {}
+                            Conditions = new Condition[] { }
                         };
                     });
                 });
@@ -1550,7 +1550,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 };
                 TricksterDomains.Add(tricksterDomain);
             }
-            void CreateGloryDomain(){
+            void CreateGloryDomain() {
                 //Base Feature
                 var GloryDomainBaseFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("17e891b3964492f43aae44f994b5d454");
                 var GloryDomainBaseAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("d018241b5a761414897ad6dc4df2db9f");
@@ -1601,7 +1601,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.AddComponent<AddInitiatorSkillRollTrigger>(c => {
                         c.Skill = StatType.Charisma;
                         c.Action = Helpers.CreateActionList(
-                            new ContextActionRemoveSelf()    
+                            new ContextActionRemoveSelf()
                         );
                     });
                     bp.AddComponent<AddInitiatorSkillRollTrigger>(c => {
@@ -1701,12 +1701,12 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.AddComponent<AbilityAreaEffectBuff>(c => {
                         c.m_Buff = HeroismBuff;
                         c.Condition = new ConditionsChecker() {
-                            Conditions = new Condition[] { 
+                            Conditions = new Condition[] {
                                 new ContextConditionIsAlly()
                             }
                         };
                     });
-                        
+
                 });
                 var TricksterTTTGloryDomainGreaterBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTGloryDomainGreaterBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(GloryDomainGreaterBuff);
@@ -2315,7 +2315,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.AddComponent<ActivatableAbilityResourceLogic>(c => {
                         c.m_RequiredResource = TricksterTTTLiberationDomainBaseResource.ToReference<BlueprintAbilityResourceReference>();
                         c.SpendType = ActivatableAbilityResourceLogic.ResourceSpendType.Never;
-                    });    
+                    });
                 });
                 var TricksterTTTLiberationDomainBaseFeature = Helpers.CreateBlueprint<BlueprintFeature>(TTTContext, "TricksterTTTLiberationDomainBaseFeature", bp => {
                     bp.ApplyVisualsAndBasicSettings(LiberationDomainBaseFeature);
@@ -2554,7 +2554,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     });
                     bp.AddComponent<BuffAllSkillsBonusAbilityValue>(c => {
                         c.Descriptor = ModifierDescriptor.UntypedStackable;
-                        c.Value = new ContextValue() { 
+                        c.Value = new ContextValue() {
                             ValueType = ContextValueType.Shared,
                             ValueShared = AbilitySharedValue.StatBonus
                         };
@@ -2694,13 +2694,13 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.ApplyVisualsAndBasicSettings(MadnessDomainBaseAbilityAttackRolls);
                     bp.AddComponent<AbilityEffectRunAction>(c => {
                         c.Actions = Helpers.CreateActionList(
-                            new ContextActionApplyBuff() { 
+                            new ContextActionApplyBuff() {
                                 m_Buff = TricksterTTTMadnessDomainBaseAttackRollsBuff.ToReference<BlueprintBuffReference>(),
-                                DurationValue = new ContextDurationValue() { 
+                                DurationValue = new ContextDurationValue() {
                                     DiceCountValue = 0,
                                     BonusValue = 3
                                 }
-                            }    
+                            }
                         );
                     });
                     bp.AddComponent<AbilityResourceLogic>(c => {
@@ -3094,7 +3094,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                                 DurationValue = new ContextDurationValue() {
                                     Rate = DurationRate.Rounds,
                                     DiceCountValue = 0,
-                                    BonusValue = new ContextValue() { 
+                                    BonusValue = new ContextValue() {
                                         ValueType = ContextValueType.Rank
                                     }
                                 }
@@ -3204,7 +3204,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 };
                 TricksterDomains.Add(tricksterDomain);
             }
-            void CreatePlantDomain(){
+            void CreatePlantDomain() {
                 //Base Feature
                 var PlantDomainBaseFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("e433267d36089d049b34900fde38032b");
                 var PlantDomainBaseAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("82c76ed1de2e1114f8c08862cf2e6ee6");
@@ -3320,7 +3320,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                             new ContextActionDealDamage() {
                                 DamageType = new DamageTypeDescription() {
                                     Type = DamageType.Physical,
-                                    Physical = new DamageTypeDescription.PhysicalData() { 
+                                    Physical = new DamageTypeDescription.PhysicalData() {
                                         Form = PhysicalDamageForm.Piercing,
                                     }
                                 },
@@ -3388,7 +3388,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 var ProtectionDomainBaseAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("c5815bd0bf87bdb4fa9c440c8088149b");
                 var ProtectionDomainBaseBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("2ddb4cfc3cfd04c46a66c6cd26df1c06");
 
-                var TricksterTTTProtectionDomainBaseResource = Helpers.CreateBlueprint<BlueprintAbilityResource>(TTTContext, "TricksterTTTProtectionDomainBaseResource", bp => { 
+                var TricksterTTTProtectionDomainBaseResource = Helpers.CreateBlueprint<BlueprintAbilityResource>(TTTContext, "TricksterTTTProtectionDomainBaseResource", bp => {
                     bp.m_MaxAmount = new BlueprintAbilityResource.Amount() {
                         m_Class = ResourcesLibrary.GetRoot().Progression.m_CharacterMythics,
                         m_ClassDiv = new BlueprintCharacterClassReference[0],
@@ -3445,17 +3445,17 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     });
                     bp.AddComponent<AbilityEffectRunAction>(c => {
                         c.Actions = Helpers.CreateActionList(
-                            new ContextActionApplyBuff() { 
+                            new ContextActionApplyBuff() {
                                 m_Buff = TricksterTTTProtectionDomainBaseBuff.ToReference<BlueprintBuffReference>(),
-                                DurationValue = new ContextDurationValue() { 
+                                DurationValue = new ContextDurationValue() {
                                     Rate = DurationRate.Minutes,
                                     DiceCountValue = 0,
                                     BonusValue = 1
                                 }
                             },
-                            new ContextActionApplyBuff() { 
+                            new ContextActionApplyBuff() {
                                 m_Buff = TricksterTTTProtectionDomainBaseSelfBuffSupress.ToReference<BlueprintBuffReference>(),
-                                DurationValue = new ContextDurationValue() { 
+                                DurationValue = new ContextDurationValue() {
                                     Rate = DurationRate.Minutes,
                                     DiceCountValue = 0,
                                     BonusValue = 1
@@ -3473,7 +3473,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 var TricksterTTTProtectionDomainBaseFeature = Helpers.CreateBlueprint<BlueprintFeature>(TTTContext, "TricksterTTTProtectionDomainBaseFeature", bp => {
                     bp.ApplyVisualsAndBasicSettings(ProtectionDomainBaseFeature);
                     bp.AddComponent<AddFacts>(c => {
-                        c.m_Facts = new BlueprintUnitFactReference[] { 
+                        c.m_Facts = new BlueprintUnitFactReference[] {
                             TricksterTTTProtectionDomainBaseAbility.ToReference<BlueprintUnitFactReference>()
                         };
                     });
@@ -3552,7 +3552,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         c.m_Type = AbilityRankType.DamageBonus;
                         c.m_Progression = ContextRankProgression.Custom;
                         c.m_CustomProgression = new ContextRankConfig.CustomProgressionItem[] {
-                            new ContextRankConfig.CustomProgressionItem(){ 
+                            new ContextRankConfig.CustomProgressionItem(){
                                 BaseValue = 7
                             },
                             new ContextRankConfig.CustomProgressionItem(){
@@ -3624,8 +3624,8 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.Fx = BlueAoE30Feet;
                     bp.AddComponent<AbilityAreaEffectBuff>(c => {
                         c.m_Buff = TricksterTTTProtectionDomainGreaterEffect.ToReference<BlueprintBuffReference>();
-                        c.Condition = new ConditionsChecker() { 
-                            Conditions = new Condition[] { 
+                        c.Condition = new ConditionsChecker() {
+                            Conditions = new Condition[] {
                                 new ContextConditionIsAlly()
                             }
                         };
@@ -3698,10 +3698,10 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     });
                     bp.AddComponent<AbilityEffectRunAction>(c => {
                         c.Actions = Helpers.CreateActionList(
-                            new Conditional() { 
-                                ConditionsChecker = new ConditionsChecker() { 
-                                    Conditions = new Condition[] { 
-                                        new ContextConditionHasFact(){ 
+                            new Conditional() {
+                                ConditionsChecker = new ConditionsChecker() {
+                                    Conditions = new Condition[] {
+                                        new ContextConditionHasFact(){
                                             m_Fact = UndeadType
                                         }
                                     }
@@ -3712,7 +3712,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                                         DurationValue = new ContextDurationValue() {
                                             Rate = DurationRate.Rounds,
                                             DiceCountValue = 0,
-                                            BonusValue = new ContextValue() { 
+                                            BonusValue = new ContextValue() {
                                                 ValueType = ContextValueType.Rank
                                             }
                                         }
@@ -3810,7 +3810,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         c.Condition = new ConditionsChecker() {
                             Conditions = new Condition[] {
                                 new ContextConditionIsAlly(),
-                                new ContextConditionHasFact(){ 
+                                new ContextConditionHasFact(){
                                     m_Fact = UndeadType,
                                     Not = true
                                 }
@@ -3897,14 +3897,14 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                                             Type = DamageType.Energy,
                                             Energy = DamageEnergyType.Acid
                                         },
-                                        Duration = new ContextDurationValue() { 
+                                        Duration = new ContextDurationValue() {
                                             DiceCountValue = 0,
                                             BonusValue = 0
                                         },
-                                        Value = new ContextDiceValue() { 
+                                        Value = new ContextDiceValue() {
                                             DiceType = DiceType.D6,
                                             DiceCountValue = 1,
-                                            BonusValue = new ContextValue() { 
+                                            BonusValue = new ContextValue() {
                                                 ValueType = ContextValueType.Rank,
                                                 ValueRank = AbilityRankType.DamageBonus
                                             }
@@ -3940,11 +3940,11 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     });
                     bp.AddComponent<AbilityEffectRunAction>(c => {
                         c.Actions = Helpers.CreateActionList(
-                            new ContextActionSpawnAreaEffect() { 
+                            new ContextActionSpawnAreaEffect() {
                                 m_AreaEffect = TricksterTTTRuneDomainBaseAbilityAcidArea.ToReference<BlueprintAbilityAreaEffectReference>(),
                                 DurationValue = new ContextDurationValue() {
                                     DiceCountValue = 0,
-                                    BonusValue = new ContextValue() { 
+                                    BonusValue = new ContextValue() {
                                         ValueType = ContextValueType.Rank
                                     }
                                 },
@@ -4275,18 +4275,18 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                                 },
                                 IfFalse = Helpers.CreateActionList(),
                                 IfTrue = Helpers.CreateActionList(
-                                    new ContextActionSavingThrow() { 
+                                    new ContextActionSavingThrow() {
                                         Type = SavingThrowType.Will,
                                         CustomDC = new ContextValue(),
                                         Actions = Helpers.CreateActionList(
-                                            new ContextActionConditionalSaved() { 
+                                            new ContextActionConditionalSaved() {
                                                 Succeed = Helpers.CreateActionList(),
                                                 Failed = Helpers.CreateActionList(
-                                                    new ContextActionApplyBuff() { 
+                                                    new ContextActionApplyBuff() {
                                                         m_Buff = TricksterTTTRuneDomainGreaterBuff.ToReference<BlueprintBuffReference>(),
-                                                        DurationValue = new ContextDurationValue() { 
+                                                        DurationValue = new ContextDurationValue() {
                                                             DiceCountValue = 0,
-                                                            BonusValue = new ContextValue() { 
+                                                            BonusValue = new ContextValue() {
                                                                 ValueType = ContextValueType.Rank,
                                                                 ValueRank = AbilityRankType.StatBonus
                                                             }
@@ -4297,8 +4297,8 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                                         )
                                     },
                                     new ContextActionRemoveSelf(),
-                                    new ContextActionSpawnFx() { 
-                                        PrefabLink = new PrefabLink() { 
+                                    new ContextActionSpawnFx() {
+                                        PrefabLink = new PrefabLink() {
                                             AssetId = "c14a2f46018cb0e41bfeed61463510ff"
                                         }
                                     }
@@ -4363,7 +4363,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 };
                 TricksterDomains.Add(tricksterDomain);
             }
-            void CreateStrengthDomain(){
+            void CreateStrengthDomain() {
                 //Base Feature
                 var StrengthDomainBaseFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("526f99784e9fe4346824e7f210d46112");
                 var StrengthDomainBaseAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("1d6364123e1f6a04c88313d83d3b70ee");
@@ -4519,7 +4519,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                                 ConditionsChecker = new ConditionsChecker() {
                                     Conditions = new Condition[] {
                                         new ContextConditionIsEnemy(),
-                                        new ContextConditionHasBuff(){ 
+                                        new ContextConditionHasBuff(){
                                             m_Buff = SunDomainGreaterImmunityBuff.ToReference<BlueprintBuffReference>(),
                                             Not = true
                                         }
@@ -4593,7 +4593,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                                 ConditionsChecker = new ConditionsChecker() {
                                     Conditions = new Condition[] {
                                         new ContextConditionIsEnemy(),
-                                        new ContextConditionHasFact(){ 
+                                        new ContextConditionHasFact(){
                                             m_Fact = UndeadType
                                         }
                                     }
@@ -4752,7 +4752,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         c.m_UseMin = true;
                         c.m_Min = 1;
                     });
-                    
+
                     bp.AddComponent<AbilityResourceLogic>(c => {
                         c.m_RequiredResource = TricksterTTTTravelDomainGreaterResource.ToReference<BlueprintAbilityResourceReference>();
                         c.m_IsSpendResource = true;
@@ -4826,7 +4826,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                                 DurationValue = new ContextDurationValue() {
                                     Rate = DurationRate.Rounds,
                                     DiceCountValue = 0,
-                                    BonusValue = new ContextValue() { 
+                                    BonusValue = new ContextValue() {
                                         ValueType = ContextValueType.Rank
                                     }
                                 }
@@ -5303,7 +5303,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
 
                     var domainSpellTable = BlueprintTools.GetModBlueprintReference<BlueprintSpellsTableReference>(TTTContext, "TricksterTTTDomainSpellsPerDay");
 
-                    var domainSpellbook = Helpers.CreateDerivedBlueprint<BlueprintSpellbook>(TTTContext, 
+                    var domainSpellbook = Helpers.CreateDerivedBlueprint<BlueprintSpellbook>(TTTContext,
                         $"TricksterTTT{domain.name}Spellbook",
                         TricksterDomainMasterID,
                         new SimpleBlueprint[] { domain, SpellList },
@@ -5329,7 +5329,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.RemoveComponents<Prerequisite>();
                     bp.AddComponent<AddMythicSpellbook>(c => {
                         c.m_Spellbook = domainSpellbook.ToReference<BlueprintSpellbookReference>();
-                        c.m_CasterLevel = new ContextValue() { 
+                        c.m_CasterLevel = new ContextValue() {
                             ValueType = ContextValueType.CasterCustomProperty,
                             m_CustomProperty = TricksterDomainCLProperty.ToReference<BlueprintUnitPropertyReference>()
                         };
@@ -5561,12 +5561,12 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                                         }
                                 }
                             };
-                            condition.IfFalse = Helpers.CreateActionList(
+                            condition.IfFalse = Helpers.CreateActionList();
+                            condition.IfTrue = Helpers.CreateActionList(
                                 Helpers.Create<ContextActionRemoveBuff>(a => {
                                     a.m_Buff = TricksterPerception3EffectBuff.ToReference<BlueprintBuffReference>();
                                 })
                             );
-                            condition.IfTrue = Helpers.CreateActionList();
                         }));
                     c.UnitMove = Helpers.CreateActionList();
                     c.Round = Helpers.CreateActionList();

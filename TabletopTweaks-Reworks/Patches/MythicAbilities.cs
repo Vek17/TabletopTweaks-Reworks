@@ -2,6 +2,8 @@
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.Controllers;
+using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.Enums.Damage;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
@@ -13,12 +15,10 @@ using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Properties;
 using Kingmaker.Utility;
-using Kingmaker.Designers.Mechanics.Facts;
 using TabletopTweaks.Core.NewActions;
 using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
 using TabletopTweaks.Core.Utilities;
 using static TabletopTweaks.Reworks.Main;
-using Kingmaker.Controllers;
 
 namespace TabletopTweaks.Reworks.Reworks {
     class MythicAbilities {
@@ -154,7 +154,7 @@ namespace TabletopTweaks.Reworks.Reworks {
 
                 EnduringSpells.RemoveComponents<EnduringSpells>();
                 EnduringSpells.AddComponent<EnduringSpellsTTT>(c => {
-                c.m_Greater = EnduringSpellsGreater.ToReference<BlueprintUnitFactReference>();
+                    c.m_Greater = EnduringSpellsGreater.ToReference<BlueprintUnitFactReference>();
                     c.EnduringTime = 60.Minutes();
                     c.GreaterTime = 10.Minutes();
                 });
