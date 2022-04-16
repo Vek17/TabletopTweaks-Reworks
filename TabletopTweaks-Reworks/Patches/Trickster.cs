@@ -4,6 +4,7 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Blueprints.Classes.Selection;
+using Kingmaker.Blueprints.Items.Equipment;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.ElementsSystem;
@@ -25,10 +26,12 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using TabletopTweaks.Core.NewComponents;
+using TabletopTweaks.Core.NewComponents.AbilitySpecific;
 using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
 using TabletopTweaks.Core.NewRules;
 using TabletopTweaks.Core.NewUnitParts;
 using TabletopTweaks.Core.Utilities;
+using TabletopTweaks.Reworks.Config.LootTables;
 using static TabletopTweaks.Core.NewUnitParts.UnitPartCustomMechanicsFeatures;
 using static TabletopTweaks.Reworks.Main;
 
@@ -268,7 +271,34 @@ namespace TabletopTweaks.Reworks.Patches {
 
                 }
                 void PatchTricksterLoreNature3() {
-
+                    var lootTablePath = "TabletopTweaks.Reworks.Config.LootTables";
+                    var lootTables = new List<LootTable>() {
+                        LootTable.LoadTable("loot_Armor.json", lootTablePath),
+                        LootTable.LoadTable("loot_Belt.json", lootTablePath),
+                        LootTable.LoadTable("loot_Feet.json", lootTablePath),
+                        LootTable.LoadTable("loot_Glasses.json", lootTablePath),
+                        LootTable.LoadTable("loot_Gloves.json", lootTablePath),
+                        LootTable.LoadTable("loot_Head.json", lootTablePath),
+                        LootTable.LoadTable("loot_Neck.json", lootTablePath),
+                        LootTable.LoadTable("loot_Ring.json", lootTablePath),
+                        LootTable.LoadTable("loot_Shield.json", lootTablePath),
+                        LootTable.LoadTable("loot_Shirt.json", lootTablePath),
+                        LootTable.LoadTable("loot_Shoulders.json", lootTablePath),
+                        LootTable.LoadTable("loot_Usable.json", lootTablePath),
+                        LootTable.LoadTable("loot_Weapon.json", lootTablePath),
+                        LootTable.LoadTable("loot_Wrist.json", lootTablePath)
+                    };
+                    if (Harmony.HasAnyPatches("TabletopTweaks-Base")) {
+                        lootTables.Add(LootTable.LoadTable("loot_TTTBase.json", lootTablePath));
+                    }
+                    var loreNature3LootList = new List<BlueprintItemEquipmentReference>();
+                    var prerequisites = TricksterLoreNature3Feature.GetComponents<Prerequisite>();
+                    TricksterLoreNature3Feature.SetComponents();
+                    TricksterLoreNature3Feature.AddComponents(prerequisites);
+                    TricksterLoreNature3Feature.AddComponent<TricksterLoreNatureRestLootTriggerTTT>(c => {
+                        c.CROffset = 5;
+                        c.m_LootList = lootTables.SelectMany(table => table.Items).ToArray();
+                    });
                 }
             }
             static void PatchTricksterLoreReligion() {
@@ -302,6 +332,10 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterLoreReligionTier2Selection.m_Features = new BlueprintFeatureReference[0];
                     TricksterLoreReligionTier2Selection.IgnorePrerequisites = false;
                     TricksterLoreReligionTier2Selection.AddFeatures(NewContent.Classes.Trickster.TricksterDomains.ToArray());
+                    TricksterLoreReligionTier2Progression.SetDescription(TTTContext, "You now know religion so well that you can use abilities usually reserved for clerics. " +
+                        "You can select two domains. You gain abilities of those domains and can use spells from those domains once per day.\n" +
+                        "Your effective cleric level for the purposes of these domains and spells is equal to your character level, " +
+                        "and your effective wisdom modifer is equal to your mythic rank.");
 
                     DomainMastery.AddPrerequisiteFeature(TricksterLoreReligionTier2Progression, Prerequisite.GroupType.Any);
 
@@ -316,6 +350,9 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterLoreReligionTier3Selection.m_Features = new BlueprintFeatureReference[0];
                     TricksterLoreReligionTier3Selection.IgnorePrerequisites = false;
                     TricksterLoreReligionTier3Selection.AddFeatures(NewContent.Classes.Trickster.TricksterDomains.ToArray());
+                    TricksterLoreReligionTier3Progression.SetDescription(TTTContext, "You now know enough about religion to start your own. You can select two additional domains.\n" +
+                        "Your effective cleric level for the purposes of these domains and spells is equal to your character level, " +
+                        "and your effective wisdom modifer is equal to your mythic rank.");
 
                     DomainMastery.AddPrerequisiteFeature(TricksterLoreReligionTier3Progression, Prerequisite.GroupType.Any);
 

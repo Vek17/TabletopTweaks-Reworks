@@ -46,8 +46,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
         private static BlueprintCharacterClassReference TricksterMythicClass => BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("8df873a8c6e48294abdb78c45834aa0a");
         private static BlueprintSpellsTableReference TricksterDomainSpellsKnown = null;
         private static BlueprintSpellsTableReference TricksterDomainSpellsPerDay = null;
-        public static List<BlueprintProgression> TricksterDomains = new List<BlueprintProgression>();
-        public static BlueprintUnitProperty TricksterDomainCLProperty = Helpers.CreateBlueprint<BlueprintUnitProperty>(TTTContext, "TricksterTTTDomainRankProperty", bp => {
+        private static BlueprintUnitProperty TricksterDomainCLProperty = Helpers.CreateBlueprint<BlueprintUnitProperty>(TTTContext, "TricksterTTTDomainRankProperty", bp => {
             bp.AddComponent<SimplePropertyGetter>(c => {
                 c.Property = UnitProperty.Level;
                 c.Settings = new PropertySettings() {
@@ -56,7 +55,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             });
             bp.BaseValue = 0;
         });
-        public static BlueprintUnitProperty TricksterDomainStatProperty = Helpers.CreateBlueprint<BlueprintUnitProperty>(TTTContext, "TricksterTTTDomainStatProperty", bp => {
+        private static BlueprintUnitProperty TricksterDomainStatProperty = Helpers.CreateBlueprint<BlueprintUnitProperty>(TTTContext, "TricksterTTTDomainStatProperty", bp => {
             bp.AddComponent<SimplePropertyGetter>(c => {
                 c.Property = UnitProperty.MythicLevel;
                 c.Settings = new PropertySettings() {
@@ -65,7 +64,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             });
             bp.BaseValue = 0;
         });
-        public static BlueprintUnitProperty TricksterDomainDCProperty = Helpers.CreateBlueprint<BlueprintUnitProperty>(TTTContext, "TricksterTTTDomainDCProperty", bp => {
+        private static BlueprintUnitProperty TricksterDomainDCProperty = Helpers.CreateBlueprint<BlueprintUnitProperty>(TTTContext, "TricksterTTTDomainDCProperty", bp => {
             bp.AddComponent<CustomPropertyGetter>(c => {
                 c.m_Property = TricksterDomainCLProperty.ToReference<BlueprintUnitPropertyReference>();
                 c.Settings = new PropertySettings() {
@@ -82,6 +81,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             bp.BaseValue = 10;
         });
         private static BlueprintFeature DomainMastery => BlueprintTools.GetBlueprint<BlueprintFeature>("2de64f6a1f2baee4f9b7e52e3f046ec5");
+        public static List<BlueprintProgression> TricksterDomains = new List<BlueprintProgression>();
 
         public static void AddTricksterDomains() {
             PrefabLink BlueAoE30Feet = BlueprintTools.GetBlueprint<BlueprintAbilityAreaEffect>("3635b48c6e8d54947bbd27c1be818677").Fx; // CommunityDomain
@@ -121,7 +121,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             var WaterDomainProgression = BlueprintTools.GetBlueprint<BlueprintProgression>("e63d9133cebf2cf4788e61432a939084");
             var WeatherDomainProgression = BlueprintTools.GetBlueprint<BlueprintProgression>("c18a821ee662db0439fb873165da25be");
 
-            CreateDomainSpellsPerDay();
+            CreateDomainSpellbookComponents();
             CreateAirDomain();
             CreateAnimalDomain();
             CreateArtificeDomain();
@@ -156,7 +156,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             CreateWaterDomain();
             CreateWeatherDomain();
 
-            void CreateDomainSpellsPerDay() {
+            void CreateDomainSpellbookComponents() {
                 TricksterDomainSpellsKnown = Helpers.CreateBlueprint<BlueprintSpellsTable>(TTTContext, "TricksterTTTDomainSpellsKnown", bp => {
                     bp.Levels = new SpellsLevelEntry[] {
                         SpellTools.CreateSpellLevelEntry(),
@@ -5468,15 +5468,6 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 c.m_CustomProperty = TricksterDomainCLProperty.ToReference<BlueprintUnitPropertyReference>();
                 init?.Invoke(c);
             });
-        }
-        private static void ConvertContextRankConfigs(this BlueprintScriptableObject blueprint) {
-            blueprint.GetComponents<ContextRankConfig>()
-                .Where(c => { return c.m_BaseValueType == ContextRankBaseValueType.SummClassLevelWithArchetype; })
-                .ForEach(c => {
-                    c.m_BaseValueType = ContextRankBaseValueType.CustomProperty;
-                    c.m_CustomProperty = TricksterDomainCLProperty.ToReference<BlueprintUnitPropertyReference>();
-                    c.m_FeatureList = new BlueprintFeatureReference[0];
-                });
         }
         private static void AddTricksterAbilityParams(this BlueprintScriptableObject blueprint) {
             blueprint.AddComponent<ContextSetAbilityParams>(c => {

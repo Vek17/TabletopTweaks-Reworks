@@ -156,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\Homebrew.cs" />
+    <Compile Include="Config\LootTables\LootTable.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="ModLogic\ModContextTTTReworks.cs" />
     <Compile Include="NewContent\Classes\Aeon.cs" />
@@ -176,6 +177,21 @@
     <None Include=".editorconfig" />
     <EmbeddedResource Include="Config\Blueprints.json" />
     <EmbeddedResource Include="Config\Homebrew.json" />
+    <EmbeddedResource Include="Config\LootTables\loot_Armor.json" />
+    <EmbeddedResource Include="Config\LootTables\loot_Belt.json" />
+    <EmbeddedResource Include="Config\LootTables\loot_Feet.json" />
+    <EmbeddedResource Include="Config\LootTables\loot_Glasses.json" />
+    <EmbeddedResource Include="Config\LootTables\loot_Gloves.json" />
+    <EmbeddedResource Include="Config\LootTables\loot_Head.json" />
+    <EmbeddedResource Include="Config\LootTables\loot_Neck.json" />
+    <EmbeddedResource Include="Config\LootTables\loot_Ring.json" />
+    <EmbeddedResource Include="Config\LootTables\loot_Shield.json" />
+    <EmbeddedResource Include="Config\LootTables\loot_Shirt.json" />
+    <EmbeddedResource Include="Config\LootTables\loot_Shoulders.json" />
+    <EmbeddedResource Include="Config\LootTables\loot_Usable.json" />
+    <EmbeddedResource Include="Config\LootTables\loot_Weapon.json" />
+    <EmbeddedResource Include="Config\LootTables\loot_Wrist.json" />
+    <EmbeddedResource Include="Config\LootTables\loot_TTTBase.json" />
     <None Include="Info.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
