@@ -297,8 +297,12 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterLoreNature3Feature.SetComponents();
                     TricksterLoreNature3Feature.AddComponents(prerequisites);
                     TricksterLoreNature3Feature.AddComponent<TricksterLoreNatureRestLootTriggerTTT>(c => {
-                        c.CROffset = 5;
                         c.m_LootList = lootTables.SelectMany(table => table.Items).ToArray();
+                        c.CROffset = 5;
+                        c.CRRange = 15;
+                        c.CostFloor = 20_000;
+                        c.TableRolls = 3;
+                        c.AddBest = 1;
                     });
                 }
             }
