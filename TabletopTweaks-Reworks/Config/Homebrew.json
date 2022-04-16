@@ -14,6 +14,11 @@
   "MythicAbilities": {
     "DisableAll": false,
     "Settings": {
+      "AbundantCasting": {
+        "Enabled": true,
+        "Homebrew": true,
+        "Description": "Now grants two bonus casts instead of four."
+      },
       "DimensionalRetribution": {
         "Enabled": true,
         "Homebrew": true,
@@ -187,6 +192,16 @@
           "Homebrew": true,
           "Description": "Updates the enchantment list available to be added. This should be a power increase."
         },
+        "TricksterLoreNature3": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Has a rebuilt loot table that includes a much larger amount of items."
+        },
+        "TricksterLoreReligion2/3": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Domains powers are rebuilt to use character level as effective cleric level and mythic rank as effective wisdom modifier. Now qualifies for Domain Zealot. Spells now exist in a domain spellbook instead of spell like abilities."
+        },
         "TricksterMobility3": {
           "Enabled": true,
           "Homebrew": true,
@@ -230,7 +245,7 @@
         "TricksterStealthAbilityName": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "This invisibility can no longer be seen through by divination magic such as True Seeing, See Invisability, or Thoughtsense."
+          "Description": "Fixing broken naming convention on the Stealth ability."
         },
         "TricksterTrickery3": {
           "Enabled": true,

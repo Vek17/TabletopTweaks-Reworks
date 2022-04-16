@@ -28,7 +28,6 @@ using System.Reflection.Emit;
 using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.NewComponents.AbilitySpecific;
 using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
-using TabletopTweaks.Core.NewRules;
 using TabletopTweaks.Core.NewUnitParts;
 using TabletopTweaks.Core.Utilities;
 using TabletopTweaks.Reworks.Config.LootTables;
@@ -50,8 +49,8 @@ namespace TabletopTweaks.Reworks.Patches {
                 PatchTricksterKnowledgeAthletics();
                 PatchTricksterKnowledgeArcana();
                 PatchTricksterKnowledgeWorld();
-                PatchTricksterLoreNature(); //ToDo
-                PatchTricksterLoreReligion(); //ToDo
+                PatchTricksterLoreNature();
+                PatchTricksterLoreReligion();
                 PatchTricksterMobility();
                 PatchTricksterPerception();
                 PatchTricksterPersuasion();
@@ -271,6 +270,8 @@ namespace TabletopTweaks.Reworks.Patches {
 
                 }
                 void PatchTricksterLoreNature3() {
+                    if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("TricksterLoreNature3")) { return; }
+
                     var lootTablePath = "TabletopTweaks.Reworks.Config.LootTables";
                     var lootTables = new List<LootTable>() {
                         LootTable.LoadTable("loot_Armor.json", lootTablePath),
@@ -325,6 +326,8 @@ namespace TabletopTweaks.Reworks.Patches {
                     
                 }
                 void PatchTricksterLoreReligion2() {
+                    if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("TricksterLoreReligion2/3")) { return; }
+                    
                     var DomainMastery = BlueprintTools.GetBlueprint<BlueprintFeature>("2de64f6a1f2baee4f9b7e52e3f046ec5");
                     var TricksterLoreReligionTier2Selection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("ae4e619162a44996b77973f3abd7781a");
 
@@ -343,6 +346,8 @@ namespace TabletopTweaks.Reworks.Patches {
                     TTTContext.Logger.LogPatch(DomainMastery);
                 }
                 void PatchTricksterLoreReligion3() {
+                    if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("TricksterLoreReligion2/3")) { return; }
+
                     var DomainMastery = BlueprintTools.GetBlueprint<BlueprintFeature>("2de64f6a1f2baee4f9b7e52e3f046ec5");
                     var TricksterLoreReligionTier3Selection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("70a7b101edc24349ab67ac63b6bd0616");
 
