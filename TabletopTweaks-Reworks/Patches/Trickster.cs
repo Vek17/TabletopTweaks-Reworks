@@ -4,6 +4,7 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Blueprints.Classes.Selection;
+using Kingmaker.Blueprints.Items.Equipment;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.ElementsSystem;
@@ -42,6 +43,7 @@ namespace TabletopTweaks.Reworks.Patches {
                 Initialized = true;
                 TTTContext.Logger.LogHeader("Trickster Rework");
 
+                PatchBoundOfPossibility();
                 PatchTricksterProgression();
                 PatchTricksterKnowledgeAthletics();
                 PatchTricksterKnowledgeArcana();
@@ -54,6 +56,29 @@ namespace TabletopTweaks.Reworks.Patches {
                 PatchTricksterStealth();
                 PatchTricksterTrickery();
                 PatchTricksterUseMagicDevice();
+            }
+            static void PatchBoundOfPossibility() {
+                if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("BoundOfPossibility")) { return; }
+
+                var Artifact_TricksterCloakItem = BlueprintTools.GetBlueprint<BlueprintItemEquipmentShoulders>("50b398d4630d9f244a5db288124ff181");
+                var Artifact_TricksterCloakItemFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("686fb5d5b4264e8d85f434efd9e7c5de");
+
+                Artifact_TricksterCloakItem.SetDescription(TTTContext, "This cloak allows Trickster to roll any skill check twice and take the best result.");
+                Artifact_TricksterCloakItemFeature.SetComponents();
+                Artifact_TricksterCloakItemFeature.AddComponent<ModifyD20>(c => {
+                    c.Rule = RuleType.SkillCheck;
+                    c.TakeBest = true;
+                    c.RollsAmount = 1;
+                    c.RollResult = new ContextValue();
+                    c.Bonus = new ContextValue();
+                    c.Chance = new ContextValue();
+                    c.ValueToCompareRoll = new ContextValue();
+                    c.Skill = new StatType[0];
+                    c.Value = new ContextValue();
+                });
+
+                TTTContext.Logger.LogPatch(Artifact_TricksterCloakItem);
+                TTTContext.Logger.LogPatch(Artifact_TricksterCloakItemFeature);
             }
             static void PatchTricksterProgression() {
                 if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("Progression")) { return; }
@@ -290,9 +315,8 @@ namespace TabletopTweaks.Reworks.Patches {
                         lootTables.Add(LootTable.LoadTable("loot_TTTBase.json", lootTablePath));
                     }
                     var loreNature3LootList = new List<BlueprintItemEquipmentReference>();
-                    var prerequisites = TricksterLoreNature3Feature.GetComponents<Prerequisite>();
                     TricksterLoreNature3Feature.SetComponents();
-                    TricksterLoreNature3Feature.AddComponents(prerequisites);
+                    TricksterLoreNature3Feature.AddPrerequisiteFeature(TricksterLoreNature2Feature);
                     TricksterLoreNature3Feature.AddComponent<TricksterLoreNatureRestLootTriggerTTT>(c => {
                         c.m_LootList = lootTables.SelectMany(table => table.Items).ToArray();
                         c.CROffset = 5;
@@ -504,7 +528,7 @@ namespace TabletopTweaks.Reworks.Patches {
                     if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("TricksterPersuasion2")) { return; }
 
                     TricksterPersuasionTier2Feature.SetDescription(TTTContext, "You are so good at demoralizing your enemies that thier will to hurt you wavers.\n" +
-                        "Enemies affected by your demoralize ability must succeed at a Will saving throw with a DC of 15 + your ranks in Persuasion, " +
+                        "Enemies affected by your demoralize ability must succeed at a Will saving throw with a DC of 10 + your ranks in Persuasion, " +
                         "or become staggered for one round. Additionally, when you successfully demoralize an enemy they take an additional penalty " +
                         "to thier attack and damage rolls equal to 1 + half your mythic rank.");
                     TricksterPersuasionTier2Feature.RemoveComponents<AddMechanicsFeature>();
@@ -520,7 +544,7 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterPersuasionTier3Feature.SetDescription(TTTContext, "You are so good at demoralizing your enemies that they panic and fail to defend themselves.\n" +
                         "Enemies affected by your demoralize have a 50% chance to attack the nearest target instead of acting normally. " +
                         "Additionally, when you successfully demoralize an enemy they take an additional penalty " +
-                        "to thier AC and saving equal to 1 + half your mythic rank.");
+                        "to thier AC and saving throws equal to your mythic rank.");
                     TricksterPersuasionTier3Feature.RemoveComponents<AddMechanicsFeature>();
                     TricksterPersuasionTier3Feature.AddComponent<AddCustomMechanicsFeature>(c => {
                         c.Feature = CustomMechanicsFeature.TricksterReworkPersuasion3;
@@ -738,7 +762,7 @@ namespace TabletopTweaks.Reworks.Patches {
                 var mechanicsContext = data?.Context;
                 var caster = mechanicsContext?.MaybeCaster;
                 int debuffDuration = 1 + (check.RollResult - check.DC) / 5 + (caster.Descriptor.State.Features.FrighteningThug ? 1 : 0);
-                int saveDC = 15 + caster.Stats.SkillPersuasion.BaseValue;
+                int saveDC = 10 + caster.Stats.SkillPersuasion.BaseValue;
 
                 var TricksterPersuasion2 = caster.CustomMechanicsFeature(CustomMechanicsFeature.TricksterReworkPersuasion2).Value;
                 var TricksterPersuasion3 = caster.CustomMechanicsFeature(CustomMechanicsFeature.TricksterReworkPersuasion3).Value;
@@ -748,10 +772,10 @@ namespace TabletopTweaks.Reworks.Patches {
                     }
                 }
                 if (TricksterPersuasion2) {
-                    instance.Target.Unit.Descriptor.AddBuff(TricksterPersuasion2Buff, mechanicsContext, new TimeSpan?(debuffDuration.Rounds().Seconds));//.Context.Params.DC = num4;
+                    instance.Target.Unit.Descriptor.AddBuff(TricksterPersuasion2Buff, mechanicsContext, new TimeSpan?(debuffDuration.Rounds().Seconds));
                 }
                 if (TricksterPersuasion3) {
-                    instance.Target.Unit.Descriptor.AddBuff(TricksterPersuasion3Buff, mechanicsContext, new TimeSpan?(debuffDuration.Rounds().Seconds));//.Context.Params.DC = num4;
+                    instance.Target.Unit.Descriptor.AddBuff(TricksterPersuasion3Buff, mechanicsContext, new TimeSpan?(debuffDuration.Rounds().Seconds));
                 }
             }
         }

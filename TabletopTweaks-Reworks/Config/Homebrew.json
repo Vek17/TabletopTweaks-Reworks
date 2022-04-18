@@ -177,6 +177,11 @@
     "Trickster": {
       "DisableAll": false,
       "Settings": {
+        "BoundOfPossibility": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "This cloak allows Trickster to roll any skill check twice and take the best result."
+        },
         "Progression": {
           "Enabled": true,
           "Homebrew": true,
