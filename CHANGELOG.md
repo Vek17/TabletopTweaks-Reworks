@@ -5,6 +5,9 @@
 	* Greater Enduring Spells
 		* Now extends spells that last 10+ minutes instead of 5+ minutes.
 * Trickster Rework
+	* Trickster Progression
+		* An improved trick is now learned at mythic rank 5.
+		* The mythic rank 9 improved trick and the mythic rank 10 greater trick have been swapped.
 	* Knowledge Arcana Tricks
 		* Arcana 2
 			* Enchantment list updated. This should be a buff.
@@ -42,6 +45,8 @@
 	* Use Magic Device Tricks
 		* Use Magic Device 2
 			* Now grants completly normal magic in addition to endless wands.
+	* Bound of Possibility
+		* This cloak allows Trickster to roll any skill check twice and take the best result.
 
 ## Version 1.0.0
 This has been split and now depends on [TabletopTweaks-Core](https://github.com/Vek17/TabletopTweaks-Core/releases).

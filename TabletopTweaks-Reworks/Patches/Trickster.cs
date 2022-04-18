@@ -725,31 +725,45 @@ namespace TabletopTweaks.Reworks.Patches {
 
             static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions) {
                 var codes = new List<CodeInstruction>(instructions);
-                var target = FindInsertionTarget(codes);
+                var targetData = FindInsertionTarget(codes);
                 //Main.TTTContext.Logger.Log($"Target({target.Index}, {target.Start}, {target.End})");
                 //Utilities.ILUtils.LogIL(Main.TTTContext, codes);
-                var labels = codes[target].labels.ToList();
-                codes[target].labels.Clear();
-                codes.InsertRange(target, new CodeInstruction[] {
+                var labels = codes[targetData.TargetIndex].labels.ToList();
+                codes[targetData.TargetIndex].labels.Clear();
+                codes.InsertRange(targetData.TargetIndex, new CodeInstruction[] {
                     new CodeInstruction(OpCodes.Ldarg_0),
-                    codes[target+1].Clone(),
+                    targetData.LoadVariable,
+                    //codes[targetData+1].Clone(),
                     new CodeInstruction(OpCodes.Call, method_RunTricksterLogic),
                 });
-                codes[target].labels = labels;
+                codes[targetData.TargetIndex].labels = labels;
                 //Utilities.ILUtils.LogIL(Main.TTTContext, codes);
                 return codes.AsEnumerable();
             }
-            private static int FindInsertionTarget(List<CodeInstruction> codes) {
+            private static InsertionData FindInsertionTarget(List<CodeInstruction> codes) {
                 var targetIndex = -1;
+                var loadVariable = -1;
                 for (int i = 0; i < codes.Count; i++) {
                     if (codes[i].Calls(getter_RuleStatCheck_Success)) {
-                        targetIndex = i + 3;
+                        loadVariable = i -1;
+                    }
+                    if (codes[i].opcode == OpCodes.Leave_S) {
+                        targetIndex = i;
                     }
                 }
-                if (targetIndex < 0) {
+                if (targetIndex < 0 || loadVariable < 0) {
                     Main.TTTContext.Logger.Log("Demoralize_Trickster_Rework: COULD NOT FIND TARGET");
                 }
-                return targetIndex;
+                return new InsertionData(targetIndex, codes[loadVariable].Clone());
+            }
+            private struct InsertionData {
+                public int TargetIndex;
+                public CodeInstruction LoadVariable;
+
+                public InsertionData(int targetIndex, CodeInstruction loadVariable) {
+                    TargetIndex = targetIndex;
+                    LoadVariable = loadVariable;
+                }
             }
 
             private static void RunTricksterLogic(Demoralize instance, RuleSkillCheck check) {
@@ -766,16 +780,17 @@ namespace TabletopTweaks.Reworks.Patches {
 
                 var TricksterPersuasion2 = caster.CustomMechanicsFeature(CustomMechanicsFeature.TricksterReworkPersuasion2).Value;
                 var TricksterPersuasion3 = caster.CustomMechanicsFeature(CustomMechanicsFeature.TricksterReworkPersuasion3).Value;
-                if (TricksterPersuasion2) {
-                    if (!Game.Instance.Rulebook.TriggerEvent<RuleSavingThrow>(new RuleSavingThrow(instance.Target.Unit, SavingThrowType.Will, saveDC)).IsPassed) {
-                        instance.Target.Unit.Descriptor.AddBuff(Staggered, mechanicsContext, new TimeSpan?(1.Rounds().Seconds));
-                    }
-                }
+                
                 if (TricksterPersuasion2) {
                     instance.Target.Unit.Descriptor.AddBuff(TricksterPersuasion2Buff, mechanicsContext, new TimeSpan?(debuffDuration.Rounds().Seconds));
                 }
                 if (TricksterPersuasion3) {
                     instance.Target.Unit.Descriptor.AddBuff(TricksterPersuasion3Buff, mechanicsContext, new TimeSpan?(debuffDuration.Rounds().Seconds));
+                }
+                if (TricksterPersuasion2) {
+                    if (!Game.Instance.Rulebook.TriggerEvent<RuleSavingThrow>(new RuleSavingThrow(instance.Target.Unit, SavingThrowType.Will, saveDC)).IsPassed) {
+                        instance.Target.Unit.Descriptor.AddBuff(Staggered, mechanicsContext, new TimeSpan?(1.Rounds().Seconds));
+                    }
                 }
             }
         }
