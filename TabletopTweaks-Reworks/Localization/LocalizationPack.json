@@ -1,6 +1,39 @@
 ﻿{
   "LocalizedStrings": [
     {
+      "Key": "32a54c0dce2e407c9ac3bacd648c745b",
+      "SimpleName": "AbundantCasting.Description",
+      "ProcessTemplates": true,
+      "enGB": "You've learned a way to increase the number of spells you can cast per day.\nBenefit: You can cast two more spells per day of 1st, 2nd, and 3rd ranks each. This ability does not affect mythic spellbooks.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "9fc9e29342714e08ac481847ac3f958c",
+      "SimpleName": "AbundantCastingGreater.Description",
+      "ProcessTemplates": true,
+      "enGB": "You've mastered a way to increase the number of spells you can cast per day.\nBenefit: You can cast four more spells per day of 7th, 8th, and 9th ranks each. This ability does not affect mythic spellbooks.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "d69088c387154aa296693e7a0dc85b32",
+      "SimpleName": "AbundantCastingImproved.Description",
+      "ProcessTemplates": true,
+      "enGB": "You have studied a way to increase the number of spells you can cast per day.\nBenefit: You can cast two more spells per day of 4th, 5th, and 6th levels each. This ability does not affect mythic spellbooks.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "0e2b38298ca841419f4d5fae7ead40f9",
       "SimpleName": "AeonBaneFeature.Description",
       "ProcessTemplates": true,
@@ -23,6 +56,17 @@
       "esES": null
     },
     {
+      "Key": "f6779883fda04bd1a5eae03ff66be80a",
+      "SimpleName": "Artifact_TricksterCloakItem.Description",
+      "ProcessTemplates": true,
+      "enGB": "This cloak allows Trickster to roll any skill check twice and take the best result.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "9889b5df0580417595f79c4da0af1804",
       "SimpleName": "BolsteredSpellFeat.Description",
       "ProcessTemplates": true,
@@ -41,14 +85,14 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "在相当于他神话等级3+一半的回合内，巫妖可以使他所施放的所有法术忽略法术抗性和法术免疫。任何受此法术影响的生物在1d3+1轮内不能施放法术。",
       "esES": null
     },
     {
-      "Key": "d709a8f2a6854007b8762aee9def55f8",
+      "Key": "99c597513dd24fc39456d4b152511645",
       "SimpleName": "DimensionalRetribution.Description",
       "ProcessTemplates": true,
-      "enGB": "You leave a mystical link with enemy spellcasters that lets you instantly move to them.Benefit: Every time you are targeted by an enemy spell, you may teleport to the spellcaster as an immediate action and make an attack of opportunity.",
+      "enGB": "You leave a mystical link with enemy spellcasters that lets you instantly move to them.Benefit: Every time you are hit by an enemy spell, you may teleport to the spellcaster as an immediate action and make an attack of opportunity.",
       "ruRU": null,
       "deDE": null,
       "frFR": null,
@@ -63,7 +107,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "每当你被敌人的法术攻击时，你可以立即传送到施法者那里，并发动借机攻击。",
       "esES": null
     },
     {
@@ -74,7 +118,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "次元反击",
       "esES": null
     },
     {
@@ -85,7 +129,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "在相当于他神话等级的3 +一半的回合内，巫妖可以在他所施放的所有法术中注入极寒的力量。受此法术影响的生物必须通过一次强韧豁免(DC = 10 + 1/2人物等级+ 2倍你的神话等级)，否则就会目盲并遭受(2d8 +神话等级)寒冷伤害，在战斗结束前对寒冷和负能量易伤。",
       "esES": null
     },
     {
@@ -155,6 +199,17 @@
       "esES": null
     },
     {
+      "Key": "8d4ad59427154c8292c2fc7a12daa093",
+      "SimpleName": "EnduringSpellsGreater.Description",
+      "ProcessTemplates": true,
+      "enGB": "You've mastered a way to prolong your beneficial spells.\nBenefit: Effects of your spells on your allies that should last longer than 10 minutes but shorter than 24 hours now last 24 hours.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "54c0c938a7ed4251b67aae834df168a1",
       "SimpleName": "IncredibleMightFeature.Description",
       "ProcessTemplates": true,
@@ -162,7 +217,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "灵使在攻击和伤害骰上获得等同于她神话等级的加值。当她进行冲锋攻击或确认重击时，目标必须通过强韧豁免，DC等于10 +你的神话等级+力量调整值。如果目标豁免失败，则随机发生以下情形之一:\n敌人眩晕1d4轮(30%)\n敌人俯卧1d4轮(20%)\n敌人被推开15英尺并被震慑1d4轮(20%)\n敌人残废直到战斗结束:他们不能移动，并遭受攻击骰和AC受到-3的减值 (15%) \n敌人陷入力竭(10%)\n敌人被杀死(5%)\n此外，灵使可以选择失去这些优势，以提高同伴的物理能力。他们在所有攻击和伤害骰上获得加值，等于每2个灵使的神话等级+1。",
       "esES": null
     },
     {
@@ -181,6 +236,314 @@
       "SimpleName": "TaintedSneakAttackFeature.Description",
       "ProcessTemplates": true,
       "enGB": "Whenever Lich lands a successful sneak attack, the enemy must pass Fortitude saving throw (DC = 10 + 1/2 character level + twice your mythic rank) or become tainted. The tainted creature is vulnerable to all weapon and elemental damage, as well as suffers a –2 penalty on all attack rolls and weapon damage rolls, until the end of the combat.\nAdditionally, Lich's sneak attack damage is increased by 1d6.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": "每当巫妖成功发动偷袭时，敌人必须通过强韧豁免(DC = 10 + 1/2人物等级+两倍你的神话等级)，否则就会被污染。被污染的生物易受所有武器和元素伤害，并在所有攻击骰和武器伤害骰上受到-2惩罚，直到战斗结束。此外，巫妖的偷袭伤害增加1d6。",
+      "esES": null
+    },
+    {
+      "Key": "52566b081ef84efeba53df519fade7e6",
+      "SimpleName": "TricksterAthleticsTier1Feature.Name",
+      "ProcessTemplates": false,
+      "enGB": "Athletics 1 rank",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "be76a5c0ea6e495585a7f6d5f05dd09c",
+      "SimpleName": "TricksterAthleticsTier2Feature.Name",
+      "ProcessTemplates": false,
+      "enGB": "Athletics 2 rank",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "856ec264d80745228a48f5c27d06864b",
+      "SimpleName": "TricksterAthleticsTier3Feature.Name",
+      "ProcessTemplates": false,
+      "enGB": "Athletics 3 rank",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "f10c2f334194432f99dffc4a494441e2",
+      "SimpleName": "TricksterLoreReligionTier2Progression.Description",
+      "ProcessTemplates": true,
+      "enGB": "You now know religion so well that you can use abilities usually reserved for clerics. You can select two domains. You gain abilities of those domains and can use spells from those domains once per day.\nYour effective cleric level for the purposes of these domains and spells is equal to your character level, and your effective wisdom modifer is equal to your mythic rank.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "89accd50e88643e2a0d01b917d3ada70",
+      "SimpleName": "TricksterLoreReligionTier3Progression.Description",
+      "ProcessTemplates": true,
+      "enGB": "You now know enough about religion to start your own. You can select two additional domains.\nYour effective cleric level for the purposes of these domains and spells is equal to your character level, and your effective wisdom modifer is equal to your mythic rank.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "0b9ff1fedf8e44b1905de848352b808c",
+      "SimpleName": "TricksterMobilityTier1Feature.Name",
+      "ProcessTemplates": false,
+      "enGB": "Mobility 1 rank",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "b67b158b4a82472d811627cd1c345191",
+      "SimpleName": "TricksterMobilityTier2Feature.Name",
+      "ProcessTemplates": false,
+      "enGB": "Mobility 2 rank",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "37c53219832240c099845fcf2d9272ee",
+      "SimpleName": "TricksterMobilityTier3Feature.Name",
+      "ProcessTemplates": false,
+      "enGB": "Mobility 3 rank",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "2bc69abb83674ae89b793031e5cc7a63",
+      "SimpleName": "TricksterPerceptionTier1Feature.Description",
+      "ProcessTemplates": true,
+      "enGB": "You see more than other people.\nYou are under a constant effect of the see invisibility spell, auto detect stealthing creatures, and reroll all concealment rolls.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "7e10521cec304835a43730b5ea973525",
+      "SimpleName": "TricksterPerceptionTier2Feature.Description",
+      "ProcessTemplates": true,
+      "enGB": "You can see the best ways to injure even the most resilient opponents.\nYou ignore critical and sneak attack immunity, reroll all fortification checks and your critical hit range is increased by 2 with all weapons. This critical range increase is not multiplied by improved critical or similar effects.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "5617394a52284a4297b105ad5d9ac522",
+      "SimpleName": "TricksterPerceptionTier3Feature.Description",
+      "ProcessTemplates": true,
+      "enGB": "You sight has become so impecable that you can now see how to improve the actions of your allies.\nAll allies within 60 feet of you gain the benifits of your perception tricks.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "95fce22cf2a3493191e7978a2f23064e",
+      "SimpleName": "TricksterPersuasion2Buff.Description",
+      "ProcessTemplates": true,
+      "enGB": "Creature suffers penalties to its attack and damage rolls equal to 1 + half your mythic rank.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "ef2c478173a84be198b74e16a67f3552",
+      "SimpleName": "TricksterPersuasion2Buff.Name",
+      "ProcessTemplates": false,
+      "enGB": "Trickster Persuasion 2",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "d12e0e099928414baf855b7dd9bef96e",
+      "SimpleName": "TricksterPersuasion3Buff.Description",
+      "ProcessTemplates": true,
+      "enGB": "Creature has a 50% chance to attack the nearest target each turn and suffers pentalities to its AC and Saves equal to your mythic rank.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "395a02cf40e94cec9318189bbf47aa59",
+      "SimpleName": "TricksterPersuasion3Buff.Name",
+      "ProcessTemplates": false,
+      "enGB": "Trickster Persuasion 3",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "f20b8d9236bf4dd6b5ccf3f74ce53e63",
+      "SimpleName": "TricksterPersuasionTier2Feature.Description",
+      "ProcessTemplates": true,
+      "enGB": "You are so good at demoralizing your enemies that thier will to hurt you wavers.\nEnemies affected by your demoralize ability must succeed at a Will saving throw with a DC of 10 + your ranks in Persuasion, or become staggered for one round. Additionally, when you successfully demoralize an enemy they take an additional penalty to thier attack and damage rolls equal to 1 + half your mythic rank.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "71bb6a91adda4595a049b1f8f0673704",
+      "SimpleName": "TricksterPersuasionTier3Feature.Description",
+      "ProcessTemplates": true,
+      "enGB": "You are so good at demoralizing your enemies that they panic and fail to defend themselves.\nEnemies affected by your demoralize have a 50% chance to attack the nearest target instead of acting normally. Additionally, when you successfully demoralize an enemy they take an additional penalty to thier AC and saving throws equal to your mythic rank.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "8cadbe73e76d401f8f4e05bc02c1199e",
+      "SimpleName": "TricksterStealthTier1AbilityTarget.Description",
+      "ProcessTemplates": true,
+      "enGB": "You can enter stealth during combat as a move action. This stealth is not broken by a single enemy detecting you — instead it acts similar to the invisibility spell, giving you total concealment against all creatures that did not succeed on a Perception check against you.\nThis \"invisibility\" cannot be seen through by divination magic such as true seeing, see invisability, or thoughtsense.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "c75de143fdf943ee9c3ead558ae3eed2",
+      "SimpleName": "TricksterStealthTier1AbilityTarget.Name",
+      "ProcessTemplates": false,
+      "enGB": "Trickster Stealth",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "1a541da2c2fd4f348a270d8e17430583",
+      "SimpleName": "TricksterStealthTier1Feature.Description",
+      "ProcessTemplates": true,
+      "enGB": "You can easily slip into shadow at any time. You can enter stealth during combat as a move action. This stealth is not broken by a single enemy detecting you — instead it acts similar to the invisibility spell, giving you total concealment against all creatures that did not succeed on a Perception check against you.\nThis \"invisibility\" cannot be seen through by divination magic such as true seeing, see invisability, or thoughtsense.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "91e6cef8ccd840c8ab0733a9047cc65d",
+      "SimpleName": "TricksterStealthTier2Feature.Description",
+      "ProcessTemplates": true,
+      "enGB": "You exceed at stealth, fading from sight with your every move. Your stealth in combat now works more akin to greater invisibility spell effect.\nThis \"invisibility\" cannot be seen through by divination magic such as true seeing, see invisability, or thoughtsense.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "8853ce38ca3e476089fe11fb76c19519",
+      "SimpleName": "TricksterTrickeryTier3Feature.Description",
+      "ProcessTemplates": true,
+      "enGB": "Living creatures are also just complex devices and can also be easily disabled. You can try to disable them, forcing them to make a Fortitude saving throw (DC 15 + your ranks in Trickery). If the target fails it, it dies. Addtionally your previous Trickery abilities can now be used as a swift action and at close range instead of touch range.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "b6f478681ac24fbca2ea0799f7888cc5",
+      "SimpleName": "TricksterTTTKnowledgeDomainBaseToggleAbility.Description",
+      "ProcessTemplates": true,
+      "enGB": "You can become semi-tangible as a standard action. While in this form, you are immune to critical hits and gain a +1 deflection bonus to AC. This bonus increases by 1 at 8th level and every 4 levels thereafter.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "88fa82bf971945ce8843f670de6d7b97",
+      "SimpleName": "TricksterTTTPlantDomainGreaterToggleAbility.Description",
+      "ProcessTemplates": true,
+      "enGB": "At 6th level, you can cause a host of wooden thorns to burst from your skin as a free action. While bramble armor is in effect, any foe striking you with a melee weapon without reach takes 1d6 points of piercing damage + 1 point per two levels you possess in the class that gave you access to this domain.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "0dc29ccb477045178d774c4d7ee93346",
+      "SimpleName": "TricksterUseMagicDeviceTier1Feature.Name",
+      "ProcessTemplates": false,
+      "enGB": "Use Magic Device 1 rank",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "7927a17c6f59441e90062b9c52bd4c54",
+      "SimpleName": "TricksterUseMagicDeviceTier2Feature.Description",
+      "ProcessTemplates": true,
+      "enGB": "Your mastery of magic items has reached new heights.\nWands you use no longer lose charges for use and you can equip any magical items possible, regardless of requirements. Addtionally you realize that spells may be a bit less magical than you previously thought and gain the metamagic Completely Normal Spell",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "2f9ad08b31114a8684ee89eaf03129a8",
+      "SimpleName": "TricksterUseMagicDeviceTier2Feature.Name",
+      "ProcessTemplates": false,
+      "enGB": "Use Magic Device 2 rank",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "6bf1e2a5d8884755a25756c1fd1e30c8",
+      "SimpleName": "TricksterUseMagicDeviceTier3Feature.Name",
+      "ProcessTemplates": false,
+      "enGB": "Use Magic Device 3 rank",
       "ruRU": null,
       "deDE": null,
       "frFR": null,
