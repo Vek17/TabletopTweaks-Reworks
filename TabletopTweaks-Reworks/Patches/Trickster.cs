@@ -171,6 +171,7 @@ namespace TabletopTweaks.Reworks.Patches {
                     var Heartseeker = BlueprintTools.GetBlueprintReference<BlueprintWeaponEnchantmentReference>("e252b26686ab66241afdf33f2adaead6");
                     var Keen = BlueprintTools.GetBlueprintReference<BlueprintWeaponEnchantmentReference>("102a9c8c9b7a75e4fb5844e79deaf4c0");
                     var Necrotic = BlueprintTools.GetBlueprintReference<BlueprintWeaponEnchantmentReference>("bad4134798e182c4487819dce9b43003");
+                    var NullifyingEnchantment = BlueprintTools.GetBlueprintReference<BlueprintWeaponEnchantmentReference>("efbe3a35fc7349845ac9f96b4c63312e");
                     var Radiant = BlueprintTools.GetBlueprintReference<BlueprintWeaponEnchantmentReference>("5ac5c88157f7dde48a2a5b24caf40131");
                     var Shock = BlueprintTools.GetBlueprintReference<BlueprintWeaponEnchantmentReference>("7bda5277d36ad114f9f9fd21d0dab658");
                     var Thundering = BlueprintTools.GetBlueprintReference<BlueprintWeaponEnchantmentReference>("690e762f7704e1f4aa1ac69ef0ce6a96");
@@ -179,22 +180,23 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterKnowledgeArcanaTier2Feature
                         .GetComponent<TricksterArcanaAdditionalEnchantments>()
                         .WeaponEnchantments = new BlueprintWeaponEnchantmentReference[] {
-                        Keen,
-                        Agile,
-                        Frost,
-                        Flaming,
-                        Corrosive,
-                        Shock,
-                        GhostTouch,
-                        Heartseeker,
-                        CruelEnchantment,
-                        Bleed,
-                        Furious,
-                        Thundering,
-                        Necrotic,
-                        Radiant,
-                        Furyborn,
-                        ViciousEnchantment
+                            Keen,
+                            Agile,
+                            Frost,
+                            Flaming,
+                            Corrosive,
+                            Shock,
+                            GhostTouch,
+                            Heartseeker,
+                            CruelEnchantment,
+                            Bleed,
+                            Furious,
+                            Thundering,
+                            Necrotic,
+                            NullifyingEnchantment,
+                            Radiant,
+                            Furyborn,
+                            ViciousEnchantment
                         };
 
                     TTTContext.Logger.LogPatch("Patched", TricksterKnowledgeArcanaTier2Feature);
@@ -219,18 +221,18 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterKnowledgeArcanaTier3Feature
                         .GetComponent<TricksterArcanaAdditionalEnchantments>()
                         .WeaponEnchantments = new BlueprintWeaponEnchantmentReference[] {
-                        ElderCorrosive2d6,
-                        ElderBrass,
-                        ElderIce2d6,
-                        ElderShock2d6,
-                        Axiomatic,
-                        Holy,
-                        Speed,
-                        Ultrasound,
-                        BrilliantEnergy,
-                        Deteriorative,
-                        BaneLiving,
-                        Vorpal
+                            ElderCorrosive2d6,
+                            ElderBrass,
+                            ElderIce2d6,
+                            ElderShock2d6,
+                            Axiomatic,
+                            Holy,
+                            Speed,
+                            Ultrasound,
+                            BrilliantEnergy,
+                            Deteriorative,
+                            BaneLiving,
+                            Vorpal
                         };
 
 
@@ -544,7 +546,7 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterPersuasionTier3Feature.SetDescription(TTTContext, "You are so good at demoralizing your enemies that they panic and fail to defend themselves.\n" +
                         "Enemies affected by your demoralize have a 50% chance to attack the nearest target instead of acting normally. " +
                         "Additionally, when you successfully demoralize an enemy they take an additional penalty " +
-                        "to thier AC and saving throws equal to your mythic rank.");
+                        "to thier AC, spell resistance, and saving throws equal to your mythic rank.");
                     TricksterPersuasionTier3Feature.RemoveComponents<AddMechanicsFeature>();
                     TricksterPersuasionTier3Feature.AddComponent<AddCustomMechanicsFeature>(c => {
                         c.Feature = CustomMechanicsFeature.TricksterReworkPersuasion3;
@@ -745,7 +747,7 @@ namespace TabletopTweaks.Reworks.Patches {
                 var loadVariable = -1;
                 for (int i = 0; i < codes.Count; i++) {
                     if (codes[i].Calls(getter_RuleStatCheck_Success)) {
-                        loadVariable = i -1;
+                        loadVariable = i - 1;
                     }
                     if (codes[i].opcode == OpCodes.Leave_S) {
                         targetIndex = i;
@@ -780,7 +782,7 @@ namespace TabletopTweaks.Reworks.Patches {
 
                 var TricksterPersuasion2 = caster.CustomMechanicsFeature(CustomMechanicsFeature.TricksterReworkPersuasion2).Value;
                 var TricksterPersuasion3 = caster.CustomMechanicsFeature(CustomMechanicsFeature.TricksterReworkPersuasion3).Value;
-                
+
                 if (TricksterPersuasion2) {
                     instance.Target.Unit.Descriptor.AddBuff(TricksterPersuasion2Buff, mechanicsContext, new TimeSpan?(debuffDuration.Rounds().Seconds));
                 }

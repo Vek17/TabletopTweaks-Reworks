@@ -828,28 +828,28 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     });
                     bp.AddComponent<AddStatBonusAbilityValue>(c => {
                         c.Stat = StatType.AdditionalAttackBonus;
-                        c.Descriptor = ModifierDescriptor.UntypedStackable;
+                        c.Descriptor = ModifierDescriptor.Sacred;
                         c.Value = new ContextValue() {
                             ValueType = ContextValueType.Rank
                         };
                     });
                     bp.AddComponent<AddStatBonusAbilityValue>(c => {
                         c.Stat = StatType.SaveFortitude;
-                        c.Descriptor = ModifierDescriptor.UntypedStackable;
+                        c.Descriptor = ModifierDescriptor.Sacred;
                         c.Value = new ContextValue() {
                             ValueType = ContextValueType.Rank
                         };
                     });
                     bp.AddComponent<AddStatBonusAbilityValue>(c => {
                         c.Stat = StatType.SaveReflex;
-                        c.Descriptor = ModifierDescriptor.UntypedStackable;
+                        c.Descriptor = ModifierDescriptor.Sacred;
                         c.Value = new ContextValue() {
                             ValueType = ContextValueType.Rank
                         };
                     });
                     bp.AddComponent<AddStatBonusAbilityValue>(c => {
                         c.Stat = StatType.SaveWill;
-                        c.Descriptor = ModifierDescriptor.UntypedStackable;
+                        c.Descriptor = ModifierDescriptor.Sacred;
                         c.Value = new ContextValue() {
                             ValueType = ContextValueType.Rank
                         };
@@ -1779,34 +1779,34 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     });
                     bp.AddComponent<AddStatBonusAbilityValue>(c => {
                         c.Stat = StatType.AdditionalAttackBonus;
-                        c.Descriptor = ModifierDescriptor.UntypedStackable;
+                        c.Descriptor = ModifierDescriptor.Sacred;
                         c.Value = new ContextValue() {
                             ValueType = ContextValueType.Rank
                         };
                     });
                     bp.AddComponent<BuffAllSkillsBonusAbilityValue>(c => {
-                        c.Descriptor = ModifierDescriptor.UntypedStackable;
+                        c.Descriptor = ModifierDescriptor.Sacred;
                         c.Value = new ContextValue() {
                             ValueType = ContextValueType.Rank
                         };
                     });
                     bp.AddComponent<AddStatBonusAbilityValue>(c => {
                         c.Stat = StatType.SaveFortitude;
-                        c.Descriptor = ModifierDescriptor.UntypedStackable;
+                        c.Descriptor = ModifierDescriptor.Sacred;
                         c.Value = new ContextValue() {
                             ValueType = ContextValueType.Rank
                         };
                     });
                     bp.AddComponent<AddStatBonusAbilityValue>(c => {
                         c.Stat = StatType.SaveReflex;
-                        c.Descriptor = ModifierDescriptor.UntypedStackable;
+                        c.Descriptor = ModifierDescriptor.Sacred;
                         c.Value = new ContextValue() {
                             ValueType = ContextValueType.Rank
                         };
                     });
                     bp.AddComponent<AddStatBonusAbilityValue>(c => {
                         c.Stat = StatType.SaveWill;
-                        c.Descriptor = ModifierDescriptor.UntypedStackable;
+                        c.Descriptor = ModifierDescriptor.Sacred;
                         c.Value = new ContextValue() {
                             ValueType = ContextValueType.Rank
                         };
@@ -5300,6 +5300,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.m_Classes = new BlueprintProgression.ClassWithLevel[0];
                     bp.m_Archetypes = new BlueprintProgression.ArchetypeWithLevel[0];
                     bp.m_FeaturesRankIncrease = new List<BlueprintFeatureReference>();
+                    bp.IsClassFeature = true;
 
                     var domainSpellTable = BlueprintTools.GetModBlueprintReference<BlueprintSpellsTableReference>(TTTContext, "TricksterTTTDomainSpellsPerDay");
 
@@ -5613,11 +5614,16 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             var TricksterPersuasion3Buff = SongOfDiscordBuff.CreateCopy(TTTContext, "TricksterPersuasion3Buff", bp => {
                 bp.SetName(TTTContext, "Trickster Persuasion 3");
                 bp.SetDescription(TTTContext, "Creature has a 50% chance to attack the nearest target each turn " +
-                    "and suffers pentalities to its AC and Saves equal to your mythic rank.");
+                    "and suffers pentalities to its AC, spell resistance, and saving throws equal to your mythic rank.");
                 bp.m_Icon = Icon_TricksterPersausion;
                 bp.Stacking = StackingType.Prolong;
                 bp.IsClassFeature = true;
                 bp.RemoveComponents<SpellDescriptorComponent>();
+                bp.AddComponent<AddSpellResistancePenaltyTTT>(c => {
+                    c.Penalty = new ContextValue() {
+                        ValueType = ContextValueType.Rank
+                    };
+                });
                 bp.AddComponent<AddContextStatBonus>(c => {
                     c.Stat = StatType.AC;
                     c.Value = new ContextValue() {
