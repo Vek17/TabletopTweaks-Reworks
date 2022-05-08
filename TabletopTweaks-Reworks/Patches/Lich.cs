@@ -18,6 +18,7 @@ using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
 using TabletopTweaks.Core.NewActions;
+using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.Utilities;
 using static TabletopTweaks.Reworks.Main;
 
@@ -331,6 +332,34 @@ namespace TabletopTweaks.Reworks.Reworks {
                         "rolls, until the end of the combat.\n" +
                         "Additionally, Lich's sneak attack damage is increased by 1d6.");
                     bp.SetComponents();
+                    bp.AddComponent<AddSneakAttackDamageTrigger>(c => {
+                        c.Action = Helpers.CreateActionList(
+                            Helpers.Create<ContextActionSavingThrow>(save => {
+                                save.Type = SavingThrowType.Fortitude;
+                                save.HasCustomDC = true;
+                                save.CustomDC = new ContextValue() {
+                                    ValueType = ContextValueType.CasterCustomProperty,
+                                    m_CustomProperty = LichDCProperty
+                                };
+                                save.Actions = Helpers.CreateActionList(
+                                    Helpers.Create<ContextActionConditionalSaved>(condition => {
+                                        condition.Succeed = Helpers.CreateActionList();
+                                        condition.Failed = Helpers.CreateActionList(
+                                            Helpers.Create<ContextActionApplyBuff>(applyBuff => {
+                                                applyBuff.m_Buff = TaintedSneakAttackBuff.ToReference<BlueprintBuffReference>();
+                                                applyBuff.Permanent = true;
+                                                applyBuff.DurationValue = new ContextDurationValue() {
+                                                    DiceCountValue = new ContextValue(),
+                                                    BonusValue = new ContextValue()
+                                                };
+                                            })
+                                        );
+                                    })
+                                );
+                            })
+                        );
+                    });
+                    /*
                     bp.AddComponent<AddInitiatorAttackRollTrigger>(c => {
                         c.OnlyHit = true;
                         c.SneakAttack = true;
@@ -360,6 +389,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                             })
                         );
                     });
+                    */
                     bp.AddComponent<AddFacts>(c => {
                         c.m_Facts = new BlueprintUnitFactReference[] { SneakAttack };
                     });
