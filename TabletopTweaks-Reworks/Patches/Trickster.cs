@@ -477,6 +477,9 @@ namespace TabletopTweaks.Reworks.Patches {
                         bp.AddComponent<AddCustomMechanicsFeature>(c => {
                             c.Feature = CustomMechanicsFeature.BypassSneakAttackImmunity;
                         });
+                        bp.AddComponent<AddCustomMechanicsFeature>(c => {
+                            c.Feature = CustomMechanicsFeature.BypassCriticalHitImmunity;
+                        });
                     });
                     FeatTools.Selections.AllSelections
                         .Distinct()

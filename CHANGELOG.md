@@ -35,7 +35,7 @@
 			* All allies within 60 feet of you gain the benifits of your perception tricks.
 	* Persuasion Tricks
 		* Persuasion 2
-			* Enemies affected by your demoralize ability must succeed at a Will saving throw with a DC of 15 + your ranks in Persuasion, or become staggered for one round. Additionally, when you successfully demoralize an enemy they take an additional penalty to thier attack and damage rolls equal to 1 + half your mythic rank.
+			* Enemies affected by your demoralize ability must succeed at a Will saving throw with a DC of 10 + your ranks in Persuasion, or become staggered for one round. Additionally, when you successfully demoralize an enemy they take an additional penalty to thier attack and damage rolls equal to 1 + half your mythic rank.
 		* Persuasion 3
 			* Enemies affected by your demoralize have a 50% chance to attack the nearest target instead of acting normally. Additionally, when you successfully demoralize an enemy they take an additional penalty to thier AC and saving equal to 1 + half your mythic rank.
 	* Stealth Tricks
