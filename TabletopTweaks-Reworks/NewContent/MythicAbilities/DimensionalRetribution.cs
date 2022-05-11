@@ -51,7 +51,7 @@ namespace TabletopTweaks.Reworks.NewContent.MythicAbilities {
                     c.SideAppearFx = DweomerleapComponent.SideAppearFx;
                 });
             });
-            var DimensionalRetributionTTTBuff = Helpers.CreateBuff(TTTContext, "DimensionalRetributionTTTBuff", bp => {
+            var DimensionalRetributionTTTBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "DimensionalRetributionTTTBuff", bp => {
                 bp.m_Icon = DimensionalRetributionTTTAbility.Icon;
                 bp.SetName(TTTContext, "Dimensional Retribution");
                 bp.SetDescription(DimensionalRetributionTTTAbility.m_Description);

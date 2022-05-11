@@ -388,7 +388,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         IncreasedByStat = false
                     };
                 });
-                var TricksterTTTArtificeDomainBaseEffect = Helpers.CreateBuff(TTTContext, "TricksterTTTArtificeDomainBaseEffect", bp => {
+                var TricksterTTTArtificeDomainBaseEffect = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTArtificeDomainBaseEffect", bp => {
                     bp.ApplyVisualsAndBasicSettings(ArtificeDomainBaseEffect);
                     bp.AddTricksterContextRankConfig(c => {
                         c.m_Progression = ContextRankProgression.StartPlusDivStep;
@@ -419,7 +419,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         };
                     });
                 });
-                var TricksterTTTArtificeDomainBaseBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTArtificeDomainBaseBuff", bp => {
+                var TricksterTTTArtificeDomainBaseBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTArtificeDomainBaseBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(ArtificeDomainBaseBuff);
                     bp.AddComponent<AddAreaEffect>(c => {
                         c.m_AreaEffect = TricksterTTTArtificeDomainBaseAura.ToReference<BlueprintAbilityAreaEffectReference>();
@@ -820,7 +820,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         IncreasedByStat = false
                     };
                 });
-                var TricksterTTTCommunityDomainGreaterBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTCommunityDomainGreaterBuff", bp => {
+                var TricksterTTTCommunityDomainGreaterBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTCommunityDomainGreaterBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(CommunityDomainGreaterBuff);
                     bp.AddTricksterContextRankConfig(c => {
                         c.m_CustomProperty = TricksterDomainStatProperty.ToReference<BlueprintUnitPropertyReference>();
@@ -1141,7 +1141,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         IncreasedByStat = false
                     };
                 });
-                var TricksterTTTDestructionDomainBaseBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTDestructionDomainBaseBuff", bp => {
+                var TricksterTTTDestructionDomainBaseBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTDestructionDomainBaseBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(DestructionDomainBaseBuff);
                     bp.AddTricksterContextRankConfig(c => {
                         c.m_Type = AbilityRankType.DamageBonus;
@@ -1198,7 +1198,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         IncreasedByStat = false
                     };
                 });
-                var TricksterTTTDestructionDomainGreaterEffect = Helpers.CreateBuff(TTTContext, "TricksterTTTDestructionDomainGreaterEffect", bp => {
+                var TricksterTTTDestructionDomainGreaterEffect = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTDestructionDomainGreaterEffect", bp => {
                     bp.ApplyVisualsAndBasicSettings(DestructionDomainGreaterEffect);
                     bp.AddTricksterContextRankConfig(c => {
                         c.m_Type = AbilityRankType.DamageBonus;
@@ -1222,7 +1222,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         };
                     });
                 });
-                var TricksterTTTDestructionDomainGreaterBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTDestructionDomainGreaterBuff", bp => {
+                var TricksterTTTDestructionDomainGreaterBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTDestructionDomainGreaterBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(DestructionDomainGreaterBuff);
                     bp.AddComponent<AddAreaEffect>(c => {
                         c.m_AreaEffect = TricksterTTTDestructionDomainGreaterAura.ToReference<BlueprintAbilityAreaEffectReference>();
@@ -1568,7 +1568,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         IncreasedByStat = false
                     };
                 });
-                var TricksterTTTGloryDomainBaseBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTGloryDomainBaseBuff", bp => {
+                var TricksterTTTGloryDomainBaseBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTGloryDomainBaseBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(GloryDomainBaseBuff);
                     bp.AddTricksterContextRankConfig(c => {
                         c.m_Type = AbilityRankType.StatBonus;
@@ -1708,7 +1708,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     });
 
                 });
-                var TricksterTTTGloryDomainGreaterBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTGloryDomainGreaterBuff", bp => {
+                var TricksterTTTGloryDomainGreaterBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTGloryDomainGreaterBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(GloryDomainGreaterBuff);
                     bp.AddComponent<AddAreaEffect>(c => {
                         c.m_AreaEffect = TricksterTTTGloryDomainGreaterAura.ToReference<BlueprintAbilityAreaEffectReference>();
@@ -1772,7 +1772,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         IncreasedByStat = false
                     };
                 });
-                var TricksterTTTGoodDomainBaseBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTGoodDomainBaseBuff", bp => {
+                var TricksterTTTGoodDomainBaseBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTGoodDomainBaseBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(GoodDomainBaseBuff);
                     bp.AddTricksterContextRankConfig(c => {
                         c.m_Progression = ContextRankProgression.Div2;
@@ -2007,7 +2007,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         IncreasedByStat = false
                     };
                 });
-                var TricksterTTTKnowledgeDomainBaseBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTKnowledgeDomainBaseBuff", bp => {
+                var TricksterTTTKnowledgeDomainBaseBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTKnowledgeDomainBaseBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(KnowledgeDomainBaseBuff);
                     bp.AddTricksterContextRankConfig(c => {
                         c.m_Type = AbilityRankType.StatBonus;
@@ -2260,13 +2260,13 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         IncreasedByStat = false
                     };
                 });
-                var TricksterTTTLiberationDomainBaseEffect = Helpers.CreateBuff(TTTContext, "TricksterTTTLiberationDomainBaseEffect", bp => {
+                var TricksterTTTLiberationDomainBaseEffect = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTLiberationDomainBaseEffect", bp => {
                     bp.ApplyVisualsAndBasicSettings(FreedomOfMovementBuff);
                     FreedomOfMovementBuff.ComponentsArray.ForEach(c => {
                         bp.AddComponent(Helpers.CreateCopy(c));
                     });
                 });
-                var TricksterTTTLiberationDomainBaseBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTLiberationDomainBaseBuff", bp => {
+                var TricksterTTTLiberationDomainBaseBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTLiberationDomainBaseBuff", bp => {
                     bp.m_Flags = BlueprintBuff.Flags.HiddenInUi;
                     bp.AddComponent<AddConditionTrigger>(c => {
                         c.Conditions = new UnitCondition[] {
@@ -2359,7 +2359,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         };
                     });
                 });
-                var TricksterTTTLiberationDomainGreaterBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTLiberationDomainGreaterBuff", bp => {
+                var TricksterTTTLiberationDomainGreaterBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTLiberationDomainGreaterBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(LiberationDomainGreaterBuff);
                     bp.AddComponent<AddAreaEffect>(c => {
                         c.m_AreaEffect = TricksterTTTLiberationDomainGreaterAura.ToReference<BlueprintAbilityAreaEffectReference>();
@@ -2530,7 +2530,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.m_Max = 13;
                     bp.m_UseMax = true;
                 });
-                var TricksterTTTMadnessDomainBaseAttackRollsBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTMadnessDomainBaseAttackRollsBuff", bp => {
+                var TricksterTTTMadnessDomainBaseAttackRollsBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTMadnessDomainBaseAttackRollsBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(MadnessDomainBaseAttackRollsBuff);
                     bp.AddTricksterContextRankConfig(c => {
                         c.m_Progression = ContextRankProgression.Div2;
@@ -2584,7 +2584,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         };
                     });
                 });
-                var TricksterTTTMadnessDomainBaseSavingThrowsBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTMadnessDomainBaseSavingThrowsBuff", bp => {
+                var TricksterTTTMadnessDomainBaseSavingThrowsBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTMadnessDomainBaseSavingThrowsBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(MadnessDomainBaseSavingThrowsBuff);
                     bp.AddTricksterContextRankConfig(c => {
                         c.m_Progression = ContextRankProgression.Div2;
@@ -2636,7 +2636,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         };
                     });
                 });
-                var TricksterTTTMadnessDomainBaseSkillChecksBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTMadnessDomainBaseSkillChecksBuff", bp => {
+                var TricksterTTTMadnessDomainBaseSkillChecksBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTMadnessDomainBaseSkillChecksBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(MadnessDomainBaseSkillChecksBuff);
                     bp.AddTricksterContextRankConfig(c => {
                         c.m_Progression = ContextRankProgression.Div2;
@@ -2888,7 +2888,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         c.Round = Helpers.CreateActionList();
                     });
                 });
-                var TricksterTTTMadnessDomainGreaterBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTMadnessDomainGreaterBuff", bp => {
+                var TricksterTTTMadnessDomainGreaterBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTMadnessDomainGreaterBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(MadnessDomainGreaterBuff);
                     bp.AddComponent<AddAreaEffect>(c => {
                         c.m_AreaEffect = TricksterTTTMadnessDomainGreaterAura.ToReference<BlueprintAbilityAreaEffectReference>();
@@ -3066,7 +3066,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.m_Max = 13;
                     bp.m_UseMax = true;
                 });
-                var TricksterTTTNobilityDomainBaseBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTNobilityDomainBaseBuff", bp => {
+                var TricksterTTTNobilityDomainBaseBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTNobilityDomainBaseBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(NobilityDomainBaseBuff);
                     bp.AddComponent<AddStatBonus>(c => {
                         c.Stat = StatType.AdditionalAttackBonus;
@@ -3138,7 +3138,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.m_Max = 13;
                     bp.m_UseMax = true;
                 });
-                var TricksterTTTNobilityDomainGreaterBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTNobilityDomainGreaterBuff", bp => {
+                var TricksterTTTNobilityDomainGreaterBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTNobilityDomainGreaterBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(NobilityDomainGreaterBuff);
                     bp.AddComponent<AddStatBonus>(c => {
                         c.Stat = StatType.AdditionalAttackBonus;
@@ -3225,7 +3225,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.m_Max = 13;
                     bp.m_UseMax = true;
                 });
-                var TricksterTTTPlantDomainBaseBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTPlantDomainBaseBuff", bp => {
+                var TricksterTTTPlantDomainBaseBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTPlantDomainBaseBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(PlantDomainBaseBuff);
                     bp.AddComponent<ChangeUnitSize>(c => {
                         c.SizeDelta = 1;
@@ -3305,7 +3305,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         IncreasedByStat = false
                     };
                 });
-                var TricksterTTTPlantDomainGreaterBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTPlantDomainGreaterBuff", bp => {
+                var TricksterTTTPlantDomainGreaterBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTPlantDomainGreaterBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(PlantDomainGreaterBuff);
                     bp.AddTricksterContextRankConfig(c => {
                         c.m_Type = AbilityRankType.DamageBonus;
@@ -3402,10 +3402,10 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.m_Max = 13;
                     bp.m_UseMax = true;
                 });
-                var TricksterTTTProtectionDomainBaseSelfBuffSupress = Helpers.CreateBuff(TTTContext, "TricksterTTTProtectionDomainBaseSelfBuffSupress", bp => {
+                var TricksterTTTProtectionDomainBaseSelfBuffSupress = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTProtectionDomainBaseSelfBuffSupress", bp => {
                     bp.ApplyVisualsAndBasicSettings(ProtectionDomainBaseSelfBuffSupress);
                 });
-                var TricksterTTTProtectionDomainBaseBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTProtectionDomainBaseBuff", bp => {
+                var TricksterTTTProtectionDomainBaseBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTProtectionDomainBaseBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(ProtectionDomainBaseBuff);
                     bp.AddTricksterContextRankConfig(c => {
                         c.m_Progression = ContextRankProgression.OnePlusDivStep;
@@ -3540,7 +3540,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         IncreasedByStat = false
                     };
                 });
-                var TricksterTTTProtectionDomainGreaterEffect = Helpers.CreateBuff(TTTContext, "TricksterTTTProtectionDomainGreaterEffect", bp => {
+                var TricksterTTTProtectionDomainGreaterEffect = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTProtectionDomainGreaterEffect", bp => {
                     bp.ApplyVisualsAndBasicSettings(ProtectionDomainGreaterEffect);
                     bp.AddTricksterContextRankConfig(c => {
                         c.m_Type = AbilityRankType.StatBonus;
@@ -3631,7 +3631,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         };
                     });
                 });
-                var TricksterTTTProtectionDomainGreaterBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTProtectionDomainGreaterBuff", bp => {
+                var TricksterTTTProtectionDomainGreaterBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTProtectionDomainGreaterBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(ProtectionDomainGreaterBuff);
                     bp.AddComponent<AddAreaEffect>(c => {
                         c.m_AreaEffect = TricksterTTTProtectionDomainGreaterAura.ToReference<BlueprintAbilityAreaEffectReference>();
@@ -3789,7 +3789,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         IncreasedByStat = false
                     };
                 });
-                var TricksterTTTReposeDomainGreaterEffect = Helpers.CreateBuff(TTTContext, "TricksterTTTReposeDomainGreaterEffect", bp => {
+                var TricksterTTTReposeDomainGreaterEffect = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTReposeDomainGreaterEffect", bp => {
                     bp.ApplyVisualsAndBasicSettings(ReposeDomainGreaterEffect);
                     bp.AddComponent<BuffDescriptorImmunity>(c => {
                         c.Descriptor = SpellDescriptor.Death;
@@ -3818,7 +3818,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         };
                     });
                 });
-                var TricksterTTTReposeDomainGreaterBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTReposeDomainGreaterBuff", bp => {
+                var TricksterTTTReposeDomainGreaterBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTReposeDomainGreaterBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(ReposeDomainGreaterBuff);
                     bp.AddComponent<AddAreaEffect>(c => {
                         c.m_AreaEffect = TricksterTTTReposeDomainGreaterAura.ToReference<BlueprintAbilityAreaEffectReference>();
@@ -4250,7 +4250,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.m_Max = 20;
                     bp.m_UseMax = true;
                 });
-                var TricksterTTTRuneDomainGreaterBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTRuneDomainGreaterBuff", bp => {
+                var TricksterTTTRuneDomainGreaterBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTRuneDomainGreaterBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(RuneDomainGreaterBuff);
                     bp.AddComponent<BuffStatusCondition>(c => {
                         c.Condition = Kingmaker.UnitLogic.UnitCondition.CanNotAttack;
@@ -4383,7 +4383,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.m_Max = 13;
                     bp.m_UseMax = true;
                 });
-                var TricksterTTTStrengthDomainBaseBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTStrengthDomainBaseBuff", bp => {
+                var TricksterTTTStrengthDomainBaseBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTStrengthDomainBaseBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(StrengthDomainBaseBuff);
                     bp.AddTricksterContextRankConfig(c => {
                         c.m_Progression = ContextRankProgression.Div2;
@@ -4504,7 +4504,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         IncreasedByStat = false
                     };
                 });
-                var TricksterTTTSunDomainGreaterEffect = Helpers.CreateBuff(TTTContext, "TricksterTTTSunDomainGreaterEffect", bp => {
+                var TricksterTTTSunDomainGreaterEffect = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTSunDomainGreaterEffect", bp => {
                     bp.ApplyVisualsAndBasicSettings(SunDomainGreaterImmunityBuff);
                 });
                 var TricksterTTTSunDomainGreaterAura = Helpers.CreateBlueprint<BlueprintAbilityAreaEffect>(TTTContext, "TricksterTTTSunDomainGreaterAura", bp => {
@@ -4622,7 +4622,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         );
                     });
                 });
-                var TricksterTTTSunDomainGreaterBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTSunDomainGreaterBuff", bp => {
+                var TricksterTTTSunDomainGreaterBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTSunDomainGreaterBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(SunDomainGreaterBuff);
                     bp.AddComponent<AddAreaEffect>(c => {
                         c.m_AreaEffect = TricksterTTTSunDomainGreaterAura.ToReference<BlueprintAbilityAreaEffectReference>();
@@ -4676,7 +4676,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.m_Max = 13;
                     bp.m_UseMax = true;
                 });
-                var TricksterTTTTravelDomainBaseBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTTravelDomainBaseBuff", bp => {
+                var TricksterTTTTravelDomainBaseBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTTravelDomainBaseBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(TravelDomainBaseBuff);
                     bp.AddComponent<AddConditionImmunity>(c => {
                         c.Condition = UnitCondition.DifficultTerrain;
@@ -4802,7 +4802,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.m_Max = 13;
                     bp.m_UseMax = true;
                 });
-                var TricksterTTTTrickeryDomainBaseBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTTrickeryDomainBaseBuff", bp => {
+                var TricksterTTTTrickeryDomainBaseBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTTrickeryDomainBaseBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(TrickeryDomainBaseBuff);
                     bp.AddComponent<AddMirrorImage>(c => {
                         c.Count = new ContextDiceValue() {
@@ -4879,7 +4879,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         IncreasedByStat = false
                     };
                 });
-                var TricksterTTTTrickeryDomainGreaterEffect = Helpers.CreateBuff(TTTContext, "TricksterTTTTrickeryDomainGreaterEffect", bp => {
+                var TricksterTTTTrickeryDomainGreaterEffect = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTTrickeryDomainGreaterEffect", bp => {
                     bp.ApplyVisualsAndBasicSettings(TrickeryDomainGreaterEffect);
                     bp.AddComponent<BuffInvisibility>(c => {
                         c.m_StealthBonus = 20;
@@ -4898,7 +4898,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         };
                     });
                 });
-                var TricksterTTTTrickeryDomainGreaterBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTTrickeryDomainGreaterBuff", bp => {
+                var TricksterTTTTrickeryDomainGreaterBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTTrickeryDomainGreaterBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(TrickeryDomainGreaterBuff);
                     bp.AddComponent<AddAreaEffect>(c => {
                         c.m_AreaEffect = TricksterTTTTrickeryDomainGreaterAura.ToReference<BlueprintAbilityAreaEffectReference>();
@@ -4953,7 +4953,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.m_Max = 13;
                     bp.m_UseMax = true;
                 });
-                var TricksterTTTWarDomainBaseBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTWarDomainBaseBuff", bp => {
+                var TricksterTTTWarDomainBaseBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTWarDomainBaseBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(WarDomainBaseBuff);
                     bp.AddTricksterContextRankConfig(c => {
                         c.m_Progression = ContextRankProgression.Div2;
@@ -5127,7 +5127,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     bp.m_Max = 13;
                     bp.m_UseMax = true;
                 });
-                var TricksterTTTWeatherDomainBaseBuff = Helpers.CreateBuff(TTTContext, "TricksterTTTWeatherDomainBaseBuff", bp => {
+                var TricksterTTTWeatherDomainBaseBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterTTTWeatherDomainBaseBuff", bp => {
                     bp.ApplyVisualsAndBasicSettings(WeatherDomainBaseBuff);
                     bp.AddComponent<AddStatBonus>(c => {
                         c.Stat = StatType.AdditionalAttackBonus;
@@ -5510,7 +5510,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             var TricksterPerceptionTier1Feature = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("8bc2f9b88a0cf704ea72d86c2a3e2aef");
             var TricksterPerceptionTier2Feature = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("e9298851786c5334dba1398e9635a83d");
 
-            var TricksterPerception3EffectBuff = Helpers.CreateBuff(TTTContext, "TricksterPerception3EffectBuff", bp => {
+            var TricksterPerception3EffectBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterPerception3EffectBuff", bp => {
                 bp.m_Flags = BlueprintBuff.Flags.HiddenInUi;
                 bp.SetName(TTTContext, "Aeon Bane Increase Resource Feature");
                 bp.SetDescription(TTTContext, "");
@@ -5573,7 +5573,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     c.Round = Helpers.CreateActionList();
                 });
             });
-            var TricksterPerception3Buff = Helpers.CreateBuff(TTTContext, "TricksterPerception3Buff", bp => {
+            var TricksterPerception3Buff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterPerception3Buff", bp => {
                 bp.m_Flags = BlueprintBuff.Flags.HiddenInUi;
                 bp.SetName(TTTContext, "Aeon Bane Increase Resource Feature");
                 bp.SetDescription(TTTContext, "");
@@ -5582,7 +5582,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                     c.m_AreaEffect = TricksterPerception3Area.ToReference<BlueprintAbilityAreaEffectReference>();
                 });
             });
-            var TricksterPersuasion2Buff = Helpers.CreateBuff(TTTContext, "TricksterPersuasion2Buff", bp => {
+            var TricksterPersuasion2Buff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterPersuasion2Buff", bp => {
                 bp.SetName(TTTContext, "Trickster Persuasion 2");
                 bp.SetDescription(TTTContext, "Creature suffers penalties to its attack and damage rolls equal to " +
                     "1 + half your mythic rank.");
