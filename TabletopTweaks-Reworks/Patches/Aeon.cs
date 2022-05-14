@@ -27,7 +27,6 @@ using System.Data;
 using System.Linq;
 using TabletopTweaks.Core.MechanicsChanges;
 using TabletopTweaks.Core.NewComponents.AbilitySpecific;
-using TabletopTweaks.Core.NewComponents.Properties;
 using TabletopTweaks.Core.Utilities;
 using static TabletopTweaks.Reworks.Main;
 
@@ -171,26 +170,19 @@ namespace TabletopTweaks.Reworks.Reworks {
             static void PatchAeonGazeDC() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonGazeDC")) { return; }
                 var AeonGazeDCProperty = BlueprintTools.GetBlueprint<BlueprintUnitProperty>("4358468cba854a6db8f60909dacf8203");
-                var AeonAttackGazeAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("79d287eefba48424b9073a5cabba2a63");
-
-                AeonGazeDCProperty.RemoveComponents<SimplePropertyGetter>();
-                AeonGazeDCProperty.AddComponent<CompositePropertyGetter>(c => {
-                    c.CalculationMode = CompositePropertyGetter.Mode.Sum;
-                    c.Properties = new CompositePropertyGetter.ComplexProperty[] {
-                        new CompositePropertyGetter.ComplexProperty {
-                            Property = UnitProperty.Level,
-                            Numerator = 1,
-                            Denominator = 2
-                        },
-                        new CompositePropertyGetter.ComplexProperty {
-                            Property = UnitProperty.MythicLevel,
-                            Numerator = 2,
-                            Denominator = 1
-                        }
+                
+                AeonGazeDCProperty.SetComponents();    
+                AeonGazeDCProperty.AddComponent<SimplePropertyGetter>(c => {
+                    c.Property = UnitProperty.MythicLevel;
+                    c.Settings = new PropertySettings() { 
+                        m_Progression = PropertySettings.Progression.MultiplyByModifier,
+                        m_StepLevel = 2
                     };
+                });
+                AeonGazeDCProperty.AddComponent<SimplePropertyGetter>(c => {
+                    c.Property = UnitProperty.Level;
                     c.Settings = new PropertySettings() {
-                        m_Progression = PropertySettings.Progression.AsIs,
-                        m_CustomProgression = new PropertySettings.CustomProgressionItem[0]
+                        m_Progression = PropertySettings.Progression.Div2
                     };
                 });
                 AeonGazeDCProperty.BaseValue = 0;
