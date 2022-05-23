@@ -154,22 +154,27 @@
         "DeadlyMagic": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Deadly magic can now be used for a numbe of rounds equal to your mythic rank"
+          "Description": "Deadly magic can now be used for a numbe of rounds equal to your mythic rank."
         },
         "DecayingTouch": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Decaying touch has been completly rewritten to have fewer bugs with how it applies damage"
+          "Description": "Decaying touch has been completly rewritten to have fewer bugs with how it applies damage."
         },
         "EclipseChill": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Eclipse Chill DC now scales at 10 + 1/2 character level + twice your mythic rank and can now be used for a numbe of rounds equal to your mythic rank"
+          "Description": "Eclipse Chill DC scales at 10 + 1/2 character level + your mythic rank + highest stat bonus. and can now be used for a numbe of rounds equal to your mythic rank."
+        },
+        "FearControl": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Fear Control DC scales at 10 + 1/2 character level + your mythic rank + highest stat bonus. "
         },
         "TainedSneakAttack": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Tainted sneak attack now works with spells and the DC scales at 10 + 1/2 character level + twice your mythic rank"
+          "Description": "Tainted sneak attack now works with spells and the DC scales at 10 + 1/2 character level + your mythic rank + highest stat bonus."
         }
       },
       "IsExpanded": true

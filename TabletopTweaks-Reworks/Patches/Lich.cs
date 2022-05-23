@@ -10,6 +10,7 @@ using Kingmaker.Enums;
 using Kingmaker.Enums.Damage;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
@@ -17,6 +18,8 @@ using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
+using Kingmaker.Utility;
+using System.Linq;
 using TabletopTweaks.Core.NewActions;
 using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.Utilities;
@@ -36,6 +39,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 PatchDeadlyMagic();
                 PatchDecayingTouch();
                 PatchEclipseChill();
+                PatchFearControl();
                 PatchTainedSneakAttack();
             }
 
@@ -229,7 +233,7 @@ namespace TabletopTweaks.Reworks.Reworks {
 
                 EclipseChillFeature.SetDescription(TTTContext, "For a number of rounds equal to 3 + half his mythic rank, a Lich can imbue all spells he casts with the " +
                     "powers of the Eclipse chill. Creatures affected by such spells must pass a Fortitude saving throw " +
-                    "(DC = 10 + 1/2 character level + twice your mythic rank) or become blinded and suffer (2d8 + mythic rank) " +
+                    "(DC = 10 + 1/2 character level + your mythic rank + your highest stat bonus) or become blinded and suffer (2d8 + mythic rank) " +
                     "cold damage, becoming vulnerable to cold and negative energy until the end of the combat.");
                 EclipseChillToggleAbility.m_Description = EclipseChillFeature.m_Description;
                 EclipseChillEffectBuff.m_Description = EclipseChillFeature.m_Description;
@@ -318,6 +322,21 @@ namespace TabletopTweaks.Reworks.Reworks {
                 TTTContext.Logger.LogPatch(EclipseChillEffectBuff);
                 TTTContext.Logger.LogPatch(EclipseChillResource);
             }
+            static void PatchFearControl() {
+                if (TTTContext.Homebrew.MythicReworks.Lich.IsDisabled("FearControl")) { return; }
+
+                var FearControlAura = BlueprintTools.GetBlueprint<BlueprintAbilityAreaEffect>("bc54394234798444f827b26bb85171d7");
+
+                FearControlAura.FlattenAllActions()
+                    .OfType<ContextActionSavingThrow>()
+                    .ForEach(savingThrow => {
+                        savingThrow.HasCustomDC = true;
+                        savingThrow.CustomDC = new ContextValue() { 
+                            ValueType = ContextValueType.CasterCustomProperty,
+                            m_CustomProperty = LichDCProperty
+                        };
+                    });
+            }
             static void PatchTainedSneakAttack() {
                 if (TTTContext.Homebrew.MythicReworks.Lich.IsDisabled("TainedSneakAttack")) { return; }
 
@@ -327,7 +346,7 @@ namespace TabletopTweaks.Reworks.Reworks {
 
                 TaintedSneakAttackFeature.TemporaryContext(bp => {
                     bp.SetDescription(TTTContext, "Whenever Lich lands a successful sneak attack, the enemy must pass Fortitude saving throw " +
-                        "(DC = 10 + 1/2 character level + twice your mythic rank) or become tainted. The tainted creature is vulnerable to " +
+                        "(DC = 10 + 1/2 character level + your mythic rank + your highest stat bonus) or become tainted. The tainted creature is vulnerable to " +
                         "all weapon and elemental damage, as well as suffers a –2 penalty on all attack rolls and weapon damage " +
                         "rolls, until the end of the combat.\n" +
                         "Additionally, Lich's sneak attack damage is increased by 1d6.");
@@ -359,37 +378,6 @@ namespace TabletopTweaks.Reworks.Reworks {
                             })
                         );
                     });
-                    /*
-                    bp.AddComponent<AddInitiatorAttackRollTrigger>(c => {
-                        c.OnlyHit = true;
-                        c.SneakAttack = true;
-                        c.Action = Helpers.CreateActionList(
-                            Helpers.Create<ContextActionSavingThrow>(save => {
-                                save.Type = SavingThrowType.Fortitude;
-                                save.HasCustomDC = true;
-                                save.CustomDC = new ContextValue() {
-                                    ValueType = ContextValueType.CasterCustomProperty,
-                                    m_CustomProperty = LichDCProperty
-                                };
-                                save.Actions = Helpers.CreateActionList(
-                                    Helpers.Create<ContextActionConditionalSaved>(condition => {
-                                        condition.Succeed = Helpers.CreateActionList();
-                                        condition.Failed = Helpers.CreateActionList(
-                                            Helpers.Create<ContextActionApplyBuff>(applyBuff => {
-                                                applyBuff.m_Buff = TaintedSneakAttackBuff.ToReference<BlueprintBuffReference>();
-                                                applyBuff.Permanent = true;
-                                                applyBuff.DurationValue = new ContextDurationValue() {
-                                                    DiceCountValue = new ContextValue(),
-                                                    BonusValue = new ContextValue()
-                                                };
-                                            })
-                                        );
-                                    })
-                                );
-                            })
-                        );
-                    });
-                    */
                     bp.AddComponent<AddFacts>(c => {
                         c.m_Facts = new BlueprintUnitFactReference[] { SneakAttack };
                     });

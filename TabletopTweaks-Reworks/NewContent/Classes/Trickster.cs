@@ -2764,6 +2764,9 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         c.m_IsSpendResource = true;
                         c.Amount = 1;
                     });
+                    TricksterTTTMadnessDomainBaseAbilityAttackRolls.m_Parent = bp.ToReference<BlueprintAbilityReference>();
+                    TricksterTTTMadnessDomainBaseAbilitySavingThrows.m_Parent = bp.ToReference<BlueprintAbilityReference>();
+                    TricksterTTTMadnessDomainBaseAbilitySkillChecks.m_Parent = bp.ToReference<BlueprintAbilityReference>();
                 });
                 var TricksterTTTMadnessDomainBaseFeature = Helpers.CreateBlueprint<BlueprintFeature>(TTTContext, "TricksterTTTMadnessDomainBaseFeature", bp => {
                     bp.ApplyVisualsAndBasicSettings(MadnessDomainBaseFeature);
