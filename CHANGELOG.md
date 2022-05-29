@@ -3,6 +3,8 @@
 	* Fixed issue with some trickster domain powers granting bonuses of the wrong type.
 * Lich
 	* Fixed Fear Control to use new owlcat DC logic.
+* Aeon
+	* Gazes now use new owlcat DC logic.
 
 ## Version 1.1.0
 * Mythic Abilities

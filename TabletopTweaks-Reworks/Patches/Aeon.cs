@@ -18,7 +18,6 @@ using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
-using Kingmaker.UnitLogic.Mechanics.Properties;
 using Kingmaker.UnitLogic.Parts;
 using Kingmaker.Utility;
 using System;
@@ -48,7 +47,6 @@ namespace TabletopTweaks.Reworks.Reworks {
                 PatchAeonGreaterBaneDamage();
                 PatchAeonGreaterBaneDispel();
                 PatchAeonGazeAction();
-                PatchAeonGazeDC();
                 PatchAeonGazeIcons();
             }
 
@@ -166,27 +164,6 @@ namespace TabletopTweaks.Reworks.Reworks {
                     .OfType<ContextActionDispelMagic>()
                     .ForEach(c => c.m_BuffType = ContextActionDispelMagic.BuffType.FromSpells);
                 TTTContext.Logger.LogPatch("Patched", AeonGreaterBaneBuff);
-            }
-            static void PatchAeonGazeDC() {
-                if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonGazeDC")) { return; }
-                var AeonGazeDCProperty = BlueprintTools.GetBlueprint<BlueprintUnitProperty>("4358468cba854a6db8f60909dacf8203");
-                
-                AeonGazeDCProperty.SetComponents();    
-                AeonGazeDCProperty.AddComponent<SimplePropertyGetter>(c => {
-                    c.Property = UnitProperty.MythicLevel;
-                    c.Settings = new PropertySettings() { 
-                        m_Progression = PropertySettings.Progression.MultiplyByModifier,
-                        m_StepLevel = 2
-                    };
-                });
-                AeonGazeDCProperty.AddComponent<SimplePropertyGetter>(c => {
-                    c.Property = UnitProperty.Level;
-                    c.Settings = new PropertySettings() {
-                        m_Progression = PropertySettings.Progression.Div2
-                    };
-                });
-                AeonGazeDCProperty.BaseValue = 0;
-                TTTContext.Logger.LogPatch("Patched", AeonGazeDCProperty);
             }
             static void PatchAeonGazeAction() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonGazeActionSystem")) { return; }
