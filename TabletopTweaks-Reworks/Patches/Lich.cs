@@ -331,7 +331,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                     .OfType<ContextActionSavingThrow>()
                     .ForEach(savingThrow => {
                         savingThrow.HasCustomDC = true;
-                        savingThrow.CustomDC = new ContextValue() { 
+                        savingThrow.CustomDC = new ContextValue() {
                             ValueType = ContextValueType.CasterCustomProperty,
                             m_CustomProperty = LichDCProperty
                         };
