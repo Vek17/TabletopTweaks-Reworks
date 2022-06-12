@@ -1,4 +1,4 @@
-## [![Download zip](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download zip")](https://github.com/Vek17/TabletopTweaks-Core/releases/latest/download/TabletopTweaks-Reworks.zip) Latest Release 
+## [![Download zip](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download zip")](https://github.com/Vek17/TabletopTweaks-Reworks/releases/latest/download/TabletopTweaks-Reworks.zip) Latest Release 
 
 ## This is a TabletopTweaks mod and requires [TabletopTweaks-Core](https://github.com/Vek17/TabletopTweaks-Core/releases) [![Download zip](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download zip")](https://github.com/Vek17/TabletopTweaks-Core/releases/latest/download/TabletopTweaks-Core.zip).
 
