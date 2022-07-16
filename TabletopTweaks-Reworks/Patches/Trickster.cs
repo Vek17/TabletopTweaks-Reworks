@@ -38,6 +38,8 @@ namespace TabletopTweaks.Reworks.Patches {
         static class BlueprintsCache_Init_Patch {
             static bool Initialized;
 
+            [HarmonyAfter(new string[] { "TabletopTweaks-Base" })]
+            [HarmonyPostfix]
             static void Postfix() {
                 if (Initialized) return;
                 Initialized = true;
@@ -486,6 +488,8 @@ namespace TabletopTweaks.Reworks.Patches {
                         .ForEach(selection => selection.RemoveFeatures(feature => {
                             var prerequisite = feature.GetComponent<PrerequisitePlayerHasFeature>();
                             if (prerequisite == null) { return false; }
+                            var test = prerequisite.Feature == TricksterPerceptionTier2Feature;
+                            Main.TTTContext.Logger.Log($"REMOVING TRICKSTER FEATS: {selection.name} - {feature.name} - {prerequisite.Feature.name} - {test}");
                             return prerequisite.Feature == TricksterPerceptionTier2Feature;
                         }));
 
