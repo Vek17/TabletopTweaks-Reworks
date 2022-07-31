@@ -122,6 +122,17 @@
       "esES": null
     },
     {
+      "Key": "9552eff129214ad0b284c0a9a79b5ec4",
+      "SimpleName": "EclipseChillFeature.Description",
+      "ProcessTemplates": true,
+      "enGB": "For a number of rounds equal to 3 + half his mythic rank, a Lich can imbue all spells he casts with the powers of the Eclipse chill. Creatures affected by such spells must pass a Fortitude saving throw (DC = 10 + 1/2 character level + your mythic rank + your highest stat bonus) or become blinded and suffer (2d8 + mythic rank) cold damage, becoming vulnerable to cold and negative energy until the end of the combat.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "546c073ad1304a019738119cd5616079",
       "SimpleName": "EclipseChillFeature.Description",
       "ProcessTemplates": true,
@@ -229,6 +240,17 @@
       "deDE": null,
       "frFR": null,
       "zhCN": "你的神话之力加持下的偷袭攻击无比致命。\n你的偷袭骰比通常大一级。",
+      "esES": null
+    },
+    {
+      "Key": "fce492209a4746af84735faa482b8949",
+      "SimpleName": "TaintedSneakAttackFeature.Description",
+      "ProcessTemplates": true,
+      "enGB": "Whenever Lich lands a successful sneak attack, the enemy must pass Fortitude saving throw (DC = 10 + 1/2 character level + your mythic rank + your highest stat bonus) or become tainted. The tainted creature is vulnerable to all weapon and elemental damage, as well as suffers a –2 penalty on all attack rolls and weapon damage rolls, until the end of the combat.\nAdditionally, Lich's sneak attack damage is increased by 1d6.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
       "esES": null
     },
     {
@@ -397,6 +419,17 @@
       "esES": null
     },
     {
+      "Key": "d2fe43f4876b4fb5bf8719426c034fc9",
+      "SimpleName": "TricksterPersuasion3Buff.Description",
+      "ProcessTemplates": true,
+      "enGB": "Creature has a 50% chance to attack the nearest target each turn and suffers pentalities to its AC, spell resistance, and saving throws equal to your mythic rank.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "ddf9603818a845cbad892ec53b728312",
       "SimpleName": "TricksterPersuasion3Buff.Name",
       "ProcessTemplates": false,
@@ -416,6 +449,17 @@
       "deDE": null,
       "frFR": null,
       "zhCN": "你如此善于挫败你的敌人，以致他们伤害你的意愿动摇了。受你挫败士气能力影响的敌人必须进行DC=10+你的说服等级的意志豁免检定，失败将陷入恍惚，持续一轮。此外，当你成功地使敌人士气低落时，他们的攻击和伤害骰将受到1 +一半你的神话等级的额外惩罚。",
+      "esES": null
+    },
+    {
+      "Key": "f8eff105190e49c383bb4e9883166c2c",
+      "SimpleName": "TricksterPersuasionTier3Feature.Description",
+      "ProcessTemplates": true,
+      "enGB": "You are so good at demoralizing your enemies that they panic and fail to defend themselves.\nEnemies affected by your demoralize have a 50% chance to attack the nearest target instead of acting normally. Additionally, when you successfully demoralize an enemy they take an additional penalty to thier AC, spell resistance, and saving throws equal to your mythic rank.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
       "esES": null
     },
     {
