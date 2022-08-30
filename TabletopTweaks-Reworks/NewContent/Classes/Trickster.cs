@@ -5515,7 +5515,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
 
             var TricksterPerception3EffectBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "TricksterPerception3EffectBuff", bp => {
                 bp.m_Flags = BlueprintBuff.Flags.HiddenInUi;
-                bp.SetName(TTTContext, "Aeon Bane Increase Resource Feature");
+                bp.SetName(TTTContext, "Perception 3 Effect");
                 bp.SetDescription(TTTContext, "");
                 bp.IsClassFeature = true;
                 bp.AddComponent<AddFactsFromCaster>(c => {
@@ -5616,8 +5616,8 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             });
             var TricksterPersuasion3Buff = SongOfDiscordBuff.CreateCopy(TTTContext, "TricksterPersuasion3Buff", bp => {
                 bp.SetName(TTTContext, "Trickster Persuasion 3");
-                bp.SetDescription(TTTContext, "Creature has a 50% chance to attack the nearest target each turn " +
-                    "and suffers pentalities to its AC, spell resistance, and saving throws equal to your mythic rank.");
+                bp.SetDescription(TTTContext, "Creature has a 50% chance to attack the nearest target each turn." +
+                    "Additionally they suffer pentalities to AC and spell resistance equal to equal to your mythic rank, as well as a penalty to saving throws equal to 1 + half your mythic rank.");
                 bp.m_Icon = Icon_TricksterPersausion;
                 bp.Stacking = StackingType.Prolong;
                 bp.IsClassFeature = true;
@@ -5638,7 +5638,8 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 bp.AddComponent<AddContextStatBonus>(c => {
                     c.Stat = StatType.SaveFortitude;
                     c.Value = new ContextValue() {
-                        ValueType = ContextValueType.Rank
+                        ValueType = ContextValueType.Rank,
+                        ValueRank = AbilityRankType.StatBonus
                     };
                     c.Descriptor = ModifierDescriptor.UntypedStackable;
                     c.Multiplier = -1;
@@ -5646,7 +5647,8 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 bp.AddComponent<AddContextStatBonus>(c => {
                     c.Stat = StatType.SaveReflex;
                     c.Value = new ContextValue() {
-                        ValueType = ContextValueType.Rank
+                        ValueType = ContextValueType.Rank,
+                        ValueRank = AbilityRankType.StatBonus
                     };
                     c.Descriptor = ModifierDescriptor.UntypedStackable;
                     c.Multiplier = -1;
@@ -5654,14 +5656,22 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 bp.AddComponent<AddContextStatBonus>(c => {
                     c.Stat = StatType.SaveWill;
                     c.Value = new ContextValue() {
-                        ValueType = ContextValueType.Rank
+                        ValueType = ContextValueType.Rank,
+                        ValueRank = AbilityRankType.StatBonus
                     };
                     c.Descriptor = ModifierDescriptor.UntypedStackable;
                     c.Multiplier = -1;
                 });
                 bp.AddContextRankConfig(c => {
                     c.m_BaseValueType = ContextRankBaseValueType.MythicLevel;
+                    c.m_Type = AbilityRankType.StatBonus;
                     c.m_Progression = ContextRankProgression.AsIs;
+                    c.m_StepLevel = 2;
+                });
+                bp.AddContextRankConfig(c => {
+                    c.m_BaseValueType = ContextRankBaseValueType.MythicLevel;
+                    c.m_Type = AbilityRankType.Default;
+                    c.m_Progression = ContextRankProgression.OnePlusDivStep;
                     c.m_StepLevel = 2;
                 });
             });

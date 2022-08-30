@@ -133,17 +133,6 @@
       "esES": null
     },
     {
-      "Key": "546c073ad1304a019738119cd5616079",
-      "SimpleName": "EclipseChillFeature.Description",
-      "ProcessTemplates": true,
-      "enGB": "For a number of rounds equal to 3 + half his mythic rank, a Lich can imbue all spells he casts with the powers of the Eclipse chill. Creatures affected by such spells must pass a Fortitude saving throw (DC = 10 + 1/2 character level + twice your mythic rank) or become blinded and suffer (2d8 + mythic rank) cold damage, becoming vulnerable to cold and negative energy until the end of the combat.",
-      "ruRU": null,
-      "deDE": null,
-      "frFR": null,
-      "zhCN": "在相当于他神话等级的3 +一半的回合内，巫妖可以在他所施放的所有法术中注入极寒的力量。受此法术影响的生物必须通过一次强韧豁免(DC = 10 + 1/2人物等级+ 2倍你的神话等级)，否则就会目盲并遭受(2d8 +神话等级)寒冷伤害，在战斗结束前对寒冷和负能量易伤。",
-      "esES": null
-    },
-    {
       "Key": "1e102e5c918f4a2fa89c594a2bb13145",
       "SimpleName": "ElementalBarrage.Description",
       "ProcessTemplates": true,
@@ -254,17 +243,6 @@
       "esES": null
     },
     {
-      "Key": "9f6b87e10eec4826a6b4d60d9b5af448",
-      "SimpleName": "TaintedSneakAttackFeature.Description",
-      "ProcessTemplates": true,
-      "enGB": "Whenever Lich lands a successful sneak attack, the enemy must pass Fortitude saving throw (DC = 10 + 1/2 character level + twice your mythic rank) or become tainted. The tainted creature is vulnerable to all weapon and elemental damage, as well as suffers a –2 penalty on all attack rolls and weapon damage rolls, until the end of the combat.\nAdditionally, Lich's sneak attack damage is increased by 1d6.",
-      "ruRU": null,
-      "deDE": null,
-      "frFR": null,
-      "zhCN": "每当巫妖成功发动偷袭时，敌人必须通过强韧豁免(DC = 10 + 1/2人物等级+两倍你的神话等级)，否则就会被污染。被污染的生物易受所有武器和元素伤害，并在所有攻击骰和武器伤害骰上受到-2惩罚，直到战斗结束。此外，巫妖的偷袭伤害增加1d6。",
-      "esES": null
-    },
-    {
       "Key": "3ecb83d4d4204f05adc85a68b2e892df",
       "SimpleName": "TricksterAthleticsTier1Feature.Name",
       "ProcessTemplates": false,
@@ -353,6 +331,17 @@
       "esES": null
     },
     {
+      "Key": "c2ee3da6d49c4cf3b33618cd5eaca90e",
+      "SimpleName": "TricksterPerception3EffectBuff.Name",
+      "ProcessTemplates": false,
+      "enGB": "Perception 3 Effect",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "81b5ad07933441b387bb81430aff461e",
       "SimpleName": "TricksterPerceptionTier1Feature.Description",
       "ProcessTemplates": true,
@@ -408,21 +397,10 @@
       "esES": null
     },
     {
-      "Key": "ca565edd40824f2c8c2019ebdcf22e15",
+      "Key": "1864ff6d24d04b76bdf3c56bde03ab0a",
       "SimpleName": "TricksterPersuasion3Buff.Description",
       "ProcessTemplates": true,
-      "enGB": "Creature has a 50% chance to attack the nearest target each turn and suffers pentalities to its AC and Saves equal to your mythic rank.",
-      "ruRU": null,
-      "deDE": null,
-      "frFR": null,
-      "zhCN": "该生物每回合有50%的机会攻击最近的目标，其AC和豁免受到等于你的神话等级的减值。",
-      "esES": null
-    },
-    {
-      "Key": "d2fe43f4876b4fb5bf8719426c034fc9",
-      "SimpleName": "TricksterPersuasion3Buff.Description",
-      "ProcessTemplates": true,
-      "enGB": "Creature has a 50% chance to attack the nearest target each turn and suffers pentalities to its AC, spell resistance, and saving throws equal to your mythic rank.",
+      "enGB": "Creature has a 50% chance to attack the nearest target each turn.Additionally they suffer pentalities to AC and spell resistance equal to equal to your mythic rank, as well as a penalty to saving throws equal to 1 + half your mythic rank.",
       "ruRU": null,
       "deDE": null,
       "frFR": null,
@@ -452,25 +430,14 @@
       "esES": null
     },
     {
-      "Key": "f8eff105190e49c383bb4e9883166c2c",
+      "Key": "a29500ae45184f6d86d8786e01a63d4d",
       "SimpleName": "TricksterPersuasionTier3Feature.Description",
       "ProcessTemplates": true,
-      "enGB": "You are so good at demoralizing your enemies that they panic and fail to defend themselves.\nEnemies affected by your demoralize have a 50% chance to attack the nearest target instead of acting normally. Additionally, when you successfully demoralize an enemy they take an additional penalty to thier AC, spell resistance, and saving throws equal to your mythic rank.",
+      "enGB": "You are so good at demoralizing your enemies that they panic and fail to defend themselves.\nEnemies affected by your demoralize have a 50% chance to attack the nearest target instead of acting normally. Additionally, when you successfully demoralize an enemy they take an additional penalty to thier AC and spell resistance equal to your mythic rank, as well as a penalty all saving throws equal to 1 + half your mythic rank.",
       "ruRU": null,
       "deDE": null,
       "frFR": null,
       "zhCN": null,
-      "esES": null
-    },
-    {
-      "Key": "f2ec2844aa704d74812445b0e880ffb5",
-      "SimpleName": "TricksterPersuasionTier3Feature.Description",
-      "ProcessTemplates": true,
-      "enGB": "You are so good at demoralizing your enemies that they panic and fail to defend themselves.\nEnemies affected by your demoralize have a 50% chance to attack the nearest target instead of acting normally. Additionally, when you successfully demoralize an enemy they take an additional penalty to thier AC and saving throws equal to your mythic rank.",
-      "ruRU": null,
-      "deDE": null,
-      "frFR": null,
-      "zhCN": "你如此善于挫败你的敌人，以至于他们惊慌失措，无法保护自己。受你挫败士气能力影响的敌人将有50%的几率攻击最近的目标，而不是正常行动。此外，当你成功地使敌人士气低落时，他们会的AC和豁免获得等于你神话等级的减值。",
       "esES": null
     },
     {

@@ -1,3 +1,7 @@
+## Version 1.1.2
+* Release for 1.4.0
+* Trickster Persuasion DCs adjusted
+
 ## Version 1.1.1
 * Bugfixes
 	* Fixed issue with some trickster domain powers granting bonuses of the wrong type.
