@@ -42,6 +42,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 var ElementalBarrageColdBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("c5e9031099d3e8d4788d3e51f7ffb8a0");
                 var ElementalBarrageElectricityBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("0b8ed343b989bbb4c8d059366a7c2d01");
                 var ElementalBarrageFireBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("7db8ad7b035c2f244951cbef3c9909df");
+                var ElementalBarrageSonicBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("49aebc21c7b9406da84c545ed0b8b5b3");
 
                 ElementalBarrage.SetDescription(TTTContext, "You've mastered the art of raining elemental spells on your foes, " +
                     "and found a way to empower them by combining different elements.\n" +
@@ -58,16 +59,19 @@ namespace TabletopTweaks.Reworks.Reworks {
                 AddOutgoingDamageTrigger(ElementalBarrage, ElementalBarrageColdBuff, DamageEnergyType.Cold);
                 AddOutgoingDamageTrigger(ElementalBarrage, ElementalBarrageElectricityBuff, DamageEnergyType.Electricity);
                 AddOutgoingDamageTrigger(ElementalBarrage, ElementalBarrageFireBuff, DamageEnergyType.Fire);
+                AddOutgoingDamageTrigger(ElementalBarrage, ElementalBarrageFireBuff, DamageEnergyType.Sonic);
 
-                AddIncomingDamageTriggers(ElementalBarrageAcidBuff, DamageEnergyType.Cold, DamageEnergyType.Electricity, DamageEnergyType.Fire);
-                AddIncomingDamageTriggers(ElementalBarrageColdBuff, DamageEnergyType.Acid, DamageEnergyType.Electricity, DamageEnergyType.Fire);
-                AddIncomingDamageTriggers(ElementalBarrageElectricityBuff, DamageEnergyType.Acid, DamageEnergyType.Cold, DamageEnergyType.Fire);
-                AddIncomingDamageTriggers(ElementalBarrageFireBuff, DamageEnergyType.Acid, DamageEnergyType.Cold, DamageEnergyType.Electricity);
+                AddIncomingDamageTriggers(ElementalBarrageAcidBuff, DamageEnergyType.Cold, DamageEnergyType.Electricity, DamageEnergyType.Fire, DamageEnergyType.Sonic);
+                AddIncomingDamageTriggers(ElementalBarrageColdBuff, DamageEnergyType.Acid, DamageEnergyType.Electricity, DamageEnergyType.Fire, DamageEnergyType.Sonic);
+                AddIncomingDamageTriggers(ElementalBarrageElectricityBuff, DamageEnergyType.Acid, DamageEnergyType.Cold, DamageEnergyType.Fire, DamageEnergyType.Sonic);
+                AddIncomingDamageTriggers(ElementalBarrageFireBuff, DamageEnergyType.Acid, DamageEnergyType.Cold, DamageEnergyType.Electricity, DamageEnergyType.Sonic);
+                AddIncomingDamageTriggers(ElementalBarrageSonicBuff, DamageEnergyType.Acid, DamageEnergyType.Cold, DamageEnergyType.Electricity, DamageEnergyType.Fire);
 
                 UpdateBuffVisability(ElementalBarrageAcidBuff, "acid");
                 UpdateBuffVisability(ElementalBarrageColdBuff, "cold");
                 UpdateBuffVisability(ElementalBarrageElectricityBuff, "electricity");
                 UpdateBuffVisability(ElementalBarrageFireBuff, "fire");
+                UpdateBuffVisability(ElementalBarrageSonicBuff, "sonic");
 
                 TTTContext.Logger.LogPatch("Patched", ElementalBarrage);
                 void AddOutgoingDamageTrigger(BlueprintFeature barrage, BlueprintBuff barrageBuff, DamageEnergyType trigger) {
@@ -78,6 +82,9 @@ namespace TabletopTweaks.Reworks.Reworks {
                         c.CheckAbilityType = true;
                         c.ApplyToAreaEffectDamage = true;
                         c.m_AbilityType = AbilityType.Spell;
+                        c.CheckDamageDealt = true;
+                        c.CompareType = CompareOperation.Type.Greater;
+                        c.TargetValue = 0;
                         c.Actions = Helpers.CreateActionList(
                             Helpers.Create<ContextActionApplyBuff>(a => {
                                 a.m_Buff = barrageBuff.ToReference<BlueprintBuffReference>();
@@ -102,6 +109,9 @@ namespace TabletopTweaks.Reworks.Reworks {
                         barrageBuff.AddComponent<AddIncomingDamageTrigger>(c => {
                             c.IgnoreDamageFromThisFact = true;
                             c.CheckEnergyDamageType = true;
+                            c.CheckDamageDealt = true;
+                            c.CompareType = CompareOperation.Type.Greater;
+                            c.TargetValue = 0;
                             c.EnergyType = trigger;
                             c.Actions = Helpers.CreateActionList(
                                 Helpers.Create<ContextActionDealDamageTTT>(a => {

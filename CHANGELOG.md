@@ -1,3 +1,10 @@
+## Version 1.2.0
+* Mythic Feats
+	* School Mastery
+		* Now increases CL by 2 instead of 1 for selected school.
+* Azata
+	* Azata songs are now move actions instead of standard actions.
+
 ## Version 1.1.2
 * Release for 1.4.0
 * Trickster Persuasion DCs adjusted

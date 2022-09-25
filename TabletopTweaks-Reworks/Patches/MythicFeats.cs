@@ -1,7 +1,12 @@
 ﻿using HarmonyLib;
+using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.Designers.Mechanics.Facts;
+using Kingmaker.Enums;
 using Kingmaker.UnitLogic.FactLogic;
+using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.NewComponents.AbilitySpecific;
 using TabletopTweaks.Core.Utilities;
 using static TabletopTweaks.Reworks.Main;
@@ -12,11 +17,14 @@ namespace TabletopTweaks.Reworks.Reworks {
         static class BlueprintsCache_Init_Patch {
             static bool Initialized;
 
+            [HarmonyAfter(new string[] { "TabletopTweaks-Base" })]
+            [HarmonyPostfix]
             static void Postfix() {
                 if (Initialized) return;
                 Initialized = true;
                 TTTContext.Logger.LogHeader("Reworking Mythic Feats");
                 PatchMythicSneakAttack();
+                PatchSchoolMastery();
             }
             static void PatchMythicSneakAttack() {
                 if (TTTContext.Homebrew.MythicFeats.IsDisabled("MythicSneakAttack")) { return; }
@@ -29,6 +37,25 @@ namespace TabletopTweaks.Reworks.Reworks {
                     "Benifit: Your sneak attack dice are one size larger than normal. " +
                     "For example if you would normally roll d6s for sneak attacks you would roll d8s instead.");
                 TTTContext.Logger.LogPatch("Patched", SneakAttackerMythicFeat);
+            }
+            static void PatchSchoolMastery() {
+                if (TTTContext.Homebrew.MythicFeats.IsDisabled("SchoolMastery")) { return; }
+                var SchoolMasteryMythicFeat = BlueprintTools.GetBlueprint<BlueprintParametrizedFeature>("ac830015569352b458efcdfae00a948c");
+
+                SchoolMasteryMythicFeat.TemporaryContext(bp => {
+                    bp.SetDescription(TTTContext, "Select one school of magic. All spells you cast that belong to this school have their caster level increased by 2.");
+                    if (bp.GetComponent<SchoolMasteryParametrized>()) {
+                        bp.RemoveComponents<SchoolMasteryParametrized>();
+                        bp.AddComponent<BonusCasterLevelParametrized>(c => {
+                            c.Bonus = 2;
+                            c.Descriptor = ModifierDescriptor.UntypedStackable;
+                        });
+                    } else if (bp.GetComponent<BonusCasterLevelParametrized>()) {
+                        bp.GetComponent<BonusCasterLevelParametrized>().Bonus = 2;
+                    }
+                });
+
+                TTTContext.Logger.LogPatch("Patched", SchoolMasteryMythicFeat);
             }
         }
     }

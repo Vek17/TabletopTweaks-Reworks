@@ -44,6 +44,11 @@
         "Enabled": true,
         "Homebrew": true,
         "Description": "Rework of Mythic Sneak Attack to increase the size of the damage dice instead of adding an extra dice."
+      },
+      "SchoolMastery": {
+        "Enabled": true,
+        "Homebrew": true,
+        "Description": "School Mastery now increases CL by 2 instead of 1."
       }
     },
     "IsExpanded": true
@@ -114,6 +119,11 @@
           "Enabled": true,
           "Homebrew": true,
           "Description": ""
+        },
+        "AzataSongActions": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Azata songs are now move actions instead of standard actions."
         },
         "AzataSongToggles": {
           "Enabled": true,

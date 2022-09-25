@@ -608,7 +608,7 @@ namespace TabletopTweaks.Reworks.Patches {
                         "You can enter stealth during combat as a move action. This stealth is not broken by a single enemy " +
                         "detecting you — instead it acts similar to the invisibility spell, giving you total concealment against " +
                         "all creatures that did not succeed on a Perception check against you.\n" +
-                        "This \"invisibility\" cannot be seen through by divination magic such as true seeing, see invisability, or thoughtsense.");
+                        "This \"invisibility\" cannot be seen through by divination magic such as true seeing, see invisibility, or thoughtsense.");
                     TricksterStealthTier1Buff.AddComponent<AddFacts>(c => {
                         c.m_Facts = new BlueprintUnitFactReference[] { DivinationImmunityFeature };
                     });

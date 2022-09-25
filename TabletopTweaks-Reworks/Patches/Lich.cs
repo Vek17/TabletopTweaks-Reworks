@@ -384,6 +384,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 });
                 TaintedSneakAttackBuff.TemporaryContext(bp => {
                     bp.m_Description = TaintedSneakAttackFeature.m_Description;
+                    bp.m_Flags &= ~BlueprintBuff.Flags.StayOnDeath;
                     bp.RemoveComponents<AddDamageTypeVulnerability>();
                     bp.AddComponent<AddDamageTypeVulnerability>(c => {
                         c.PhyscicalForm = true;

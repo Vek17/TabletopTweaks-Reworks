@@ -13,6 +13,7 @@ using System.Linq;
 using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
 using TabletopTweaks.Core.Utilities;
+using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 using static TabletopTweaks.Reworks.Main;
 
 namespace TabletopTweaks.Reworks.Reworks {
@@ -27,6 +28,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 TTTContext.Logger.LogHeader("Azata Rework");
 
                 PatchAzataPerformanceResource();
+                PatchAzataSongActions();
                 PatchAzataSongToggles();
                 PatchFavorableMagic();
                 PatchIncredibleMight();
@@ -46,6 +48,25 @@ namespace TabletopTweaks.Reworks.Reworks {
                     .ToArray();
                 AzataPerformanceResource.m_MaxAmount.m_Class = characterClasses;
                 TTTContext.Logger.LogPatch("Patched", AzataPerformanceResource);
+            }
+
+            static void PatchAzataSongActions() {
+                if (Main.TTTContext.Homebrew.MythicReworks.Azata.IsDisabled("AzataSongActions")) { return; }
+
+                var SongOfHeroicResolveToggleAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("a95449d0ea0714a4ea5cffc83fc7624f");
+                var SongOfBrokenChainsToggleAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("ac08e4d23e2928148a7b4109e9485e6a");
+                var SongOfDefianceToggleAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("661ad9ab9c8af2e4c86a7cfa4c2be3f2");
+                var SongOfCourageousDefenderToggleAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("66864464f529c264f8c08ec2f4bf1cb5");
+
+                SongOfHeroicResolveToggleAbility.m_ActivateWithUnitCommand = CommandType.Move;
+                SongOfBrokenChainsToggleAbility.m_ActivateWithUnitCommand = CommandType.Move;
+                SongOfDefianceToggleAbility.m_ActivateWithUnitCommand = CommandType.Move;
+                SongOfCourageousDefenderToggleAbility.m_ActivateWithUnitCommand = CommandType.Move;
+
+                TTTContext.Logger.LogPatch("Patched", SongOfHeroicResolveToggleAbility);
+                TTTContext.Logger.LogPatch("Patched", SongOfBrokenChainsToggleAbility);
+                TTTContext.Logger.LogPatch("Patched", SongOfDefianceToggleAbility);
+                TTTContext.Logger.LogPatch("Patched", SongOfCourageousDefenderToggleAbility);
             }
 
             static void PatchAzataSongToggles() {
