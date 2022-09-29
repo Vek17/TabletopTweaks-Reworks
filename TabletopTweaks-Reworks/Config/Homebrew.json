@@ -64,6 +64,11 @@
           "Homebrew": true,
           "Description": "Updates Aeon Bane's Icon."
         },
+        "AeonBaneAction": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Aeon Bane is now a free action instead of a swift."
+        },
         "AeonBaneSpellResistance": {
           "Enabled": true,
           "Homebrew": true,
@@ -77,7 +82,7 @@
         "AeonGazeActionSystem": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Aeon Gaze now functions like Inquisitor Judgments where multiple can be activated for the same resouce usage."
+          "Description": "Aeon Gaze now functions like Inquisitor Judgments where multiple can be activated for the same resouce usage at swift action speed."
         },
         "AeonGazeIcons": {
           "Enabled": true,

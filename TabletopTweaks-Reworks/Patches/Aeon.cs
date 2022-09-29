@@ -40,6 +40,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 Initialized = true;
                 TTTContext.Logger.LogHeader("Aeon Rework");
 
+                PatchAeonBaneActions();
                 PatchAeonBaneIcon();
                 PatchAeonBaneSpellResistance();
                 PatchAeonBaneUses();
@@ -50,8 +51,16 @@ namespace TabletopTweaks.Reworks.Reworks {
                 PatchAeonGazeIcons();
             }
 
+            static void PatchAeonBaneActions() {
+                if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonBaneAction")) { return; }
+
+                var AeonBaneAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("67fb31f553f2bb14bbfae0b1040169f1");
+                AeonBaneAbility.m_ActivateWithUnitCommand = UnitCommand.CommandType.Free;
+                TTTContext.Logger.LogPatch("Patched", AeonBaneAbility);
+            }
             static void PatchAeonBaneIcon() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonBaneIcon")) { return; }
+
                 var Icon_AeonBane = AssetLoader.LoadInternal(TTTContext, "Abilities", "Icon_AeonBane.png");
                 var AeonBaneFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("0b25e8d8b0488c84c9b5714e9ca0a204");
                 var AeonBaneAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("67fb31f553f2bb14bbfae0b1040169f1");
@@ -174,6 +183,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                     .Select(gaze => gaze.Get() as BlueprintActivatableAbility)
                     .Where(gaze => gaze != null)
                     .ForEach(gaze => {
+                        gaze.m_ActivateWithUnitCommand = UnitCommand.CommandType.Swift;
                         var spendLogic = gaze.GetComponent<ActivatableAbilityResourceLogic>();
                         if (spendLogic != null) {
                             spendLogic.SpendType = ActivatableAbilitySpendLogic.StandardSpendType.AeonGaze.ToResourceType();
