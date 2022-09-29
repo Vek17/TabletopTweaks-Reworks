@@ -1,9 +1,13 @@
 ## Version 1.2.0
+* Release for 2.0.0
 * Mythic Feats
 	* School Mastery
 		* Now increases CL by 2 instead of 1 for selected school.
 * Azata
 	* Azata songs are now move actions instead of standard actions.
+* Aeon
+	* Aeon Gazes are now a swift action but function like judement allowing multiple gazes to be activated with the same action.
+	* Aeon Bane is now a free action.
 
 ## Version 1.1.2
 * Release for 1.4.0
