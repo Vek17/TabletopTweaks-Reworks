@@ -208,12 +208,12 @@ namespace TabletopTweaks.Reworks.Reworks {
                         bp.Range = AbilityRange.Personal;
                         bp.GetComponent<AbilityEffectRunAction>().TemporaryContext(c => {
                             c.Actions = Helpers.CreateActionList(
-                                new ContextActionApplyBuff() { 
+                                new ContextActionApplyBuff() {
                                     m_Buff = SongsOfSteelBuff,
-                                    DurationValue = new ContextDurationValue() { 
+                                    DurationValue = new ContextDurationValue() {
                                         Rate = DurationRate.TenMinutes,
                                         DiceCountValue = 0,
-                                        BonusValue = new ContextValue() { 
+                                        BonusValue = new ContextValue() {
                                             ValueType = ContextValueType.Rank
                                         }
                                     }
@@ -226,8 +226,8 @@ namespace TabletopTweaks.Reworks.Reworks {
                         bp.AddComponent<AbilityTargetsAround>(c => {
                             c.m_Radius = 60.Feet();
                             c.m_TargetType = TargetType.Ally;
-                            c.m_Condition = new ConditionsChecker() { 
-                                Conditions = new Condition[] { 
+                            c.m_Condition = new ConditionsChecker() {
+                                Conditions = new Condition[] {
                                     new ContextConditionIsPartyMember()
                                 }
                             };
@@ -321,7 +321,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 var LifeBondingFriendshipSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("cfad18f581584ac4ba066df067956477");
                 var LifeBondingFriendshipSelection1 = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("69a33d6ced23446e819667149d088898");
 
-                LifeBondingFriendshipFeature.TemporaryContext(bp => { 
+                LifeBondingFriendshipFeature.TemporaryContext(bp => {
                     bp.SetDescription(TTTContext, "Azata chooses one teamwork feat during this and next mythic rank up. " +
                         "She shares the effects of all teamwork feats she has with allies within a 50-foot area. Azata's Charisma inspires her allies so " +
                         "much that even when their hit points drop below 0 they continue to fight, even though they are still considered dead (or unconscious) " +
@@ -347,7 +347,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 var SupersonicSpeedHasteBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("89b097012ac11d74db2a54aa5d28c150");
                 var SupersonicSpeedFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("505456aa17dd18a4e8bd8172811a4fdc");
 
-                SupersonicSpeedFeature.TemporaryContext(bp => { 
+                SupersonicSpeedFeature.TemporaryContext(bp => {
                     bp.SetDescription(TTTContext, "Azata is able to make one additional attack an is always under the effect of haste spell, as long as she is engaged in combat. " +
                         "All melee and ranged weapon attacks against her have a 20% miss chance. All targeted spells aimed at her have a 10% miss chance. " +
                         "All the damage from area attacks against her is halved, even if previously reduced by saving throw." +
@@ -357,7 +357,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                         c.Haste = false;
                     });
                 });
-                    
+
                 TTTContext.Logger.LogPatch("Patched", SupersonicSpeedHasteBuff);
                 TTTContext.Logger.LogPatch("Patched", SupersonicSpeedFeature);
             }
