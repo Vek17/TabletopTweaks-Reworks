@@ -232,6 +232,50 @@
       "esES": null
     },
     {
+      "Key": "d7d1dd9f3df247cc94b2369151c80cda",
+      "SimpleName": "LifeBondingFriendshipFeature.Description",
+      "ProcessTemplates": true,
+      "enGB": "Azata chooses one teamwork feat during this and next mythic rank up. She shares the effects of all teamwork feats she has with allies within a 50-foot area. Azata's Charisma inspires her allies so much that even when their hit points drop below 0 they continue to fight, even though they are still considered dead (or unconscious) for all effects and can be cured by breath of life or similar spells as per spell description. After the encounter or upon receiving a total number of attacks equal to Azata's Mythic Rank shared among all allies, the allies in this state fall dead (or unconscious). If all of the Azata's allies die that way, she becomes fully drained and dies.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "7aecb266e4314db7a60599601e5f66a6",
+      "SimpleName": "RainbowArrows.Description",
+      "ProcessTemplates": true,
+      "enGB": "Azata creates a rainbow arrow that jumps from target to target up to one time per 4 caster levels, dealing 1d12 per 2 caster levels damage with one energy randomly chosen between acid, cold, electricity, fire, or sound. Additionally if the enemy fails a will saving throw they are randomly blinded, dazed, nauseated, slowed, or stunned for 3 rounds.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "d7a00812393448cd8f4c55f55564fc3b",
+      "SimpleName": "RainbowArrows.SavingThrow",
+      "ProcessTemplates": false,
+      "enGB": "Will partial",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "1e57e16ae07b4872b65bcae85b6bc3bb",
+      "SimpleName": "SchoolMasteryMythicFeat.Description",
+      "ProcessTemplates": true,
+      "enGB": "Select one school of magic. All spells you cast that belong to this school have their caster level increased by 2.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "e6ca0c339d5f42588fadc09a4c853ba6",
       "SimpleName": "SneakAttackerMythicFeat.Description",
       "ProcessTemplates": true,
@@ -240,6 +284,39 @@
       "deDE": null,
       "frFR": null,
       "zhCN": "你的神话之力加持下的偷袭攻击无比致命。\n你的偷袭骰比通常大一级。",
+      "esES": null
+    },
+    {
+      "Key": "59fb53187e4c4b6f89cc68b0884ecfd1",
+      "SimpleName": "SongsOfSteel.Description",
+      "ProcessTemplates": true,
+      "enGB": "This spell grants party members additional (2d6 + Azata's caster level) sonic damage for their first weapon attack during a round, a +2 bonus to caster level checks made to overcome spell resistance, a +2 bonus to all concentration checks, and rises the DC of the saving throws against all their spells and abilities by 2.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "bd743e4281a3426990c51137d1844f63",
+      "SimpleName": "SongsOfSteel.Duration",
+      "ProcessTemplates": false,
+      "enGB": "10 minutes/level",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "895ae5031b5a41f288e3a8adec3e6fb8",
+      "SimpleName": "SupersonicSpeedFeature.Description",
+      "ProcessTemplates": true,
+      "enGB": "Azata is able to make one additional attack an is always under the effect of haste spell, as long as she is engaged in combat. All melee and ranged weapon attacks against her have a 20% miss chance. All targeted spells aimed at her have a 10% miss chance. All the damage from area attacks against her is halved, even if previously reduced by saving throw.\nNote: When character have miss chance and concealment at the same time, then only best bonus applied.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
       "esES": null
     },
     {
@@ -463,6 +540,17 @@
       "esES": null
     },
     {
+      "Key": "f6312e212b3f413bb106860c200b8c7c",
+      "SimpleName": "TricksterStealthTier1AbilityTarget.Description",
+      "ProcessTemplates": true,
+      "enGB": "You can enter stealth during combat as a move action. This stealth is not broken by a single enemy detecting you — instead it acts similar to the invisibility spell, giving you total concealment against all creatures that did not succeed on a Perception check against you.\nThis \"invisibility\" cannot be seen through by divination magic such as true seeing, see invisability, or thoughtsense.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "56736996bb724983a891859bb6aba9fd",
       "SimpleName": "TricksterStealthTier1AbilityTarget.Name",
       "ProcessTemplates": false,
@@ -471,6 +559,17 @@
       "deDE": null,
       "frFR": null,
       "zhCN": "隐匿1阶",
+      "esES": null
+    },
+    {
+      "Key": "57290f5ef78a44afb148e7ebc730fe5e",
+      "SimpleName": "TricksterStealthTier1Feature.Description",
+      "ProcessTemplates": true,
+      "enGB": "You can easily slip into shadow at any time. You can enter stealth during combat as a move action. This stealth is not broken by a single enemy detecting you — instead it acts similar to the invisibility spell, giving you total concealment against all creatures that did not succeed on a Perception check against you.\nThis \"invisibility\" cannot be seen through by divination magic such as true seeing, see invisibility, or thoughtsense.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
       "esES": null
     },
     {
