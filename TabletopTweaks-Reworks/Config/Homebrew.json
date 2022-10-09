@@ -125,6 +125,11 @@
           "Homebrew": true,
           "Description": ""
         },
+        "AzataSpellList": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Azata spell list now contains all \"Subpath\" spells by default."
+        },
         "AzataSongActions": {
           "Enabled": true,
           "Homebrew": true,
@@ -143,12 +148,22 @@
         "ZippyMagic": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Zippy magic will now ignore some harmful effects."
+          "Description": "Zippy magic will now ignore some harmful effects and only works on spells."
         },
         "IncredibleMight": {
           "Enabled": true,
           "Homebrew": true,
           "Description": "Incredible Might now grants a mythic bonus isntead of a morale bonus."
+        },
+        "LifeBondingFriendship": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Life Bonding Friendship now scales with Mythic Rank instead of Charisma."
+        },
+        "SupersonicSpeed": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Supersonic Speed now grants an additonal attack in addtion to haste."
         }
       },
       "IsExpanded": true

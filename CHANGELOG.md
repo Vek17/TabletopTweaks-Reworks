@@ -1,3 +1,14 @@
+## Version 1.2.1
+* Azata
+	* Update Azata spell list to contain "subpath" spell nativly.
+	* Rainbow Arrows has been buffed to apply random debuffs on failed will save.
+	* Songs of Steel now lasts 10 minutes/CL instead of 1 round/CL and is a communal buff.
+	* Supersonic Speed now grants an additonal attack in addtion to haste
+	* Life Bonding Friendship now scales with Mythic Rank instead of Charisma.
+	* Zippy Magic now only works on spells.
+* Bugfixes
+	* Fixed issue where sonic damage was applying the wrong elemental barrage mark.
+
 ## Version 1.2.0
 * Release for 2.0.0
 * Mythic Feats
