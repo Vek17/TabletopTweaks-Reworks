@@ -145,6 +145,16 @@
           "Homebrew": true,
           "Description": "Favorable magic now works on reoccuring saves."
         },
+        "RainbowArrows": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Rainbow Arrows now applies random debuffs in addition to damage."
+        },
+        "SongsOfSteel": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Songs of Steel Now lasts 10 minutes/CL and is a communal buff."
+        },
         "ZippyMagic": {
           "Enabled": true,
           "Homebrew": true,

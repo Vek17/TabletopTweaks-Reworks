@@ -1,3 +1,6 @@
+## Version 1.2.1a
+* Added missing config options
+
 ## Version 1.2.1
 * Azata
 	* Update Azata spell list to contain "subpath" spell nativly.

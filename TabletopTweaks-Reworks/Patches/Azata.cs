@@ -107,6 +107,8 @@ namespace TabletopTweaks.Reworks.Reworks {
                 PatchSongsOfSteel();
 
                 void PatchRainbowArrows() {
+                    if (TTTContext.Homebrew.MythicReworks.Azata.IsDisabled("RainbowArrows")) { return; }
+
                     var RainbowArrows = BlueprintTools.GetBlueprint<BlueprintAbility>("88bb6f877c8185543850656a5f14e802");
                     var BlindnessBuff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("187f88d96a0ef464280706b63635f2af");
                     var Daze = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("d2e35b870e4ac574d9873b36402487e5");
@@ -196,6 +198,8 @@ namespace TabletopTweaks.Reworks.Reworks {
                     }
                 }
                 void PatchSongsOfSteel() {
+                    if (TTTContext.Homebrew.MythicReworks.Azata.IsDisabled("SongsOfSteel")) { return; }
+
                     var SongsOfSteel = BlueprintTools.GetBlueprint<BlueprintAbility>("f7b476555f96afe4b9ba6e7d56d3272a");
                     var SongsOfSteelBuff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("6867deda1eda183499ae61813c2f5ebb");
 
