@@ -488,7 +488,7 @@
       "Key": "1864ff6d24d04b76bdf3c56bde03ab0a",
       "SimpleName": "TricksterPersuasion3Buff.Description",
       "ProcessTemplates": true,
-      "enGB": "Creature has a 50% chance to attack the nearest target each turn.Additionally they suffer pentalities to AC and spell resistance equal to equal to your mythic rank, as well as a penalty to saving throws equal to 1 + half your mythic rank.",
+      "enGB": "Creature has a 50% chance to attack the nearest target each turn. Additionally they suffer pentalities to AC and spell resistance equal to equal to your mythic rank, as well as a penalty to saving throws equal to 1 + half your mythic rank.",
       "ruRU": null,
       "deDE": null,
       "frFR": null,

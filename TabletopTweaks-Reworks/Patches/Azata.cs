@@ -55,14 +55,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 if (TTTContext.Homebrew.MythicReworks.Azata.IsDisabled("AzataPerformanceResource")) { return; }
                 var AzataPerformanceResource = BlueprintTools.GetBlueprint<BlueprintAbilityResource>("83f8a1c45ed205a4a989b7826f5c0687");
 
-                BlueprintCharacterClassReference[] characterClasses = ResourcesLibrary
-                    .GetRoot()
-                    .Progression
-                    .CharacterClasses
-                    .Where(c => c != null)
-                    .Select(c => c.ToReference<BlueprintCharacterClassReference>())
-                    .ToArray();
-                AzataPerformanceResource.m_MaxAmount.m_Class = characterClasses;
+                AzataPerformanceResource.m_MaxAmount.m_Class = ClassTools.ClassReferences.AllClasses;
                 TTTContext.Logger.LogPatch("Patched", AzataPerformanceResource);
             }
             static void PatchAzataSpellList() {

@@ -1,3 +1,5 @@
+## Version 1.2.2
+
 ## Version 1.2.1a
 * Added missing config options
 
