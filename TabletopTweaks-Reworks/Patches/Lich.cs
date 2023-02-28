@@ -2,6 +2,7 @@
 using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Items.Weapons;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.ElementsSystem;
@@ -78,29 +79,20 @@ namespace TabletopTweaks.Reworks.Reworks {
 
                 DecayingTouchFeature.SetComponents();
                 DecayingTouchFeature.TemporaryContext(bp => {
-                    bp.AddComponent<AdditionalDiceOnAttack>(c => {
-                        c.OnHit = true;
-                        c.AllNaturalAndUnarmed = true;
-                        c.InitiatorConditions = new ConditionsChecker();
-                        c.TargetConditions = new ConditionsChecker() {
-                            Conditions = new Condition[] {
-                                new ContextConditionHasFact() {
-                                    m_Fact = PlantType,
-                                    Not = true
-                                }
-                            }
-                        };
-                        c.Value = new ContextDiceValue() {
-                            DiceType = DiceType.D6,
-                            DiceCountValue = 1,
-                            BonusValue = new ContextValue() {
-                                ValueType = ContextValueType.Rank
-                            },
-                        };
-                        c.DamageType = new DamageTypeDescription() {
-                            Type = DamageType.Energy,
-                            Energy = DamageEnergyType.Unholy
-                        };
+                    bp.AddComponent<AddAdditionalWeaponDamage>(c => {
+                        c.CheckWeaponGroup = true;
+                        c.Group = WeaponFighterGroup.Natural;
+                         c.Value = new ContextDiceValue() {
+                             DiceType = DiceType.D6,
+                             DiceCountValue = 1,
+                             BonusValue = new ContextValue() {
+                                 ValueType = ContextValueType.Rank
+                             }
+                         };
+                         c.DamageType = new DamageTypeDescription() {
+                             Type = DamageType.Energy,
+                             Energy = DamageEnergyType.Unholy
+                         };
                     });
                     bp.AddComponent<AdditionalDiceOnAttack>(c => {
                         c.OnHit = true;
@@ -115,7 +107,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                         };
                         c.Value = new ContextDiceValue() {
                             DiceType = DiceType.D6,
-                            DiceCountValue = 2,
+                            DiceCountValue = 1,
                             BonusValue = new ContextValue() {
                                 ValueType = ContextValueType.Rank
                             },
