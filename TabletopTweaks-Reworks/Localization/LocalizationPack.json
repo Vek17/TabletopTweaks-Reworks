@@ -15,7 +15,7 @@
       "Key": "568f39376f2b4c2ab1745fb57ff1b37f",
       "SimpleName": "AbundantCastingGreater.Description",
       "ProcessTemplates": true,
-      "enGB": "You've mastered a way to increase the number of spells you can cast per day.\nBenefit: You can cast four more spells per day of 7th, 8th, and 9th ranks each. This ability does not affect mythic spellbooks.",
+      "enGB": "You've mastered a way to increase the number of spells you can cast per day.\nBenefit: You can cast two more spells per day of 7th, 8th, and 9th ranks each. This ability does not affect mythic spellbooks.",
       "ruRU": "Вы научились увеличивать количество заклинаний, которое вы можете подготовить на день.\nПреимущество: вы можете сотворить по 4 дополнительных заклинания 7-го, 8-го и 9-го уровней. Эта способность не влияет на мифические книги заклинаний.",
       "deDE": null,
       "frFR": null,
@@ -221,14 +221,14 @@
       "esES": null
     },
     {
-      "Key": "54c0c938a7ed4251b67aae834df168a1",
+      "Key": "99210b9b3de54b3fa698f670930c7cea",
       "SimpleName": "IncredibleMightFeature.Description",
       "ProcessTemplates": true,
-      "enGB": "Azata gains a bonus equal to her mythic rank on attack and damage rolls. Whenever she hits with a charge attack or confirms a critical hit, the target has to pass a Fortitude saving throw, with DC equal to 10 + your mythic rank + strength modifier. If the target fails a saving throw one of the following action happens at random:\nEnemy is stunned for 1d4 rounds (30%)\nEnemy is prone for 1d4 rounds (20%)\nEnemy is pushed away 15 feet and is stunned for 1d4 rounds (20%)\nEnemy is crippled till the end of the fight: they can no longer move and suffers a -3 penalty to attack rolls and AC (15%)\nEnemy becomes exhausted (10%)\nEnemy is killed (5%)\nAdditionally, Azata can decide to lose these advantages to instead bolster the physical abilities of companions. They gain a bonus on all attack and damage rolls equal to +1 per 2 Azata's mythic ranks.",
+      "enGB": "Azata gains a <b><color=#703565><link=\"Encyclopedia:Bonus\">bonus</link></color></b> equal to her mythic rank on <b><color=#703565><link=\"Encyclopedia:Attack\">attack</link></color></b> and <b><color=#703565><link=\"Encyclopedia:Damage\">damage rolls</link></color></b>. Whenever she hits with a charge attack or confirms a <b><color=#703565><link=\"Encyclopedia:Critical\">critical hit</link></color></b>, the target has to pass a <b><color=#703565><link=\"Encyclopedia:Saving_Throw\">Fortitude saving throw</link></color></b>, with <b><color=#703565><link=\"Encyclopedia:DC\">DC</link></color></b> equal to 10 + your mythic rank + <b><color=#703565><link=\"Encyclopedia:Strength\">Strength</link></color></b> modifier. If the target fails a saving throw one of the following <b><color=#703565><link=\"Encyclopedia:CA_Types\">action</link></color></b> happens at random:\nEnemy is stunned for <b><color=#703565><link=\"Encyclopedia:Dice\">1d4</link></color></b> <b><color=#703565><link=\"Encyclopedia:Combat_Round\">rounds</link></color></b> (30%)\nEnemy is prone for 1d4 rounds (20%)\nEnemy is pushed away 15 feet and is stunned for 1d4 rounds (20%)\nEnemy is crippled till the end of the fight: they can no longer move and suffers a -3 <b><color=#703565><link=\"Encyclopedia:Penalty\">penalty</link></color></b> to attack rolls and <b><color=#703565><link=\"Encyclopedia:Armor_Class\">AC</link></color></b> (15%)\nEnemy becomes exhausted (10%)\nEnemy is killed (5%)\nAdditionally, Azata can decide to lose these advantages to instead bolster the physical abilities of companions. They gain a bonus on all attack and damage rolls equal to +1 per 2 Azata's mythic ranks.",
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": "灵使在攻击和伤害骰上获得等同于她神话等级的加值。当她进行冲锋攻击或确认重击时，目标必须通过强韧豁免，DC等于10 +你的神话等级+力量调整值。如果目标豁免失败，则随机发生以下情形之一:\n敌人眩晕1d4轮(30%)\n敌人俯卧1d4轮(20%)\n敌人被推开15英尺并被震慑1d4轮(20%)\n敌人残废直到战斗结束:他们不能移动，并遭受攻击骰和AC受到-3的减值 (15%) \n敌人陷入力竭(10%)\n敌人被杀死(5%)\n此外，灵使可以选择失去这些优势，以提高同伴的物理能力。他们在所有攻击和伤害骰上获得加值，等于每2个灵使的神话等级+1。",
+      "zhCN": null,
       "esES": null
     },
     {
@@ -485,10 +485,10 @@
       "esES": null
     },
     {
-      "Key": "1864ff6d24d04b76bdf3c56bde03ab0a",
+      "Key": "65caae4b66044d0b9ee981fda927e477",
       "SimpleName": "TricksterPersuasion3Buff.Description",
       "ProcessTemplates": true,
-      "enGB": "Creature has a 50% chance to attack the nearest target each turn. Additionally they suffer pentalities to AC and spell resistance equal to equal to your mythic rank, as well as a penalty to saving throws equal to 1 + half your mythic rank.",
+      "enGB": "Creature has a 50% chance to attack the nearest target each turn.Additionally they suffer pentalities to AC and spell resistance equal to equal to your mythic rank, as well as a penalty to saving throws equal to 1 + half your mythic rank. ",
       "ruRU": null,
       "deDE": null,
       "frFR": null,
@@ -529,17 +529,6 @@
       "esES": null
     },
     {
-      "Key": "a98fa9e89052481d96eb21658a71a431",
-      "SimpleName": "TricksterStealthTier1AbilityTarget.Description",
-      "ProcessTemplates": true,
-      "enGB": "You can enter stealth during combat as a move action. This stealth is not broken by a single enemy detecting you — instead it acts similar to the invisibility spell, giving you total concealment against all creatures that did not succeed on a Perception check against you.\nThis \"invisibility\" cannot be seen through by divination magic such as true seeing, see invisibility, or thoughtsense.",
-      "ruRU": null,
-      "deDE": null,
-      "frFR": null,
-      "zhCN": "你可以在战斗中以移动动作进入潜行。这个潜行不会被单个敌人发现，相反，它的作用类似于隐形法术，让你对所有没有通过察觉检定的生物完全隐藏。这种“隐形”是不能被预言魔法看穿的，比如真知术，识破隐形，或侦测思想。",
-      "esES": null
-    },
-    {
       "Key": "f6312e212b3f413bb106860c200b8c7c",
       "SimpleName": "TricksterStealthTier1AbilityTarget.Description",
       "ProcessTemplates": true,
@@ -547,7 +536,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "你可以在战斗中以移动动作进入潜行。这个潜行不会被单个敌人发现，相反，它的作用类似于隐形法术，让你对所有没有通过察觉检定的生物完全隐藏。这种“隐形”是不能被预言魔法看穿的，比如真知术，识破隐形，或侦测思想。",
       "esES": null
     },
     {
@@ -566,17 +555,6 @@
       "SimpleName": "TricksterStealthTier1Feature.Description",
       "ProcessTemplates": true,
       "enGB": "You can easily slip into shadow at any time. You can enter stealth during combat as a move action. This stealth is not broken by a single enemy detecting you — instead it acts similar to the invisibility spell, giving you total concealment against all creatures that did not succeed on a Perception check against you.\nThis \"invisibility\" cannot be seen through by divination magic such as true seeing, see invisibility, or thoughtsense.",
-      "ruRU": null,
-      "deDE": null,
-      "frFR": null,
-      "zhCN": null,
-      "esES": null
-    },
-    {
-      "Key": "12cee3cf3f6242b2adef4824bf8673a9",
-      "SimpleName": "TricksterStealthTier1Feature.Description",
-      "ProcessTemplates": true,
-      "enGB": "You can easily slip into shadow at any time. You can enter stealth during combat as a move action. This stealth is not broken by a single enemy detecting you — instead it acts similar to the invisibility spell, giving you total concealment against all creatures that did not succeed on a Perception check against you.\nThis \"invisibility\" cannot be seen through by divination magic such as true seeing, see invisability, or thoughtsense.",
       "ruRU": null,
       "deDE": null,
       "frFR": null,

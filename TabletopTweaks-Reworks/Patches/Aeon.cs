@@ -3,13 +3,11 @@ using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
-using Kingmaker.Blueprints.Items.Weapons;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
-using Kingmaker.Enums.Damage;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic;
@@ -103,7 +101,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                         c.Descriptor = ModifierDescriptor.UntypedStackable;
                     });
                 });
-                
+
                 TTTContext.Logger.LogPatch("Patched", AeonBaneBuff);
             }
             static void PatchAeonBaneIcon() {

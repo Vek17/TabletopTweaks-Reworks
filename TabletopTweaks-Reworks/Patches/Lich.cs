@@ -82,17 +82,17 @@ namespace TabletopTweaks.Reworks.Reworks {
                     bp.AddComponent<AddAdditionalWeaponDamage>(c => {
                         c.CheckWeaponGroup = true;
                         c.Group = WeaponFighterGroup.Natural;
-                         c.Value = new ContextDiceValue() {
-                             DiceType = DiceType.D6,
-                             DiceCountValue = 1,
-                             BonusValue = new ContextValue() {
-                                 ValueType = ContextValueType.Rank
-                             }
-                         };
-                         c.DamageType = new DamageTypeDescription() {
-                             Type = DamageType.Energy,
-                             Energy = DamageEnergyType.Unholy
-                         };
+                        c.Value = new ContextDiceValue() {
+                            DiceType = DiceType.D6,
+                            DiceCountValue = 1,
+                            BonusValue = new ContextValue() {
+                                ValueType = ContextValueType.Rank
+                            }
+                        };
+                        c.DamageType = new DamageTypeDescription() {
+                            Type = DamageType.Energy,
+                            Energy = DamageEnergyType.Unholy
+                        };
                     });
                     bp.AddComponent<AdditionalDiceOnAttack>(c => {
                         c.OnHit = true;
