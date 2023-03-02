@@ -3,10 +3,15 @@ using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
+using Kingmaker.Blueprints.Items.Weapons;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.Designers.Mechanics.Facts;
+using Kingmaker.EntitySystem.Stats;
+using Kingmaker.Enums;
+using Kingmaker.Enums.Damage;
 using Kingmaker.RuleSystem;
+using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
@@ -18,6 +23,7 @@ using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
+using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.UnitLogic.Parts;
 using Kingmaker.Utility;
 using System;
@@ -25,6 +31,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using TabletopTweaks.Core.MechanicsChanges;
+using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.NewComponents.AbilitySpecific;
 using TabletopTweaks.Core.Utilities;
 using static TabletopTweaks.Reworks.Main;
@@ -41,9 +48,12 @@ namespace TabletopTweaks.Reworks.Reworks {
                 TTTContext.Logger.LogHeader("Aeon Rework");
 
                 PatchAeonBaneActions();
+                PatchAeonBaneDamage();
                 PatchAeonBaneIcon();
+                PatchAeonBaneBuffNames();
                 PatchAeonBaneSpellResistance();
                 PatchAeonBaneUses();
+                PatchPatchAeonImprovedBaneDamage();
                 PatchAeonImprovedBaneDispelLimit();
                 PatchAeonGreaterBaneDamage();
                 PatchAeonGreaterBaneDispel();
@@ -58,19 +68,78 @@ namespace TabletopTweaks.Reworks.Reworks {
                 AeonBaneAbility.m_ActivateWithUnitCommand = UnitCommand.CommandType.Free;
                 TTTContext.Logger.LogPatch("Patched", AeonBaneAbility);
             }
+            static void PatchAeonBaneDamage() {
+                if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonBaneDamage")) { return; }
+
+                var AeonBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("345160619fc2ddc44b8ad98c94dde448");
+                var InquisitorBaneBuff = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("be190d2dd5433dd41a4aa00e1abc9a5b");
+                var InquisitorBaneNormalFeatureAdd = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("7ddf7fbeecbe78342b83171d888028cf");
+
+                AeonBaneBuff.TemporaryContext(bp => {
+                    bp.FlattenAllActions()
+                        .OfType<Conditional>()
+                        .SelectMany(conditional => conditional.ConditionsChecker.Conditions)
+                        .OfType<ContextConditionCasterHasFact>()
+                        .Where(c => c.m_Fact == InquisitorBaneBuff)
+                        .ForEach(c => c.m_Fact = InquisitorBaneNormalFeatureAdd);
+                    bp.AddComponent<AddAdditionalWeaponDamage>(c => {
+                        c.Value = new ContextDiceValue() {
+                            DiceType = DiceType.D6,
+                            DiceCountValue = 2,
+                            BonusValue = 0
+                        };
+                        c.DamageType = new DamageTypeDescription() {
+                            Type = DamageType.Force
+                        };
+                    });
+                    bp.AddComponent<AddStatBonus>(c => {
+                        c.Value = 1;
+                        c.Stat = StatType.AdditionalAttackBonus;
+                        c.Descriptor = ModifierDescriptor.UntypedStackable;
+                    });
+                    bp.AddComponent<AddStatBonus>(c => {
+                        c.Value = 1;
+                        c.Stat = StatType.AdditionalDamage;
+                        c.Descriptor = ModifierDescriptor.UntypedStackable;
+                    });
+                });
+                
+                TTTContext.Logger.LogPatch("Patched", AeonBaneBuff);
+            }
             static void PatchAeonBaneIcon() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonBaneIcon")) { return; }
 
                 var Icon_AeonBane = AssetLoader.LoadInternal(TTTContext, "Abilities", "Icon_AeonBane.png");
                 var AeonBaneFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("0b25e8d8b0488c84c9b5714e9ca0a204");
                 var AeonBaneAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("67fb31f553f2bb14bbfae0b1040169f1");
+                var AeonBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("345160619fc2ddc44b8ad98c94dde448");
                 AeonBaneFeature.m_Icon = Icon_AeonBane;
                 AeonBaneAbility.m_Icon = Icon_AeonBane;
+                AeonBaneBuff.m_Icon = Icon_AeonBane;
                 TTTContext.Logger.LogPatch("Patched", AeonBaneFeature);
                 TTTContext.Logger.LogPatch("Patched", AeonBaneAbility);
             }
+            static void PatchAeonBaneBuffNames() {
+                if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonBaneBuffNames")) { return; }
+
+                var AeonBaneFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("0b25e8d8b0488c84c9b5714e9ca0a204");
+                var AeonBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("345160619fc2ddc44b8ad98c94dde448");
+                var AeonImprovedBaneFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("bbf227fe76f1eaa418a95e6095145ce8");
+                var AeonImprovedBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("e903d04113681fc4ba5603672b05540e");
+                var AeonGreaterBaneFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("0a7482fd7b0479c44b51d7cd6c33e5c4");
+                var AeonGreaterBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("cdcc13884252b2c4d8dac57cb5f46555");
+
+                AeonBaneBuff.m_DisplayName = AeonBaneFeature.m_DisplayName;
+                AeonImprovedBaneBuff.m_DisplayName = AeonImprovedBaneFeature.m_DisplayName;
+                AeonGreaterBaneBuff.m_DisplayName = AeonGreaterBaneFeature.m_DisplayName;
+
+                TTTContext.Logger.LogPatch(AeonBaneBuff);
+                TTTContext.Logger.LogPatch(AeonImprovedBaneBuff);
+                TTTContext.Logger.LogPatch(AeonGreaterBaneBuff);
+            }
             static void PatchAeonBaneSpellResistance() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonBaneSpellResistance")) { return; }
+
                 var AeonBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("345160619fc2ddc44b8ad98c94dde448");
                 AeonBaneBuff.RemoveComponents<ModifyD20>();
                 AeonBaneBuff.AddComponent<SpellPenetrationBonus>(c => {
@@ -96,6 +165,36 @@ namespace TabletopTweaks.Reworks.Reworks {
                     "from the target, as per the dispel magic spell.\nAdditionally, if you have inquisitor's bane ability, you gain the " +
                     "same bonuses while using inquisitor's bane ability.");
                 TTTContext.Logger.LogPatch("Patched", AeonBaneFeature);
+            }
+            static void PatchPatchAeonImprovedBaneDamage() {
+                if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonImprovedBaneDamage")) { return; }
+                var AeonImprovedBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("e903d04113681fc4ba5603672b05540e");
+                AeonImprovedBaneBuff.TemporaryContext(bp => {
+                    bp.RemoveComponents<AddInitiatorAttackWithWeaponTrigger>(c => c.Action.Actions.OfType<ContextActionDealDamage>().Any());
+                    bp.RemoveComponents<AdditionalDiceOnAttack>();
+                    bp.RemoveComponents<AddStatBonus>();
+                    bp.AddComponent<AddAdditionalWeaponDamage>(c => {
+                        c.Value = new ContextDiceValue() {
+                            DiceType = DiceType.D6,
+                            DiceCountValue = 2,
+                            BonusValue = 0
+                        };
+                        c.DamageType = new DamageTypeDescription() {
+                            Type = DamageType.Force
+                        };
+                    });
+                    bp.AddComponent<AddStatBonus>(c => {
+                        c.Value = 1;
+                        c.Stat = StatType.AdditionalAttackBonus;
+                        c.Descriptor = ModifierDescriptor.UntypedStackable;
+                    });
+                    bp.AddComponent<AddStatBonus>(c => {
+                        c.Value = 1;
+                        c.Stat = StatType.AdditionalDamage;
+                        c.Descriptor = ModifierDescriptor.UntypedStackable;
+                    });
+                });
+                TTTContext.Logger.LogPatch("Patched", AeonImprovedBaneBuff);
             }
             static void PatchAeonImprovedBaneDispelLimit() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonImprovedBaneDispelLimit")) { return; }
@@ -159,7 +258,31 @@ namespace TabletopTweaks.Reworks.Reworks {
             static void PatchAeonGreaterBaneDamage() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonGreaterBaneDamage")) { return; }
                 var AeonGreaterBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("cdcc13884252b2c4d8dac57cb5f46555");
-                AeonGreaterBaneBuff.RemoveComponents<AddInitiatorAttackWithWeaponTrigger>(c => c.Action.Actions.OfType<ContextActionDealDamage>().Any());
+                AeonGreaterBaneBuff.TemporaryContext(bp => {
+                    bp.RemoveComponents<AddInitiatorAttackWithWeaponTrigger>(c => c.Action.Actions.OfType<ContextActionDealDamage>().Any());
+                    bp.RemoveComponents<AdditionalDiceOnAttack>();
+                    bp.RemoveComponents<AddStatBonus>();
+                    bp.AddComponent<AddAdditionalWeaponDamage>(c => {
+                        c.Value = new ContextDiceValue() {
+                            DiceType = DiceType.D6,
+                            DiceCountValue = 2,
+                            BonusValue = 0
+                        };
+                        c.DamageType = new DamageTypeDescription() {
+                            Type = DamageType.Force
+                        };
+                    });
+                    bp.AddComponent<AddStatBonus>(c => {
+                        c.Value = 1;
+                        c.Stat = StatType.AdditionalAttackBonus;
+                        c.Descriptor = ModifierDescriptor.UntypedStackable;
+                    });
+                    bp.AddComponent<AddStatBonus>(c => {
+                        c.Value = 1;
+                        c.Stat = StatType.AdditionalDamage;
+                        c.Descriptor = ModifierDescriptor.UntypedStackable;
+                    });
+                });
                 TTTContext.Logger.LogPatch("Patched", AeonGreaterBaneBuff);
             }
             static void PatchAeonGreaterBaneDispel() {

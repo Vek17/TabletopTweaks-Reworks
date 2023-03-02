@@ -64,10 +64,20 @@
           "Homebrew": true,
           "Description": "Updates Aeon Bane's Icon."
         },
+        "AeonBaneBuffNames": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Updates Aeon Bane buff names to improve UI readability."
+        },
         "AeonBaneAction": {
           "Enabled": true,
           "Homebrew": true,
           "Description": "Aeon Bane is now a free action instead of a swift."
+        },
+        "AeonBaneDamage": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Aeon Bane now calculates damage more correctly and is displayed better in the UI. This also improves stacking with inquisitor bane."
         },
         "AeonBaneSpellResistance": {
           "Enabled": true,
@@ -98,6 +108,11 @@
           "Enabled": true,
           "Homebrew": true,
           "Description": "Aeon Greater Bane damage is now rolled into the main weapon attack instead of a separate instance."
+        },
+        "AeonImprovedBaneDamage": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Aeon Improved Bane now calculates damage more correctly and is displayed better in the UI."
         },
         "AeonImprovedBaneDispelLimit": {
           "Enabled": true,

@@ -213,7 +213,7 @@
       "Key": "71ef7be061ca4b148952cca99cf91687",
       "SimpleName": "EnduringSpellsGreater.Description",
       "ProcessTemplates": true,
-      "enGB": "You've mastered a way to prolong your beneficial spells.\nBenefit: Effects of your spells on your allies that should last longer than 10 minutes but shorter than 24 hours now last 24 hours.",
+      "enGB": "You've mastered a way to prolong your beneficial spells.\nBenefit: Effects of your spells on your allies that should last longer than 8 minutes but shorter than 24 hours now last 24 hours.",
       "ruRU": null,
       "deDE": null,
       "frFR": null,

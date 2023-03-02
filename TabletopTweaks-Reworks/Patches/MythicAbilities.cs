@@ -166,11 +166,11 @@ namespace TabletopTweaks.Reworks.Reworks {
                 EnduringSpells.AddComponent<EnduringSpellsTTT>(c => {
                     c.m_Greater = EnduringSpellsGreater.ToReference<BlueprintUnitFactReference>();
                     c.EnduringTime = 60.Minutes();
-                    c.GreaterTime = 10.Minutes();
+                    c.GreaterTime = 8.Minutes();
                 });
 
                 EnduringSpellsGreater.SetDescription(TTTContext, "You've mastered a way to prolong your beneficial spells.\n" +
-                    "Benefit: Effects of your spells on your allies that should last longer than 10 minutes " +
+                    "Benefit: Effects of your spells on your allies that should last longer than 8 minutes " +
                     "but shorter than 24 hours now last 24 hours.");
 
                 TTTContext.Logger.LogPatch("Patched", EnduringSpells);

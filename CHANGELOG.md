@@ -1,3 +1,12 @@
+## Version 1.2.3
+* Mythic Abilities
+	* Greater Enduring Spells
+		* Now extends spells that last 8+ minutes instead of 5+ minutes.
+* Aeon
+	* Improved stacking with Inquisitor Bane.
+	* Improved interactions with natural attacks (now correctly applies to all nautral attacks instead of just primary hand).
+	* Improved damage breakdown.
+
 ## Version 1.2.2
 * Updated for 2.1.0
 
