@@ -4,11 +4,13 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Controllers;
 using Kingmaker.Designers.Mechanics.Facts;
+using Kingmaker.Enums;
 using Kingmaker.Enums.Damage;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using Kingmaker.UnitLogic.Buffs.Components;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
@@ -34,6 +36,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 PatchDimensionalRetribution();
                 PatchGreaterEnduringSpells();
                 PatchAbundantCasting();
+                PatchUnrelentingAssault();
             }
             static void PatchElementalBarrage() {
                 if (TTTContext.Homebrew.MythicAbilities.IsDisabled("ElementalBarrage")) { return; }
@@ -178,6 +181,7 @@ namespace TabletopTweaks.Reworks.Reworks {
             }
             static void PatchAbundantCasting() {
                 if (Main.TTTContext.Homebrew.MythicAbilities.IsDisabled("AbundantCasting")) { return; }
+
                 var AbundantCasting = BlueprintTools.GetBlueprint<BlueprintFeature>("cf594fa8871332a4ba861c6002480ec2");
                 var AbundantCastingImproved = BlueprintTools.GetBlueprint<BlueprintFeature>("37046a54739ed4844b8e8307bbbeece2");
                 var AbundantCastingGreater = BlueprintTools.GetBlueprint<BlueprintFeature>("db5be78901afbfa4e8ea5b399a88b92d");
@@ -193,9 +197,94 @@ namespace TabletopTweaks.Reworks.Reworks {
                 AbundantCastingGreater.SetDescription(TTTContext, "You've mastered a way to increase the number of spells you can cast per day.\n" +
                     "Benefit: You can cast two more spells per day of 7th, 8th, and 9th ranks each. This ability does not affect mythic spellbooks.");
 
-                TTTContext.Logger.LogPatch("Patched", AbundantCasting);
-                TTTContext.Logger.LogPatch("Patched", AbundantCastingImproved);
-                TTTContext.Logger.LogPatch("Patched", AbundantCastingGreater);
+                TTTContext.Logger.LogPatch(AbundantCasting);
+                TTTContext.Logger.LogPatch(AbundantCastingImproved);
+                TTTContext.Logger.LogPatch(AbundantCastingGreater);
+            }
+            static void PatchUnrelentingAssault() {
+                if (Main.TTTContext.Homebrew.MythicAbilities.IsDisabled("UnrelentingAssault")) { return; }
+
+                var UnrelentingAssault = BlueprintTools.GetBlueprint<BlueprintFeature>("b0db6bc8548257a40b055c37d7cbc3e0");
+                var UnrelentingAssaultBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("4beb8f4181259ec49ac016c38d606e00");
+                var UnrelentingAssaultEffectBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("5845818248b44e98b4c0589aaf9c214b");
+
+                UnrelentingAssault.TemporaryContext(bp => {
+                    bp.SetDescription(TTTContext, "As long as you keep fighting, the power of your melee attacks keeps growing.\n" +
+                    "Benefit: Every turn, as long as you make at least one melee attack, " +
+                    "you gain a stacking +4 bonus to damage rolls with melee weapons, up to a maximum of +20, " +
+                    "that lasts until the end of combat.");
+                    bp.SetComponents();
+                    bp.AddComponent<AddInitiatorAttackWithWeaponTrigger>(c => {
+                        c.OnlyOnFirstAttack = true;
+                        c.CheckWeaponRangeType = true;
+                        c.CheckWeaponRangeType = true;
+                        c.TriggerBeforeAttack = true;
+                        c.Action = Helpers.CreateActionList(
+                            new ContextActionApplyBuff() {
+                                m_Buff = UnrelentingAssaultBuff.ToReference<BlueprintBuffReference>(),
+                                Permanent = true,
+                                ToCaster = true,
+                                AsChild = true,
+                                DurationValue = new ContextDurationValue() {
+                                    DiceCountValue = 0,
+                                    BonusValue = 0
+                                },
+                            },
+                            new ContextActionApplyBuff() {
+                                m_Buff = UnrelentingAssaultEffectBuff.ToReference<BlueprintBuffReference>(),
+                                Permanent = true,
+                                ToCaster = true,
+                                AsChild = true,
+                                DurationValue = new ContextDurationValue() {
+                                    DiceCountValue = 0,
+                                    BonusValue = 0
+                                },
+                            }
+                        );
+                    });
+                });
+                UnrelentingAssaultBuff.TemporaryContext(bp => {
+                    bp.SetName(UnrelentingAssault.m_DisplayName);
+                    bp.SetComponents();
+                    bp.AddComponent<CombatStateTrigger>(c => {
+                        c.CombatStartActions = Helpers.CreateActionList();
+                        c.CombatEndActions = Helpers.CreateActionList(
+                            new ContextActionRemoveSelf()
+                        );
+                    });
+                });
+                UnrelentingAssaultEffectBuff.TemporaryContext(bp => {
+                    bp.SetName(UnrelentingAssault.m_DisplayName);
+                    bp.SetComponents();
+                    bp.AddComponent<WeaponAttackTypeDamageBonus>(c => {
+                        c.Type = WeaponRangeType.Melee;
+                        c.AttackBonus = 4;
+                        c.Descriptor = ModifierDescriptor.UntypedStackable;
+                        c.Value = new ContextValue() {
+                            ValueType = ContextValueType.Rank
+                        };
+                    });
+                    bp.AddContextRankConfig(c => {
+                        c.m_BaseValueType = ContextRankBaseValueType.CasterBuffRank;
+                        c.m_Buff = UnrelentingAssaultBuff.ToReference<BlueprintBuffReference>();
+                        c.m_Progression = ContextRankProgression.AsIs;
+                    });
+                    bp.AddComponent<CombatStateTrigger>(c => {
+                        c.CombatStartActions = Helpers.CreateActionList();
+                        c.CombatEndActions = Helpers.CreateActionList(
+                            new ContextActionRemoveSelf()
+                        );
+                    });
+                    bp.AddComponent<RecalculateOnFactsChange>(c => {
+                        c.m_CheckedFacts = new BlueprintUnitFactReference[] { UnrelentingAssaultBuff.ToReference<BlueprintUnitFactReference>() };
+                    });
+                });
+
+
+
+                TTTContext.Logger.LogPatch(UnrelentingAssault);
+                TTTContext.Logger.LogPatch(UnrelentingAssaultBuff);
+                TTTContext.Logger.LogPatch(UnrelentingAssaultEffectBuff);
             }
         }
     }

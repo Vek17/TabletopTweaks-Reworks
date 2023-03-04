@@ -1,5 +1,5 @@
 ﻿using TabletopTweaks.Core.ModLogic;
-using TabletopTweaks.MythicReoworks.Config;
+using TabletopTweaks.Reworks.Config;
 using static UnityModManagerNet.UnityModManager;
 
 namespace TabletopTweaks.Reworks.ModLogic {

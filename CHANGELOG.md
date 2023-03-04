@@ -2,6 +2,8 @@
 * Mythic Abilities
 	* Greater Enduring Spells
 		* Now extends spells that last 8+ minutes instead of 5+ minutes.
+	* Unreleanting Assault
+		* Damage now increases by 4 per round instead of 2. Damage cap increase from 10 to 20.
 * Aeon
 	* Improved stacking with Inquisitor Bane.
 	* Improved interactions with natural attacks (now correctly applies to all nautral attacks instead of just primary hand).

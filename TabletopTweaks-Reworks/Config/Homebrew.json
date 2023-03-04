@@ -33,6 +33,11 @@
         "Enabled": true,
         "Homebrew": true,
         "Description": "Now extends spells that last 10+ minutes instead of 5+ minutes."
+      },
+      "UnrelentingAssault": {
+        "Enabled": true,
+        "Homebrew": true,
+        "Description": "Damage per round has been increased to 4 from 2."
       }
     },
     "IsExpanded": true

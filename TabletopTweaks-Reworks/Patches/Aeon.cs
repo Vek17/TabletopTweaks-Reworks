@@ -79,7 +79,10 @@ namespace TabletopTweaks.Reworks.Reworks {
                         .SelectMany(conditional => conditional.ConditionsChecker.Conditions)
                         .OfType<ContextConditionCasterHasFact>()
                         .Where(c => c.m_Fact == InquisitorBaneBuff)
-                        .ForEach(c => c.m_Fact = InquisitorBaneNormalFeatureAdd);
+                        .ForEach(c => {
+                            c.m_Fact = InquisitorBaneNormalFeatureAdd;
+                            c.Not = false;
+                        });
                     bp.AddComponent<AddAdditionalWeaponDamage>(c => {
                         c.Value = new ContextDiceValue() {
                             DiceType = DiceType.D6,
@@ -91,12 +94,12 @@ namespace TabletopTweaks.Reworks.Reworks {
                         };
                     });
                     bp.AddComponent<AddStatBonus>(c => {
-                        c.Value = 1;
+                        c.Value = 2;
                         c.Stat = StatType.AdditionalAttackBonus;
                         c.Descriptor = ModifierDescriptor.UntypedStackable;
                     });
                     bp.AddComponent<AddStatBonus>(c => {
-                        c.Value = 1;
+                        c.Value = 2;
                         c.Stat = StatType.AdditionalDamage;
                         c.Descriptor = ModifierDescriptor.UntypedStackable;
                     });
