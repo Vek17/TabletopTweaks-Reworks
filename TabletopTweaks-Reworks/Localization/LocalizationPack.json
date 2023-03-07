@@ -648,6 +648,17 @@
       "frFR": null,
       "zhCN": "使用魔法装置3阶",
       "esES": null
+    },
+    {
+      "Key": "168121f1fbf8482c8f7260d0c81e6de2",
+      "SimpleName": "UnrelentingAssault.Description",
+      "ProcessTemplates": true,
+      "enGB": "As long as you keep fighting, the power of your melee attacks keeps growing.\nBenefit: Every turn, as long as you make at least one melee attack, you gain a stacking +4 bonus to damage rolls with melee weapons, up to a maximum of +20, that lasts until the end of combat.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
     }
   ]
 }
