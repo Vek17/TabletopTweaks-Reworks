@@ -129,7 +129,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "每天3+神话阶层的一半{g|Encyclopedia:Combat_Round}轮{/g}内，巫妖可以为自己施放的所有{g|Encyclopedia:Spell}法术{/g}注入噬星之寒的能量。被这些法术影响的生物必须进行强韧{g|Encyclopedia:Saving_Throw}豁免检定{/g}（{g|Encyclopedia:DC}DC{/g}= 10 + 你的角色等级的一半 + 你的神话阶层 + 你最高的属性调整值），失败则陷入目盲并受到{g|Encyclopedia:Dice}2d8{/g}+神话阶层的{g|Encyclopedia:Energy_Damage}寒冷伤害{/g}，直到战斗结束前对寒冷和负向能量易伤。",
       "esES": null
     },
     {
@@ -217,7 +217,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": "你已经掌握了延长增益法术持续时间的方法。\n你对盟友施放的持续时间超过10分钟但不足24小时的法术，现在持续24小时",
+      "zhCN": "你已经掌握了延长增益法术持续时间的方法。\n你对盟友施放的持续时间超过8分钟但不足24小时的法术，现在持续24小时",
       "esES": null
     },
     {
@@ -228,7 +228,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "灵使在<b><color=#703565><link=\"Encyclopedia:Attack\">攻击</link></color></b>和<b><color=#703565><link=\"Encyclopedia:Damage\">伤害骰</link></color></b>上获得等同于她神话阶层的<b><color=#703565><link=\"Encyclopedia:Bonus\">加值</link></color></b>。当她进行冲锋攻击或者确认<b><color=#703565><link=\"Encyclopedia:Critical\">重击</link></color></b>时, 目标必须进行一次<b><color=#703565><link=\"Encyclopedia:Saving_Throw\">强韧豁免</link></color></b>，<b><color=#703565><link=\"Encyclopedia:DC\">DC</link></color></b>等于10 + 你的神话阶层 + <b><color=#703565><link=\"Encyclopedia:Strength\">力量</link></color></b>调整值. 如果目标豁免失败，则随机发生以下<b><color=#703565><link=\"Encyclopedia:CA_Types\">情形</link></color></b>之一:\n敌人眩晕<b><color=#703565><link=\"Encyclopedia:Dice\">1d4</link></color></b><b><color=#703565><link=\"Encyclopedia:Combat_Round\">轮</link></color></b>(30%)\n敌人俯卧1d4轮(20%)\n敌人被推开15英尺并被震慑1d4轮(20%)\n敌人残废直到战斗结束:他们不能移动，并遭受攻击骰和<b><color=#703565><link=\"Encyclopedia:Armor_Class\">AC</link></color></b>-3的<b><color=#703565><link=\"Encyclopedia:Penalty\">减值</link></color></b> (15%)\n敌人陷入力竭(10%)\n敌人被杀死(5%)\n此外，灵使可以选择失去这些优势，以提高同伴的物理能力。他们在所有攻击和伤害骰上获得加值，等于每2个灵使的神话阶层+1。",
       "esES": null
     },
     {
@@ -239,7 +239,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "灵使在本神话阶层与下次提升神话阶层时，各选取一项团队{g|Encyclopedia:Feat}专长{/g}。她可以将所有团队专长的效果分享给50英尺之内的盟友。灵使的感召力极大地鼓舞了盟友，他们即使{g|Encyclopedia:HP}生命值{/g}降到0以下，依然可以继续战斗，但对于所有效应而言，他们仍被视为已{g|Encyclopedia:Injury_Death}死亡{/g}（或昏迷），可以被“生命之息”及类似{g|Encyclopedia:Spell}法术{/g}治疗，根据各法术的描述而定。在遭遇结束后，或所有盟友共同受到总次数等于灵使的神话阶层的{g|Encyclopedia:Attack}攻击{/g}后，处于此状况的盟友正常死亡。如果灵使的所有盟友都在这种情况下死亡，她的等级会全部流失，并且死去。",
       "esES": null
     },
     {
@@ -250,7 +250,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "灵使创造出在目标之间弹射的虹彩箭矢，弹射次数至多为每4个{g|Encyclopedia:Caster_Level}施法者等级{/g}1次，造成每2个施法者等级{g|Encyclopedia:Dice}1d12{/g}点{g|Encyclopedia:Damage}伤害{/g}，伤害类型在酸蚀、寒冷、电击、火焰和音波中随机选择。此外如果敌人意志豁免失败，会随机陷入盲目、眩晕、反胃、缓慢、震慑中一种3秒",
       "esES": null
     },
     {
@@ -261,7 +261,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "意志，部分生效",
       "esES": null
     },
     {
@@ -272,7 +272,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "选择一个{g|Encyclopedia:Magic_School}魔法学派{/g}。你施放所有属于该学派的{g|Encyclopedia:Spell}法术{/g}时，{g|Encyclopedia:Caster_Level}施法者等级{/g}提高2级。",
       "esES": null
     },
     {
@@ -294,7 +294,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "此{g|Encyclopedia:Spell}法术{/g}为全体队友每{g|Encyclopedia:Combat_Round}轮{/g}第一次武器{g|Encyclopedia:Attack}攻击{/g}提供{g|Encyclopedia:Dice}2d6{/g}+灵使{g|Encyclopedia:Caster_Level}施法者等级{/g}的额外音波{g|Encyclopedia:Damage}伤害{/g}，为用于穿透{g|Encyclopedia:Spell_Resistance}法术抗力{/g}的施法者等级{g|Encyclopedia:Check}检定{/g}提供+2{g|Encyclopedia:Bonus}加值{/g}，为所有{g|Encyclopedia:Concentration}专注检定{/g}提供+2加值，并使抵抗目标的法术和能力的{g|Encyclopedia:Saving_Throw}豁免检定{/g}{g|Encyclopedia:DC}难度等级（DC）{/g}提高2点。",
       "esES": null
     },
     {
@@ -305,7 +305,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "10 minutes/level",
       "esES": null
     },
     {
@@ -316,7 +316,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "灵使拥有额外1次攻击，并在战斗中始终处于加速术的效果影响下。所有对她发动的远程和近战{g|Encyclopedia:Attack}攻击{/g}有20%失手率。所有瞄准她的{g|Encyclopedia:Spell_Target}目标型法术{/g}有10%失手率。所有影响她的范围{g|Encyclopedia:Damage}伤害{/g}都会减半，即使该伤害此前已被豁免降低过。\n注意：当角色同时具有失手率和隐蔽时，仅应用其中最高的效果。",
       "esES": null
     },
     {
@@ -327,7 +327,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "{g|Encyclopedia:Attack}{/g}每当巫妖成功造成偷袭时，目标必须通过强韧{g|Encyclopedia:Saving_Throw}豁免检定{/g}（{g|Encyclopedia:DC}DC{/g}=10+ 1/2你的角色等级+你的神话阶层+你最高的属性调整值）避免被污染。被污染生物对所有武器和元素{g|Encyclopedia:Damage}伤害{/g}易伤，并在所有{g|Encyclopedia:Attack}攻击检定{/g}和武器伤害检定上承受-2{g|Encyclopedia:Penalty}减值{/g}，持续到战斗结束。\n此外，巫妖的偷袭伤害提高1d6点。",
       "esES": null
     },
     {
@@ -426,7 +426,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "察觉3阶效果",
       "esES": null
     },
     {
@@ -492,7 +492,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "生物每个回合有 50% 概率攻击身边最近目标。此外他们会受到AC和法术抗力减值，减值等于你的神话阶层；受到豁免减值，减值等于1+你神话阶层的一半。",
       "esES": null
     },
     {
@@ -525,7 +525,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "你如此善于挫败你的敌人，以致他们伤害你的意愿动摇了。受你挫败士气能力影响的敌人必须进行DC=10+你的说服等级的意志豁免检定，失败将陷入恍惚，持续一轮。此外，当你成功地使敌人士气低落时，他们的攻击和伤害骰将受到1 +一半你的神话阶层的额外惩罚。",
       "esES": null
     },
     {
@@ -657,7 +657,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "只要你持续战斗，你的近战攻击的力量就会不断增长。\n每回合，只要你至少进行一次近战攻击，你的近战武器伤害骰就获得一个可叠加的+4加成，上限+20，直到战斗结束。",
       "esES": null
     }
   ]
