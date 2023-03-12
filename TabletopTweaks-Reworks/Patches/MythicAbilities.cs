@@ -246,6 +246,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 });
                 UnrelentingAssaultBuff.TemporaryContext(bp => {
                     bp.SetName(UnrelentingAssault.m_DisplayName);
+                    bp.Ranks = 5;
                     bp.SetComponents();
                     bp.AddComponent<CombatStateTrigger>(c => {
                         c.CombatStartActions = Helpers.CreateActionList();
