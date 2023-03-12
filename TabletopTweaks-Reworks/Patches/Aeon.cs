@@ -6,6 +6,7 @@ using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.Designers.Mechanics.Facts;
+using Kingmaker.ElementsSystem;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.RuleSystem;
@@ -70,10 +71,68 @@ namespace TabletopTweaks.Reworks.Reworks {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonBaneDamage")) { return; }
 
                 var AeonBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("345160619fc2ddc44b8ad98c94dde448");
-                var InquisitorBaneBuff = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("be190d2dd5433dd41a4aa00e1abc9a5b");
+                var InquisitorBaneBuff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("be190d2dd5433dd41a4aa00e1abc9a5b");
+                var InquisitorGreaterBaneBuff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("60dffde0dd392a84b8c26dc37c471cd1");
                 var InquisitorBaneNormalFeatureAdd = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("7ddf7fbeecbe78342b83171d888028cf");
+                var InquisitorBaneGreaterFeature = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("6e694114b2f9e0e40a6da5d13736ff33");
 
                 AeonBaneBuff.TemporaryContext(bp => {
+                    bp.RemoveComponents<AddFactContextActions>();
+                    bp.AddComponent<AddFactContextActions>(c => {
+                        c.Activated = Helpers.CreateActionList(
+                            new Conditional() {
+                                ConditionsChecker = new ConditionsChecker() { 
+                                    Conditions = new Condition[] { 
+                                        new ContextConditionCasterHasFact() {
+                                            m_Fact = InquisitorBaneNormalFeatureAdd
+                                        }
+                                    }
+                                },
+                                IfFalse = Helpers.CreateActionList(),
+                                IfTrue = Helpers.CreateActionList(
+                                    new Conditional() {
+                                        ConditionsChecker = new ConditionsChecker() {
+                                            Conditions = new Condition[] {
+                                                new ContextConditionCasterHasFact() {
+                                                    m_Fact = InquisitorBaneGreaterFeature
+                                                }
+                                            }
+                                        },
+                                        IfFalse = Helpers.CreateActionList(
+                                            new ContextActionApplyBuff() {
+                                                m_Buff = InquisitorBaneBuff,
+                                                Permanent = true,
+                                                DurationValue = new ContextDurationValue() {
+                                                    DiceCountValue = 0,
+                                                    BonusValue = 1
+                                                }
+                                            }
+                                        ),
+                                        IfTrue = Helpers.CreateActionList(
+                                            new ContextActionApplyBuff() {
+                                                m_Buff = InquisitorGreaterBaneBuff,
+                                                Permanent = true,
+                                                DurationValue = new ContextDurationValue() {
+                                                    DiceCountValue = 0,
+                                                    BonusValue = 1
+                                                }
+                                            }
+                                        )
+                                    }
+                                )
+                            }
+                        );
+                        c.Deactivated = Helpers.CreateActionList(
+                            new ContextActionRemoveBuff() {
+                                m_Buff = InquisitorBaneBuff
+                            },
+                            new ContextActionRemoveBuff() {
+                                m_Buff = InquisitorGreaterBaneBuff
+                            }
+                        );
+                        c.NewRound = Helpers.CreateActionList();
+                    });
+                    /*
                     bp.FlattenAllActions()
                         .OfType<Conditional>()
                         .SelectMany(conditional => conditional.ConditionsChecker.Conditions)
@@ -83,6 +142,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                             c.m_Fact = InquisitorBaneNormalFeatureAdd;
                             c.Not = false;
                         });
+                    */
                     bp.AddComponent<AddAdditionalWeaponDamage>(c => {
                         c.Value = new ContextDiceValue() {
                             DiceType = DiceType.D6,
