@@ -1,3 +1,8 @@
+## Version 1.2.4
+* Mythic Abilities
+	* Elemental Barrage
+		* Significant improvements to existing rework's trigger mechanism.
+
 ## Version 1.2.3
 * Mythic Abilities
 	* Greater Enduring Spells

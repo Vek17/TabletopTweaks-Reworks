@@ -18,6 +18,7 @@ using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Properties;
 using Kingmaker.Utility;
 using TabletopTweaks.Core.NewActions;
+using TabletopTweaks.Core.NewComponents.AbilitySpecific;
 using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
 using TabletopTweaks.Core.Utilities;
 using static TabletopTweaks.Reworks.Main;
@@ -58,11 +59,12 @@ namespace TabletopTweaks.Reworks.Reworks {
                     c.m_AbilityType = AbilityType.Spell;
                 });
                 ElementalBarrage.SetComponents();
-                AddOutgoingDamageTrigger(ElementalBarrage, ElementalBarrageAcidBuff, DamageEnergyType.Acid);
-                AddOutgoingDamageTrigger(ElementalBarrage, ElementalBarrageColdBuff, DamageEnergyType.Cold);
-                AddOutgoingDamageTrigger(ElementalBarrage, ElementalBarrageElectricityBuff, DamageEnergyType.Electricity);
-                AddOutgoingDamageTrigger(ElementalBarrage, ElementalBarrageFireBuff, DamageEnergyType.Fire);
-                AddOutgoingDamageTrigger(ElementalBarrage, ElementalBarrageSonicBuff, DamageEnergyType.Sonic);
+                AddElementalBarrageTrigger(ElementalBarrage, ElementalBarrageAcidBuff, ElementalBarrageColdBuff, ElementalBarrageElectricityBuff, ElementalBarrageFireBuff, ElementalBarrageSonicBuff);
+                //AddOutgoingDamageTrigger(ElementalBarrage, ElementalBarrageAcidBuff, DamageEnergyType.Acid);
+                //AddOutgoingDamageTrigger(ElementalBarrage, ElementalBarrageColdBuff, DamageEnergyType.Cold);
+                //AddOutgoingDamageTrigger(ElementalBarrage, ElementalBarrageElectricityBuff, DamageEnergyType.Electricity);
+                //AddOutgoingDamageTrigger(ElementalBarrage, ElementalBarrageFireBuff, DamageEnergyType.Fire);
+                //AddOutgoingDamageTrigger(ElementalBarrage, ElementalBarrageSonicBuff, DamageEnergyType.Sonic);
 
                 AddIncomingDamageTriggers(ElementalBarrageAcidBuff, DamageEnergyType.Cold, DamageEnergyType.Electricity, DamageEnergyType.Fire, DamageEnergyType.Sonic);
                 AddIncomingDamageTriggers(ElementalBarrageColdBuff, DamageEnergyType.Acid, DamageEnergyType.Electricity, DamageEnergyType.Fire, DamageEnergyType.Sonic);
@@ -76,7 +78,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 UpdateBuffVisability(ElementalBarrageFireBuff, "fire");
                 UpdateBuffVisability(ElementalBarrageSonicBuff, "sonic");
 
-                TTTContext.Logger.LogPatch("Patched", ElementalBarrage);
+                TTTContext.Logger.LogPatch(ElementalBarrage);
                 void AddOutgoingDamageTrigger(BlueprintFeature barrage, BlueprintBuff barrageBuff, DamageEnergyType trigger) {
                     barrage.AddComponent<AddOutgoingDamageTriggerTTT>(c => {
                         c.IgnoreDamageFromThisFact = true;
@@ -102,6 +104,56 @@ namespace TabletopTweaks.Reworks.Reworks {
                         );
                     });
                 }
+                void AddElementalBarrageTrigger(BlueprintFeature barrage, 
+                    BlueprintBuff ElementalBarrageAcidBuff, 
+                    BlueprintBuff ElementalBarrageColdBuff, 
+                    BlueprintBuff ElementalBarrageElectricityBuff, 
+                    BlueprintBuff ElementalBarrageFireBuff, 
+                    BlueprintBuff ElementalBarrageSonicBuff) 
+                {
+                    barrage.AddComponent<ElementalBarrageOutgoingTrigger>(c => {
+                        c.IgnoreDamageFromThisFact = true;
+                        c.ApplyToAreaEffectDamage = true;
+                        c.CheckAbilityType = true; 
+                        c.m_AbilityType = AbilityType.Spell;
+                        c.CheckDamageDealt = true;
+                        c.CompareType = CompareOperation.Type.Greater;
+                        c.TargetValue = 0;
+                        c.m_ElementalBarrageAcidBuff = ElementalBarrageAcidBuff.ToReference<BlueprintBuffReference>();
+                        c.m_ElementalBarrageColdBuff = ElementalBarrageColdBuff.ToReference<BlueprintBuffReference>();
+                        c.m_ElementalBarrageElectricityBuff = ElementalBarrageElectricityBuff.ToReference<BlueprintBuffReference>();
+                        c.m_ElementalBarrageFireBuff = ElementalBarrageFireBuff.ToReference<BlueprintBuffReference>();
+                        c.m_ElementalBarrageSonicBuff = ElementalBarrageSonicBuff.ToReference<BlueprintBuffReference>();
+                        c.MarkDuration = new ContextDurationValue() {
+                            m_IsExtendable = true,
+                            DiceCountValue = new ContextValue(),
+                            BonusValue = 3
+                        };
+                        c.TriggerActions = Helpers.CreateActionList(
+                            Helpers.Create<ContextActionDealDamageTTT>(a => {
+                                a.DamageType = new DamageTypeDescription() {
+                                    Type = DamageType.Energy,
+                                    Energy = DamageEnergyType.Divine
+                                };
+                                a.Duration = new ContextDurationValue() {
+                                    DiceCountValue = new ContextValue(),
+                                    BonusValue = new ContextValue()
+                                };
+                                a.Value = new ContextDiceValue() {
+                                    DiceType = DiceType.D6,
+                                    DiceCountValue = new ContextValue() {
+                                        ValueType = ContextValueType.CasterProperty,
+                                        Property = UnitProperty.MythicLevel
+                                    },
+                                    BonusValue = 0
+                                };
+                                a.IgnoreCritical = true;
+                                a.SetFactAsReason = true;
+                                a.IgnoreWeapon = true;
+                            })
+                        );
+                    });
+                }
                 void UpdateBuffVisability(BlueprintBuff barrageBuff, string element) {
                     barrageBuff.m_Icon = ElementalBarrage.Icon;
                     barrageBuff.SetDescription(TTTContext, $"If this creature takes elemental damage from a " +
@@ -110,14 +162,14 @@ namespace TabletopTweaks.Reworks.Reworks {
                 }
                 void AddIncomingDamageTriggers(BlueprintBuff barrageBuff, params DamageEnergyType[] triggers) {
                     foreach (var trigger in triggers) {
-                        barrageBuff.AddComponent<AddIncomingDamageTrigger>(c => {
+                        barrageBuff.AddComponent<ElementalBarrageIncomingTrigger>(c => {
                             c.IgnoreDamageFromThisFact = true;
                             c.CheckEnergyDamageType = true;
                             c.CheckDamageDealt = true;
                             c.CompareType = CompareOperation.Type.Greater;
                             c.TargetValue = 0;
                             c.EnergyType = trigger;
-                            c.Actions = Helpers.CreateActionList(
+                            c.TriggerActions = Helpers.CreateActionList(
                                 Helpers.Create<ContextActionDealDamageTTT>(a => {
                                     a.DamageType = new DamageTypeDescription() {
                                         Type = DamageType.Energy,
