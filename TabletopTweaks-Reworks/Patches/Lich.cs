@@ -70,7 +70,6 @@ namespace TabletopTweaks.Reworks.Reworks {
                     };
                 });
             }
-
             static void PatchDecayingTouch() {
                 if (TTTContext.Homebrew.MythicReworks.Lich.IsDisabled("DecayingTouch")) { return; }
 
@@ -212,7 +211,6 @@ namespace TabletopTweaks.Reworks.Reworks {
 
                 TTTContext.Logger.LogPatch(DecayingTouchFeature);
             }
-
             static void PatchEclipseChill() {
                 if (TTTContext.Homebrew.MythicReworks.Lich.IsDisabled("EclipseChill")) { return; }
 

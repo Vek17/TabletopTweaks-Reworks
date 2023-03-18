@@ -165,7 +165,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                         barrageBuff.AddComponent<ElementalBarrageIncomingTrigger>(c => {
                             c.IgnoreDamageFromThisFact = true;
                             c.CheckEnergyDamageType = true;
-                            c.CheckDamageDealt = true;
+                            c.CheckDamageDealt = false;
                             c.CompareType = CompareOperation.Type.Greater;
                             c.TargetValue = 0;
                             c.EnergyType = trigger;
