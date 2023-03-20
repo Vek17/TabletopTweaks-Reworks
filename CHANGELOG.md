@@ -1,3 +1,7 @@
+## Version 1.2.5
+* Aeon
+	* Aeon Bane now once again supports dispel on non attack roll spells.
+
 ## Version 1.2.4
 * Mythic Abilities
 	* Elemental Barrage

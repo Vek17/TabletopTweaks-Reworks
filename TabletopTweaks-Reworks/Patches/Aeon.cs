@@ -3,12 +3,14 @@ using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
+using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.ElementsSystem;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
+using Kingmaker.ResourceLinks;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic;
@@ -32,6 +34,7 @@ using System.Linq;
 using TabletopTweaks.Core.MechanicsChanges;
 using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.NewComponents.AbilitySpecific;
+using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
 using TabletopTweaks.Core.Utilities;
 using static TabletopTweaks.Reworks.Main;
 
@@ -50,6 +53,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 PatchAeonBaneDamage();
                 PatchAeonBaneIcon();
                 PatchAeonBaneBuffNames();
+                PatchAeonBaneSpellDispel();
                 PatchAeonBaneSpellResistance();
                 PatchAeonBaneUses();
                 PatchPatchAeonImprovedBaneDamage();
@@ -198,6 +202,80 @@ namespace TabletopTweaks.Reworks.Reworks {
                 TTTContext.Logger.LogPatch(AeonImprovedBaneBuff);
                 TTTContext.Logger.LogPatch(AeonGreaterBaneBuff);
             }
+            static void PatchAeonBaneSpellDispel() {
+                if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonBaneSpellDispel")) { return; }
+
+                var AeonBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("345160619fc2ddc44b8ad98c94dde448");
+                var AeonImprovedBaneBuff = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("e903d04113681fc4ba5603672b05540e");
+                var AeonBaneFx = new PrefabLink() { 
+                    AssetId = "4d48e7ee3db59444d9b1dca869989b94"
+                };
+
+                AeonBaneBuff.TemporaryContext(bp => {
+                    bp.AddComponent<AddAbilityUseTriggerTTT>(c => {
+                        c.CheckAbilityType = true;
+                        c.Type = AbilityType.Spell;
+                        c.AfterCast = true;
+                        c.ActionsOnTarget = true;
+                        c.ActionsOnAllTargets = true;
+                        c.IgnoreAttackSpells = true;
+                        c.m_Spellbooks = new BlueprintSpellbookReference[0];
+                        c.Action = Helpers.CreateActionList(
+                            new ContextActionSpawnFx() {
+                                PrefabLink = AeonBaneFx
+                            },
+                            new Conditional() {
+                                ConditionsChecker = new ConditionsChecker() {
+                                    Conditions = new Condition[] { 
+                                        new ContextConditionCasterHasFact() {
+                                            m_Fact = AeonImprovedBaneBuff
+                                        }
+                                    }
+                                },
+                                IfTrue = Helpers.CreateActionList(
+                                    new ContextActionDispelMagic() {
+                                        m_CheckType = Kingmaker.RuleSystem.Rules.RuleDispelMagic.CheckType.CasterLevel,
+                                        OnlyTargetEnemyBuffs = true,
+                                        OneRollForAll = true,
+                                        m_CountToRemove = new ContextValue(),
+                                        m_StopAfterCountRemoved = false,
+                                        m_BuffType = ContextActionDispelMagic.BuffType.FromSpells,
+                                        m_MaxSpellLevel = new ContextValue(),
+                                        m_UseMaxCasterLevel = true,
+                                        m_MaxCasterLevel = new ContextValue(),
+                                        ContextBonus = new ContextValue() { 
+                                            ValueType = ContextValueType.Shared
+                                        },
+                                        Schools = new SpellSchool[0],
+                                        OnSuccess = Helpers.CreateActionList(),
+                                        OnFail = Helpers.CreateActionList()
+                                    }
+                                ),
+                                IfFalse = Helpers.CreateActionList(
+                                    new ContextActionDispelMagic() {
+                                        m_CheckType = Kingmaker.RuleSystem.Rules.RuleDispelMagic.CheckType.CasterLevel,
+                                        OnlyTargetEnemyBuffs = true,
+                                        OneRollForAll = true,
+                                        m_CountToRemove = 1,
+                                        m_StopAfterCountRemoved = true,
+                                        m_BuffType = ContextActionDispelMagic.BuffType.FromSpells,
+                                        m_MaxSpellLevel = new ContextValue(),
+                                        m_UseMaxCasterLevel = true,
+                                        m_MaxCasterLevel = new ContextValue(),
+                                        ContextBonus = new ContextValue() {
+                                            ValueType = ContextValueType.Shared
+                                        },
+                                        Schools = new SpellSchool[0],
+                                        OnSuccess = Helpers.CreateActionList(),
+                                        OnFail = Helpers.CreateActionList()
+                                    }
+                                )
+                            }
+                        );
+                    });
+                });
+                TTTContext.Logger.LogPatch("Patched", AeonBaneBuff);
+            }
             static void PatchAeonBaneSpellResistance() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonBaneSpellResistance")) { return; }
 
@@ -229,6 +307,7 @@ namespace TabletopTweaks.Reworks.Reworks {
             }
             static void PatchPatchAeonImprovedBaneDamage() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonImprovedBaneDamage")) { return; }
+
                 var AeonImprovedBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("e903d04113681fc4ba5603672b05540e");
                 AeonImprovedBaneBuff.TemporaryContext(bp => {
                     bp.RemoveComponents<AddInitiatorAttackWithWeaponTrigger>(c => c.Action.Actions.OfType<ContextActionDealDamage>().Any());
@@ -261,58 +340,75 @@ namespace TabletopTweaks.Reworks.Reworks {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonImprovedBaneDispelLimit")) { return; }
 
                 var AeonBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("345160619fc2ddc44b8ad98c94dde448");
-                AeonBaneBuff.GetComponent<AddInitiatorAttackRollTrigger>()
-                    .Action
-                    .Actions
-                    .OfType<Conditional>()
-                    .ForEach(conditional => {
-                        conditional.IfTrue.Actions
-                            .OfType<ContextActionDispelMagic>()
-                            .ForEach(a => {
-                                a.OneRollForAll = true;
-                            });
+                AeonBaneBuff.TemporaryContext(bp => {
+                    bp.GetComponent<AddInitiatorAttackRollTrigger>()
+                        .Action
+                        .Actions
+                        .OfType<Conditional>()
+                        .ForEach(conditional => {
+                            conditional.IfTrue.Actions
+                                .OfType<ContextActionDispelMagic>()
+                                .ForEach(a => {
+                                    a.OneRollForAll = true;
+                                    a.m_StopAfterCountRemoved = true;
+                                    a.m_CountToRemove = new ContextValue() {
+                                        ValueType = ContextValueType.Shared,
+                                        ValueShared = AbilitySharedValue.StatBonus
+                                    };
+                                });
+                        });
+                    bp.GetComponent<AddInitiatorAttackRollTrigger>()
+                        .Action
+                        .Actions
+                        .OfType<Conditional>()
+                        .ForEach(conditional => {
+                            conditional.IfFalse.Actions
+                                .OfType<ContextActionDispelMagic>()
+                                .ForEach(a => {
+                                    a.OneRollForAll = true;
+                                });
+                        });
+                    bp.GetComponent<AddAbilityUseTriggerTTT>()?
+                        .Action
+                        .Actions
+                        .OfType<Conditional>()
+                        .ForEach(conditional => {
+                            conditional.IfFalse.Actions
+                               .OfType<ContextActionDispelMagic>()
+                               .ForEach(a => {
+                                   a.OneRollForAll = true;
+                               });
+                        });
+                    bp.GetComponent<AddAbilityUseTriggerTTT>()?
+                        .Action
+                        .Actions
+                        .OfType<Conditional>()
+                        .ForEach(conditional => {
+                            conditional.IfTrue.Actions
+                                .OfType<ContextActionDispelMagic>()
+                                .ForEach(a => {
+                                    a.OneRollForAll = true;
+                                    a.m_StopAfterCountRemoved = true;
+                                    a.m_CountToRemove = new ContextValue() {
+                                        ValueType = ContextValueType.Shared,
+                                        ValueShared = AbilitySharedValue.StatBonus
+                                    };
+                                });
+                        });
+                    bp.AddComponent<ContextCalculateSharedValue>(c => {
+                        c.ValueType = AbilitySharedValue.StatBonus;
+                        c.Value = new ContextDiceValue() {
+                            DiceType = DiceType.One,
+                            DiceCountValue = new ContextValue() {
+                                ValueType = ContextValueType.Rank
+                            },
+                            BonusValue = new ContextValue() {
+                                ValueType = ContextValueType.Rank,
+                                ValueRank = AbilityRankType.DamageDice
+                            },
+                        };
+                        c.Modifier = 0.25;
                     });
-                AeonBaneBuff.GetComponent<AddInitiatorAttackRollTrigger>()
-                    .Action
-                    .Actions
-                    .OfType<Conditional>()
-                    .ForEach(conditional => {
-                        conditional.IfFalse.Actions
-                            .OfType<ContextActionDispelMagic>()
-                            .ForEach(a => {
-                                a.OneRollForAll = true;
-                            });
-                    });
-                /*
-                AeonBaneBuff.GetComponent<AddAbilityUseTrigger>()
-                    .Action
-                    .Actions
-                    .OfType<Conditional>()
-                    .ForEach(conditional => {
-                        conditional.IfTrue.Actions
-                            .OfType<ContextActionDispelMagic>()
-                            .ForEach(a => {
-                                a.m_StopAfterCountRemoved = true;
-                                a.m_CountToRemove = new ContextValue() {
-                                    ValueType = ContextValueType.Shared,
-                                    ValueShared = AbilitySharedValue.StatBonus
-                                };
-                            });
-                    });
-                */
-                AeonBaneBuff.AddComponent<ContextCalculateSharedValue>(c => {
-                    c.ValueType = AbilitySharedValue.StatBonus;
-                    c.Value = new ContextDiceValue() {
-                        DiceType = DiceType.One,
-                        DiceCountValue = new ContextValue() {
-                            ValueType = ContextValueType.Rank
-                        },
-                        BonusValue = new ContextValue() {
-                            ValueType = ContextValueType.Rank,
-                            ValueRank = Kingmaker.Enums.AbilityRankType.DamageDice
-                        },
-                    };
-                    c.Modifier = 0.25;
                 });
                 TTTContext.Logger.LogPatch("Patched", AeonBaneBuff);
             }
@@ -350,6 +446,10 @@ namespace TabletopTweaks.Reworks.Reworks {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("PatchAeonGreaterBaneDispel")) { return; }
 
                 var AeonGreaterBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("cdcc13884252b2c4d8dac57cb5f46555");
+                var mythic4lvlaeon_aeondispel00_vfxsfx_composite_ability = new PrefabLink() {
+                    AssetId = "eca41199ec5363b439015f6b0db63883"
+                };
+
                 AeonGreaterBaneBuff.GetComponents<AddInitiatorAttackWithWeaponTrigger>()
                     .Where(action => action.Action.Actions.OfType<ContextActionDispelMagic>().Any())
                     .First().OnlyOnFirstHit = true;
@@ -357,6 +457,37 @@ namespace TabletopTweaks.Reworks.Reworks {
                     .OfType<ContextActionDispelMagic>()
                     .ForEach(c => c.m_BuffType = ContextActionDispelMagic.BuffType.FromSpells);
                 TTTContext.Logger.LogPatch("Patched", AeonGreaterBaneBuff);
+
+                if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonBaneSpellDispel")) { return; }
+
+                AeonGreaterBaneBuff.TemporaryContext(bp => {
+                    bp.AddComponent<AddAbilityUseTriggerTTT>(c => {
+                        c.CheckAbilityType = true;
+                        c.Type = AbilityType.Spell;
+                        c.AfterCast = true;
+                        c.ActionsOnTarget = true;
+                        c.ActionsOnAllTargets = true;
+                        c.IgnoreAttackSpells = true;
+                        c.m_Spellbooks = new BlueprintSpellbookReference[0];
+                        c.Action = Helpers.CreateActionList(
+                            new ContextActionDispelMagic() {
+                                m_CheckType = Kingmaker.RuleSystem.Rules.RuleDispelMagic.CheckType.None,
+                                OnlyTargetEnemyBuffs = true,
+                                OneRollForAll = true,
+                                m_CountToRemove = 1,
+                                m_StopAfterCountRemoved = true,
+                                m_BuffType = ContextActionDispelMagic.BuffType.FromSpells,
+                                m_MaxSpellLevel = new ContextValue(),
+                                m_UseMaxCasterLevel = true,
+                                m_MaxCasterLevel = new ContextValue(),
+                                ContextBonus = new ContextValue(),
+                                Schools = new SpellSchool[0],
+                                OnSuccess = Helpers.CreateActionList(),
+                                OnFail = Helpers.CreateActionList()
+                            }
+                        );
+                    });
+                });
             }
             static void PatchAeonGazeAction() {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonGazeActionSystem")) { return; }

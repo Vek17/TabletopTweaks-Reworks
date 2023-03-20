@@ -84,6 +84,11 @@
           "Homebrew": true,
           "Description": "Aeon Bane now calculates damage more correctly and is displayed better in the UI. This also improves stacking with inquisitor bane."
         },
+        "AeonBaneSpellDispel": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Aeon Bane now dispels on all spell effects not just spells with attack rolls."
+        },
         "AeonBaneSpellResistance": {
           "Enabled": true,
           "Homebrew": true,

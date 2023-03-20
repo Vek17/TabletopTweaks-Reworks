@@ -5617,7 +5617,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             });
             var TricksterPersuasion3Buff = SongOfDiscordBuff.CreateCopy(TTTContext, "TricksterPersuasion3Buff", bp => {
                 bp.SetName(TTTContext, "Trickster Persuasion 3");
-                bp.SetDescription(TTTContext, "Creature has a 50% chance to attack the nearest target each turn." +
+                bp.SetDescription(TTTContext, "Creature has a 50% chance to attack the nearest target each turn. " +
                     "Additionally they suffer pentalities to AC and spell resistance equal to equal to your mythic rank, as well as a penalty to saving throws equal to 1 + half your mythic rank. ");
                 bp.m_Icon = Icon_TricksterPersausion;
                 bp.Stacking = StackingType.Prolong;
@@ -5665,13 +5665,12 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 });
                 bp.AddContextRankConfig(c => {
                     c.m_BaseValueType = ContextRankBaseValueType.MythicLevel;
-                    c.m_Type = AbilityRankType.StatBonus;
+                    c.m_Type = AbilityRankType.Default;
                     c.m_Progression = ContextRankProgression.AsIs;
-                    c.m_StepLevel = 2;
                 });
                 bp.AddContextRankConfig(c => {
                     c.m_BaseValueType = ContextRankBaseValueType.MythicLevel;
-                    c.m_Type = AbilityRankType.Default;
+                    c.m_Type = AbilityRankType.StatBonus;
                     c.m_Progression = ContextRankProgression.OnePlusDivStep;
                     c.m_StepLevel = 2;
                 });
