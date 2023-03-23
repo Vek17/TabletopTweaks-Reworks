@@ -155,9 +155,10 @@ namespace TabletopTweaks.Reworks.Reworks {
                     });
                 }
                 void UpdateBuffVisability(BlueprintBuff barrageBuff, string element) {
-                    barrageBuff.m_Icon = ElementalBarrage.Icon;
+                    barrageBuff.SetName(ElementalBarrage.m_DisplayName);
                     barrageBuff.SetDescription(TTTContext, $"If this creature takes elemental damage from a " +
                         $"type other than {element} it will take additional damage and consume the mark.");
+                    barrageBuff.m_Icon = ElementalBarrage.Icon;
                     barrageBuff.m_Flags = 0;
                 }
                 void AddIncomingDamageTriggers(BlueprintBuff barrageBuff, params DamageEnergyType[] triggers) {

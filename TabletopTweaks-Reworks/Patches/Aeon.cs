@@ -530,6 +530,8 @@ namespace TabletopTweaks.Reworks.Reworks {
                                 .OfType<ContextActionApplyBuff>()
                                 .ForEach(component => {
                                     component.Buff.TemporaryContext(buff => {
+                                        buff.SetName(gaze.m_DisplayName);
+                                        buff.SetDescription(gaze.m_Description);
                                         buff.m_Flags &= ~BlueprintBuff.Flags.HiddenInUi;
                                         buff.m_Icon = gaze.Icon;
                                     });
