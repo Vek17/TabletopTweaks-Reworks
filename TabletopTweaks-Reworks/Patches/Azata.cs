@@ -120,20 +120,20 @@ namespace TabletopTweaks.Reworks.Reworks {
                             c.Actions = Helpers.CreateActionList(
                                 new ContextActionRandomize() {
                                     m_Actions = new ContextActionRandomize.ActionWrapper[] {
-                                    CreateDamageAction(DamageEnergyType.Acid),
-                                    CreateDamageAction(DamageEnergyType.Cold),
-                                    CreateDamageAction(DamageEnergyType.Electricity),
-                                    CreateDamageAction(DamageEnergyType.Fire),
-                                    CreateDamageAction(DamageEnergyType.Sonic)
+                                        CreateDamageAction(DamageEnergyType.Acid),
+                                        CreateDamageAction(DamageEnergyType.Cold),
+                                        CreateDamageAction(DamageEnergyType.Electricity),
+                                        CreateDamageAction(DamageEnergyType.Fire),
+                                        CreateDamageAction(DamageEnergyType.Sonic)
                                     }
                                 },
                                 new ContextActionRandomize() {
                                     m_Actions = new ContextActionRandomize.ActionWrapper[] {
-                                    CreateDebuffAction(BlindnessBuff, 3),
-                                    CreateDebuffAction(Daze, 3),
-                                    CreateDebuffAction(Nauseated, 3),
-                                    CreateDebuffAction(Slowed, 3),
-                                    CreateDebuffAction(Stunned, 3)
+                                        CreateDebuffAction(BlindnessBuff, 3),
+                                        CreateDebuffAction(Daze, 3),
+                                        CreateDebuffAction(Nauseated, 3),
+                                        CreateDebuffAction(Slowed, 3),
+                                        CreateDebuffAction(Stunned, 3)
                                     }
                                 }
                             );

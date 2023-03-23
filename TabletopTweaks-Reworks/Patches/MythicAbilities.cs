@@ -3,6 +3,7 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Controllers;
+using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.Enums;
 using Kingmaker.Enums.Damage;
@@ -17,7 +18,9 @@ using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Properties;
 using Kingmaker.Utility;
+using System.Linq;
 using TabletopTweaks.Core.NewActions;
+using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.NewComponents.AbilitySpecific;
 using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
 using TabletopTweaks.Core.Utilities;
@@ -38,6 +41,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 PatchGreaterEnduringSpells();
                 PatchAbundantCasting();
                 PatchUnrelentingAssault();
+                PatchArchmageArmor();
             }
             static void PatchElementalBarrage() {
                 if (TTTContext.Homebrew.MythicAbilities.IsDisabled("ElementalBarrage")) { return; }
@@ -340,6 +344,29 @@ namespace TabletopTweaks.Reworks.Reworks {
                 TTTContext.Logger.LogPatch(UnrelentingAssault);
                 TTTContext.Logger.LogPatch(UnrelentingAssaultBuff);
                 TTTContext.Logger.LogPatch(UnrelentingAssaultEffectBuff);
+            }
+            static void PatchArchmageArmor() {
+                if (Main.TTTContext.Homebrew.MythicAbilities.IsDisabled("GreaterEnduringSpells")) { return; }
+
+                var ArchmageArmor = BlueprintTools.GetBlueprint<BlueprintFeature>("c3ef5076c0feb3c4f90c229714e62cd0");
+                var MageArmor = BlueprintTools.GetBlueprint<BlueprintAbility>("9e1ad5d6f87d19e4d8883d63a6e35568");
+                var MageArmorBuffMythic = BlueprintTools.GetBlueprint<BlueprintBuff>("355be0688dabc21409f37942d637cdab");
+
+                MageArmor.TemporaryContext(bp => {
+                    bp.FlattenAllActions().OfType<Conditional>().ForEach(a => {
+                        a.ConditionsChecker.Conditions = a.ConditionsChecker.Conditions.AppendToArray(
+                            new ContextConditionItemSource() {
+                                Not = true
+                            }
+                        );
+                    });
+                });
+                MageArmorBuffMythic.TemporaryContext(bp => {
+                    bp.SetName(ArchmageArmor.m_DisplayName);
+                });
+
+                TTTContext.Logger.LogPatch(ArchmageArmor);
+                TTTContext.Logger.LogPatch(MageArmor);
             }
         }
     }
