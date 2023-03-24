@@ -19,6 +19,11 @@
         "Homebrew": true,
         "Description": "Now grants two bonus casts instead of four."
       },
+      "ArchmageArmor": {
+        "Enabled": true,
+        "Homebrew": true,
+        "Description": "No longer works when cast from items and requires you know mage armor as a prerequisite."
+      },
       "DimensionalRetribution": {
         "Enabled": true,
         "Homebrew": true,

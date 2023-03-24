@@ -23,7 +23,9 @@ using TabletopTweaks.Core.NewActions;
 using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.NewComponents.AbilitySpecific;
 using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
+using TabletopTweaks.Core.NewComponents.Prerequisites;
 using TabletopTweaks.Core.Utilities;
+using static Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite;
 using static TabletopTweaks.Reworks.Main;
 
 namespace TabletopTweaks.Reworks.Reworks {
@@ -346,12 +348,25 @@ namespace TabletopTweaks.Reworks.Reworks {
                 TTTContext.Logger.LogPatch(UnrelentingAssaultEffectBuff);
             }
             static void PatchArchmageArmor() {
-                if (Main.TTTContext.Homebrew.MythicAbilities.IsDisabled("GreaterEnduringSpells")) { return; }
+                if (Main.TTTContext.Homebrew.MythicAbilities.IsDisabled("ArchmageArmor")) { return; }
 
                 var ArchmageArmor = BlueprintTools.GetBlueprint<BlueprintFeature>("c3ef5076c0feb3c4f90c229714e62cd0");
+                var ArcanistExploitArmoredMaskAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("2d7d510c6e2e3e54ab9eee84a41fa2cf");
                 var MageArmor = BlueprintTools.GetBlueprint<BlueprintAbility>("9e1ad5d6f87d19e4d8883d63a6e35568");
                 var MageArmorBuffMythic = BlueprintTools.GetBlueprint<BlueprintBuff>("355be0688dabc21409f37942d637cdab");
 
+                ArchmageArmor.TemporaryContext(bp => {
+                    bp.AddPrerequisite<PrerequisiteSpellKnown>(p => {
+                        p.m_Spell = MageArmor.ToReference<BlueprintAbilityReference>();
+                        p.RequireSpellbook = false;
+                        p.Group = GroupType.Any;
+                    });
+                    bp.AddPrerequisite<PrerequisiteSpellKnown>(p => {
+                        p.m_Spell = ArcanistExploitArmoredMaskAbility.ToReference<BlueprintAbilityReference>();
+                        p.RequireSpellbook = false;
+                        p.Group = GroupType.Any;
+                    });
+                });
                 MageArmor.TemporaryContext(bp => {
                     bp.FlattenAllActions().OfType<Conditional>().ForEach(a => {
                         a.ConditionsChecker.Conditions = a.ConditionsChecker.Conditions.AppendToArray(
