@@ -1,10 +1,12 @@
-## Version 1.2.5
-* Aeon
-	* Aeon Bane now once again supports dispel on non attack roll spells.
+## Version 1.2.6
 * Mythic Abilities
 	* Archmage Armor
 		* No longer works when cast from items.
 		* Now requires knowing Mage Armor as a prerequisite.
+
+## Version 1.2.5
+* Aeon
+	* Aeon Bane now once again supports dispel on non attack roll spells.
 
 ## Version 1.2.4
 * Mythic Abilities
