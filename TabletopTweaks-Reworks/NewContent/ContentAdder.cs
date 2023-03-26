@@ -19,6 +19,7 @@ namespace TabletopTweaks.Reworks.NewContent {
                 Classes.Aeon.AddAeonFeatures();
                 Classes.Trickster.AddTricksterDomains();
                 Classes.Trickster.AddTricksterTricks();
+                //Classes.Demon.AddTESTDEMONPLEASEIGNORE();
             }
         }
     }
