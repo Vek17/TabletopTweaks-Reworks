@@ -165,6 +165,11 @@
           "Homebrew": true,
           "Description": "Azata songs are now move actions instead of standard actions."
         },
+        "AzataSongIcons": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Azata songs now all have unique icons."
+        },
         "AzataSongToggles": {
           "Enabled": true,
           "Homebrew": true,

@@ -3,6 +3,7 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Blueprints.Classes.Spells;
+using Kingmaker.Blueprints.Facts;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.Mechanics.Buffs;
 using Kingmaker.ElementsSystem;
@@ -24,6 +25,7 @@ using Kingmaker.Utility;
 using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
 using TabletopTweaks.Core.Utilities;
+using UnityEngine;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
 using static TabletopTweaks.Reworks.Main;
 
@@ -42,6 +44,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 PatchAzataSpellList();
                 PatchAzataSpells();
                 PatchAzataSongActions();
+                PatchAzataSongIcons();
                 PatchAzataSongToggles();
                 PatchFavorableMagic();
                 PatchIncredibleMight();
@@ -251,6 +254,58 @@ namespace TabletopTweaks.Reworks.Reworks {
                 TTTContext.Logger.LogPatch("Patched", SongOfBrokenChainsToggleAbility);
                 TTTContext.Logger.LogPatch("Patched", SongOfDefianceToggleAbility);
                 TTTContext.Logger.LogPatch("Patched", SongOfCourageousDefenderToggleAbility);
+            }
+            static void PatchAzataSongIcons() {
+                if (Main.TTTContext.Homebrew.MythicReworks.Azata.IsDisabled("AzataSongIcons")) { return; }
+
+                var Icon_SongOfBrokenChains = AssetLoader.LoadInternal(TTTContext, "Abilities", "Icon_SongOfBrokenChains.png");
+                var Icon_SongOfCourageousDefender = AssetLoader.LoadInternal(TTTContext, "Abilities", "Icon_SongOfCourageousDefender.png");
+                var Icon_SongOfDefiance = AssetLoader.LoadInternal(TTTContext, "Abilities", "Icon_SongOfDefiance.png");
+
+                var SongOfBrokenChainsFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("31a8a71445f21a044b01eb877b8540db");
+                var SongOfBrokenChainsToggleAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("ac08e4d23e2928148a7b4109e9485e6a");
+                var SongOfBrokenChainsBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("c0b272d331d88c54c812ba54e00b1414");
+                var SongOfBrokenChainsEffectBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("04b290e42dad4524a8f650f511e80627");
+
+                var SongOfCourageousDefenderFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("a1dd79df6909b0142915a3a88df4837d");
+                var SongOfCourageousDefenderToggleAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("66864464f529c264f8c08ec2f4bf1cb5");
+                var SongOfCourageousDefenderChoseCompanionAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("1e9d632ff09f4b3387467ceb827a6c01");
+                var SongOfCourageousDefenderCompanionBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("f4300d92847d489ba394896a41a7ca1b");
+                var SongOfCourageousDefenderEffectBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("2c51835b2057101408b023d10235c969");
+                var SongOfCourageousDefenderEnemyEffectBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("3c3c89f2b79a4eb4b3e0c2ff77a17ea9");
+
+                var SongOfDefianceFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("c2be02bc2014d4c4cbaf7c442a7f076f");
+                var SongOfDefianceToggleAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("661ad9ab9c8af2e4c86a7cfa4c2be3f2");
+                var SongOfDefianceBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("12cd0990f0895a946916a2ea5067e92e");
+                var SongOfDefianceEffectBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("df183a7ac29fd904ab00e639fdd26a21");
+
+                UpdateIcons(Icon_SongOfBrokenChains, 
+                    SongOfBrokenChainsFeature,
+                    SongOfBrokenChainsToggleAbility,
+                    SongOfBrokenChainsBuff,
+                    SongOfBrokenChainsEffectBuff
+                );
+                UpdateIcons(Icon_SongOfCourageousDefender,
+                    SongOfCourageousDefenderFeature,
+                    SongOfCourageousDefenderToggleAbility,
+                    SongOfCourageousDefenderChoseCompanionAbility,
+                    SongOfCourageousDefenderCompanionBuff,
+                    SongOfCourageousDefenderEffectBuff,
+                    SongOfCourageousDefenderEnemyEffectBuff
+                );
+                UpdateIcons(Icon_SongOfDefiance,
+                    SongOfDefianceFeature,
+                    SongOfDefianceToggleAbility,
+                    SongOfDefianceBuff,
+                    SongOfDefianceEffectBuff
+                );
+
+                void UpdateIcons(Sprite icon, params BlueprintUnitFact[] facts) {
+                    foreach (var fact in facts) {
+                        fact.m_Icon = icon;
+                        TTTContext.Logger.LogPatch(fact);
+                    }
+                }
             }
             static void PatchAzataSongToggles() {
                 if (Main.TTTContext.Homebrew.MythicReworks.Azata.IsDisabled("AzataSongToggles")) { return; }

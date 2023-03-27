@@ -31,6 +31,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             TTTContext.Logger.LogPatch("Added", DemonMythicShifterClassTTT);
         }
         //[HarmonyPatch(typeof(SelectClass), nameof(SelectClass.Apply))]
+        // ILevelUpSelectClassHandler can be used on the bus
         static class CharInfoClassEntryVM_Constructor_Patch {
             static void Postfix(LevelUpState state, UnitDescriptor unit) {
                 if (state.SelectedClass == null) { return; }
