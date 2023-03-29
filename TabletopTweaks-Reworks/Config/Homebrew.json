@@ -150,10 +150,15 @@
     "Azata": {
       "DisableAll": false,
       "Settings": {
+        "AivuUpgrades": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Aivu stats and abilties have been upgraded based on tabletop Havoc Dragon statblocks."
+        },
         "AzataPerformanceResource": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": ""
+          "Description": "Performances can now be used a number of rounds equal to character level + mythic rank."
         },
         "AzataSpellList": {
           "Enabled": true,

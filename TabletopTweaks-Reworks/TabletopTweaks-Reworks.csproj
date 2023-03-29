@@ -160,6 +160,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="ModLogic\ModContextTTTReworks.cs" />
     <Compile Include="NewContent\Classes\Aeon.cs" />
+    <Compile Include="NewContent\Classes\Azata.cs" />
     <Compile Include="NewContent\Classes\Demon.cs" />
     <Compile Include="NewContent\Classes\Trickster.cs" />
     <Compile Include="NewContent\ContentAdder.cs" />

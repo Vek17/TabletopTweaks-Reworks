@@ -5,15 +5,19 @@ using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Blueprints.Facts;
 using Kingmaker.Blueprints.JsonSystem;
+using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.Designers.Mechanics.Buffs;
+using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.ElementsSystem;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.Enums.Damage;
+using Kingmaker.ResourceLinks;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
+using Kingmaker.UnitLogic.Abilities.Components.AreaEffects;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
@@ -40,6 +44,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 Initialized = true;
                 TTTContext.Logger.LogHeader("Azata Rework");
 
+                PatchAivu();
                 PatchAzataPerformanceResource();
                 PatchAzataSpellList();
                 PatchAzataSpells();
@@ -53,6 +58,128 @@ namespace TabletopTweaks.Reworks.Reworks {
                 PatchZippyMagicFeature();
             }
 
+            static void PatchAivu() {
+                if (TTTContext.Homebrew.MythicReworks.Azata.IsDisabled("AivuUpgrades")) { return; }
+
+                var DragonAzataCompanionFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("cf36f23d60987224696f03be70351928");
+                var DragonAzataFeatureTierIIFeatureToDragon = BlueprintTools.GetBlueprint<BlueprintFeature>("4d9785fa28ab443289497ccb05e49fe2");
+                var DragonAzataFeatureTierIIIFeatureToDragon = BlueprintTools.GetBlueprint<BlueprintFeature>("1bfc72ee31e349ab91991d14e1db471e");
+                var DragonAzataFeatureTierIVFeatureToDragon = BlueprintTools.GetBlueprint<BlueprintFeature>("e0cd072417ac444a99e83eae51eea8df");
+
+                var DragonAzataFeatureTierII = BlueprintTools.GetBlueprint<BlueprintFeature>("fc2aeb954e13811488d38dc1af72ef9c");
+                var DragonAzataFeatureTierIII = BlueprintTools.GetBlueprint<BlueprintFeature>("fd8c12d3c29189d4c81d88ee6aaba636");
+                var DragonAzataFeatureTierIV = BlueprintTools.GetBlueprint<BlueprintFeature>("ee1bac8c71df3f9408bad5ca3a19eb23");
+                var DragonAzataFeatureTierIIPrefab = BlueprintTools.GetBlueprint<BlueprintFeature>("50853b0623b844ac86129db459907797");
+                var DragonAzataFeatureTierIIIPrefab = BlueprintTools.GetBlueprint<BlueprintFeature>("600c4d652b6e4684a7a4b77946903c30");
+
+                var DragonAzataSpecialAbilityBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("17831f3fa25cf52458a34b0acc034b40");
+                var DragonAzataSpecialAbilityTierArea = BlueprintTools.GetBlueprint<BlueprintAbilityAreaEffect>("ce6652b6fb8d1504181a9f3e2aa520e3");
+                var DragonAzataBreathWeapon = BlueprintTools.GetBlueprint<BlueprintAbility>("42a9104e5cff51f46996d7d1ad65c0a6");
+                var Confusion = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("886c7407dc629dc499b9f1465ff382df");
+
+                var DragonAzataStatGrowth = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(TTTContext, "DragonAzataStatGrowth");
+                var DragonAzataTailSweep = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(TTTContext, "DragonAzataTailSweep");
+                var DragonAzataDeliriumBreath = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(TTTContext, "DragonAzataDeliriumBreath"); 
+                var DragonAzataHeroismEffect = BlueprintTools.GetModBlueprintReference<BlueprintBuffReference>(TTTContext, "DragonAzataHeroismEffect");
+
+                //Apply Stat Upgrades
+                DragonAzataCompanionFeature.TemporaryContext(bp => { 
+                    bp.AddComponent<AddFeatureToPet>(c => {
+                         c.m_PetType = PetType.AzataHavocDragon;
+                         c.m_Feature = DragonAzataStatGrowth;
+                    });
+                    TTTContext.Logger.LogPatch(bp);
+                });
+                //Update Breath Weapon
+                DragonAzataBreathWeapon.TemporaryContext(bp => {
+                    bp.GetComponent<AbilityEffectRunAction>()?.TemporaryContext(c => {
+                        c.AddAction(
+                            new ContextActionConditionalSaved() { 
+                                Succeed = Helpers.CreateActionList(),
+                                Failed = Helpers.CreateActionList(
+                                    new Conditional() { 
+                                        ConditionsChecker = new ConditionsChecker() {
+                                            Conditions = new Condition[] { 
+                                                new ContextConditionCasterHasFact() {
+                                                    m_Fact = DragonAzataDeliriumBreath
+                                                },
+                                                new ContextConditionIsEnemy()
+                                            }
+                                        },
+                                        IfFalse = Helpers.CreateActionList(),
+                                        IfTrue = Helpers.CreateActionList(
+                                            new ContextActionApplyBuff() { 
+                                                m_Buff = Confusion,
+                                                IsFromSpell = false,
+                                                DurationValue = new ContextDurationValue() {
+                                                    Rate = DurationRate.Rounds,
+                                                    DiceCountValue = 0,
+                                                    BonusValue = 1
+                                                }
+                                            }    
+                                        )
+                                    }
+                                )
+                            }
+                        );
+                    });
+                    TTTContext.Logger.LogPatch(bp);
+                });
+                //Update Heroism Aura
+                DragonAzataSpecialAbilityBuff.TemporaryContext(bp => {
+                    bp.FxOnStart = new PrefabLink();
+                    TTTContext.Logger.LogPatch(bp);
+                });
+                DragonAzataSpecialAbilityTierArea.TemporaryContext(bp => {
+                    bp.GetComponent<AbilityAreaEffectBuff>().m_Buff = DragonAzataHeroismEffect;
+                    TTTContext.Logger.LogPatch(bp);
+                });
+
+                FixSizeChanges(DragonAzataFeatureTierIIPrefab);
+                FixSizeChanges(DragonAzataFeatureTierIIIPrefab);
+                //Update Spell Resistance and Trip Attack
+                DragonAzataFeatureTierII.TemporaryContext(bp => {
+                    bp.AddComponent<AddSpellResistance>(c => {
+                        c.Value = 27;
+                    });
+                    bp.AddComponent<AddFacts>(c => {
+                        c.m_Facts = new BlueprintUnitFactReference[] { 
+                            DragonAzataTailSweep 
+                        };
+                    });
+                    TTTContext.Logger.LogPatch(bp);
+                });
+                //Update Delirium Breath
+                DragonAzataFeatureTierIII.TemporaryContext(bp => {
+                    bp.AddComponent<AddSpellResistance>(c => {
+                        c.Value = 27;
+                    });
+                    bp.AddComponent<AddFacts>(c => {
+                        c.m_Facts = new BlueprintUnitFactReference[] { 
+                            DragonAzataDeliriumBreath
+                        };
+                    });
+                    TTTContext.Logger.LogPatch(bp);
+                });
+
+                void FixSizeChanges(BlueprintFeature prefabFeature) {
+                    var component = prefabFeature.GetComponent<ChangeUnitSize>();
+                    if (component == null) { return; }
+                    prefabFeature.RemoveComponent(component);
+                    if (component.IsTypeDelta) {
+                        prefabFeature.AddComponent<ChangeUnitBaseSize>(c => {
+                            c.m_Type = Core.NewUnitParts.UnitPartBaseSizeAdjustment.ChangeType.Delta;
+                            c.SizeDelta = component.SizeDelta;
+                        });
+                    } else if (component.IsTypeValue) {
+                        prefabFeature.AddComponent<ChangeUnitBaseSize>(c => {
+                            c.m_Type = Core.NewUnitParts.UnitPartBaseSizeAdjustment.ChangeType.Value;
+                            c.Size = component.Size;
+                        });
+                    }
+                    TTTContext.Logger.LogPatch(prefabFeature);
+                }
+            }
             static void PatchAzataPerformanceResource() {
                 if (TTTContext.Homebrew.MythicReworks.Azata.IsDisabled("AzataPerformanceResource")) { return; }
                 var AzataPerformanceResource = BlueprintTools.GetBlueprint<BlueprintAbilityResource>("83f8a1c45ed205a4a989b7826f5c0687");

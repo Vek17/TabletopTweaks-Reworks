@@ -1,3 +1,10 @@
+## Version 1.2.7
+* Azata
+	* Aivu 
+		* Stats now upgrade as mythic rank increases, these are based on tabletop Havoc dragon stat blocks.
+		* Now gets a trip attack on her tail attack at mythic 5.
+		* Breath weapon now applies confusion on failed save at mythic rank 7.
+
 ## Version 1.2.6
 * Mythic Abilities
 	* Archmage Armor
