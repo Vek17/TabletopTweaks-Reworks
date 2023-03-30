@@ -2,6 +2,7 @@
 * Azata
 	* Aivu 
 		* Stats now upgrade as mythic rank increases, these are based on tabletop Havoc dragon stat blocks.
+		* Now gets natural spell resistance at mythic 5, upgrading at mythic 7.
 		* Now gets a trip attack on her tail attack at mythic 5.
 		* Breath weapon now applies confusion on failed save at mythic rank 7.
 
