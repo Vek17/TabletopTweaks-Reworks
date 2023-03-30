@@ -18,11 +18,13 @@ using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Abilities.Components.AreaEffects;
+using Kingmaker.UnitLogic.Abilities.Components.CasterCheckers;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
+using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.UnitLogic.Mechanics.Properties;
 using Kingmaker.Utility;
@@ -76,9 +78,13 @@ namespace TabletopTweaks.Reworks.Reworks {
                 var DragonAzataSpecialAbilityTierArea = BlueprintTools.GetBlueprint<BlueprintAbilityAreaEffect>("ce6652b6fb8d1504181a9f3e2aa520e3");
                 var DragonAzataBreathWeapon = BlueprintTools.GetBlueprint<BlueprintAbility>("42a9104e5cff51f46996d7d1ad65c0a6");
                 var Confusion = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("886c7407dc629dc499b9f1465ff382df");
+                var DragonAzataBreathCooldown = BlueprintTools.GetBlueprint<BlueprintBuff>("a98394128e4c41509c1a873e4faf914a");
+                var SonicCone30Feet00 = BlueprintTools.GetBlueprintReference<BlueprintProjectileReference>("c7fd792125b79904881530dbc2ff83de");
+                var DragonAzataSpecialAbilityTierII = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("491c677a0a602c34fbd9530ff53d6d4a");
 
                 var DragonAzataStatGrowth = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(TTTContext, "DragonAzataStatGrowth");
                 var DragonAzataTailSweep = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(TTTContext, "DragonAzataTailSweep");
+                var DragonAzataDeadlyTail = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(TTTContext, "DragonAzataDeadlyTail");
                 var DragonAzataDeliriumBreath = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(TTTContext, "DragonAzataDeliriumBreath"); 
                 var DragonAzataHeroismEffect = BlueprintTools.GetModBlueprintReference<BlueprintBuffReference>(TTTContext, "DragonAzataHeroismEffect");
 
@@ -92,6 +98,174 @@ namespace TabletopTweaks.Reworks.Reworks {
                 });
                 //Update Breath Weapon
                 DragonAzataBreathWeapon.TemporaryContext(bp => {
+                    bp.SetDescription(TTTContext, "Once every 1d4 rounds, havoc dragon deals 6d10 points of sonic damage to everyone in a in 30-foot cone. " +
+                        "This damage increases by 2d10 for every Azata mythic rank.");
+                    bp.SetComponents();
+                    bp.AddComponent<AbilityEffectRunAction>(c => {
+                        c.Actions = Helpers.CreateActionList(
+                            new ContextActionApplyBuff() {
+                                m_Buff = DragonAzataBreathCooldown.ToReference<BlueprintBuffReference>(),
+                                ToCaster = true,
+                                IsFromSpell = false,
+                                IsNotDispelable = true,
+                                DurationValue = new ContextDurationValue() {
+                                    Rate = DurationRate.Rounds,
+                                    DiceType = DiceType.D4,
+                                    DiceCountValue = 1,
+                                    BonusValue = 0
+                                }
+                            },
+                            new Conditional() {
+                                ConditionsChecker = new ConditionsChecker() {
+                                    Conditions = new Condition[] {
+                                            new ContextConditionCasterHasFact() {
+                                                m_Fact = DragonAzataSpecialAbilityTierII
+                                            }
+                                        }
+                                },
+                                IfFalse = Helpers.CreateActionList(
+                                    new ContextActionSavingThrow() {
+                                        Type = SavingThrowType.Reflex,
+                                        Actions = Helpers.CreateActionList(
+                                            new ContextActionDealDamage() {
+                                                IsAoE = true,
+                                                HalfIfSaved = true,
+                                                DamageType = new DamageTypeDescription() {
+                                                    Type = DamageType.Energy,
+                                                    Energy = DamageEnergyType.Sonic
+                                                },
+                                                Duration = new ContextDurationValue() {
+                                                    DiceCountValue = new ContextValue(),
+                                                    BonusValue = new ContextValue()
+                                                },
+                                                Value = new ContextDiceValue() {
+                                                    DiceType = DiceType.D10,
+                                                    DiceCountValue = new ContextValue() {
+                                                        ValueType = ContextValueType.Rank,
+                                                        ValueRank = AbilityRankType.DamageDice
+                                                    },
+                                                    BonusValue = 0
+                                                },
+                                            },
+                                            new ContextActionConditionalSaved() {
+                                                Succeed = Helpers.CreateActionList(),
+                                                Failed = Helpers.CreateActionList(
+                                                    new Conditional() {
+                                                        ConditionsChecker = new ConditionsChecker() {
+                                                            Conditions = new Condition[] {
+                                                                new ContextConditionCasterHasFact() {
+                                                                    m_Fact = DragonAzataDeliriumBreath
+                                                                },
+                                                                new ContextConditionIsEnemy()
+                                                            }
+                                                        },
+                                                        IfFalse = Helpers.CreateActionList(),
+                                                        IfTrue = Helpers.CreateActionList(
+                                                            new ContextActionApplyBuff() {
+                                                                m_Buff = Confusion,
+                                                                IsFromSpell = false,
+                                                                DurationValue = new ContextDurationValue() {
+                                                                    Rate = DurationRate.Rounds,
+                                                                    DiceCountValue = 0,
+                                                                    BonusValue = 1
+                                                                }
+                                                            }
+                                                        )
+                                                    }
+                                                )
+                                            }
+                                        )
+                                    }
+                                ),
+                                IfTrue = Helpers.CreateActionList(
+                                    new Conditional() {
+                                        ConditionsChecker = new ConditionsChecker() {
+                                            Conditions = new Condition[] {
+                                                new ContextConditionIsEnemy()
+                                            }
+                                        },
+                                        IfFalse = Helpers.CreateActionList(),
+                                        IfTrue = Helpers.CreateActionList(
+                                            new ContextActionSavingThrow() {
+                                                Type = SavingThrowType.Reflex,
+                                                Actions = Helpers.CreateActionList(
+                                                    new ContextActionDealDamage() {
+                                                        IsAoE = true,
+                                                        HalfIfSaved = true,
+                                                        DamageType = new DamageTypeDescription() {
+                                                            Type = DamageType.Energy,
+                                                            Energy = DamageEnergyType.Sonic
+                                                        },
+                                                        Duration = new ContextDurationValue() {
+                                                            DiceCountValue = new ContextValue(),
+                                                            BonusValue = new ContextValue()
+                                                        },
+                                                        Value = new ContextDiceValue() {
+                                                            DiceType = DiceType.D10,
+                                                            DiceCountValue = new ContextValue() {
+                                                                ValueType = ContextValueType.Rank,
+                                                                ValueRank = AbilityRankType.DamageDice
+                                                            },
+                                                            BonusValue = 0
+                                                        },
+                                                    },
+                                                    new ContextActionConditionalSaved() {
+                                                        Succeed = Helpers.CreateActionList(),
+                                                        Failed = Helpers.CreateActionList(
+                                                            new Conditional() {
+                                                                ConditionsChecker = new ConditionsChecker() {
+                                                                    Conditions = new Condition[] {
+                                                                        new ContextConditionCasterHasFact() {
+                                                                            m_Fact = DragonAzataDeliriumBreath
+                                                                        },
+                                                                        new ContextConditionIsEnemy()
+                                                                    }
+                                                                },
+                                                                IfFalse = Helpers.CreateActionList(),
+                                                                IfTrue = Helpers.CreateActionList(
+                                                                    new ContextActionApplyBuff() {
+                                                                        m_Buff = Confusion,
+                                                                        IsFromSpell = false,
+                                                                        DurationValue = new ContextDurationValue() {
+                                                                            Rate = DurationRate.Rounds,
+                                                                            DiceCountValue = 0,
+                                                                            BonusValue = 1
+                                                                        }
+                                                                    }
+                                                                )
+                                                            }
+                                                        )
+                                                    }
+                                                )
+                                            }
+                                        )
+                                    }
+                                )
+                            }
+                        );
+                    });
+                    bp.AddComponent<AbilityDeliverProjectile>(c => {
+                        c.m_Projectiles = new BlueprintProjectileReference[] { SonicCone30Feet00 };
+                        c.m_Length = 30.Feet();
+                        c.m_LineWidth = 5.Feet();
+                        c.Type = AbilityProjectileType.Cone;
+                        c.m_Weapon = new BlueprintItemWeaponReference();
+                        c.m_ControlledProjectileHolderBuff = new BlueprintBuffReference();
+                    });
+                    bp.AddContextRankConfig(c => {
+                        c.m_Type = AbilityRankType.DamageDice;
+                        c.m_BaseValueType = ContextRankBaseValueType.MasterMythicLevel;
+                        c.m_Progression = ContextRankProgression.MultiplyByModifier;
+                        c.m_StepLevel = 2;
+                        c.m_UseMin = true;
+                        c.m_Min = 6;
+                    });
+                    bp.AddComponent<SpellDescriptorComponent>(c => {
+                        c.Descriptor = SpellDescriptor.BreathWeapon;
+                    });
+                    bp.AddComponent<AbilityCasterHasNoFacts>(c => {
+                        c.m_Facts = new BlueprintUnitFactReference[] { DragonAzataBreathCooldown.ToReference<BlueprintUnitFactReference>() };
+                    });
                     bp.GetComponent<AbilityEffectRunAction>()?.TemporaryContext(c => {
                         c.AddAction(
                             new ContextActionConditionalSaved() { 
@@ -149,15 +323,22 @@ namespace TabletopTweaks.Reworks.Reworks {
                     });
                     TTTContext.Logger.LogPatch(bp);
                 });
-                //Update Delirium Breath
+                //Update Delirium Breath and Deadly Tail
                 DragonAzataFeatureTierIII.TemporaryContext(bp => {
                     bp.AddComponent<AddSpellResistance>(c => {
                         c.Value = 27;
                     });
                     bp.AddComponent<AddFacts>(c => {
                         c.m_Facts = new BlueprintUnitFactReference[] { 
-                            DragonAzataDeliriumBreath
+                            DragonAzataDeliriumBreath,
+                            DragonAzataDeadlyTail
                         };
+                    });
+                    TTTContext.Logger.LogPatch(bp);
+                });
+                DragonAzataFeatureTierIV.TemporaryContext(bp => {
+                    bp.AddComponent<AddSpellResistance>(c => {
+                        c.Value = 32;
                     });
                     TTTContext.Logger.LogPatch(bp);
                 });

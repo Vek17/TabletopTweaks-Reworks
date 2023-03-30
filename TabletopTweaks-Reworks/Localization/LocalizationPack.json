@@ -122,6 +122,39 @@
       "esES": null
     },
     {
+      "Key": "67a4d5cd988d4d64966a21fcefe4a90c",
+      "SimpleName": "DragonAzataBreathWeapon.Description",
+      "ProcessTemplates": true,
+      "enGB": "Once every 1d4 rounds, havoc dragon deals 6d10 points of sonic damage to everyone in a in 30-foot cone. This damage increases by 2d10 for every Azata mythic rank.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "7969c81c71f84d97b785c4cedf236994",
+      "SimpleName": "DragonAzataDeadlyTail.Description",
+      "ProcessTemplates": true,
+      "enGB": "The dragon’s tail slap critical multiplier becomes ×3.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "348995e1ce33449a99b334ffbb314f4c",
+      "SimpleName": "DragonAzataDeadlyTail.Name",
+      "ProcessTemplates": false,
+      "enGB": "Deadly Tail",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "0098fba3940c4f799c65e729be0d87da",
       "SimpleName": "DragonAzataDeliriumBreath.Description",
       "ProcessTemplates": true,
@@ -243,10 +276,10 @@
       "esES": null
     },
     {
-      "Key": "86c738aba0ca4d769daae31cd0c70878",
+      "Key": "35038d0a766648ca9fca42d478594813",
       "SimpleName": "ElementalBarrageFireBuff.Description",
       "ProcessTemplates": true,
-      "enGB": "If this creature takes elemental damage from a type other than sonic it will take additional damage and consume the mark.",
+      "enGB": "If this creature takes elemental damage from a type other than fire it will take additional damage and consume the mark.",
       "ruRU": null,
       "deDE": null,
       "frFR": null,
@@ -254,10 +287,10 @@
       "esES": null
     },
     {
-      "Key": "35038d0a766648ca9fca42d478594813",
+      "Key": "86c738aba0ca4d769daae31cd0c70878",
       "SimpleName": "ElementalBarrageFireBuff.Description",
       "ProcessTemplates": true,
-      "enGB": "If this creature takes elemental damage from a type other than fire it will take additional damage and consume the mark.",
+      "enGB": "If this creature takes elemental damage from a type other than sonic it will take additional damage and consume the mark.",
       "ruRU": null,
       "deDE": null,
       "frFR": null,

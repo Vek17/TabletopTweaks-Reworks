@@ -16,6 +16,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
     internal class Azata {
         public static void AddAzataFeatures() {
             var NaturalArmor12 = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("0b2d92c6aac8093489dfdadf1e448280");
+            var TailType = BlueprintTools.GetBlueprintReference<BlueprintWeaponTypeReference>("4ce435468ebd4364997da8cbd0c66133");
             var HeroismBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("87ab2fed7feaaff47b62a3320a57ad8d");
 
             var DragonAzataStatGrowth = Helpers.CreateBlueprint<BlueprintFeature>(TTTContext, "DragonAzataStatGrowth", bp => {
@@ -428,6 +429,16 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 bp.AddComponent<ManeuverOnAttack>(c => {
                     c.Maneuver = CombatManeuver.Trip;
                     c.Category = WeaponCategory.Tail;
+                });
+            });
+            var DragonAzataDeadlyTail = Helpers.CreateBlueprint<BlueprintFeature>(TTTContext, "DragonAzataDeadlyTail", bp => {
+                bp.SetName(TTTContext, "Deadly Tail");
+                bp.SetDescription(TTTContext, "The dragon’s tail slap critical multiplier becomes ×3.");
+                bp.IsClassFeature = true;
+                bp.ReapplyOnLevelUp = true;
+                bp.AddComponent<WeaponTypeCriticalMultiplierIncrease>(c => {
+                    c.m_WeaponType = TailType;
+                    c.AdditionalMultiplier = 1;
                 });
             });
             var DragonAzataDeliriumBreath = Helpers.CreateBlueprint<BlueprintFeature>(TTTContext, "DragonAzataDeliriumBreath", bp => {
