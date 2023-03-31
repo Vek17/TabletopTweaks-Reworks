@@ -76,14 +76,6 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         ValueRank = AbilityRankType.SpeedBonus
                     };
                 });
-                bp.AddComponent<AddContextStatBonus>(c => {
-                    c.Stat = StatType.Charisma;
-                    c.Descriptor = ModifierDescriptor.Racial;
-                    c.Value = new ContextValue() {
-                        ValueType = ContextValueType.Rank,
-                        ValueRank = AbilityRankType.StatBonus
-                    };
-                });
                 //AbilityRankType.DamageBonus = Natural Armor
                 bp.AddContextRankConfig(c => {
                     c.m_Type = AbilityRankType.DamageBonus;
