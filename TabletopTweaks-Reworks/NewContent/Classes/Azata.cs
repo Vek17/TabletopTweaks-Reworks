@@ -1,14 +1,21 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.ResourceLinks;
+using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Components;
+using Kingmaker.UnitLogic.Mechanics.Properties;
+using TabletopTweaks.Core.NewComponents.AbilitySpecific;
+using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
 using TabletopTweaks.Core.Utilities;
 using static TabletopTweaks.Reworks.Main;
 
@@ -18,6 +25,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             var NaturalArmor12 = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("0b2d92c6aac8093489dfdadf1e448280");
             var TailType = BlueprintTools.GetBlueprintReference<BlueprintWeaponTypeReference>("4ce435468ebd4364997da8cbd0c66133");
             var HeroismBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("87ab2fed7feaaff47b62a3320a57ad8d");
+            var ZippyMagicFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("30b4200f897ba25419ba3a292aed4053");
 
             var DragonAzataStatGrowth = Helpers.CreateBlueprint<BlueprintFeature>(TTTContext, "DragonAzataStatGrowth", bp => {
                 bp.SetName(TTTContext, "Mythic Draconic Growth");
@@ -441,6 +449,40 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             });
             var DragonAzataHeroismEffect = HeroismBuff.CreateCopy(TTTContext, "DragonAzataHeroismEffect", bp => {
                 bp.FxOnStart = new PrefabLink();
+            });
+
+            var ZippyMagicBuff = Helpers.CreateBlueprint<BlueprintBuff>(TTTContext, "ZippyMagicBuff", bp => {
+                bp.SetName(TTTContext, "Zippy Magic");
+                bp.SetDescription(TTTContext, "Whenever Azata casts a spell, spell-like ability, or supernatural ability that targets individual creatures, " +
+                        "not areas, it affects one additional creature within a 30-foot range from the target. " +
+                        "If the target is an enemy, the spell affects one additional enemy; " +
+                        "if the target is an ally, the spell affects one additional ally. " +
+                        "Additionally, spells that target enemies damage them for 2d6 + mythic rank.");
+                bp.m_Icon = ZippyMagicFeature.Icon;
+                bp.AddComponent<AzataZippyMagicTTT>(c => {
+                    c.CheckAbilityType = true;
+                    c.Types = new AbilityType[] {
+                            AbilityType.Spell,
+                            AbilityType.SpellLike,
+                            AbilityType.Supernatural
+                        };
+                    c.AllowDescriptorOverride = true;
+                    c.Descriptors = SpellDescriptor.Hex;
+                    c.ZippyDamageDice = new DiceFormula(2, DiceType.D6);
+                    c.ZippyDamageBonus = new ContextValue() {
+                        ValueType = ContextValueType.CasterProperty,
+                        Property = UnitProperty.MythicLevel
+                    };
+                });
+            });
+            var ZippyMagicToggleAbility = Helpers.CreateBlueprint<BlueprintActivatableAbility>(TTTContext, "ZippyMagicToggleAbility", bp => {
+                bp.SetName(TTTContext, "Zippy Magic");
+                bp.SetDescription(ZippyMagicBuff.m_Description);
+                bp.m_Icon = ZippyMagicFeature.Icon;
+                bp.m_Buff = ZippyMagicBuff.ToReference<BlueprintBuffReference>();
+                bp.IsOnByDefault = true;
+                bp.DoNotTurnOffOnRest = true;
+                bp.DeactivateImmediately = true;
             });
         }
     }

@@ -276,10 +276,10 @@
       "esES": null
     },
     {
-      "Key": "35038d0a766648ca9fca42d478594813",
+      "Key": "86c738aba0ca4d769daae31cd0c70878",
       "SimpleName": "ElementalBarrageFireBuff.Description",
       "ProcessTemplates": true,
-      "enGB": "If this creature takes elemental damage from a type other than fire it will take additional damage and consume the mark.",
+      "enGB": "If this creature takes elemental damage from a type other than sonic it will take additional damage and consume the mark.",
       "ruRU": null,
       "deDE": null,
       "frFR": null,
@@ -287,10 +287,10 @@
       "esES": null
     },
     {
-      "Key": "86c738aba0ca4d769daae31cd0c70878",
+      "Key": "35038d0a766648ca9fca42d478594813",
       "SimpleName": "ElementalBarrageFireBuff.Description",
       "ProcessTemplates": true,
-      "enGB": "If this creature takes elemental damage from a type other than sonic it will take additional damage and consume the mark.",
+      "enGB": "If this creature takes elemental damage from a type other than fire it will take additional damage and consume the mark.",
       "ruRU": null,
       "deDE": null,
       "frFR": null,
@@ -317,6 +317,17 @@
       "deDE": null,
       "frFR": null,
       "zhCN": "你已经掌握了延长增益法术持续时间的方法。\n你对盟友施放的持续时间超过8分钟但不足24小时的法术，现在持续24小时",
+      "esES": null
+    },
+    {
+      "Key": "0a2c42cd4f9d40b990ddd78b0dce7094",
+      "SimpleName": "FavorableMagicFeature.Description",
+      "ProcessTemplates": true,
+      "enGB": "Azata's magic becomes incredibly more powerful. Whenever an enemy makes a saving throw against her spells, spell-like abilities, or supernatural abilities, they roll the die twice and take the worst result. Whenever the Azata makes a concentration check or a check to overcome spell resistance, she rolls twice and takes the best result. If the Azata casts a spell whose description says that a successful saving throw halves its damage or duration, it only decreases it by 25% instead.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
       "esES": null
     },
     {
@@ -757,6 +768,28 @@
       "deDE": null,
       "frFR": null,
       "zhCN": "只要你持续战斗，你的近战攻击的力量就会不断增长。\n每回合，只要你至少进行一次近战攻击，你的近战武器伤害骰就获得一个可叠加的+4加成，上限+20，直到战斗结束。",
+      "esES": null
+    },
+    {
+      "Key": "a53f9f0257d44873958043dabcd0beda",
+      "SimpleName": "ZippyMagicBuff.Description",
+      "ProcessTemplates": true,
+      "enGB": "Whenever Azata casts a spell, spell-like ability, or supernatural ability that targets individual creatures, not areas, it affects one additional creature within a 30-foot range from the target. If the target is an enemy, the spell affects one additional enemy; if the target is an ally, the spell affects one additional ally. Additionally, spells that target enemies damage them for 2d6 + mythic rank.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "d7b8e8550eb54c6aa936425edb12019c",
+      "SimpleName": "ZippyMagicBuff.Name",
+      "ProcessTemplates": false,
+      "enGB": "Zippy Magic",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
       "esES": null
     }
   ]

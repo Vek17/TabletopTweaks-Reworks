@@ -8,6 +8,11 @@
 		* Breath weapon has been fully reimplemented to better refelect havoc dragons.
 		* Breath weapon now deals 6d10 + 2d10 per additional mythic rank. (Up from 2d10 + 2d10 per additional mythic rank).
 		* Breath weapon now applies confusion on failed save at mythic rank 7+.
+	* Favorable Magic
+		* Now works on spells, spell-like abilities, and supernatural abiltiies only. This covers basically everything that is magic related.
+	* Zippy Magic
+		* Now works on spells, spell-like abilities, and supernatural abiltiies only. This covers basically everything that is magic related.
+		* Can now be toggled off to make some buffing setups less annoying.
 
 ## Version 1.2.6
 * Mythic Abilities

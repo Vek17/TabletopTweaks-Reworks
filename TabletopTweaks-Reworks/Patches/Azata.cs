@@ -675,11 +675,29 @@ namespace TabletopTweaks.Reworks.Reworks {
                 if (Main.TTTContext.Homebrew.MythicReworks.Azata.IsDisabled("FavorableMagic")) { return; }
                 var FavorableMagicFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("afcee6925a6eadf43820d12e0d966ebe");
 
-                FavorableMagicFeature.SetComponents(
-                    Helpers.Create<AzataFavorableMagicTTT>(c => {
-                        c.OnlySpells = Main.TTTContext.Homebrew.MythicReworks.Azata.IsEnabled("FavorableMagicOnlySpells");
-                    })
-                );
+                FavorableMagicFeature.TemporaryContext(bp => {
+                    bp.SetDescription(TTTContext, "Azata's magic becomes incredibly more powerful. " +
+                        "Whenever an enemy makes a saving throw against her spells, spell-like abilities, or supernatural abilities, " +
+                        "they roll the die twice and take the worst result. Whenever the Azata makes a concentration check or a check to " +
+                        "overcome spell resistance, she rolls twice and takes the best result. If the Azata casts a spell whose description " +
+                        "says that a successful saving throw halves its damage or duration, it only decreases it by 25% instead.");
+                    bp.SetComponents();
+                    bp.AddComponent<AzataFavorableMagicTTT>(c => {
+                        c.CheckAbilityType = true;
+                        c.Types = new AbilityType[] {
+                            AbilityType.Spell,
+                            AbilityType.SpellLike,
+                            AbilityType.Supernatural
+                        };
+                        c.AllowDescriptorOverride = true;
+                        c.Descriptors = SpellDescriptor.Bomb
+                            | SpellDescriptor.BreathWeapon
+                            | SpellDescriptor.ChannelNegativeHarm
+                            | SpellDescriptor.ChannelPositiveHarm
+                            | SpellDescriptor.Hex;
+                    });
+                });
+                
                 TTTContext.Logger.LogPatch("Patched", FavorableMagicFeature);
             }
             static void PatchIncredibleMight() {
@@ -760,13 +778,22 @@ namespace TabletopTweaks.Reworks.Reworks {
             }
             static void PatchZippyMagicFeature() {
                 if (Main.TTTContext.Homebrew.MythicReworks.Azata.IsDisabled("ZippyMagic")) { return; }
-                var ZippyMagicFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("30b4200f897ba25419ba3a292aed4053");
 
-                ZippyMagicFeature.RemoveComponents<DublicateSpellComponent>();
-                ZippyMagicFeature.AddComponent<AzataZippyMagicTTT>();
+                var ZippyMagicFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("30b4200f897ba25419ba3a292aed4053");
+                var ZippyMagicToggleAbility = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(TTTContext, "ZippyMagicToggleAbility");
+
+                ZippyMagicFeature.TemporaryContext(bp => {
+                    bp.SetDescription(ZippyMagicToggleAbility.Get().m_Description);
+                    bp.SetComponents();
+                    bp.AddComponent<AddFacts>(c => {
+                        c.m_Facts = new BlueprintUnitFactReference[] { ZippyMagicToggleAbility };
+                    });
+                });
+                
                 TTTContext.Logger.LogPatch("Patched", ZippyMagicFeature);
                 PatchCureWoundsDamage();
                 PatchInflictWoundsDamage();
+                PatchSmite();
 
                 void PatchCureWoundsDamage() {
                     BlueprintAbility[] cureSpells = new BlueprintAbility[] {
@@ -796,6 +823,15 @@ namespace TabletopTweaks.Reworks.Reworks {
                         BlueprintTools.GetBlueprint<BlueprintAbility>("3da67f8b941308348b7101e7ef418f52")  // HarmDamage
                     };
                     inflictSpells.ForEach(spell => BlockSpellDuplication(spell));
+                }
+                void PatchSmite() {
+                    BlueprintAbility[] smites = new BlueprintAbility[] {
+                        BlueprintTools.GetBlueprint<BlueprintAbility>("7bb9eb2042e67bf489ccd1374423cdec"), // SmiteEvilAbility
+                        BlueprintTools.GetBlueprint<BlueprintAbility>("a4df3ed7ef5aa9148a69e8364ad359c5"), // SmiteChaosAbility
+                        BlueprintTools.GetBlueprint<BlueprintAbility>("a2736145a29c8814b97a54b45588cd29"), // ChampionOfTheFaithSmiteAbility
+                        BlueprintTools.GetBlueprint<BlueprintAbility>("cfc6d1dfe1d110d419c07f41683e6c29"), // FaithHunterSwornEnemySmiteAbility
+                    };
+                    smites.ForEach(spell => BlockSpellDuplication(spell));
                 }
                 void BlockSpellDuplication(BlueprintAbility blueprint) {
                     blueprint.AddComponent<BlockSpellDuplicationComponent>();
