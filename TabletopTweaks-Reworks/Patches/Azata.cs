@@ -81,6 +81,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 var DragonAzataBreathCooldown = BlueprintTools.GetBlueprint<BlueprintBuff>("a98394128e4c41509c1a873e4faf914a");
                 var SonicCone30Feet00 = BlueprintTools.GetBlueprintReference<BlueprintProjectileReference>("c7fd792125b79904881530dbc2ff83de");
                 var DragonAzataSpecialAbilityTierII = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("491c677a0a602c34fbd9530ff53d6d4a");
+                var DragonClass = BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("01a754e7c1b7c5946ba895a5ff0faffc");
 
                 var DragonAzataStatGrowth = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(TTTContext, "DragonAzataStatGrowth");
                 var DragonAzataTailSweep = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(TTTContext, "DragonAzataTailSweep");
@@ -96,7 +97,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                     });
                     TTTContext.Logger.LogPatch(bp);
                 });
-                //Update Breath Weapon
+                //Reimplement Breath Weapon
                 DragonAzataBreathWeapon.TemporaryContext(bp => {
                     bp.SetDescription(TTTContext, "Once every 1d4 rounds, havoc dragon deals 6d10 points of sonic damage to everyone in a in 30-foot cone. " +
                         "This damage increases by 2d10 for every Azata mythic rank.");
@@ -254,11 +255,45 @@ namespace TabletopTweaks.Reworks.Reworks {
                     });
                     bp.AddContextRankConfig(c => {
                         c.m_Type = AbilityRankType.DamageDice;
-                        c.m_BaseValueType = ContextRankBaseValueType.MasterMythicLevel;
-                        c.m_Progression = ContextRankProgression.MultiplyByModifier;
-                        c.m_StepLevel = 2;
+                        c.m_BaseValueType = ContextRankBaseValueType.ClassLevel;
+                        c.m_Progression = ContextRankProgression.Custom;
+                        c.m_Class = new BlueprintCharacterClassReference[] { DragonClass };
                         c.m_UseMin = true;
                         c.m_Min = 6;
+                        c.m_CustomProgression = new ContextRankConfig.CustomProgressionItem[] {
+                            new ContextRankConfig.CustomProgressionItem() {
+                                BaseValue = 10,
+                                ProgressionValue = 6
+                            },
+                            new ContextRankConfig.CustomProgressionItem() {
+                                BaseValue = 15,
+                                ProgressionValue = 8
+                            },
+                            new ContextRankConfig.CustomProgressionItem() {
+                                BaseValue = 20,
+                                ProgressionValue = 10
+                            },
+                            new ContextRankConfig.CustomProgressionItem() {
+                                BaseValue = 25,
+                                ProgressionValue = 12
+                            },
+                            new ContextRankConfig.CustomProgressionItem() {
+                                BaseValue = 28,
+                                ProgressionValue = 14
+                            },
+                            new ContextRankConfig.CustomProgressionItem() {
+                                BaseValue = 30,
+                                ProgressionValue = 16
+                            },
+                            new ContextRankConfig.CustomProgressionItem() {
+                                BaseValue = 32,
+                                ProgressionValue = 18
+                            },
+                            new ContextRankConfig.CustomProgressionItem() {
+                                BaseValue = 35,
+                                ProgressionValue = 20
+                            }
+                        };
                     });
                     bp.AddComponent<SpellDescriptorComponent>(c => {
                         c.Descriptor = SpellDescriptor.BreathWeapon;
@@ -553,15 +588,16 @@ namespace TabletopTweaks.Reworks.Reworks {
                 var SongOfDefianceToggleAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("661ad9ab9c8af2e4c86a7cfa4c2be3f2");
                 var SongOfCourageousDefenderToggleAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("66864464f529c264f8c08ec2f4bf1cb5");
 
-                SongOfHeroicResolveToggleAbility.m_ActivateWithUnitCommand = CommandType.Move;
-                SongOfBrokenChainsToggleAbility.m_ActivateWithUnitCommand = CommandType.Move;
-                SongOfDefianceToggleAbility.m_ActivateWithUnitCommand = CommandType.Move;
-                SongOfCourageousDefenderToggleAbility.m_ActivateWithUnitCommand = CommandType.Move;
+                PatchSong(SongOfHeroicResolveToggleAbility);
+                PatchSong(SongOfBrokenChainsToggleAbility);
+                PatchSong(SongOfDefianceToggleAbility);
+                PatchSong(SongOfCourageousDefenderToggleAbility);
 
-                TTTContext.Logger.LogPatch("Patched", SongOfHeroicResolveToggleAbility);
-                TTTContext.Logger.LogPatch("Patched", SongOfBrokenChainsToggleAbility);
-                TTTContext.Logger.LogPatch("Patched", SongOfDefianceToggleAbility);
-                TTTContext.Logger.LogPatch("Patched", SongOfCourageousDefenderToggleAbility);
+                void PatchSong(BlueprintActivatableAbility song) {
+                    song.m_ActivateWithUnitCommand = CommandType.Move;
+
+                    TTTContext.Logger.LogPatch(song);
+                }
             }
             static void PatchAzataSongIcons() {
                 if (Main.TTTContext.Homebrew.MythicReworks.Azata.IsDisabled("AzataSongIcons")) { return; }
@@ -623,15 +659,17 @@ namespace TabletopTweaks.Reworks.Reworks {
                 var SongOfDefianceToggleAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("661ad9ab9c8af2e4c86a7cfa4c2be3f2");
                 var SongOfCourageousDefenderToggleAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("66864464f529c264f8c08ec2f4bf1cb5");
 
-                SongOfHeroicResolveToggleAbility.DeactivateImmediately = false;
-                SongOfBrokenChainsToggleAbility.DeactivateImmediately = false;
-                SongOfDefianceToggleAbility.DeactivateImmediately = false;
-                SongOfCourageousDefenderToggleAbility.DeactivateImmediately = false;
+                PatchSong(SongOfHeroicResolveToggleAbility);
+                PatchSong(SongOfBrokenChainsToggleAbility);
+                PatchSong(SongOfDefianceToggleAbility);
+                PatchSong(SongOfCourageousDefenderToggleAbility);
 
-                TTTContext.Logger.LogPatch("Patched", SongOfHeroicResolveToggleAbility);
-                TTTContext.Logger.LogPatch("Patched", SongOfBrokenChainsToggleAbility);
-                TTTContext.Logger.LogPatch("Patched", SongOfDefianceToggleAbility);
-                TTTContext.Logger.LogPatch("Patched", SongOfCourageousDefenderToggleAbility);
+                void PatchSong(BlueprintActivatableAbility song) {
+                    song.DeactivateImmediately = true;
+                    song.DeactivateIfCombatEnded = true;
+
+                    TTTContext.Logger.LogPatch(song);
+                }
             }
             static void PatchFavorableMagic() {
                 if (Main.TTTContext.Homebrew.MythicReworks.Azata.IsDisabled("FavorableMagic")) { return; }
@@ -639,7 +677,7 @@ namespace TabletopTweaks.Reworks.Reworks {
 
                 FavorableMagicFeature.SetComponents(
                     Helpers.Create<AzataFavorableMagicTTT>(c => {
-                        c.OnlySpells = true;
+                        c.OnlySpells = Main.TTTContext.Homebrew.MythicReworks.Azata.IsEnabled("FavorableMagicOnlySpells");
                     })
                 );
                 TTTContext.Logger.LogPatch("Patched", FavorableMagicFeature);
@@ -709,8 +747,8 @@ namespace TabletopTweaks.Reworks.Reworks {
                 SupersonicSpeedFeature.TemporaryContext(bp => {
                     bp.SetDescription(TTTContext, "Azata is able to make one additional attack an is always under the effect of haste spell, as long as she is engaged in combat. " +
                         "All melee and ranged weapon attacks against her have a 20% miss chance. All targeted spells aimed at her have a 10% miss chance. " +
-                        "All the damage from area attacks against her is halved, even if previously reduced by saving throw." +
-                        "\nNote: When character have miss chance and concealment at the same time, then only best bonus applied.");
+                        "All the damage from area attacks against her is halved, even if previously reduced by saving throw.\n" +
+                        "Note: When character have miss chance and concealment at the same time, then only best bonus applied.");
                     bp.AddComponent<BuffExtraAttack>(c => {
                         c.Number = 1;
                         c.Haste = false;

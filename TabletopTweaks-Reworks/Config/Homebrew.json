@@ -185,6 +185,11 @@
           "Homebrew": true,
           "Description": "Favorable magic now works on reoccuring saves."
         },
+        "FavorableMagicOnlySpells": {
+          "Enabled": true,
+          "Homebrew": true,
+          "Description": "Favorable magic now only affects spells."
+        },
         "RainbowArrows": {
           "Enabled": true,
           "Homebrew": true,
