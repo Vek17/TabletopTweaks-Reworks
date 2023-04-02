@@ -183,7 +183,7 @@
         "FavorableMagic": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Favorable magic now works on reoccuring saves."
+          "Description": "Favorable magic now works on spells, spell-like abilities, and supernatural abiltiies."
         },
         "RainbowArrows": {
           "Enabled": true,
@@ -198,12 +198,12 @@
         "ZippyMagic": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Zippy magic will now ignore some harmful effects and only works on spells."
+          "Description": "Now works on spells, spell-like abilities, and supernatural abiltiies. Can now be toggled off to avoid issues while buffing."
         },
         "IncredibleMight": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Incredible Might now grants a mythic bonus isntead of a morale bonus."
+          "Description": "Incredible Might now grants a mythic bonus instead of a morale bonus."
         },
         "LifeBondingFriendship": {
           "Enabled": true,
