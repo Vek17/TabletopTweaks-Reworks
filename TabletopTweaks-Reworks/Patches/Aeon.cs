@@ -85,8 +85,8 @@ namespace TabletopTweaks.Reworks.Reworks {
                     bp.AddComponent<AddFactContextActions>(c => {
                         c.Activated = Helpers.CreateActionList(
                             new Conditional() {
-                                ConditionsChecker = new ConditionsChecker() { 
-                                    Conditions = new Condition[] { 
+                                ConditionsChecker = new ConditionsChecker() {
+                                    Conditions = new Condition[] {
                                         new ContextConditionCasterHasFact() {
                                             m_Fact = InquisitorBaneNormalFeatureAdd
                                         }
@@ -207,7 +207,7 @@ namespace TabletopTweaks.Reworks.Reworks {
 
                 var AeonBaneBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("345160619fc2ddc44b8ad98c94dde448");
                 var AeonImprovedBaneBuff = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("e903d04113681fc4ba5603672b05540e");
-                var AeonBaneFx = new PrefabLink() { 
+                var AeonBaneFx = new PrefabLink() {
                     AssetId = "4d48e7ee3db59444d9b1dca869989b94"
                 };
 
@@ -226,7 +226,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                             },
                             new Conditional() {
                                 ConditionsChecker = new ConditionsChecker() {
-                                    Conditions = new Condition[] { 
+                                    Conditions = new Condition[] {
                                         new ContextConditionCasterHasFact() {
                                             m_Fact = AeonImprovedBaneBuff
                                         }
@@ -243,7 +243,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                                         m_MaxSpellLevel = new ContextValue(),
                                         m_UseMaxCasterLevel = true,
                                         m_MaxCasterLevel = new ContextValue(),
-                                        ContextBonus = new ContextValue() { 
+                                        ContextBonus = new ContextValue() {
                                             ValueType = ContextValueType.Shared
                                         },
                                         Schools = new SpellSchool[0],

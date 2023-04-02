@@ -110,17 +110,16 @@ namespace TabletopTweaks.Reworks.Reworks {
                         );
                     });
                 }
-                void AddElementalBarrageTrigger(BlueprintFeature barrage, 
-                    BlueprintBuff ElementalBarrageAcidBuff, 
-                    BlueprintBuff ElementalBarrageColdBuff, 
-                    BlueprintBuff ElementalBarrageElectricityBuff, 
-                    BlueprintBuff ElementalBarrageFireBuff, 
-                    BlueprintBuff ElementalBarrageSonicBuff) 
-                {
+                void AddElementalBarrageTrigger(BlueprintFeature barrage,
+                    BlueprintBuff ElementalBarrageAcidBuff,
+                    BlueprintBuff ElementalBarrageColdBuff,
+                    BlueprintBuff ElementalBarrageElectricityBuff,
+                    BlueprintBuff ElementalBarrageFireBuff,
+                    BlueprintBuff ElementalBarrageSonicBuff) {
                     barrage.AddComponent<ElementalBarrageOutgoingTrigger>(c => {
                         c.IgnoreDamageFromThisFact = true;
                         c.ApplyToAreaEffectDamage = true;
-                        c.CheckAbilityType = true; 
+                        c.CheckAbilityType = true;
                         c.m_AbilityType = AbilityType.Spell;
                         c.CheckDamageDealt = true;
                         c.CompareType = CompareOperation.Type.Greater;

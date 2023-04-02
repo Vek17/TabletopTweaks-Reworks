@@ -86,14 +86,14 @@ namespace TabletopTweaks.Reworks.Reworks {
                 var DragonAzataStatGrowth = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(TTTContext, "DragonAzataStatGrowth");
                 var DragonAzataTailSweep = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(TTTContext, "DragonAzataTailSweep");
                 var DragonAzataDeadlyTail = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(TTTContext, "DragonAzataDeadlyTail");
-                var DragonAzataDeliriumBreath = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(TTTContext, "DragonAzataDeliriumBreath"); 
+                var DragonAzataDeliriumBreath = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(TTTContext, "DragonAzataDeliriumBreath");
                 var DragonAzataHeroismEffect = BlueprintTools.GetModBlueprintReference<BlueprintBuffReference>(TTTContext, "DragonAzataHeroismEffect");
 
                 //Apply Stat Upgrades
-                DragonAzataCompanionFeature.TemporaryContext(bp => { 
+                DragonAzataCompanionFeature.TemporaryContext(bp => {
                     bp.AddComponent<AddFeatureToPet>(c => {
-                         c.m_PetType = PetType.AzataHavocDragon;
-                         c.m_Feature = DragonAzataStatGrowth;
+                        c.m_PetType = PetType.AzataHavocDragon;
+                        c.m_Feature = DragonAzataStatGrowth;
                     });
                     TTTContext.Logger.LogPatch(bp);
                 });
@@ -303,12 +303,12 @@ namespace TabletopTweaks.Reworks.Reworks {
                     });
                     bp.GetComponent<AbilityEffectRunAction>()?.TemporaryContext(c => {
                         c.AddAction(
-                            new ContextActionConditionalSaved() { 
+                            new ContextActionConditionalSaved() {
                                 Succeed = Helpers.CreateActionList(),
                                 Failed = Helpers.CreateActionList(
-                                    new Conditional() { 
+                                    new Conditional() {
                                         ConditionsChecker = new ConditionsChecker() {
-                                            Conditions = new Condition[] { 
+                                            Conditions = new Condition[] {
                                                 new ContextConditionCasterHasFact() {
                                                     m_Fact = DragonAzataDeliriumBreath
                                                 },
@@ -317,7 +317,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                                         },
                                         IfFalse = Helpers.CreateActionList(),
                                         IfTrue = Helpers.CreateActionList(
-                                            new ContextActionApplyBuff() { 
+                                            new ContextActionApplyBuff() {
                                                 m_Buff = Confusion,
                                                 IsFromSpell = false,
                                                 DurationValue = new ContextDurationValue() {
@@ -325,7 +325,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                                                     DiceCountValue = 0,
                                                     BonusValue = 1
                                                 }
-                                            }    
+                                            }
                                         )
                                     }
                                 )
@@ -352,8 +352,8 @@ namespace TabletopTweaks.Reworks.Reworks {
                         c.Value = 27;
                     });
                     bp.AddComponent<AddFacts>(c => {
-                        c.m_Facts = new BlueprintUnitFactReference[] { 
-                            DragonAzataTailSweep 
+                        c.m_Facts = new BlueprintUnitFactReference[] {
+                            DragonAzataTailSweep
                         };
                     });
                     TTTContext.Logger.LogPatch(bp);
@@ -364,7 +364,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                         c.Value = 27;
                     });
                     bp.AddComponent<AddFacts>(c => {
-                        c.m_Facts = new BlueprintUnitFactReference[] { 
+                        c.m_Facts = new BlueprintUnitFactReference[] {
                             DragonAzataDeliriumBreath,
                             DragonAzataDeadlyTail
                         };
@@ -623,7 +623,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 var SongOfDefianceBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("12cd0990f0895a946916a2ea5067e92e");
                 var SongOfDefianceEffectBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("df183a7ac29fd904ab00e639fdd26a21");
 
-                UpdateIcons(Icon_SongOfBrokenChains, 
+                UpdateIcons(Icon_SongOfBrokenChains,
                     SongOfBrokenChainsFeature,
                     SongOfBrokenChainsToggleAbility,
                     SongOfBrokenChainsBuff,
@@ -697,7 +697,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                             | SpellDescriptor.Hex;
                     });
                 });
-                
+
                 TTTContext.Logger.LogPatch("Patched", FavorableMagicFeature);
             }
             static void PatchIncredibleMight() {
@@ -789,7 +789,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                         c.m_Facts = new BlueprintUnitFactReference[] { ZippyMagicToggleAbility };
                     });
                 });
-                
+
                 TTTContext.Logger.LogPatch("Patched", ZippyMagicFeature);
                 PatchCureWoundsDamage();
                 PatchInflictWoundsDamage();
