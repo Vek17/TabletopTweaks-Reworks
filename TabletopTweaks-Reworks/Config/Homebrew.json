@@ -107,12 +107,12 @@
         "AeonGazeActionSystem": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Aeon Gaze now functions like Inquisitor Judgments where multiple can be activated for the same resouce usage at swift action speed."
+          "Description": "Aeon Gaze now functions like Inquisitor Judgments where multiple can be activated for the same resource usage at swift action speed."
         },
         "AeonGazeIcons": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Aeon Gaze buffs now all are visable with proper icons."
+          "Description": "Aeon Gaze buffs now all are visible with proper icons."
         },
         "AeonGreaterBaneActionBoost": {
           "Enabled": true,
@@ -137,7 +137,7 @@
         "PatchAeonGreaterBaneDispel": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Aeon Greater Bane now has the garentee'd auto dispel on first hit."
+          "Description": "Aeon Greater Bane now has the guaranteed auto dispel on first hit."
         }
       },
       "IsExpanded": true
@@ -153,7 +153,7 @@
         "AivuUpgrades": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Aivu stats and abilties have been upgraded based on tabletop Havoc Dragon statblocks."
+          "Description": "Aivu stats and abilities have been upgraded based on tabletop Havoc Dragon statblocks."
         },
         "AzataPerformanceResource": {
           "Enabled": true,
@@ -183,7 +183,7 @@
         "FavorableMagic": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Favorable magic now works on spells, spell-like abilities, and supernatural abiltiies."
+          "Description": "Favorable magic now works on spells, spell-like abilities, and supernatural abilities."
         },
         "RainbowArrows": {
           "Enabled": true,
@@ -198,7 +198,7 @@
         "ZippyMagic": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Now works on spells, spell-like abilities, and supernatural abiltiies. Can now be toggled off to avoid issues while buffing."
+          "Description": "Now works on spells, spell-like abilities, and supernatural abilities. Can now be toggled off to avoid issues while buffing."
         },
         "IncredibleMight": {
           "Enabled": true,
@@ -213,7 +213,7 @@
         "SupersonicSpeed": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Supersonic Speed now grants an additonal attack in addtion to haste."
+          "Description": "Supersonic Speed now grants an additional attack in addition to haste."
         }
       },
       "IsExpanded": true
@@ -229,17 +229,17 @@
         "DeadlyMagic": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Deadly magic can now be used for a numbe of rounds equal to your mythic rank."
+          "Description": "Deadly magic can now be used for a number of rounds equal to your mythic rank."
         },
         "DecayingTouch": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Decaying touch has been completly rewritten to have fewer bugs with how it applies damage."
+          "Description": "Decaying touch has been completely rewritten to have fewer bugs with how it applies damage."
         },
         "EclipseChill": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Eclipse Chill DC scales at 10 + 1/2 character level + your mythic rank + highest stat bonus. and can now be used for a numbe of rounds equal to your mythic rank."
+          "Description": "Eclipse Chill DC scales at 10 + 1/2 character level + your mythic rank + highest stat bonus. and can now be used for a number of rounds equal to your mythic rank."
         },
         "FearControl": {
           "Enabled": true,
@@ -315,17 +315,17 @@
         "TricksterPersuasion3": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Demonralize now causes enemies to attack the nearest target instead of acting normally 50% of the time. Additionally demoralize now reduces a targets AC and Saves by 1 + half your mythic rank."
+          "Description": "Demoralize now causes enemies to attack the nearest target instead of acting normally 50% of the time. Additionally demoralize now reduces a targets AC and Saves by 1 + half your mythic rank."
         },
         "TricksterStealth1": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "This invisibility can no longer be seen through by divination magic such as True Seeing, See Invisability, or Thoughtsense."
+          "Description": "This invisibility can no longer be seen through by divination magic such as True Seeing, See Invisibility, or Thoughtsense."
         },
         "TricksterStealth2": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "This invisibility can no longer be seen through by divination magic such as True Seeing, See Invisability, or Thoughtsense."
+          "Description": "This invisibility can no longer be seen through by divination magic such as True Seeing, See Invisibility, or Thoughtsense."
         },
         "TricksterStealthAbilityName": {
           "Enabled": true,
@@ -340,7 +340,7 @@
         "TricksterUseMagicDevice2": {
           "Enabled": true,
           "Homebrew": true,
-          "Description": "Now grants completly normal magic in addition to endless wands."
+          "Description": "Now grants completely normal magic in addition to endless wands."
         },
         "UpdateIcons": {
           "Enabled": true,
