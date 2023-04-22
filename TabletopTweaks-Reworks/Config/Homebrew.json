@@ -50,6 +50,11 @@
   "MythicFeats": {
     "DisableAll": false,
     "Settings": {
+      "MythicImprovedCritical": {
+        "Enabled": true,
+        "Homebrew": true,
+        "Description": "Rework of Mythic Improved Critical to double the amount of weapon dice rolled on critical hit."
+      },
       "MythicSneakAttack": {
         "Enabled": true,
         "Homebrew": true,

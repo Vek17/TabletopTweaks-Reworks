@@ -1,3 +1,8 @@
+## Version 1.2.8
+* Mythic Feats
+	* Mythic Improved Critical
+		* When you score a critical hit with your chosen weapon double the amount of weapon dice rolled.
+
 ## Version 1.2.7
 * Azata
 	* Aivu 

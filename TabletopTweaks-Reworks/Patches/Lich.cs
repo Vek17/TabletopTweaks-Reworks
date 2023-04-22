@@ -14,6 +14,7 @@ using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using Kingmaker.UnitLogic.Buffs.Components;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
@@ -388,6 +389,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                         c.PhyscicalForm = true;
                         c.FormType = PhysicalDamageForm.Piercing;
                     });
+                    bp.AddComponent<RemoveWhenCombatEnded>();
                 });
 
                 TTTContext.Logger.LogPatch(TaintedSneakAttackFeature);

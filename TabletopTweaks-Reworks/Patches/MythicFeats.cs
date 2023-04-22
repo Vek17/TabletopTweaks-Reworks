@@ -23,8 +23,25 @@ namespace TabletopTweaks.Reworks.Reworks {
                 if (Initialized) return;
                 Initialized = true;
                 TTTContext.Logger.LogHeader("Reworking Mythic Feats");
+                PatchMythicImprovedCritical();
                 PatchMythicSneakAttack();
                 PatchSchoolMastery();
+            }
+            static void PatchMythicImprovedCritical() {
+                if (TTTContext.Homebrew.MythicFeats.IsDisabled("MythicImprovedCritical")) { return; }
+
+                var ImprovedCriticalMythicFeat = BlueprintTools.GetBlueprint<BlueprintParametrizedFeature>("8bc0190a4ec04bd489eec290aeaa6d07");
+
+                ImprovedCriticalMythicFeat.TemporaryContext(bp => {
+                    bp.SetDescription(TTTContext, "Your critical strikes with your chosen weapon are deadlier than most.\n" +
+                        "Benefit: When you score a critical hit with your chosen weapon double the amount of weapon dice rolled.");
+                    bp.RemoveComponents<ImprovedCriticalMythicParametrized>();
+                    bp.AddComponent<ImprovedCriticalMythicParametrizedTTT>(c => {
+                        c.DiceMultiplier = 2;
+                    });
+                });
+                
+                TTTContext.Logger.LogPatch(ImprovedCriticalMythicFeat);
             }
             static void PatchMythicSneakAttack() {
                 if (TTTContext.Homebrew.MythicFeats.IsDisabled("MythicSneakAttack")) { return; }
