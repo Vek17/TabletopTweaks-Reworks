@@ -151,7 +151,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 4,
-                            ProgressionValue = 0
+                            ProgressionValue = 2
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 5,
@@ -247,7 +247,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 4,
-                            ProgressionValue = 0
+                            ProgressionValue = 2
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 5,
@@ -259,11 +259,11 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 7,
-                            ProgressionValue = 4
+                            ProgressionValue = 6
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 8,
-                            ProgressionValue = 4
+                            ProgressionValue = 6
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 9,
@@ -295,7 +295,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 4,
-                            ProgressionValue = 0
+                            ProgressionValue = 2
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 5,
@@ -307,11 +307,11 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 7,
-                            ProgressionValue = 4
+                            ProgressionValue = 6
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 8,
-                            ProgressionValue = 4
+                            ProgressionValue = 6
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 9,
@@ -343,7 +343,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 4,
-                            ProgressionValue = 0
+                            ProgressionValue = 2
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 5,
@@ -355,11 +355,11 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 7,
-                            ProgressionValue = 4
+                            ProgressionValue = 6
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 8,
-                            ProgressionValue = 4
+                            ProgressionValue = 6
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 9,
@@ -391,7 +391,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 4,
-                            ProgressionValue = 0
+                            ProgressionValue = 2
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 5,
@@ -403,11 +403,11 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 7,
-                            ProgressionValue = 4
+                            ProgressionValue = 6
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 8,
-                            ProgressionValue = 4
+                            ProgressionValue = 6
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 9,

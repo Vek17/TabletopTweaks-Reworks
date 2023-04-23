@@ -67,17 +67,6 @@
       "esES": null
     },
     {
-      "Key": "9889b5df0580417595f79c4da0af1804",
-      "SimpleName": "BolsteredSpellFeat.Description",
-      "ProcessTemplates": true,
-      "enGB": "You make your spells deal additional area of effect damage, while making them stronger.\nBenefit: Spell now deals 2 more points of damage per die rolled to all its targets. Additionally, all enemies in 5 feet of the spell targets are dealt 2 damage per die rolled of the original spell. The spell can no longer apply precision damage.\nLevel Increase: +2 (A bolstered spell uses up a spell slot two levels higher than the spell's actual level.)",
-      "ruRU": null,
-      "deDE": null,
-      "frFR": null,
-      "zhCN": "你使得你的法术造成每个伤害骰2点的额外伤害，并且对在5尺范围内的其他敌人也造成伤害。这个法术不再能附加精准伤害。\n法术环级提升：+2",
-      "esES": null
-    },
-    {
       "Key": "b5c7428537ca4761a0c488acaf738a71",
       "SimpleName": "DeadlyMagicFeature.Description",
       "ProcessTemplates": true,
@@ -324,6 +313,17 @@
       "SimpleName": "FavorableMagicFeature.Description",
       "ProcessTemplates": true,
       "enGB": "Azata's magic becomes incredibly more powerful. Whenever an enemy makes a saving throw against her spells, spell-like abilities, or supernatural abilities, they roll the die twice and take the worst result. Whenever the Azata makes a concentration check or a check to overcome spell resistance, she rolls twice and takes the best result. If the Azata casts a spell whose description says that a successful saving throw halves its damage or duration, it only decreases it by 25% instead.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "01cdd2dee77a4282b2dd4ac79d773f46",
+      "SimpleName": "ImprovedCriticalMythicFeat.Description",
+      "ProcessTemplates": true,
+      "enGB": "Your critical strikes with your chosen weapon are deadlier than most.\nBenefit: When you score a critical hit with your chosen weapon double the amount of weapon dice rolled.",
       "ruRU": null,
       "deDE": null,
       "frFR": null,
