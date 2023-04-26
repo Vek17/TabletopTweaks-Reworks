@@ -323,7 +323,7 @@
       "Key": "01cdd2dee77a4282b2dd4ac79d773f46",
       "SimpleName": "ImprovedCriticalMythicFeat.Description",
       "ProcessTemplates": true,
-      "enGB": "Your critical strikes with your chosen weapon are deadlier than most.\nBenefit: When you score a critical hit with your chosen weapon double the amount of weapon dice rolled.",
+      "enGB": "Your critical strikes with your chosen weapon are deadlier than most.\nBenefit: When you score a critical hit with your chosen weapon you deal an additional 3d10 damage. This is increased by 3d10 for every critical multiplier above ×2.\nFor example a ×2 critical weapon would deal an additional 3d10 damage, a ×4 critical weapon would deal an additional 9d10 damage.",
       "ruRU": null,
       "deDE": null,
       "frFR": null,

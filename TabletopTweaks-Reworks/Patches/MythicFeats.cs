@@ -5,9 +5,11 @@ using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.Enums;
+using Kingmaker.RuleSystem;
 using Kingmaker.UnitLogic.FactLogic;
 using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.NewComponents.AbilitySpecific;
+using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
 using TabletopTweaks.Core.Utilities;
 using static TabletopTweaks.Reworks.Main;
 
@@ -34,10 +36,12 @@ namespace TabletopTweaks.Reworks.Reworks {
 
                 ImprovedCriticalMythicFeat.TemporaryContext(bp => {
                     bp.SetDescription(TTTContext, "Your critical strikes with your chosen weapon are deadlier than most.\n" +
-                        "Benefit: When you score a critical hit with your chosen weapon double the amount of weapon dice rolled.");
+                        "Benefit: When you score a critical hit with your chosen weapon you deal an additional 3d10 damage. This is increased by 3d10 for every critical multiplier above ×2.\n" +
+                        "For example a ×2 critical weapon would deal an additional 3d10 damage, a ×4 critical weapon would deal an additional 9d10 damage.");
                     bp.RemoveComponents<ImprovedCriticalMythicParametrized>();
                     bp.AddComponent<ImprovedCriticalMythicParametrizedTTT>(c => {
-                        c.DiceMultiplier = 2;
+                        c.DiceCount = 3;
+                        c.Dice = DiceType.D10;
                     });
                 });
                 
