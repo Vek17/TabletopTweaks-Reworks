@@ -559,7 +559,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 }
             }
         }
-        [HarmonyPatch(typeof(ActivatableAbility), nameof(ActivatableAbility.IsActivateWithSameCommand), new Type[] { typeof(ActivatableAbility) })]
+        [HarmonyPatch(typeof(ActivatableAbility), nameof(ActivatableAbility.IsBothAbilitiesIsJudgment), new Type[] { typeof(ActivatableAbility) })]
         static class ActivatableAbility_IsActivateWithSameCommand_Aeon_Patch {
             static void Postfix(ActivatableAbility __instance, ActivatableAbility other, ref bool __result) {
                 if (TTTContext.Homebrew.MythicReworks.Aeon.IsDisabled("AeonGazeActionSystem")) { return; }
