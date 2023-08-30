@@ -82,6 +82,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 var SonicCone30Feet00 = BlueprintTools.GetBlueprintReference<BlueprintProjectileReference>("c7fd792125b79904881530dbc2ff83de");
                 var DragonAzataSpecialAbilityTierII = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("491c677a0a602c34fbd9530ff53d6d4a");
                 var DragonClass = BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("01a754e7c1b7c5946ba895a5ff0faffc");
+                var DragonAzataArchetype = BlueprintTools.GetBlueprint<BlueprintArchetype>("6e6135c91c2f84e46b7bb49f2158a9ce");
 
                 var DragonAzataStatGrowth = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(TTTContext, "DragonAzataStatGrowth");
                 var DragonAzataTailSweep = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(TTTContext, "DragonAzataTailSweep");
@@ -89,6 +90,10 @@ namespace TabletopTweaks.Reworks.Reworks {
                 var DragonAzataDeliriumBreath = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(TTTContext, "DragonAzataDeliriumBreath");
                 var DragonAzataHeroismEffect = BlueprintTools.GetModBlueprintReference<BlueprintBuffReference>(TTTContext, "DragonAzataHeroismEffect");
 
+                //Fix archetype progression
+                DragonAzataArchetype.TemporaryContext(bp => {
+                    bp.AddFeatures = new LevelEntry[0];
+                });
                 //Apply Stat Upgrades
                 DragonAzataCompanionFeature.TemporaryContext(bp => {
                     bp.AddComponent<AddFeatureToPet>(c => {
@@ -459,6 +464,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                         bp.SetDescription(TTTContext, "Azata creates a rainbow arrow that jumps from target to target up to one time per 4 caster levels, " +
                             "dealing 1d12 per 2 caster levels damage with one energy randomly chosen between acid, cold, electricity, fire, or sound. " +
                             "Additionally if the enemy fails a will saving throw they are randomly blinded, dazed, nauseated, slowed, or stunned for 3 rounds.");
+                        bp.AvailableMetamagic |= Kingmaker.UnitLogic.Abilities.Metamagic.Persistent;
                         bp.SpellResistance = false;
                         bp.SetLocalizedSavingThrow(TTTContext, "Will partial");
                         bp.GetComponent<AbilityEffectRunAction>().TemporaryContext(c => {

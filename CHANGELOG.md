@@ -1,3 +1,6 @@
+## Version 1.2.9
+* Fix for Aivu's progression happening faster than intended.
+
 ## Version 1.2.8
 * Mythic Feats
 	* Mythic Improved Critical
