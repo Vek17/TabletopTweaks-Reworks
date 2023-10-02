@@ -12,6 +12,17 @@
       "esES": null
     },
     {
+      "Key": "1b24851e41994d9ebbf5188a7e992de4",
+      "SimpleName": "AbundantCasting.Description",
+      "ProcessTemplates": true,
+      "enGB": "You've learned a way to increase the number of spells you can cast per day.\nBenefit: You can cast four more spells per day of 1st, 2nd, and 3rd ranks each. This ability does not affect mythic spellbooks.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "568f39376f2b4c2ab1745fb57ff1b37f",
       "SimpleName": "AbundantCastingGreater.Description",
       "ProcessTemplates": true,
@@ -20,6 +31,17 @@
       "deDE": null,
       "frFR": null,
       "zhCN": "你已经掌握了一种增加每天施法次数的方法。\n你每天可以多施放4个等级分别为7、8、9的法术。这个能力不会影响神话法术书。",
+      "esES": null
+    },
+    {
+      "Key": "2e0dda173fb14476bbf93f041c7c5841",
+      "SimpleName": "AbundantCastingImproved.Description",
+      "ProcessTemplates": true,
+      "enGB": "You have studied a way to increase the number of spells you can cast per day.\nBenefit: You can cast three more spells per day of 4th, 5th, and 6th levels each. This ability does not affect mythic spellbooks.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
       "esES": null
     },
     {
@@ -64,6 +86,17 @@
       "deDE": null,
       "frFR": null,
       "zhCN": "这个斗篷允许诡术大师进行任何技能检定时投掷两次并取最好的结果。",
+      "esES": null
+    },
+    {
+      "Key": "43070b0c3d824e87832492cd65b79ec6",
+      "SimpleName": "BolsteredSpellFeat.Description",
+      "ProcessTemplates": true,
+      "enGB": "You make your spells deal additional area of effect damage, while making them stronger.\nBenefit: Spell now deals 2 more points of damage per die rolled to all its targets. Additionally, all enemies in 5 feet of the spell targets are dealt 2 damage per die rolled of the original spell. The spell can no longer apply precision damage.\nLevel Increase: +2 (A bolstered spell uses up a spell slot two levels higher than the spell's actual level.)",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
       "esES": null
     },
     {

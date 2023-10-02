@@ -1,3 +1,12 @@
+## Version 1.2.10
+* Mythic Abilities
+	* Abundant Casting
+		* Now grants 4 bonus casts instead of 4.
+	* Improved Abundant Casting
+		* Now grants 3 bonus casts instead of 4.
+	* Greater Abundant Casting
+		* Now grants 2 bonus casts instead of 4.
+
 ## Version 1.2.9
 * Fix for Aivu's progression happening faster than intended.
 

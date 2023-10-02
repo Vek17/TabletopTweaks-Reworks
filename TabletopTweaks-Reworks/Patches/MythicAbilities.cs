@@ -245,14 +245,14 @@ namespace TabletopTweaks.Reworks.Reworks {
                 var AbundantCastingImproved = BlueprintTools.GetBlueprint<BlueprintFeature>("37046a54739ed4844b8e8307bbbeece2");
                 var AbundantCastingGreater = BlueprintTools.GetBlueprint<BlueprintFeature>("db5be78901afbfa4e8ea5b399a88b92d");
 
-                AbundantCasting.GetComponent<AddSpellsPerDay>().Amount = 2;
-                AbundantCastingImproved.GetComponent<AddSpellsPerDay>().Amount = 2;
+                AbundantCasting.GetComponent<AddSpellsPerDay>().Amount = 4;
+                AbundantCastingImproved.GetComponent<AddSpellsPerDay>().Amount = 3;
                 AbundantCastingGreater.GetComponent<AddSpellsPerDay>().Amount = 2;
 
                 AbundantCasting.SetDescription(TTTContext, "You've learned a way to increase the number of spells you can cast per day.\n" +
-                    "Benefit: You can cast two more spells per day of 1st, 2nd, and 3rd ranks each. This ability does not affect mythic spellbooks.");
+                    "Benefit: You can cast four more spells per day of 1st, 2nd, and 3rd ranks each. This ability does not affect mythic spellbooks.");
                 AbundantCastingImproved.SetDescription(TTTContext, "You have studied a way to increase the number of spells you can cast per day.\n" +
-                    "Benefit: You can cast two more spells per day of 4th, 5th, and 6th levels each. This ability does not affect mythic spellbooks.");
+                    "Benefit: You can cast three more spells per day of 4th, 5th, and 6th levels each. This ability does not affect mythic spellbooks.");
                 AbundantCastingGreater.SetDescription(TTTContext, "You've mastered a way to increase the number of spells you can cast per day.\n" +
                     "Benefit: You can cast two more spells per day of 7th, 8th, and 9th ranks each. This ability does not affect mythic spellbooks.");
 
