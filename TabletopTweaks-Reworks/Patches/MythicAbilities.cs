@@ -315,6 +315,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 });
                 UnrelentingAssaultEffectBuff.TemporaryContext(bp => {
                     bp.SetName(UnrelentingAssault.m_DisplayName);
+                    bp.m_Flags |= BlueprintBuff.Flags.HiddenInUi;
                     bp.SetComponents();
                     bp.AddComponent<WeaponAttackTypeDamageBonus>(c => {
                         c.Type = WeaponRangeType.Melee;
