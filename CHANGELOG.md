@@ -1,3 +1,6 @@
+## Version 1.3.1
+* Basic patch for 2.2.0as
+
 ## Version 1.2.10
 * Mythic Abilities
 	* Abundant Casting

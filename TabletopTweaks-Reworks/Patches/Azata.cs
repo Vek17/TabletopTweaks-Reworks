@@ -345,7 +345,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                     TTTContext.Logger.LogPatch(bp);
                 });
                 DragonAzataSpecialAbilityTierArea.TemporaryContext(bp => {
-                    bp.GetComponent<AbilityAreaEffectBuff>().m_Buff = DragonAzataHeroismEffect;
+                    //bp.GetComponent<AbilityAreaEffectBuff>().m_Buff = DragonAzataHeroismEffect;
                     TTTContext.Logger.LogPatch(bp);
                 });
 
