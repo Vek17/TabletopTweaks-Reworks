@@ -1,3 +1,7 @@
+## Version 1.4.1
+* Trickster
+	* Added support for new subdomains
+
 ## Version 1.3.1
 * Basic patch for 2.2.0as
 
