@@ -5328,7 +5328,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 });
                 //Greater Feature
                 var IceSubdomainGreaterFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("b105ed7a854948bda3d7ee23e60b7c70");
-                var IceSubdomainGreaterActivatableAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("0b6be620495f41afa9ee181c84b5dfb4");
+                var IceSubdomainGreaterActivatableAbility = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("0b6be620495f41afa9ee181c84b5dfb4");
                 var IceSubdomainGreaterBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("d909098fa0444193ba1a9c38f43cfd03");
 
                 var TricksterTTTIceSubdomainGreaterResource = Helpers.CreateBlueprint<BlueprintAbilityResource>(TTTContext, "TricksterTTTIceSubdomainGreaterResource", bp => {
