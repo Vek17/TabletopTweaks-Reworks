@@ -1,4 +1,5 @@
 ## Version 1.4.1
+* Support for 2.3.0
 * Trickster
 	* Added support for new subdomains
 
