@@ -15,6 +15,7 @@ using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Properties;
 using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
+using TabletopTweaks.Core.NewComponents.Properties;
 using TabletopTweaks.Core.Utilities;
 using static TabletopTweaks.Reworks.Main;
 
@@ -25,6 +26,8 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             var TailType = BlueprintTools.GetBlueprintReference<BlueprintWeaponTypeReference>("4ce435468ebd4364997da8cbd0c66133");
             var HeroismBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("87ab2fed7feaaff47b62a3320a57ad8d");
             var ZippyMagicFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("30b4200f897ba25419ba3a292aed4053");
+            var DragonAzataArchetype = BlueprintTools.GetBlueprintReference<BlueprintArchetypeReference>("6e6135c91c2f84e46b7bb49f2158a9ce");
+            var DragonClass = BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("01a754e7c1b7c5946ba895a5ff0faffc");
 
             var DragonAzataStatGrowth = Helpers.CreateBlueprint<BlueprintFeature>(TTTContext, "DragonAzataStatGrowth", bp => {
                 bp.SetName(TTTContext, "Mythic Draconic Growth");
@@ -482,6 +485,45 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 bp.IsOnByDefault = true;
                 bp.DoNotTurnOffOnRest = true;
                 bp.DeactivateImmediately = true;
+            });
+
+            var DragonAzataBreathWeaponDCProperty = Helpers.CreateBlueprint<BlueprintUnitProperty>(TTTContext, "DragonAzataBreathWeaponDCProperty", bp => {
+                bp.AddComponent<CompositeCustomPropertyGetter>(c => {
+                    c.CalculationMode = CompositeCustomPropertyGetter.Mode.Sum;
+                    c.Properties = new CompositeCustomPropertyGetter.ComplexCustomProperty[] {
+                        new CompositeCustomPropertyGetter.ComplexCustomProperty() {
+                            Property = new SimplePropertyGetter() {
+                                Property = UnitProperty.Level,
+                                Settings = new PropertySettings() {
+                                    m_Progression = PropertySettings.Progression.Div2
+                                }
+                            }
+                        },
+                        new CompositeCustomPropertyGetter.ComplexCustomProperty() {
+                            Property = new SimplePropertyGetter() {
+                                Property = UnitProperty.StatBonusConstitution,
+                                Settings = new PropertySettings() {
+                                    m_Progression = PropertySettings.Progression.AsIs
+                                }
+                            }
+                        },
+                        new CompositeCustomPropertyGetter.ComplexCustomProperty() {
+                            Property = new MasterSimplePropertyGetter() {
+                                Property = UnitProperty.MythicLevel,
+                                Settings = new PropertySettings() {
+                                    m_Progression = PropertySettings.Progression.AsIs
+                                }
+                            },
+                            Bonus = 10
+                        }
+                    };
+                });
+            });
+
+            var DragonAzataBreathWeaponCasterlevelProperty = Helpers.CreateBlueprint<BlueprintUnitProperty>(TTTContext, "DragonAzataBreathWeaponCasterlevelProperty", bp => {
+                bp.AddComponent<SimplePropertyGetter>(c => {
+                    c.Property = UnitProperty.Level;
+                });
             });
         }
     }

@@ -1,3 +1,7 @@
+## Version 1.4.2
+* Azata
+	* Updated Aivu's breath weapon DC to 10 + 1/2 Hit Dice + Consitution Modifier + Azata Mythic Level
+
 ## Version 1.4.1
 * Support for 2.3.0
 * Trickster

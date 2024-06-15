@@ -90,6 +90,9 @@ namespace TabletopTweaks.Reworks.Reworks {
                 var DragonAzataDeliriumBreath = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(TTTContext, "DragonAzataDeliriumBreath");
                 var DragonAzataHeroismEffect = BlueprintTools.GetModBlueprintReference<BlueprintBuffReference>(TTTContext, "DragonAzataHeroismEffect");
 
+                var DragonAzataBreathWeaponDCProperty = BlueprintTools.GetModBlueprintReference<BlueprintUnitPropertyReference>(TTTContext, "DragonAzataBreathWeaponDCProperty");
+                var DragonAzataBreathWeaponCasterlevelProperty = BlueprintTools.GetModBlueprintReference<BlueprintUnitPropertyReference>(TTTContext, "DragonAzataBreathWeaponCasterlevelProperty");
+
                 //Fix archetype progression
                 DragonAzataArchetype.TemporaryContext(bp => {
                     bp.AddFeatures = new LevelEntry[0];
@@ -336,6 +339,18 @@ namespace TabletopTweaks.Reworks.Reworks {
                                 )
                             }
                         );
+                    });
+                    bp.AddComponent<ContextSetAbilityParams>(c => {
+                        c.DC = new ContextValue() {
+                            ValueType = ContextValueType.CasterCustomProperty,
+                            m_CustomProperty = DragonAzataBreathWeaponDCProperty
+                        };
+                        c.CasterLevel = new ContextValue() {
+                            ValueType = ContextValueType.CasterCustomProperty,
+                            m_CustomProperty = DragonAzataBreathWeaponCasterlevelProperty
+                        };
+                        c.SpellLevel = -1;
+                        c.Concentration = -1;
                     });
                     TTTContext.Logger.LogPatch(bp);
                 });
