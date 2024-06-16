@@ -2,6 +2,7 @@
 * Azata
 	* Updated Aivu's breath weapon DC to 10 + 1/2 Hit Dice + Consitution Modifier + Azata Mythic Level
 	* Updated Aivu's stat scaling again to match the Havoc Dragon progression talbe based on the Hit Dice given by Owlcat
+	* Updated Aivu's weapon scaling
 
 ## Version 1.4.1
 * Support for 2.3.0

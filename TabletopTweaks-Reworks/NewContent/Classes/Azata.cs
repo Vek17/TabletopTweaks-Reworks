@@ -14,6 +14,7 @@ using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Properties;
+using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.NewComponents.OwlcatReplacements;
 using TabletopTweaks.Core.NewComponents.Properties;
 using TabletopTweaks.Core.Utilities;
@@ -29,6 +30,38 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             var DragonAzataArchetype = BlueprintTools.GetBlueprintReference<BlueprintArchetypeReference>("6e6135c91c2f84e46b7bb49f2158a9ce");
             var DragonClass = BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("01a754e7c1b7c5946ba895a5ff0faffc");
 
+            var DragonAzataWeaponOverrides = Helpers.CreateBlueprint<BlueprintFeature>(TTTContext, "DragonAzataWeaponOverrides", bp => {
+                bp.SetName(TTTContext, "Dragon Weapon Overrides");
+                bp.SetDescription(TTTContext, "");
+                bp.ReapplyOnLevelUp = true;
+                bp.IsClassFeature = true;
+                bp.HideInUI = true;
+                bp.AddComponent<BonusStatDamageMultiplerReplacement>(c => {
+                    c.CheckWeaponCategory = true;
+                    c.WeaponCategory = WeaponCategory.Bite;
+                    c.Multiplier = 1.5f;
+                });
+                bp.AddComponent<BonusStatDamageMultiplerReplacement>(c => {
+                    c.CheckWeaponCategory = true;
+                    c.WeaponCategory = WeaponCategory.Claw;
+                    c.Multiplier = 1.0f;
+                });
+                bp.AddComponent<BonusStatDamageMultiplerReplacement>(c => {
+                    c.CheckWeaponCategory = true;
+                    c.WeaponCategory = WeaponCategory.Wing;
+                    c.Multiplier = 0.5f;
+                });
+                bp.AddComponent<BonusStatDamageMultiplerReplacement>(c => {
+                    c.CheckWeaponCategory = true;
+                    c.WeaponCategory = WeaponCategory.Tail;
+                    c.Multiplier = 1.5f;
+                });
+                bp.AddComponent<SecondaryWeaponOverride>(c => {
+                    c.CheckWeaponCategory = true;
+                    c.WeaponCategory = WeaponCategory.Tail;
+                    c.IsSecondary = false;
+                });
+            });
             var DragonAzataStatGrowth = Helpers.CreateBlueprint<BlueprintFeature>(TTTContext, "DragonAzataStatGrowth", bp => {
                 bp.SetName(TTTContext, "Mythic Draconic Growth");
                 bp.SetDescription(TTTContext, "Unlike normal animals of its kind, Aivu's Hit Dice, abilities, " +
