@@ -86,6 +86,14 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         ValueRank = AbilityRankType.SpeedBonus
                     };
                 });
+                bp.AddComponent<AddContextStatBonus>(c => {
+                    c.Stat = StatType.Charisma;
+                    c.Descriptor = ModifierDescriptor.Racial;
+                    c.Value = new ContextValue() {
+                        ValueType = ContextValueType.Rank,
+                        ValueRank = AbilityRankType.StatBonus
+                    };
+                });
                 //AbilityRankType.DamageBonus = Natural Armor
                 bp.AddContextRankConfig(c => {
                     c.m_Type = AbilityRankType.DamageBonus;
@@ -106,23 +114,23 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 4,
-                            ProgressionValue = 16
+                            ProgressionValue = 18
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 5,
-                            ProgressionValue = 22
+                            ProgressionValue = 20
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 6,
-                            ProgressionValue = 24
-                        },
-                        new ContextRankConfig.CustomProgressionItem() {
-                            BaseValue = 7,
                             ProgressionValue = 26
                         },
                         new ContextRankConfig.CustomProgressionItem() {
-                            BaseValue = 8,
+                            BaseValue = 7,
                             ProgressionValue = 28
+                        },
+                        new ContextRankConfig.CustomProgressionItem() {
+                            BaseValue = 8,
+                            ProgressionValue = 31
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 9,
@@ -130,7 +138,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 10,
-                            ProgressionValue = 34
+                            ProgressionValue = 37
                         }
                     };
                 });
@@ -154,7 +162,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 4,
-                            ProgressionValue = 2
+                            ProgressionValue = 4
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 5,
@@ -162,23 +170,23 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 6,
-                            ProgressionValue = 8
-                        },
-                        new ContextRankConfig.CustomProgressionItem() {
-                            BaseValue = 7,
                             ProgressionValue = 10
                         },
                         new ContextRankConfig.CustomProgressionItem() {
-                            BaseValue = 8,
+                            BaseValue = 7,
                             ProgressionValue = 12
                         },
                         new ContextRankConfig.CustomProgressionItem() {
-                            BaseValue = 9,
+                            BaseValue = 8,
                             ProgressionValue = 14
                         },
                         new ContextRankConfig.CustomProgressionItem() {
+                            BaseValue = 9,
+                            ProgressionValue = 16
+                        },
+                        new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 10,
-                            ProgressionValue = 14
+                            ProgressionValue = 18
                         }
                     };
                 });
@@ -202,7 +210,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 4,
-                            ProgressionValue = 0
+                            ProgressionValue = -2
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 5,
@@ -210,23 +218,23 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 6,
-                            ProgressionValue = -2
+                            ProgressionValue = -4
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 7,
-                            ProgressionValue = -2
+                            ProgressionValue = -4
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 8,
-                            ProgressionValue = -2
+                            ProgressionValue = -4
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 9,
-                            ProgressionValue = -4
+                            ProgressionValue = -6
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 10,
-                            ProgressionValue = -4
+                            ProgressionValue = -6
                         }
                     };
                 });
@@ -258,7 +266,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 6,
-                            ProgressionValue = 4
+                            ProgressionValue = 6
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 7,
@@ -266,7 +274,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 8,
-                            ProgressionValue = 6
+                            ProgressionValue = 8
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 9,
@@ -274,7 +282,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 10,
-                            ProgressionValue = 8
+                            ProgressionValue = 10
                         }
                     };
                 });
@@ -306,7 +314,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 6,
-                            ProgressionValue = 4
+                            ProgressionValue = 6
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 7,
@@ -314,7 +322,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 8,
-                            ProgressionValue = 6
+                            ProgressionValue = 8
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 9,
@@ -322,7 +330,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 10,
-                            ProgressionValue = 8
+                            ProgressionValue = 10
                         }
                     };
                 });
@@ -354,7 +362,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 6,
-                            ProgressionValue = 4
+                            ProgressionValue = 6
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 7,
@@ -362,7 +370,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 8,
-                            ProgressionValue = 6
+                            ProgressionValue = 8
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 9,
@@ -370,7 +378,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 10,
-                            ProgressionValue = 8
+                            ProgressionValue = 10
                         }
                     };
                 });
@@ -394,31 +402,31 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 4,
-                            ProgressionValue = 2
+                            ProgressionValue = 1
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 5,
-                            ProgressionValue = 4
+                            ProgressionValue = 1
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 6,
-                            ProgressionValue = 4
+                            ProgressionValue = 2
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 7,
-                            ProgressionValue = 6
+                            ProgressionValue = 1
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 8,
-                            ProgressionValue = 6
+                            ProgressionValue = 3
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 9,
-                            ProgressionValue = 8
+                            ProgressionValue = 2
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 10,
-                            ProgressionValue = 8
+                            ProgressionValue = 4
                         }
                     };
                 });
@@ -488,6 +496,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             });
 
             var DragonAzataBreathWeaponDCProperty = Helpers.CreateBlueprint<BlueprintUnitProperty>(TTTContext, "DragonAzataBreathWeaponDCProperty", bp => {
+                bp.BaseValue = 10;
                 bp.AddComponent<CompositeCustomPropertyGetter>(c => {
                     c.CalculationMode = CompositeCustomPropertyGetter.Mode.Sum;
                     c.Properties = new CompositeCustomPropertyGetter.ComplexCustomProperty[] {
@@ -513,8 +522,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                                 Settings = new PropertySettings() {
                                     m_Progression = PropertySettings.Progression.AsIs
                                 }
-                            },
-                            Bonus = 10
+                            }
                         }
                     };
                 });

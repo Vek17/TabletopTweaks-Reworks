@@ -64,6 +64,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 if (TTTContext.Homebrew.MythicReworks.Azata.IsDisabled("AivuUpgrades")) { return; }
 
                 var DragonAzataCompanionFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("cf36f23d60987224696f03be70351928");
+                var AzataDragonUnit = BlueprintTools.GetBlueprint<BlueprintUnit>("32a037e97c3d5c54b85da8f639616c57");
                 var DragonAzataFeatureTierIIFeatureToDragon = BlueprintTools.GetBlueprint<BlueprintFeature>("4d9785fa28ab443289497ccb05e49fe2");
                 var DragonAzataFeatureTierIIIFeatureToDragon = BlueprintTools.GetBlueprint<BlueprintFeature>("1bfc72ee31e349ab91991d14e1db471e");
                 var DragonAzataFeatureTierIVFeatureToDragon = BlueprintTools.GetBlueprint<BlueprintFeature>("e0cd072417ac444a99e83eae51eea8df");
@@ -80,6 +81,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 var Confusion = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("886c7407dc629dc499b9f1465ff382df");
                 var DragonAzataBreathCooldown = BlueprintTools.GetBlueprint<BlueprintBuff>("a98394128e4c41509c1a873e4faf914a");
                 var SonicCone30Feet00 = BlueprintTools.GetBlueprintReference<BlueprintProjectileReference>("c7fd792125b79904881530dbc2ff83de");
+                var SonicCone40Feet00 = BlueprintTools.GetBlueprintReference<BlueprintProjectileReference>("f899d93a411796b4685afc000c3466b0");
                 var DragonAzataSpecialAbilityTierII = BlueprintTools.GetBlueprintReference<BlueprintUnitFactReference>("491c677a0a602c34fbd9530ff53d6d4a");
                 var DragonClass = BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("01a754e7c1b7c5946ba895a5ff0faffc");
                 var DragonAzataArchetype = BlueprintTools.GetBlueprint<BlueprintArchetype>("6e6135c91c2f84e46b7bb49f2158a9ce");
@@ -93,6 +95,10 @@ namespace TabletopTweaks.Reworks.Reworks {
                 var DragonAzataBreathWeaponDCProperty = BlueprintTools.GetModBlueprintReference<BlueprintUnitPropertyReference>(TTTContext, "DragonAzataBreathWeaponDCProperty");
                 var DragonAzataBreathWeaponCasterlevelProperty = BlueprintTools.GetModBlueprintReference<BlueprintUnitPropertyReference>(TTTContext, "DragonAzataBreathWeaponCasterlevelProperty");
 
+                //Fix base stats
+                AzataDragonUnit.TemporaryContext(bp => {
+                    bp.Charisma = 14;
+                });
                 //Fix archetype progression
                 DragonAzataArchetype.TemporaryContext(bp => {
                     bp.AddFeatures = new LevelEntry[0];
@@ -107,7 +113,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 });
                 //Reimplement Breath Weapon
                 DragonAzataBreathWeapon.TemporaryContext(bp => {
-                    bp.SetDescription(TTTContext, "Once every 1d4 rounds, havoc dragon deals 6d10 points of sonic damage to everyone in a in 30-foot cone. " +
+                    bp.SetDescription(TTTContext, "Once every 1d4 rounds, havoc dragon deals 6d10 points of sonic damage to everyone in a in 40-foot cone. " +
                         "This damage increases by 2d10 for every Azata mythic rank.");
                     bp.SetComponents();
                     bp.AddComponent<AbilityEffectRunAction>(c => {
@@ -254,8 +260,8 @@ namespace TabletopTweaks.Reworks.Reworks {
                         );
                     });
                     bp.AddComponent<AbilityDeliverProjectile>(c => {
-                        c.m_Projectiles = new BlueprintProjectileReference[] { SonicCone30Feet00 };
-                        c.m_Length = 30.Feet();
+                        c.m_Projectiles = new BlueprintProjectileReference[] { SonicCone40Feet00 };
+                        c.m_Length = 40.Feet();
                         c.m_LineWidth = 5.Feet();
                         c.Type = AbilityProjectileType.Cone;
                         c.m_Weapon = new BlueprintItemWeaponReference();
@@ -308,37 +314,6 @@ namespace TabletopTweaks.Reworks.Reworks {
                     });
                     bp.AddComponent<AbilityCasterHasNoFacts>(c => {
                         c.m_Facts = new BlueprintUnitFactReference[] { DragonAzataBreathCooldown.ToReference<BlueprintUnitFactReference>() };
-                    });
-                    bp.GetComponent<AbilityEffectRunAction>()?.TemporaryContext(c => {
-                        c.AddAction(
-                            new ContextActionConditionalSaved() {
-                                Succeed = Helpers.CreateActionList(),
-                                Failed = Helpers.CreateActionList(
-                                    new Conditional() {
-                                        ConditionsChecker = new ConditionsChecker() {
-                                            Conditions = new Condition[] {
-                                                new ContextConditionCasterHasFact() {
-                                                    m_Fact = DragonAzataDeliriumBreath
-                                                },
-                                                new ContextConditionIsEnemy()
-                                            }
-                                        },
-                                        IfFalse = Helpers.CreateActionList(),
-                                        IfTrue = Helpers.CreateActionList(
-                                            new ContextActionApplyBuff() {
-                                                m_Buff = Confusion,
-                                                IsFromSpell = false,
-                                                DurationValue = new ContextDurationValue() {
-                                                    Rate = DurationRate.Rounds,
-                                                    DiceCountValue = 0,
-                                                    BonusValue = 1
-                                                }
-                                            }
-                                        )
-                                    }
-                                )
-                            }
-                        );
                     });
                     bp.AddComponent<ContextSetAbilityParams>(c => {
                         c.DC = new ContextValue() {
