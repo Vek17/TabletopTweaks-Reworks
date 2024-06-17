@@ -86,7 +86,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 var DragonClass = BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("01a754e7c1b7c5946ba895a5ff0faffc");
                 var DragonAzataArchetype = BlueprintTools.GetBlueprint<BlueprintArchetype>("6e6135c91c2f84e46b7bb49f2158a9ce");
 
-                var DragonAzataWeaponOverrides = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(TTTContext, "DargonAzataWeaponOverrides");
+                var DragonAzataWeaponOverrides = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(TTTContext, "DragonAzataWeaponOverrides");
                 var DragonAzataStatGrowth = BlueprintTools.GetModBlueprintReference<BlueprintFeatureReference>(TTTContext, "DragonAzataStatGrowth");
                 var DragonAzataTailSweep = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(TTTContext, "DragonAzataTailSweep");
                 var DragonAzataDeadlyTail = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(TTTContext, "DragonAzataDeadlyTail");
