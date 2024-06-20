@@ -368,7 +368,7 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterLoreReligionTier2Progression.SetDescription(TTTContext, "You now know religion so well that you can use abilities usually reserved for clerics. " +
                         "You can select two domains. You gain abilities of those domains and can use spells from those domains once per day.\n" +
                         "Your effective cleric level for the purposes of these domains and spells is equal to your character level, " +
-                        "and your effective wisdom modifer is equal to your mythic rank.");
+                        "and your effective wisdom modifier is equal to your mythic rank.");
 
                     DomainMastery.AddPrerequisiteFeature(TricksterLoreReligionTier2Progression, Prerequisite.GroupType.Any);
 
@@ -387,7 +387,7 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterLoreReligionTier3Selection.AddFeatures(NewContent.Classes.Trickster.TricksterDomains.ToArray());
                     TricksterLoreReligionTier3Progression.SetDescription(TTTContext, "You now know enough about religion to start your own. You can select two additional domains.\n" +
                         "Your effective cleric level for the purposes of these domains and spells is equal to your character level, " +
-                        "and your effective wisdom modifer is equal to your mythic rank.");
+                        "and your effective wisdom modifier is equal to your mythic rank.");
 
                     DomainMastery.AddPrerequisiteFeature(TricksterLoreReligionTier3Progression, Prerequisite.GroupType.Any);
 
@@ -500,8 +500,8 @@ namespace TabletopTweaks.Reworks.Patches {
                     var TricksterPerception3Buff = BlueprintTools.GetModBlueprintReference<BlueprintUnitFactReference>(TTTContext, "TricksterPerception3Buff");
 
                     TricksterPerceptionTier3Feature.TemporaryContext(bp => {
-                        bp.SetDescription(TTTContext, "You sight has become so impecable that you can now see how to improve the actions of your allies.\n" +
-                            "All allies within 60 feet of you gain the benifits of your perception tricks.");
+                        bp.SetDescription(TTTContext, "You sight has become so impeccable that you can now see how to improve the actions of your allies.\n" +
+                            "All allies within 60 feet of you gain the benefits of your perception tricks.");
                         bp.SetComponents();
                         bp.AddPrerequisiteFeature(TricksterPerceptionTier2Feature);
                         bp.AddComponent<AddFacts>(c => {
@@ -536,10 +536,10 @@ namespace TabletopTweaks.Reworks.Patches {
                 void PatchTricksterPersuasion2() {
                     if (TTTContext.Homebrew.MythicReworks.Trickster.IsDisabled("TricksterPersuasion2")) { return; }
 
-                    TricksterPersuasionTier2Feature.SetDescription(TTTContext, "You are so good at demoralizing your enemies that thier will to hurt you wavers.\n" +
+                    TricksterPersuasionTier2Feature.SetDescription(TTTContext, "You are so good at demoralizing your enemies that their will to hurt you wavers.\n" +
                         "Enemies affected by your demoralize ability must succeed at a Will saving throw with a DC of 10 + your ranks in Persuasion, " +
                         "or become staggered for one round. Additionally, when you successfully demoralize an enemy they take an additional penalty " +
-                        "to thier attack and damage rolls equal to 1 + half your mythic rank.");
+                        "to their attack and damage rolls equal to 1 + half your mythic rank.");
                     TricksterPersuasionTier2Feature.RemoveComponents<AddMechanicsFeature>();
                     TricksterPersuasionTier2Feature.AddComponent<AddCustomMechanicsFeature>(c => {
                         c.Feature = CustomMechanicsFeature.TricksterReworkPersuasion2;
@@ -553,7 +553,7 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterPersuasionTier3Feature.SetDescription(TTTContext, "You are so good at demoralizing your enemies that they panic and fail to defend themselves.\n" +
                         "Enemies affected by your demoralize have a 50% chance to attack the nearest target instead of acting normally. " +
                         "Additionally, when you successfully demoralize an enemy they take an additional penalty " +
-                        "to thier AC and spell resistance equal to your mythic rank, as well as a penalty all saving throws equal to 1 + half your mythic rank.");
+                        "to their AC and spell resistance equal to your mythic rank, as well as a penalty all saving throws equal to 1 + half your mythic rank.");
                     TricksterPersuasionTier3Feature.RemoveComponents<AddMechanicsFeature>();
                     TricksterPersuasionTier3Feature.AddComponent<AddCustomMechanicsFeature>(c => {
                         c.Feature = CustomMechanicsFeature.TricksterReworkPersuasion3;
@@ -597,7 +597,7 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterStealthTier1AbilityTarget.SetDescription(TTTContext, "You can enter stealth during combat as a move action. " +
                         "This stealth is not broken by a single enemy detecting you — instead it acts similar to the invisibility spell, " +
                         "giving you total concealment against all creatures that did not succeed on a Perception check against you.\n" +
-                        "This \"invisibility\" cannot be seen through by divination magic such as true seeing, see invisability, or thoughtsense.");
+                        "This \"invisibility\" cannot be seen through by divination magic such as true seeing, see invisibility, or thoughtsense.");
 
                     TTTContext.Logger.LogPatch("Patched", TricksterStealthTier1AbilityTarget);
                 }
@@ -620,7 +620,7 @@ namespace TabletopTweaks.Reworks.Patches {
 
                     TricksterStealthTier2Feature.SetDescription(TTTContext, "You exceed at stealth, fading from sight with your every move. " +
                         "Your stealth in combat now works more akin to greater invisibility spell effect.\n" +
-                        "This \"invisibility\" cannot be seen through by divination magic such as true seeing, see invisability, or thoughtsense.");
+                        "This \"invisibility\" cannot be seen through by divination magic such as true seeing, see invisibility, or thoughtsense.");
                     TricksterStealthTier2Buff.AddComponent<AddFacts>(c => {
                         c.m_Facts = new BlueprintUnitFactReference[] { DivinationImmunityFeature };
                     });
@@ -670,7 +670,7 @@ namespace TabletopTweaks.Reworks.Patches {
 
                     TricksterTrickeryTier3Feature.SetDescription(TTTContext, "Living creatures are also just complex devices and can also be easily disabled. " +
                         "You can try to disable them, forcing them to make a Fortitude saving throw (DC 15 + your ranks in Trickery). If the target fails it, it dies. " +
-                        "Addtionally your previous Trickery abilities can now be used as a swift action and at close range instead of touch range.");
+                        "Additionally your previous Trickery abilities can now be used as a swift action and at close range instead of touch range.");
                     TricksterTrickeryTier3Feature.AddComponent<AutoMetamagic>(c => {
                         c.m_AllowedAbilities = AutoMetamagic.AllowedType.Any;
                         c.Metamagic = Metamagic.Quicken | Metamagic.Reach;
@@ -714,7 +714,7 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterUseMagicDeviceTier2Feature.SetName(TTTContext, "Use Magic Device 2 rank");
                     TricksterUseMagicDeviceTier2Feature.SetDescription(TTTContext, "Your mastery of magic items has reached new heights.\n" +
                         "Wands you use no longer lose charges for use and you can equip any magical items possible, regardless of requirements. " +
-                        "Addtionally you realize that spells may be a bit less magical than you previously thought " +
+                        "Additionally you realize that spells may be a bit less magical than you previously thought " +
                         "and gain the metamagic Completely Normal Spell");
                     TricksterUseMagicDeviceTier2Feature.AddComponent<AddFacts>(c => {
                         c.m_Facts = new BlueprintUnitFactReference[] {
