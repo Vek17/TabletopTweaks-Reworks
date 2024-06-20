@@ -166,6 +166,7 @@
     <Compile Include="NewContent\ContentAdder.cs" />
     <Compile Include="NewContent\MythicAbilities\DimensionalRetribution.cs" />
     <Compile Include="NewContent\Classes\Lich.cs" />
+    <Compile Include="NewContent\MythicAbilities\SpellCastersOnslaught.cs" />
     <Compile Include="Patches\Aeon.cs" />
     <Compile Include="Patches\Azata.cs" />
     <Compile Include="Patches\Feats.cs" />

@@ -39,6 +39,11 @@
         "Homebrew": true,
         "Description": "Now extends spells that last 10+ minutes instead of 5+ minutes."
       },
+      "SpellCastersOnslaught": {
+        "Enabled": true,
+        "Homebrew": true,
+        "Description": "Rework of Spell Caster's Onslaught to make it more appealing for gish builds."
+      },
       "UnrelentingAssault": {
         "Enabled": true,
         "Homebrew": true,

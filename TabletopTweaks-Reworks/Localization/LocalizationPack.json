@@ -100,6 +100,17 @@
       "esES": null
     },
     {
+      "Key": "afef94c91a52460d803061d48d79faca",
+      "SimpleName": "CasterOnslaught.Description",
+      "ProcessTemplates": true,
+      "enGB": "Whenever you cast a spell, for one round you gain a bonus on weapon attack rolls equal to half your mythic rank. Additionally your weapons gain an enchantment for one round based on the spell's descriptors:\n  Elemental — Your weapon deals an extra 2d6 points of elemental damage on a successful hit. This weapon deals an additional 1d10 elemental damage on a sccessful crit. If this weapon's critical multiplier is x3 add an extra 2d10 points of elemental damage instead, and if the multiplier is x4, add an extra 3d10 points. The damage type matches the descriptor of the spell this was applied by.\n  Non Elemental — Your weapon deals an extra 1d6 points of divine damage on a successful hit. This weapon deals an additional 1d8 divine damage on a sccessful crit. If this weapon's critical multiplier is x3 add an extra 2d8 points of divine damage instead, and if the multiplier is x4, add an extra 3d8 points.\n",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "b5c7428537ca4761a0c488acaf738a71",
       "SimpleName": "DeadlyMagicFeature.Description",
       "ProcessTemplates": true,
@@ -243,6 +254,17 @@
       "esES": null
     },
     {
+      "Key": "779e5f8909234f558182be2dcaa00fa9",
+      "SimpleName": "DragonAzataWeaponOverrides.Name",
+      "ProcessTemplates": false,
+      "enGB": "Dragon Weapon Overrides",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "9552eff129214ad0b284c0a9a79b5ec4",
       "SimpleName": "EclipseChillFeature.Description",
       "ProcessTemplates": true,
@@ -375,6 +397,17 @@
       "esES": null
     },
     {
+      "Key": "daaaa87f66e14692b1f1d010df0c4ab5",
+      "SimpleName": "IncredibleMightFeature.Description",
+      "ProcessTemplates": true,
+      "enGB": "Azata gains a <b><color=#703565><link=\"Encyclopedia:Bonus\">bonus</link></color></b> equal to her mythic rank on <b><color=#703565><link=\"Encyclopedia:Attack\">attack</link></color></b> and <b><color=#703565><link=\"Encyclopedia:Damage\">damage rolls</link></color></b>. Whenever she hits with a charge attack or confirms a <b><color=#703565><link=\"Encyclopedia:Critical\">critical hit</link></color></b>, the target has to pass a <b><color=#703565><link=\"Encyclopedia:Saving_Throw\">Fortitude saving throw</link></color></b>, with <b><color=#703565><link=\"Encyclopedia:DC\">DC</link></color></b> equal to 10 + your mythic rank + <b><color=#703565><link=\"Encyclopedia:Strength\">Strength</link></color></b> modifier. If the target fails a saving throw one of the following action happens at random:\nEnemy is <b><color=#703565><link=\"ConditionStunned\">stunned</link></color></b> for <b><color=#703565><link=\"Encyclopedia:Dice\">1d4</link></color></b> <b><color=#703565><link=\"Encyclopedia:Combat_Round\">rounds</link></color></b> (30%)\nEnemy is <b><color=#703565><link=\"ConditionProne\">prone</link></color></b> for 1d4 rounds (20%)\nEnemy is pushed away 15 feet and is stunned for 1d4 rounds (20%)\nEnemy is crippled till the end of the fight: they can no longer move and suffers a -3 <b><color=#703565><link=\"Encyclopedia:Penalty\">penalty</link></color></b> to attack rolls and <b><color=#703565><link=\"Encyclopedia:Armor_Class\">AC</link></color></b> (15%)\nEnemy becomes <b><color=#703565><link=\"ConditionExhausted\">exhausted</link></color></b> (10%)\nEnemy is killed (5%)\nAdditionally, Azata can decide to lose these advantages to instead bolster the physical abilities of companions. They gain a bonus on all attack and damage rolls equal to +1 per 2 Azata's mythic ranks.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "d7d1dd9f3df247cc94b2369151c80cda",
       "SimpleName": "LifeBondingFriendshipFeature.Description",
       "ProcessTemplates": true,
@@ -449,6 +482,138 @@
       "deDE": null,
       "frFR": null,
       "zhCN": "10 minutes/level",
+      "esES": null
+    },
+    {
+      "Key": "cb939a3bbaa74f4aa2765ceefadee5fa",
+      "SimpleName": "SpellCastersOnslaughtAcid.Description",
+      "ProcessTemplates": true,
+      "enGB": "Your weapon deals an extra 2d6 points of acid damage on a successful hit. This weapon deals an additional 1d10 acid damage on a sccessful crit. If this weapon's critical multiplier is x3 add an extra 2d10 points of acid damage instead, and if the multiplier is x4, add an extra 3d10 points.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "220352cd2b904ce1991c3b555945b29d",
+      "SimpleName": "SpellCastersOnslaughtAcid.Name",
+      "ProcessTemplates": false,
+      "enGB": "Spell Casters Onslaught — Acid",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "a5b97451bcc244b7a63896c7e0fbbda4",
+      "SimpleName": "SpellCastersOnslaughtCold.Description",
+      "ProcessTemplates": true,
+      "enGB": "Your weapon deals an extra 2d6 points of cold damage on a successful hit. This weapon deals an additional 1d10 cold damage on a sccessful crit. If this weapon's critical multiplier is x3 add an extra 2d10 points of cold damage instead, and if the multiplier is x4, add an extra 3d10 points.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "cdcbc4fb04b5464bb684a852838e1f7b",
+      "SimpleName": "SpellCastersOnslaughtCold.Name",
+      "ProcessTemplates": false,
+      "enGB": "Spell Casters Onslaught — Cold",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "478ef3b3e205465c86503c3441ae9c3b",
+      "SimpleName": "SpellCastersOnslaughtDivine.Description",
+      "ProcessTemplates": true,
+      "enGB": "Your weapon deals an extra 1d6 points of divine damage on a successful hit. This weapon deals an additional 1d8 divine damage on a sccessful crit. If this weapon's critical multiplier is x3 add an extra 2d8 points of divine damage instead, and if the multiplier is x4, add an extra 3d8 points.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "0868990c3ca74feb8b3d8817034de5e1",
+      "SimpleName": "SpellCastersOnslaughtDivine.Name",
+      "ProcessTemplates": false,
+      "enGB": "Spell Casters Onslaught — Divine",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "aeb7b9f711114f07a50a56e9fc9b5445",
+      "SimpleName": "SpellCastersOnslaughtElectricity.Description",
+      "ProcessTemplates": true,
+      "enGB": "Your weapon deals an extra 2d6 points of electricity damage on a successful hit. This weapon deals an additional 1d10 electricity damage on a sccessful crit. If this weapon's critical multiplier is x3 add an extra 2d10 points of electricity damage instead, and if the multiplier is x4, add an extra 3d10 points.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "90d3aa1e213341ff8fd2bbddd0a015fb",
+      "SimpleName": "SpellCastersOnslaughtElectricity.Name",
+      "ProcessTemplates": false,
+      "enGB": "Spell Casters Onslaught — Electricity",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "660478e4fcbd4005b47eb2eee306dc3a",
+      "SimpleName": "SpellCastersOnslaughtFire.Description",
+      "ProcessTemplates": true,
+      "enGB": "Your weapon deals an extra 2d6 points of fire damage on a successful hit. This weapon deals an additional 1d10 fire damage on a sccessful crit. If this weapon's critical multiplier is x3 add an extra 2d10 points of fire damage instead, and if the multiplier is x4, add an extra 3d10 points.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "461abc55f90e4b7faca1cf4416664812",
+      "SimpleName": "SpellCastersOnslaughtFire.Name",
+      "ProcessTemplates": false,
+      "enGB": "Spell Casters Onslaught — Fire",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "d52d2d44d783443f8c4ad430dd399e70",
+      "SimpleName": "SpellCastersOnslaughtSonic.Description",
+      "ProcessTemplates": true,
+      "enGB": "Your weapon deals an extra 2d6 points of sonic damage on a successful hit. This weapon deals an additional 1d10 sonic damage on a sccessful crit. If this weapon's critical multiplier is x3 add an extra 2d10 points of sonic damage instead, and if the multiplier is x4, add an extra 3d10 points.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "ef961614b0c1447f8ea0f802160be37c",
+      "SimpleName": "SpellCastersOnslaughtSonic.Name",
+      "ProcessTemplates": false,
+      "enGB": "Spell Casters Onslaught — Sonic",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
       "esES": null
     },
     {

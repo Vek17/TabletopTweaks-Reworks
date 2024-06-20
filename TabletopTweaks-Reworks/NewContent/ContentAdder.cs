@@ -15,6 +15,7 @@ namespace TabletopTweaks.Reworks.NewContent {
                 TTTContext.Logger.LogHeader("Loading New Content");
 
                 MythicAbilities.DimensionalRetribution.AddDimensionalRetribution();
+                MythicAbilities.SpellCastersOnslaught.AddSpellCastersOnslaught();
                 Classes.Lich.AddLichFeatures();
                 Classes.Aeon.AddAeonFeatures();
                 Classes.Azata.AddAzataFeatures();

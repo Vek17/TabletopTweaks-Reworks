@@ -1,3 +1,7 @@
+## Version 1.4.3
+* Mythic Abiltiies
+	* Rework of Spell Caster's Onslaught to make it more appealing for gish builds
+
 ## Version 1.4.2
 * Azata
 	* Updated Aivu's breath weapon DC to 10 + 1/2 Hit Dice + Consitution Modifier + Azata Mythic Level

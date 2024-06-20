@@ -44,6 +44,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 PatchAbundantCasting();
                 PatchUnrelentingAssault();
                 PatchArchmageArmor();
+                PatchSpellCastersOnslaught();
             }
             static void PatchElementalBarrage() {
                 if (TTTContext.Homebrew.MythicAbilities.IsDisabled("ElementalBarrage")) { return; }
@@ -382,6 +383,47 @@ namespace TabletopTweaks.Reworks.Reworks {
 
                 TTTContext.Logger.LogPatch(ArchmageArmor);
                 TTTContext.Logger.LogPatch(MageArmor);
+            }
+            static void PatchSpellCastersOnslaught() {
+                if (TTTContext.Homebrew.MythicAbilities.IsDisabled("SpellCastersOnslaught")) { return; }
+
+                var CasterOnslaught = BlueprintTools.GetBlueprint<BlueprintFeature>("a4d2dc95084d4769b2f9dfa90d0f4297");
+                var CasterOnslaughtBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("a664d9a328e5477186e89f21e972c8b6");
+                var SpellCastersOnslaughtAcid = BlueprintTools.GetModBlueprintReference<BlueprintWeaponEnchantmentReference>(TTTContext, "SpellCastersOnslaughtAcid");
+                var SpellCastersOnslaughtCold = BlueprintTools.GetModBlueprintReference<BlueprintWeaponEnchantmentReference>(TTTContext, "SpellCastersOnslaughtCold");
+                var SpellCastersOnslaughtElectricity = BlueprintTools.GetModBlueprintReference<BlueprintWeaponEnchantmentReference>(TTTContext, "SpellCastersOnslaughtElectricity");
+                var SpellCastersOnslaughtFire = BlueprintTools.GetModBlueprintReference<BlueprintWeaponEnchantmentReference>(TTTContext, "SpellCastersOnslaughtFire");
+                var SpellCastersOnslaughtSonic = BlueprintTools.GetModBlueprintReference<BlueprintWeaponEnchantmentReference>(TTTContext, "SpellCastersOnslaughtSonic");
+                var SpellCastersOnslaughtDivine = BlueprintTools.GetModBlueprintReference<BlueprintWeaponEnchantmentReference>(TTTContext, "SpellCastersOnslaughtDivine");
+
+                CasterOnslaught.TemporaryContext(bp => {
+                    bp.SetDescription(TTTContext, "Whenever you cast a spell, " +
+                        "for one round you gain a bonus on weapon attack rolls equal to half your mythic rank. " +
+                        "Additionally your weapons gain an enchantment for one round based on the spell's descriptors:\n" +
+                        "  Elemental — Your weapon deals an extra 2d6 points of elemental damage on a successful hit. " +
+                        "This weapon deals an additional 1d10 elemental damage on a sccessful crit. " +
+                        "If this weapon's critical multiplier is x3 add an extra 2d10 points of elemental damage instead, and if the multiplier is x4, add an extra 3d10 points. " +
+                        "The damage type matches the descriptor of the spell this was applied by.\n" +
+                        "  Non Elemental — Your weapon deals an extra 1d6 points of divine damage on a successful hit. " +
+                        "This weapon deals an additional 1d8 divine damage on a sccessful crit. " +
+                        "If this weapon's critical multiplier is x3 add an extra 2d8 points of divine damage instead, and if the multiplier is x4, add an extra 3d8 points.\n"
+                        );
+                    bp.RemoveComponents<AddInitiatorAttackWithWeaponTrigger>();
+                    bp.AddComponent<SpellCastersOnslaught>(c => {
+                        c.m_AcidEnchantment = SpellCastersOnslaughtAcid;
+                        c.m_ColdEnchantment = SpellCastersOnslaughtCold;
+                        c.m_ElectricityEnchantment = SpellCastersOnslaughtElectricity;
+                        c.m_FireEnchantment = SpellCastersOnslaughtFire;
+                        c.m_SonicEnchantment = SpellCastersOnslaughtSonic;
+                        c.m_DivineEnchantment = SpellCastersOnslaughtDivine;
+                    });
+                });
+                CasterOnslaughtBuff.TemporaryContext(bp => {
+                    bp.m_DisplayName = CasterOnslaught.m_DisplayName;
+                    bp.m_Icon = CasterOnslaught.m_Icon;
+                    bp.m_Flags = BlueprintBuff.Flags.StayOnDeath;
+                    bp.RemoveComponents<WeaponParametersDamageBonus>();
+                });
             }
         }
     }
