@@ -1,5 +1,26 @@
 {
   "NewSettingsOffByDefault": false,
+  "Warpriest": {
+    "DisableAll": false,
+    "Base": {
+      "DisableAll": false,
+      "Settings": {},
+      "IsExpanded": true
+    },
+    "Archetypes": {
+      "MantisZealot": {
+        "DisableAll": false,
+        "Settings": {
+          "DeadlyFascination": {
+            "Enabled": true,
+            "Homebrew": true,
+            "Description": "Replaces Deadly Fascination with a much weaker Dazzling Bladework."
+          }
+        },
+        "IsExpanded": true
+      }
+    }
+  },
   "Feats": {
     "DisableAll": false,
     "Settings": {

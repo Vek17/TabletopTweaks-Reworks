@@ -419,6 +419,28 @@
       "esES": null
     },
     {
+      "Key": "3c038854e3cf47b7b9ac7f14c0cf18d4",
+      "SimpleName": "MantisZealotDeadlyFascinationFeature.Description",
+      "ProcessTemplates": true,
+      "enGB": "At 3rd level, a mantis zealot's deadly motions become dazzling. Whenever he kills an enemy with a sawtooth saber, other enemies in a 30-foot radius are dazzled for 2 rounds unless they succeed at a Will save (DC 10 + half the mantis zealot's class level + his Dexterity modifier; if he is wielding two sawtooth sabers, the DC increases by 2; if the red shroud is activated, the DC is increased by an additional 2).",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "8d27583dd991483cbd0b1f7b4dd4c5c4",
+      "SimpleName": "MantisZealotDeadlyFascinationFeature.Name",
+      "ProcessTemplates": false,
+      "enGB": "Dazzling Bladework",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "7aecb266e4314db7a60599601e5f66a6",
       "SimpleName": "RainbowArrows.Description",
       "ProcessTemplates": true,

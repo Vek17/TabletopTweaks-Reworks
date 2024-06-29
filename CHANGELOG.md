@@ -1,6 +1,9 @@
 ## Version 1.4.3
 * Mythic Abiltiies
 	* Rework of Spell Caster's Onslaught to make it more appealing for gish builds
+* Mantis Zealot
+	* Replaced Deadly Fascination with Dazzling Blade work.
+		* This is an intentional power down.	 
 
 ## Version 1.4.2
 * Azata
