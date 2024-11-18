@@ -1,4 +1,5 @@
-﻿using Kingmaker.Blueprints;
+﻿using Kingmaker.Assets.UnitLogic.Mechanics.Properties;
+using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Blueprints.Classes.Selection;
@@ -127,6 +128,8 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             var MurderSubdomainProgression = BlueprintTools.GetBlueprint<BlueprintProgression>("3b75b9afcb5a485aab990f12c1a22e64");
             var UndeadSubdomainProgression = BlueprintTools.GetBlueprint<BlueprintProgression>("4f0332ac85174cdcb47e2d866a7948c3");
 
+            var ScalykindDomainProgression = BlueprintTools.GetBlueprint<BlueprintProgression>("67034c0985b240e5ad6e41e905461951");
+
             CreateDomainSpellbookComponents();
             CreateAirDomain();
             CreateAnimalDomain();
@@ -165,6 +168,8 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             CreateIceSubdomain();
             CreateMurderSubdomain();
             CreateUndeadSubdomain();
+
+            CreateScalykindDomain();
 
             void CreateDomainSpellbookComponents() {
                 TricksterDomainSpellsKnown = Helpers.CreateBlueprint<BlueprintSpellsTable>(TTTContext, "TricksterTTTDomainSpellsKnown", bp => {
@@ -5621,6 +5626,126 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 tricksterDomain.LevelEntries = new LevelEntry[] {
                     Helpers.CreateLevelEntry(1, TricksterTTTUndeadDomainBaseFeature),
                     Helpers.CreateLevelEntry(8, DeathDomainGreaterFeature)
+                };
+                TricksterDomains.Add(tricksterDomain);
+            }
+
+            void CreateScalykindDomain() {
+                //Base Feature
+                var ScalykindDomainBaseFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("e22881ef284148fa972af9f521abf66d");
+                var ScalykindDomainBaseFeatureAbility = BlueprintTools.GetBlueprint<BlueprintAbility>("8050cf5b55b04c1ca41705a9ed51ba2a");
+                var FascinateCommonBuff = BlueprintTools.GetBlueprintReference<BlueprintBuffReference>("9c70d2ae017665b4b845e6c299cb7439");
+                var TouchItem = BlueprintTools.GetBlueprintReference<BlueprintItemWeaponReference>("bb337517547de1a4189518d404ec49d4");
+
+                var TricksterTTTScalykindDomainDCProperty = Helpers.CreateBlueprint<BlueprintUnitProperty>(TTTContext, "TricksterTTTScalykindDomainDCProperty", bp => {
+                    bp.AddComponent<SimplePropertyGetter>(c => {
+                        c.Property = UnitProperty.MythicLevel;
+                        c.Settings = new PropertySettings() {
+                            m_Progression = PropertySettings.Progression.AsIs
+                        };
+                    });
+                    bp.AddComponent<SimplePropertyGetter>(c => {
+                        c.Property = UnitProperty.MythicLevel;
+                        c.Settings = new PropertySettings() {
+                            m_Progression = PropertySettings.Progression.AsIs
+                        };
+                    });
+                    bp.BaseValue = 10;
+                });
+                var TricksterTTTScalykindDomainBaseResource = Helpers.CreateBlueprint<BlueprintAbilityResource>(TTTContext, "TricksterTTTScalykindDomainBaseResource", bp => {
+                    bp.m_MaxAmount = new BlueprintAbilityResource.Amount() {
+                        m_Class = ResourcesLibrary.GetRoot().Progression.m_CharacterMythics,
+                        m_ClassDiv = new BlueprintCharacterClassReference[0],
+                        m_Archetypes = new BlueprintArchetypeReference[0],
+                        m_ArchetypesDiv = new BlueprintArchetypeReference[0],
+                        BaseValue = 3,
+                        LevelIncrease = 1,
+                        IncreasedByLevel = true,
+                        IncreasedByStat = false
+                    };
+                });
+                var TricksterTTTScalykindDomainBaseAbility = Helpers.CreateBlueprint<BlueprintAbility>(TTTContext, "TricksterTTTScalykindDomainBaseAbility", bp => {
+                    bp.ApplyVisualsAndBasicSettings(ScalykindDomainBaseFeatureAbility);
+                    bp.AddComponent<AbilityEffectRunAction>(c => {
+                        c.Actions = Helpers.CreateActionList(
+                            new ContextActionSavingThrow() {
+                                m_ConditionalDCIncrease = new ContextActionSavingThrow.ConditionalDCIncrease[0],
+                                Type = SavingThrowType.Will,
+                                HasCustomDC = true,
+                                CustomDC = new ContextValue() { 
+                                    m_CustomProperty = TricksterTTTScalykindDomainDCProperty.ToReference<BlueprintUnitPropertyReference>(),
+                                    ValueType = ContextValueType.CasterCustomProperty
+                                },
+                                Actions = Helpers.CreateActionList(
+                                    new ContextActionConditionalSaved() {
+                                        Succeed = Helpers.CreateActionList(),
+                                        Failed = Helpers.CreateActionList(
+                                            new ContextActionDealDamage() {
+                                                DamageType = new DamageTypeDescription() {
+                                                    Common = new DamageTypeDescription.CommomData(),
+                                                    Physical = new DamageTypeDescription.PhysicalData(),
+                                                    Type = DamageType.Untyped
+                                                },
+                                                Duration = new ContextDurationValue(),
+                                                Value = new ContextDiceValue() {
+                                                    DiceType = DiceType.D6,
+                                                    DiceCountValue = 1,
+                                                    BonusValue = new ContextValue() {
+                                                        ValueType = ContextValueType.Rank
+                                                    }
+                                                }
+                                            },
+                                            new ContextActionApplyBuff() {
+                                                m_Buff = FascinateCommonBuff,
+                                                DurationValue = new ContextDurationValue() {
+                                                    m_IsExtendable = true,
+                                                    DiceCountValue = 0,
+                                                    BonusValue = 1
+                                                },
+                                                AsChild = true
+                                            }
+                                        )
+                                    }
+                                )
+                            }
+                        );
+                    });
+                    bp.AddComponent<AbilityTargetIsAlly>(c => {
+                        c.Not = false;
+                    });
+                    bp.AddComponent<SpellDescriptorComponent>(c => {
+                        c.Descriptor = SpellDescriptor.MindAffecting | SpellDescriptor.GazeAttack;
+                    });
+                    bp.AddContextRankConfig(c => {
+                        c.m_Progression = ContextRankProgression.AsIs;
+                        c.m_BaseValueType = ContextRankBaseValueType.MythicLevel;
+                        c.m_DisableRankBonus = true;
+                    });
+                    bp.AddComponent<AbilityResourceLogic>(c => {
+                        c.m_RequiredResource = TricksterTTTScalykindDomainBaseResource.ToReference<BlueprintAbilityResourceReference>();
+                        c.m_IsSpendResource = true;
+                        c.Amount = 1;
+                    });
+                });
+                var TricksterTTTScalykindDomainBaseFeature = Helpers.CreateBlueprint<BlueprintFeature>(TTTContext, "TricksterTTTScalykindDomainBaseFeature", bp => {
+                    bp.ApplyVisualsAndBasicSettings(ScalykindDomainBaseFeature);
+                    bp.AddComponent<AddFacts>(c => {
+                        c.m_Facts = new BlueprintUnitFactReference[] {
+                            TricksterTTTScalykindDomainBaseAbility.ToReference<BlueprintUnitFactReference>()
+                        };
+                    });
+                    bp.AddComponent<AddAbilityResources>(c => {
+                        c.m_Resource = TricksterTTTScalykindDomainBaseResource.ToReference<BlueprintAbilityResourceReference>();
+                        c.RestoreAmount = true;
+                    });
+                });
+                //Greater Feature
+                var ScalykindCompanionSelectionDomain = BlueprintTools.GetBlueprint<BlueprintFeature>("de9a327caa5b45eeb05ed9fe0f0ed4ce");
+
+                var tricksterDomain = CreateTricksterDomain(ScalykindDomainProgression);
+                tricksterDomain.LevelEntries = new LevelEntry[] {
+                    Helpers.CreateLevelEntry(1, TricksterTTTScalykindDomainBaseFeature),
+                    Helpers.CreateLevelEntry(4, ScalykindCompanionSelectionDomain)
                 };
                 TricksterDomains.Add(tricksterDomain);
             }
