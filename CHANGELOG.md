@@ -1,3 +1,7 @@
+## Version 1.4.4
+* Trickster
+	* Added support for Scalykind domain.
+
 ## Version 1.4.3
 * Mythic Abiltiies
 	* Rework of Spell Caster's Onslaught to make it more appealing for gish builds
