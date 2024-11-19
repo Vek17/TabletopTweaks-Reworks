@@ -167,11 +167,11 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 9,
-                            ProgressionValue = 34
+                            ProgressionValue = 35
                         },
                         new ContextRankConfig.CustomProgressionItem() {
                             BaseValue = 10,
-                            ProgressionValue = 37
+                            ProgressionValue = 38
                         }
                     };
                 });

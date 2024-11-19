@@ -155,10 +155,32 @@
       "esES": null
     },
     {
+      "Key": "7421ed46839c4c65876b37faac36b705",
+      "SimpleName": "DragonAzataBreathWeapon.Description",
+      "ProcessTemplates": true,
+      "enGB": "Once every 1d4 rounds, this breath weapon deals 6d10 points of sonic damage to everyone in a in 40-foot cone. This damage increases for every mythic rank beyond 3.\nMythic Rank 4:  9d10\nMythic Rank 5:  11d10\nMythic Rank 6:  13d10\nMythic Rank 7:  16d10\nMythic Rank 8:  18d10\nMythic Rank 9:  22d10\nMythic Rank 10: 24d10\nAt Mythic Rank 5 and beyond allies cannot be hit by this breath weapon.\nAt Mythic Rank 7 and beyond targets are confused for 1 round on a failed saving throw.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
       "Key": "67a4d5cd988d4d64966a21fcefe4a90c",
       "SimpleName": "DragonAzataBreathWeapon.Description",
       "ProcessTemplates": true,
       "enGB": "Once every 1d4 rounds, havoc dragon deals 6d10 points of sonic damage to everyone in a in 40-foot cone. This damage increases by 2d10 for every Azata mythic rank.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "d3016ad8cca6419caaade749dede2770",
+      "SimpleName": "DragonAzataBreathWeapon.SavingThrow",
+      "ProcessTemplates": false,
+      "enGB": "Reflex half",
       "ruRU": null,
       "deDE": null,
       "frFR": null,
@@ -386,14 +408,14 @@
       "esES": null
     },
     {
-      "Key": "99210b9b3de54b3fa698f670930c7cea",
+      "Key": "06a1fdf2f24d4423bbf78cccf0b9b519",
       "SimpleName": "IncredibleMightFeature.Description",
       "ProcessTemplates": true,
-      "enGB": "Azata gains a <b><color=#703565><link=\"Encyclopedia:Bonus\">bonus</link></color></b> equal to her mythic rank on <b><color=#703565><link=\"Encyclopedia:Attack\">attack</link></color></b> and <b><color=#703565><link=\"Encyclopedia:Damage\">damage rolls</link></color></b>. Whenever she hits with a charge attack or confirms a <b><color=#703565><link=\"Encyclopedia:Critical\">critical hit</link></color></b>, the target has to pass a <b><color=#703565><link=\"Encyclopedia:Saving_Throw\">Fortitude saving throw</link></color></b>, with <b><color=#703565><link=\"Encyclopedia:DC\">DC</link></color></b> equal to 10 + your mythic rank + <b><color=#703565><link=\"Encyclopedia:Strength\">Strength</link></color></b> modifier. If the target fails a saving throw one of the following <b><color=#703565><link=\"Encyclopedia:CA_Types\">action</link></color></b> happens at random:\nEnemy is stunned for <b><color=#703565><link=\"Encyclopedia:Dice\">1d4</link></color></b> <b><color=#703565><link=\"Encyclopedia:Combat_Round\">rounds</link></color></b> (30%)\nEnemy is prone for 1d4 rounds (20%)\nEnemy is pushed away 15 feet and is stunned for 1d4 rounds (20%)\nEnemy is crippled till the end of the fight: they can no longer move and suffers a -3 <b><color=#703565><link=\"Encyclopedia:Penalty\">penalty</link></color></b> to attack rolls and <b><color=#703565><link=\"Encyclopedia:Armor_Class\">AC</link></color></b> (15%)\nEnemy becomes exhausted (10%)\nEnemy is killed (5%)\nAdditionally, Azata can decide to lose these advantages to instead bolster the physical abilities of companions. They gain a bonus on all attack and damage rolls equal to +1 per 2 Azata's mythic ranks.",
+      "enGB": "The Azata gains a <b><color=#703565><link=\"Encyclopedia:Bonus\">bonus</link></color></b> equal to their mythic rank on <b><color=#703565><link=\"Encyclopedia:Attack\">attack</link></color></b> and <b><color=#703565><link=\"Encyclopedia:Damage\">damage rolls</link></color></b>. Whenever the Azata hits with a charge attack or confirms a <b><color=#703565><link=\"Encyclopedia:Critical\">critical hit</link></color></b>, the target must succeed at a <b><color=#703565><link=\"Encyclopedia:Saving_Throw\">Fortitude saving throw</link></color></b>, with a <b><color=#703565><link=\"Encyclopedia:DC\">DC</link></color></b> equal to 10 + the Azata's mythic rank + <b><color=#703565><link=\"Encyclopedia:Strength\">Strength</link></color></b> modifier. If the target fails the saving throw, one of the following happens at random:\nEnemy is <b><color=#703565><link=\"ConditionStunned\">stunned</link></color></b> for <b><color=#703565><link=\"Encyclopedia:Dice\">1d4</link></color></b> <b><color=#703565><link=\"Encyclopedia:Combat_Round\">rounds</link></color></b> (30%)\nEnemy is knocked <b><color=#703565><link=\"ConditionProne\">prone</link></color></b> for 1d4 rounds (20%)\nEnemy is pushed away 15 feet and is stunned for 1d4 rounds (20%)\nEnemy is crippled until the end of the fight: they can no longer move and suffer a -3 <b><color=#703565><link=\"Encyclopedia:Penalty\">penalty</link></color></b> on attack rolls and to <b><color=#703565><link=\"Encyclopedia:Armor_Class\">AC</link></color></b> (15%)\nEnemy becomes <b><color=#703565><link=\"ConditionExhausted\">exhausted</link></color></b> (10%)\nEnemy is killed (5%)\nAdditionally, the Azata can decide to lose these advantages to instead bolster the physical abilities of companions, granting them a bonus on all attack and damage rolls equal to half the Azata's mythic rank.",
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": "灵使在<b><color=#703565><link=\"Encyclopedia:Attack\">攻击</link></color></b>和<b><color=#703565><link=\"Encyclopedia:Damage\">伤害骰</link></color></b>上获得等同于她神话阶层的<b><color=#703565><link=\"Encyclopedia:Bonus\">加值</link></color></b>。当她进行冲锋攻击或者确认<b><color=#703565><link=\"Encyclopedia:Critical\">重击</link></color></b>时, 目标必须进行一次<b><color=#703565><link=\"Encyclopedia:Saving_Throw\">强韧豁免</link></color></b>，<b><color=#703565><link=\"Encyclopedia:DC\">DC</link></color></b>等于10 + 你的神话阶层 + <b><color=#703565><link=\"Encyclopedia:Strength\">力量</link></color></b>调整值. 如果目标豁免失败，则随机发生以下<b><color=#703565><link=\"Encyclopedia:CA_Types\">情形</link></color></b>之一:\n敌人眩晕<b><color=#703565><link=\"Encyclopedia:Dice\">1d4</link></color></b><b><color=#703565><link=\"Encyclopedia:Combat_Round\">轮</link></color></b>(30%)\n敌人俯卧1d4轮(20%)\n敌人被推开15英尺并被震慑1d4轮(20%)\n敌人残废直到战斗结束:他们不能移动，并遭受攻击骰和<b><color=#703565><link=\"Encyclopedia:Armor_Class\">AC</link></color></b>-3的<b><color=#703565><link=\"Encyclopedia:Penalty\">减值</link></color></b> (15%)\n敌人陷入力竭(10%)\n敌人被杀死(5%)\n此外，灵使可以选择失去这些优势，以提高同伴的物理能力。他们在所有攻击和伤害骰上获得加值，等于每2个灵使的神话阶层+1。",
+      "zhCN": null,
       "esES": null
     },
     {
@@ -405,6 +427,17 @@
       "deDE": null,
       "frFR": null,
       "zhCN": null,
+      "esES": null
+    },
+    {
+      "Key": "99210b9b3de54b3fa698f670930c7cea",
+      "SimpleName": "IncredibleMightFeature.Description",
+      "ProcessTemplates": true,
+      "enGB": "Azata gains a <b><color=#703565><link=\"Encyclopedia:Bonus\">bonus</link></color></b> equal to her mythic rank on <b><color=#703565><link=\"Encyclopedia:Attack\">attack</link></color></b> and <b><color=#703565><link=\"Encyclopedia:Damage\">damage rolls</link></color></b>. Whenever she hits with a charge attack or confirms a <b><color=#703565><link=\"Encyclopedia:Critical\">critical hit</link></color></b>, the target has to pass a <b><color=#703565><link=\"Encyclopedia:Saving_Throw\">Fortitude saving throw</link></color></b>, with <b><color=#703565><link=\"Encyclopedia:DC\">DC</link></color></b> equal to 10 + your mythic rank + <b><color=#703565><link=\"Encyclopedia:Strength\">Strength</link></color></b> modifier. If the target fails a saving throw one of the following <b><color=#703565><link=\"Encyclopedia:CA_Types\">action</link></color></b> happens at random:\nEnemy is stunned for <b><color=#703565><link=\"Encyclopedia:Dice\">1d4</link></color></b> <b><color=#703565><link=\"Encyclopedia:Combat_Round\">rounds</link></color></b> (30%)\nEnemy is prone for 1d4 rounds (20%)\nEnemy is pushed away 15 feet and is stunned for 1d4 rounds (20%)\nEnemy is crippled till the end of the fight: they can no longer move and suffers a -3 <b><color=#703565><link=\"Encyclopedia:Penalty\">penalty</link></color></b> to attack rolls and <b><color=#703565><link=\"Encyclopedia:Armor_Class\">AC</link></color></b> (15%)\nEnemy becomes exhausted (10%)\nEnemy is killed (5%)\nAdditionally, Azata can decide to lose these advantages to instead bolster the physical abilities of companions. They gain a bonus on all attack and damage rolls equal to +1 per 2 Azata's mythic ranks.",
+      "ruRU": null,
+      "deDE": null,
+      "frFR": null,
+      "zhCN": "灵使在<b><color=#703565><link=\"Encyclopedia:Attack\">攻击</link></color></b>和<b><color=#703565><link=\"Encyclopedia:Damage\">伤害骰</link></color></b>上获得等同于她神话阶层的<b><color=#703565><link=\"Encyclopedia:Bonus\">加值</link></color></b>。当她进行冲锋攻击或者确认<b><color=#703565><link=\"Encyclopedia:Critical\">重击</link></color></b>时, 目标必须进行一次<b><color=#703565><link=\"Encyclopedia:Saving_Throw\">强韧豁免</link></color></b>，<b><color=#703565><link=\"Encyclopedia:DC\">DC</link></color></b>等于10 + 你的神话阶层 + <b><color=#703565><link=\"Encyclopedia:Strength\">力量</link></color></b>调整值. 如果目标豁免失败，则随机发生以下<b><color=#703565><link=\"Encyclopedia:CA_Types\">情形</link></color></b>之一:\n敌人眩晕<b><color=#703565><link=\"Encyclopedia:Dice\">1d4</link></color></b><b><color=#703565><link=\"Encyclopedia:Combat_Round\">轮</link></color></b>(30%)\n敌人俯卧1d4轮(20%)\n敌人被推开15英尺并被震慑1d4轮(20%)\n敌人残废直到战斗结束:他们不能移动，并遭受攻击骰和<b><color=#703565><link=\"Encyclopedia:Armor_Class\">AC</link></color></b>-3的<b><color=#703565><link=\"Encyclopedia:Penalty\">减值</link></color></b> (15%)\n敌人陷入力竭(10%)\n敌人被杀死(5%)\n此外，灵使可以选择失去这些优势，以提高同伴的物理能力。他们在所有攻击和伤害骰上获得加值，等于每2个灵使的神话阶层+1。",
       "esES": null
     },
     {

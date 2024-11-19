@@ -1,3 +1,8 @@
+## Version 1.4.5
+* Azata
+	* Breath weapon damage has been slightly increased as mythic ranks increase.
+	* Now grows to Huge at mythic rank 9.
+
 ## Version 1.4.4
 * Trickster
 	* Added support for Scalykind domain.

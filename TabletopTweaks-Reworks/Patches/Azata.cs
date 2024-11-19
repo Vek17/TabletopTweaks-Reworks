@@ -118,8 +118,18 @@ namespace TabletopTweaks.Reworks.Reworks {
                 });
                 //Reimplement Breath Weapon
                 DragonAzataBreathWeapon.TemporaryContext(bp => {
-                    bp.SetDescription(TTTContext, "Once every 1d4 rounds, havoc dragon deals 6d10 points of sonic damage to everyone in a in 40-foot cone. " +
-                        "This damage increases by 2d10 for every Azata mythic rank.");
+                    bp.SetLocalizedSavingThrow(TTTContext, "Reflex half");
+                    bp.SetDescription(TTTContext, "Once every 1d4 rounds, this breath weapon deals 6d10 points of sonic damage to everyone in a in 40-foot cone. " +
+                        "This damage increases for every mythic rank beyond 3.\n" +
+                        "Mythic Rank 4:  9d10\n" +
+                        "Mythic Rank 5:  11d10\n" +
+                        "Mythic Rank 6:  13d10\n" +
+                        "Mythic Rank 7:  16d10\n" +
+                        "Mythic Rank 8:  18d10\n" +
+                        "Mythic Rank 9:  22d10\n" +
+                        "Mythic Rank 10: 24d10\n" +
+                        "At Mythic Rank 5 and beyond allies cannot be hit by this breath weapon.\n" +
+                        "At Mythic Rank 7 and beyond targets are confused for 1 round on a failed saving throw.");
                     bp.SetComponents();
                     bp.AddComponent<AbilityEffectRunAction>(c => {
                         c.Actions = Helpers.CreateActionList(
@@ -286,31 +296,31 @@ namespace TabletopTweaks.Reworks.Reworks {
                             },
                             new ContextRankConfig.CustomProgressionItem() {
                                 BaseValue = 15,
-                                ProgressionValue = 8
+                                ProgressionValue = 9
                             },
                             new ContextRankConfig.CustomProgressionItem() {
                                 BaseValue = 20,
-                                ProgressionValue = 10
+                                ProgressionValue = 11
                             },
                             new ContextRankConfig.CustomProgressionItem() {
                                 BaseValue = 25,
-                                ProgressionValue = 12
+                                ProgressionValue = 13
                             },
                             new ContextRankConfig.CustomProgressionItem() {
                                 BaseValue = 28,
-                                ProgressionValue = 14
-                            },
-                            new ContextRankConfig.CustomProgressionItem() {
-                                BaseValue = 30,
                                 ProgressionValue = 16
                             },
                             new ContextRankConfig.CustomProgressionItem() {
-                                BaseValue = 32,
+                                BaseValue = 30,
                                 ProgressionValue = 18
                             },
                             new ContextRankConfig.CustomProgressionItem() {
+                                BaseValue = 32,
+                                ProgressionValue = 22
+                            },
+                            new ContextRankConfig.CustomProgressionItem() {
                                 BaseValue = 35,
-                                ProgressionValue = 20
+                                ProgressionValue = 24
                             }
                         };
                     });
@@ -374,6 +384,10 @@ namespace TabletopTweaks.Reworks.Reworks {
                 DragonAzataFeatureTierIV.TemporaryContext(bp => {
                     bp.AddComponent<AddSpellResistance>(c => {
                         c.Value = 32;
+                    });
+                    bp.AddComponent<ChangeUnitBaseSize>(c => {
+                        c.m_Type = Core.NewUnitParts.UnitPartBaseSizeAdjustment.ChangeType.Delta;
+                        c.SizeDelta = 1;
                     });
                     TTTContext.Logger.LogPatch(bp);
                 });
