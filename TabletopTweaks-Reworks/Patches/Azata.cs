@@ -125,9 +125,9 @@ namespace TabletopTweaks.Reworks.Reworks {
                     bp.SetLocalizedSavingThrow(TTTContext, "Reflex half");
                     bp.SetDescription(TTTContext, "Once every 1d4 rounds, this breath weapon deals 6d10 points of sonic damage to everyone in a in 40-foot cone. " +
                         "This damage increases for every mythic rank beyond 3.\n" +
-                        "Mythic Rank 4:  9d10\n" +
-                        "Mythic Rank 5:  11d10\n" +
-                        "Mythic Rank 6:  13d10\n" +
+                        "Mythic Rank 4:  8d10\n" +
+                        "Mythic Rank 5:  12d10\n" +
+                        "Mythic Rank 6:  14d10\n" +
                         "Mythic Rank 7:  16d10\n" +
                         "Mythic Rank 8:  18d10\n" +
                         "Mythic Rank 9:  22d10\n" +
@@ -300,15 +300,15 @@ namespace TabletopTweaks.Reworks.Reworks {
                             },
                             new ContextRankConfig.CustomProgressionItem() {
                                 BaseValue = 15,
-                                ProgressionValue = 9
+                                ProgressionValue = 8
                             },
                             new ContextRankConfig.CustomProgressionItem() {
                                 BaseValue = 20,
-                                ProgressionValue = 11
+                                ProgressionValue = 12
                             },
                             new ContextRankConfig.CustomProgressionItem() {
                                 BaseValue = 25,
-                                ProgressionValue = 13
+                                ProgressionValue = 14
                             },
                             new ContextRankConfig.CustomProgressionItem() {
                                 BaseValue = 28,

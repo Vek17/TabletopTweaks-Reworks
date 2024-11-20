@@ -158,7 +158,7 @@
       "Key": "7421ed46839c4c65876b37faac36b705",
       "SimpleName": "DragonAzataBreathWeapon.Description",
       "ProcessTemplates": true,
-      "enGB": "Once every 1d4 rounds, this breath weapon deals 6d10 points of sonic damage to everyone in a in 40-foot cone. This damage increases for every mythic rank beyond 3.\nMythic Rank 4:  9d10\nMythic Rank 5:  11d10\nMythic Rank 6:  13d10\nMythic Rank 7:  16d10\nMythic Rank 8:  18d10\nMythic Rank 9:  22d10\nMythic Rank 10: 24d10\nAt Mythic Rank 5 and beyond allies cannot be hit by this breath weapon.\nAt Mythic Rank 7 and beyond targets are confused for 1 round on a failed saving throw.",
+      "enGB": "Once every 1d4 rounds, this breath weapon deals 6d10 points of sonic damage to everyone in a in 40-foot cone. This damage increases for every mythic rank beyond 3.\nMythic Rank 4:  8d10\nMythic Rank 5:  12d10\nMythic Rank 6:  14d10\nMythic Rank 7:  16d10\nMythic Rank 8:  18d10\nMythic Rank 9:  22d10\nMythic Rank 10: 24d10\nAt Mythic Rank 5 and beyond allies cannot be hit by this breath weapon.\nAt Mythic Rank 7 and beyond targets are confused for 1 round on a failed saving throw.",
       "ruRU": null,
       "deDE": null,
       "frFR": null,
