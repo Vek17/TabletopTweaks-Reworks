@@ -385,6 +385,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                     });
                     TTTContext.Logger.LogPatch(bp);
                 });
+                //Add an additional Size increase
                 DragonAzataFeatureTierIV.TemporaryContext(bp => {
                     bp.AddComponent<AddSpellResistance>(c => {
                         c.Value = 32;
@@ -782,7 +783,7 @@ namespace TabletopTweaks.Reworks.Reworks {
                 var SupersonicSpeedFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("505456aa17dd18a4e8bd8172811a4fdc");
 
                 SupersonicSpeedFeature.TemporaryContext(bp => {
-                    bp.SetDescription(TTTContext, "Azata is able to make one additional attack an is always under the effect of haste spell, as long as she is engaged in combat. " +
+                    bp.SetDescription(TTTContext, "Azata is able to make one additional attack and is always under the effect of haste spell, as long as she is engaged in combat. " +
                         "All melee and ranged weapon attacks against her have a 20% miss chance. All targeted spells aimed at her have a 10% miss chance. " +
                         "All the damage from area attacks against her is halved, even if previously reduced by saving throw.\n" +
                         "Note: When character have miss chance and concealment at the same time, then only best bonus applied.");
