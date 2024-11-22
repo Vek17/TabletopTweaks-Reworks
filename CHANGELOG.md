@@ -1,3 +1,7 @@
+## Version 1.4.6
+* Azata
+	* Aivu now supports mounting while Huge or larger
+	
 ## Version 1.4.5
 * Azata
 	* Breath weapon damage has been slightly increased as mythic ranks increase.
