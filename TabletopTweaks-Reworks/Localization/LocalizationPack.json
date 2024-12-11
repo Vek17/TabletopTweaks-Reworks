@@ -1,4 +1,4 @@
-﻿{
+{
   "LocalizedStrings": [
     {
       "Key": "ba6caea33b7a4beca16198d874537bf0",
@@ -184,7 +184,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "每{g|Encyclopedia:Dice}1d4{/g}{g|Encyclopedia:Combat_Round}轮{/g}一次，狂欢龙能够喷出吐息对30英尺锥形范围内的所有生物造成6d10点音波伤害。此伤害每个灵使神话阶层提高2d10点。",
       "esES": null
     },
     {
@@ -195,7 +195,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "尾扫的重击倍率提高为X3",
       "esES": null
     },
     {
@@ -206,7 +206,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "致命之尾",
       "esES": null
     },
     {
@@ -217,7 +217,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "对喷吐武器豁免失败的生物会困惑1回合。",
       "esES": null
     },
     {
@@ -228,7 +228,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "混乱吐息",
       "esES": null
     },
     {
@@ -239,7 +239,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "与普通动物伙伴不同，爱乌的生命骰、能力、技能和专长随着灵使获得神话等级而提高。",
       "esES": null
     },
     {
@@ -250,7 +250,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "神话龙类成长",
       "esES": null
     },
     {
@@ -261,7 +261,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "当你用尾巴进行攻击时，尝试一次额外的绊摔战技，且不会引发{g|Encyclopedia:Attack_Of_Opportunity}借机攻击{/g}。",
       "esES": null
     },
     {
@@ -272,7 +272,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "尾扫",
       "esES": null
     },
     {
@@ -393,7 +393,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "灵使的魔法强度剧增。每当敌人进行{g|Encyclopedia:Saving_Throw}豁免检定{/g}来对抗灵使的{g|Encyclopedia:Spell}法术{/g}、类法术能力或者超自然能力时，都需要{g|Encyclopedia:Dice}掷骰{/g}两次并取最差的结果。每当灵使进行{g|Encyclopedia:Concentration}专注检定{/g}或穿透{g|Encyclopedia:Spell_Resistance}法术抗力{/g}的{g|Encyclopedia:Check}检定{/g}时，都可以掷骰两次并取最好的结果。如果灵使施放的法术描述中提到，豁免检定成功可减半{g|Encyclopedia:Damage}伤害{/g}或持续时间，则改为只能减少25%。",
       "esES": null
     },
     {
@@ -932,7 +932,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": "你潜行技艺超群，无人可以察觉你的动作。你在战斗中的潜行现在更接近于更强的隐形法术效果。这种“隐形”是不能被占卜魔法看穿的，比如真看见，看见隐形，或思想感觉。",
+      "zhCN": "你潜行技艺超群，无人可以察觉你的动作。你在战斗中的潜行现在更接近于更强的隐形法术效果。这种“隐形”是不能被占卜魔法看穿的，比如真知术，识破隐形，或侦测思想。",
       "esES": null
     },
     {
@@ -1031,7 +1031,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "当灵使施放指定生物个体而非范围的{g|Encyclopedia:Spell}法术{/g}、类法术能力或超自然能力时，可多影响一个距离目标30英尺内的生物。若目标是敌人，法术可多影响一个敌人；若目标是盟友，则多影响一个盟友。此外，指定敌人为目标的法术还会对他们造成{g|Encyclopedia:Dice}2d6{/g}+神话阶层的{g|Encyclopedia:Damage}伤害{/g}。",
       "esES": null
     },
     {
@@ -1042,7 +1042,7 @@
       "ruRU": null,
       "deDE": null,
       "frFR": null,
-      "zhCN": null,
+      "zhCN": "灵动魔法",
       "esES": null
     }
   ]
