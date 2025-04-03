@@ -13,6 +13,7 @@ using Kingmaker.RuleSystem.Rules;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.Buffs;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
@@ -779,7 +780,7 @@ namespace TabletopTweaks.Reworks.Patches {
                 var TricksterPersuasion2Buff = BlueprintTools.GetModBlueprint<BlueprintBuff>(TTTContext, "TricksterPersuasion2Buff");
                 var TricksterPersuasion3Buff = BlueprintTools.GetModBlueprint<BlueprintBuff>(TTTContext, "TricksterPersuasion3Buff");
                 var Staggered = BlueprintTools.GetBlueprint<BlueprintBuff>("df3950af5a783bd4d91ab73eb8fa0fd3");
-                var Stunned = BlueprintTools.GetBlueprint<BlueprintBuff>("09d39b38bb7c6014394b6daced9bacd3");
+                //var Stunned = BlueprintTools.GetBlueprint<BlueprintBuff>("09d39b38bb7c6014394b6daced9bacd3");
 
                 var data = ContextData<MechanicsContext.Data>.Current;
                 var mechanicsContext = data?.Context;
@@ -790,16 +791,19 @@ namespace TabletopTweaks.Reworks.Patches {
                 var TricksterPersuasion2 = caster.CustomMechanicsFeature(CustomMechanicsFeature.TricksterReworkPersuasion2).Value;
                 var TricksterPersuasion3 = caster.CustomMechanicsFeature(CustomMechanicsFeature.TricksterReworkPersuasion3).Value;
 
+                Buff persuasion2Buff = null;
                 if (TricksterPersuasion2) {
-                    instance.Target.Unit.Descriptor.AddBuff(TricksterPersuasion2Buff, mechanicsContext, new TimeSpan?(debuffDuration.Rounds().Seconds));
+                    var cloneContext = mechanicsContext.CloneFor(TricksterPersuasion2Buff, instance.Target.Unit.Descriptor, mechanicsContext.MaybeCaster);
+                    cloneContext.UnlinkParent();
+                    persuasion2Buff = instance.Target.Unit.Descriptor.AddBuff(TricksterPersuasion2Buff, cloneContext, new TimeSpan?(debuffDuration.Rounds().Seconds));
                 }
                 if (TricksterPersuasion3) {
-                    instance.Target.Unit.Descriptor.AddBuff(TricksterPersuasion3Buff, mechanicsContext, new TimeSpan?(debuffDuration.Rounds().Seconds));
+                    var cloneContext = mechanicsContext.CloneFor(TricksterPersuasion3Buff, instance.Target.Unit.Descriptor, mechanicsContext.MaybeCaster);
+                    cloneContext.UnlinkParent();
+                    instance.Target.Unit.Descriptor.AddBuff(TricksterPersuasion3Buff, cloneContext, new TimeSpan?(debuffDuration.Rounds().Seconds));
                 }
-                if (TricksterPersuasion2) {
-                    if (!Game.Instance.Rulebook.TriggerEvent<RuleSavingThrow>(new RuleSavingThrow(instance.Target.Unit, SavingThrowType.Will, saveDC)).IsPassed) {
-                        instance.Target.Unit.Descriptor.AddBuff(Staggered, mechanicsContext, new TimeSpan?(1.Rounds().Seconds));
-                    }
+                if (persuasion2Buff != null && !persuasion2Buff.Context.TriggerRule<RuleSavingThrow>(new RuleSavingThrow(instance.Target.Unit, SavingThrowType.Will, saveDC)).IsPassed) {
+                    instance.Target.Unit.Descriptor.AddBuff(Staggered, mechanicsContext, new TimeSpan?(1.Rounds().Seconds));
                 }
             }
         }

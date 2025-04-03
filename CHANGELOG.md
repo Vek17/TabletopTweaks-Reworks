@@ -1,3 +1,7 @@
+## Version 1.4.7
+* Trickster
+	* Fixed some tooltiping issues with Trickster Presausion.
+
 ## Version 1.4.6
 * Azata
 	* Aivu now supports mounting while Huge or larger
