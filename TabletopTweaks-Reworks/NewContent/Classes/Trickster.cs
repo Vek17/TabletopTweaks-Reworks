@@ -6071,7 +6071,7 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
             var TricksterPersuasion3Buff = SongOfDiscordBuff.CreateCopy(TTTContext, "TricksterPersuasion3Buff", bp => {
                 bp.SetName(TTTContext, "Trickster Persuasion 3");
                 bp.SetDescription(TTTContext, "Creature has a 50% chance to attack the nearest target each turn. " +
-                    "Additionally they suffer pentalities to AC and spell resistance equal to equal to your mythic rank, as well as a penalty to saving throws equal to 1 + half your mythic rank. ");
+                    "Additionally they suffer a penalty to spell resistance equal to equal to your mythic rank, as well as pentalities to AC and saving throws equal to 1 + half your mythic rank.");
                 bp.m_Icon = Icon_TricksterPersausion;
                 bp.Stacking = StackingType.Prolong;
                 bp.IsClassFeature = true;
@@ -6084,7 +6084,8 @@ namespace TabletopTweaks.Reworks.NewContent.Classes {
                 bp.AddComponent<AddContextStatBonus>(c => {
                     c.Stat = StatType.AC;
                     c.Value = new ContextValue() {
-                        ValueType = ContextValueType.Rank
+                        ValueType = ContextValueType.Rank,
+                        ValueRank = AbilityRankType.StatBonus
                     };
                     c.Descriptor = ModifierDescriptor.UntypedStackable;
                     c.Multiplier = -1;

@@ -554,7 +554,7 @@ namespace TabletopTweaks.Reworks.Patches {
                     TricksterPersuasionTier3Feature.SetDescription(TTTContext, "You are so good at demoralizing your enemies that they panic and fail to defend themselves.\n" +
                         "Enemies affected by your demoralize have a 50% chance to attack the nearest target instead of acting normally. " +
                         "Additionally, when you successfully demoralize an enemy they take an additional penalty " +
-                        "to thier AC and spell resistance equal to your mythic rank, as well as a penalty all saving throws equal to 1 + half your mythic rank.");
+                        "to thier spell resistance equal to your mythic rank, as well as a penalty AC and all saving throws equal to 1 + half your mythic rank.");
                     TricksterPersuasionTier3Feature.RemoveComponents<AddMechanicsFeature>();
                     TricksterPersuasionTier3Feature.AddComponent<AddCustomMechanicsFeature>(c => {
                         c.Feature = CustomMechanicsFeature.TricksterReworkPersuasion3;

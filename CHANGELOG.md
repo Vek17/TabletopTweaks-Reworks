@@ -1,6 +1,7 @@
 ## Version 1.4.7
 * Trickster
-	* Fixed some tooltiping issues with Trickster Presausion.
+	* Fixed some tooltiping issues with Trickster Persuasion.
+	* Persuasion 3 AC penalty is now 1 + half mythic rank. 
 
 ## Version 1.4.6
 * Azata
